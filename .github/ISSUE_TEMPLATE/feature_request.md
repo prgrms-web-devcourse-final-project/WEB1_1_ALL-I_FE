@@ -2,7 +2,7 @@
 name: 기능 구현 이슈 템플릿
 about: 기능 구현 항목에 대해 생성 할 이슈에 대한 템플릿입니다
 title: "[Feature]"
-labels: Feature
+labels: feature
 assignees: ''
 
 ---
