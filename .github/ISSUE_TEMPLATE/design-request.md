@@ -2,7 +2,7 @@
 name: 페이지 퍼블리싱 / 디자인 이슈 템플릿
 about: 페이지 퍼블리싱, 페이지 디자인 시 생성하여 작업합니다
 title: "[Design]"
-labels: "\bDesign"
+labels: "design"
 assignees: ''
 
 ---
