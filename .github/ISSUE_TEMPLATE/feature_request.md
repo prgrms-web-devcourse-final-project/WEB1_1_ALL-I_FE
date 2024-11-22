@@ -1,20 +1,19 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
+name: 기능 구현 이슈 템플릿
+about: 기능 구현 항목에 대해 생성 할 이슈에 대한 템플릿입니다
+title: "[Feature]"
+labels: Feature
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## 설명
+새로운 기능에 대한 명확하고 간결한 설명을 작성해 주세요.
+(예: 서비스 구현 등)
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+## TODO List
+- [ ] 
+- [ ]
+- [ ]
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## 참고자료
