@@ -61,6 +61,18 @@ export const CalendarWrapper = styled.div`
 
   /* 일요일 색상 */
   .fc-day-sun {
-    color: #ff7a7a;
+    color: var(--color-red);
+  }
+
+  /* 이벤트 시간 스타일 */
+  .fc-event-time {
+    font-size: var(--font-size-micro);
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
+  /* 이벤트 제목 스타일 */
+  .fc-event-title {
+    font-size: var(--font-size-micro);
   }
 `;

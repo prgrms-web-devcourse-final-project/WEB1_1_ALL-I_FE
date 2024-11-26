@@ -10,10 +10,10 @@ import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
  */
 
 const CATEGORY_COLOR = {
-  1: "#FFF0E1",
-  2: "#EBFFE1",
-  3: "#E1FBFF",
-  4: "#E1E1FF",
+  "1": "#FFF0E1",
+  "2": "#EBFFE1",
+  "3": "#E1FBFF",
+  "4": "#E1E1FF",
 };
 
 function CalendarMonth() {
