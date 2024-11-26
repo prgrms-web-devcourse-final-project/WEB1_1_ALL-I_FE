@@ -66,13 +66,15 @@ export const CalendarWrapper = styled.div`
 
   /* 이벤트 시간 스타일 */
   .fc-event-time {
-    font-size: var(--font-size-micro);
+    font-size: var(--font-size-micro-small);
     font-weight: bold;
     margin-right: 4px;
+    color: var(--color-gray-medium);
   }
 
   /* 이벤트 제목 스타일 */
   .fc-event-title {
-    font-size: var(--font-size-micro);
+    font-size: var(--font-size-micro-small);
+    color: var(--color-black);
   }
 `;

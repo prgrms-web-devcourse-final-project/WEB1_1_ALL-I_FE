@@ -21,10 +21,8 @@ function CalendarMonth() {
     const formattedEvent = {
       id: event.personalEventId,
       title: event.title,
-      start: event.startTime
-        ? `${event.startDate}T${event.startTime}`
-        : event.startDate,
-      end: event.endTime ? `${event.endDate}T${event.endTime}` : event.endDate,
+      start: event.startDate,
+      end: event.endDate,
       backgroundColor:
         CATEGORY_COLOR[event.categoryId as keyof typeof CATEGORY_COLOR],
     };
@@ -52,12 +50,12 @@ function CalendarMonth() {
               right: "dayGridMonth,timeGridWeek,timeGridDay",
             }}
             eventDisplay="block"
-            eventBackgroundColor="#4285f4"
+            eventBackgroundColor="var(--color-primary)"
             eventBorderColor="transparent"
-            eventTextColor="var(--color-black)"
             dayCellClassNames="calendar-day"
             contentHeight="auto"
             dayHeaderFormat={{ weekday: "short" }}
+            // displayEventEnd={false}
           />
         </CalendarWrapper>
       </div>
