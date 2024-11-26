@@ -43,22 +43,26 @@ function CalendarMonth() {
       <div style={{ width: "80%", height: "100%" }}>
         <CalendarWrapper>
           <FullCalendar
+            // 기본 설정
             plugins={[dayGridPlugin]}
             initialView="dayGridMonth"
-            weekends={true}
-            events={events}
+            locale="ko"
+            contentHeight="auto"
+            // 헤더 설정
             headerToolbar={{
-              left: "prev,next today",
-              center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
+              left: "prev,next today", // 이전, 다음, 오늘 버튼
+              center: "title", // 달력 제목
+              right: "dayGridMonth,timeGridWeek,timeGridDay", // 월/주/일 보기 옵션
             }}
+            dayHeaderFormat={{ weekday: "short" }} // 요일 표시 형식
+            // 이벤트 데이터 및 표시 설정
+            events={events}
+            weekends={true}
             eventDisplay="block"
             eventBackgroundColor="var(--color-primary)"
             eventBorderColor="transparent"
+            // 날짜 셀 설정
             dayCellClassNames="calendar-day"
-            contentHeight="auto"
-            dayHeaderFormat={{ weekday: "short" }}
-            locale="ko"
             dayCellContent={({ date }) => {
               return { html: date.getDate().toString() };
             }}
