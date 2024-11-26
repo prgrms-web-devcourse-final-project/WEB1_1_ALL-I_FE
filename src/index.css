@@ -51,15 +51,92 @@ html {
   --text-secondary: var(--color-gray-light);
 }
 
-body {
-  /* 기본 마진, 패딩 제거 및 박스 사이징 설정 */
-  margin: 0;
-  padding: 0;
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
 
-  /* 기본 스타일 설정: 최대 너비, 폰트, 배경색, 텍스트 색상 */
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+
   max-width: var(--breakpoint-mobile);
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
   background-color: var(--background-primary);
   color: var(--text-primary);
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* 9. Create a root stacking context */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Added */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+a,
+button {
+  touch-action: manipulation;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
 }
