@@ -58,6 +58,10 @@ function CalendarMonth() {
             dayCellClassNames="calendar-day"
             contentHeight="auto"
             dayHeaderFormat={{ weekday: "short" }}
+            locale="ko"
+            dayCellContent={({ date }) => {
+              return { html: date.getDate().toString() };
+            }}
           />
         </CalendarWrapper>
       </div>

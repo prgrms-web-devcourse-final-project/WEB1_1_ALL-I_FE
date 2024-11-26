@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const CalendarWrapper = styled.div`
   .fc {
-    font-family: "Roboto", sans-serif;
+    font-family: "Pretendard", "Noto Sans KR", sans-serif;
     font-size: var(--font-size-micro);
   }
 
@@ -76,5 +76,19 @@ export const CalendarWrapper = styled.div`
   .fc-event-title {
     font-size: var(--font-size-micro-small);
     color: var(--color-black);
+  }
+
+  /* 테이블 보더 제거 */
+  .fc-theme-standard td,
+  .fc-theme-standard th,
+  .fc-theme-standard .fc-scrollgrid {
+    border: none;
+  }
+
+  /* 헤더 셀(요일) 스타일 */
+  .fc-col-header-cell {
+    padding: 8px;
+    font-weight: bold;
+    text-align: center;
   }
 `;
