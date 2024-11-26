@@ -18,11 +18,14 @@ const CATEGORY_COLOR = {
 
 function CalendarMonth() {
   const events = PERSONAL_EVENT_DATA.map((event) => {
+    const endDate = new Date(event.endDate);
+    endDate.setDate(endDate.getDate() + 1);
+
     const formattedEvent = {
       id: event.personalEventId,
       title: event.title,
       start: event.startDate,
-      end: event.endDate,
+      end: endDate.toISOString().split("T")[0],
       backgroundColor:
         CATEGORY_COLOR[event.categoryId as keyof typeof CATEGORY_COLOR],
     };
@@ -55,7 +58,6 @@ function CalendarMonth() {
             dayCellClassNames="calendar-day"
             contentHeight="auto"
             dayHeaderFormat={{ weekday: "short" }}
-            // displayEventEnd={false}
           />
         </CalendarWrapper>
       </div>
