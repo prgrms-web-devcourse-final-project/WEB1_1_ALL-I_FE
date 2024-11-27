@@ -16,8 +16,13 @@ const CATEGORY_COLOR = {
   "4": "#E1E1FF",
 };
 
+/**
+ * TODO:
+ * 카테고리 로직 나오면 해당 카테고리 색상 사용하도록 변경
+ */
 function CalendarMonth() {
   const events = PERSONAL_EVENT_DATA.map((event) => {
+    // 시간 없을 때 마지막 날짜 포함 안되는 문제 해결
     const endDate = new Date(event.endDate);
     endDate.setDate(endDate.getDate() + 1);
 
@@ -26,6 +31,7 @@ function CalendarMonth() {
       title: event.title,
       start: event.startDate,
       end: endDate.toISOString().split("T")[0],
+      // 카테고리 로직 나오면 해당 카테고리 색상 사용하도록 변경
       backgroundColor:
         CATEGORY_COLOR[event.categoryId as keyof typeof CATEGORY_COLOR],
     };
@@ -52,7 +58,7 @@ function CalendarMonth() {
             headerToolbar={{
               left: "", // 왼쪽 비움
               center: "prev title next", // 이전, 제목, 다음 버튼을 중앙에 모두 배치
-              right: "", // 오른쪽 비움
+              right: "dayGridMonth,dayGridWeek", // 월간/주간 전환 버튼 추가
             }}
             dayHeaderFormat={{ weekday: "short" }} // 요일 표시 형식
             // 이벤트 데이터 및 표시 설정
@@ -80,6 +86,14 @@ function CalendarMonth() {
               month: "long",
               day: "numeric",
               weekday: "long",
+            }}
+            // 사용 가능한 view 설정
+            views={{
+              dayGridWeek: {
+                // 주간 보기 커스터마이징
+                titleFormat: { year: "numeric", month: "long", day: "numeric" }, // 주간 보기 제목 형식
+                dayHeaderFormat: { weekday: "short" }, // 요일 표시 형식
+              },
             }}
           />
         </CalendarWrapper>

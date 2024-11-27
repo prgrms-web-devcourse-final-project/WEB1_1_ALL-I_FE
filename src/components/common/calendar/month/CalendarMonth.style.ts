@@ -60,7 +60,7 @@ export const CalendarWrapper = styled.div`
   /* 요일 헤더 셀 스타일링 */
   .fc-col-header-cell {
     padding: 4px;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     text-align: center;
   }
 
@@ -74,9 +74,20 @@ export const CalendarWrapper = styled.div`
 
   /* 날짜 셀 스타일링 */
   .fc-daygrid-day {
-    /* 날짜 셀의 최소 높이와 테두리 설정 */
-    min-height: 120px;
+    min-height: 120px !important;
+    height: auto !important;
     border: none;
+  }
+
+  /* 날짜 그리드 컨테이너 높이 조정 */
+  .fc-daygrid-body {
+    height: auto;
+  }
+
+  /* 이벤트 컨테이너 높이 조정 */
+  .fc-daygrid-day-events {
+    min-height: 1rem !important;
+    margin: 0 !important;
   }
 
   /* 날짜 숫자 위치 정렬 */
@@ -84,7 +95,8 @@ export const CalendarWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-small);
   }
 
   /* 오늘 날짜 강조 스타일 */
@@ -133,14 +145,6 @@ export const CalendarWrapper = styled.div`
     color: var(--color-black);
   }
 
-  /* 이벤트 시간 표시 스타일링 */
-  .fc-event-time {
-    font-size: var(--font-size-micro-small);
-    font-weight: bold;
-    margin-right: 4px;
-    color: var(--color-gray-medium);
-  }
-
   /* 이벤트 제목 스타일링 */
   .fc-event-title {
     font-size: var(--font-size-micro-small);
@@ -178,5 +182,36 @@ export const CalendarWrapper = styled.div`
         display: none;
       }
     }
+  }
+
+  /* 뷰 전환 버튼 스타일링 */
+  .fc-dayGridMonth-button,
+  .fc-dayGridWeek-button {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--color-black) !important;
+    padding: 4px 8px !important;
+    font-size: var(--font-size-micro) !important;
+
+    &.fc-button-active {
+      background: var(--color-primary) !important;
+      color: var(--color-white) !important;
+      border-radius: var(--border-radius-default) !important;
+    }
+
+    &:focus {
+      box-shadow: none !important;
+    }
+
+    &:hover:not(.fc-button-active) {
+      background: var(--color-gray-light) !important;
+      border-radius: var(--border-radius-default) !important;
+    }
+  }
+
+  /* 버튼 그룹 스타일링 */
+  .fc-button-group {
+    gap: 4px;
   }
 `;
