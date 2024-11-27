@@ -46,6 +46,15 @@ export const Button = styled.button<{
           border-radius: var(--border-radius-default);
           color: white;
         `;
+      case "primaryMicro":
+        return `
+            width: 53px;
+            height: 32px;
+            background-color: var(--color-primary);
+          font-size: var(--font-size-medium);
+            border-radius: var(--border-radius-default);
+            color: white;
+          `;
       case "whiteMedium":
         return `
           width: 127px;
@@ -59,6 +68,15 @@ export const Button = styled.button<{
         return `
           width: 64px;
           height: 31px;
+          background-color: white;
+          font-size: var(--font-size-medium);
+          border-radius: var(--border-radius-default);
+          color: var(--color-gray-dark);
+        `;
+      case "whiteMicro":
+        return `
+          width: 53px;
+          height: 32px;
           background-color: white;
           font-size: var(--font-size-medium);
           border-radius: var(--border-radius-default);

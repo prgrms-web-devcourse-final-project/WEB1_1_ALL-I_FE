@@ -6,8 +6,10 @@ interface IProps {
     | "primaryLarge"
     | "primaryMedium"
     | "primarySmall"
+    | "primaryMicro"
     | "whiteMedium"
-    | "whiteSmall";
+    | "whiteSmall"
+    | "whiteMicro";
   isHoverEffect?: boolean;
 }
 
