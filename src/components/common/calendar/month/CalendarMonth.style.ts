@@ -93,4 +93,32 @@ export const CalendarWrapper = styled.div`
     font-size: var(--font-size-micro-small);
     color: var(--color-black);
   }
+
+  /* 더보기 링크 스타일링 */
+  .fc-more-link {
+    color: var(--color-gray-medium);
+    font-size: var(--font-size-micro-small);
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* 더보기 팝오버 스타일링 */
+  .fc-popover {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+    .fc-popover-header {
+      background: #f5f5f5;
+      padding: 8px;
+      font-weight: bold;
+    }
+
+    .fc-popover-body {
+      padding: 8px;
+    }
+  }
 `;
