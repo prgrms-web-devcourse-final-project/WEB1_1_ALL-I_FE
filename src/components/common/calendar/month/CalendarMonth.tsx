@@ -72,9 +72,15 @@ function CalendarMonth() {
             // 더보기 클릭 시 동작 커스터마이징
             // moreLinkClick={(arg) => {
             //   // 기본 팝오버 대신 커스텀 동작 실행
-            //   console.log("더보기 클릭:", arg.date, arg.events);
-            //   return false; // 기본 팝오버를 표시하지 않음
+            //   // console.log("더보기 클릭:", arg.date, arg.events);
+            //   return;
             // }}
+            // 더보기 팝오버 헤더 포맷 설정
+            dayPopoverFormat={{
+              month: "long",
+              day: "numeric",
+              weekday: "long",
+            }}
           />
         </CalendarWrapper>
       </div>

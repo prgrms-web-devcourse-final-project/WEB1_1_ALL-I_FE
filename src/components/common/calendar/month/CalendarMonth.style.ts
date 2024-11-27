@@ -54,9 +54,27 @@ export const CalendarWrapper = styled.div`
 
   /* 오늘 날짜 강조 스타일 */
   .fc-day-today {
-    background-color: #e8f0fe !important;
-    border: 2px solid #4285f4;
-    border-radius: 6px;
+    background-color: transparent !important;
+    position: relative;
+    color: var(--color-white);
+
+    .fc-daygrid-day-top {
+      position: relative;
+      z-index: 1;
+    }
+
+    .fc-daygrid-day-top::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: var(--color-primary);
+      border-radius: var(--border-radius-default);
+      z-index: -1;
+    }
   }
 
   /* 주말 날짜 색상 */
@@ -109,16 +127,21 @@ export const CalendarWrapper = styled.div`
     background: white;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 
     .fc-popover-header {
-      background: #f5f5f5;
+      // background: var(--color-primary);
+      background: transparent;
       padding: 8px;
       font-weight: bold;
     }
 
     .fc-popover-body {
       padding: 8px;
+
+      .fc-more-popover-misc {
+        display: none;
+      }
     }
   }
 `;
