@@ -1,5 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import { DateClickArg } from "@fullcalendar/interaction";
+import interactionPlugin from "@fullcalendar/interaction";
 
 import { CalendarWrapper } from "./CalendarMonth.style";
 
@@ -45,6 +47,11 @@ function CalendarMonth() {
     return formattedEvent;
   });
 
+  // DateClickArg 타입 사용
+  const handleDateClick = (arg: DateClickArg) => {
+    console.log("날짜 클릭:", arg.date);
+  };
+
   return (
     <div
       style={{
@@ -57,7 +64,7 @@ function CalendarMonth() {
         <CalendarWrapper>
           <FullCalendar
             // 기본 설정
-            plugins={[dayGridPlugin]}
+            plugins={[dayGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
             locale="ko"
             contentHeight="auto"
@@ -105,6 +112,8 @@ function CalendarMonth() {
                 dayHeaderFormat: { weekday: "short" }, // 요일 표시 형식
               },
             }}
+            // 날짜 클릭 이벤트 추가
+            dateClick={handleDateClick}
           />
         </CalendarWrapper>
       </div>
