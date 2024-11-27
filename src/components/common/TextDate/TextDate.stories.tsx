@@ -23,7 +23,6 @@ type Story = StoryObj<typeof meta>;
 // 기본 스토리
 export const Default: Story = {
   args: {
-    type: "day",
     values: ["12월 16일", "12월 20일"],
   },
   parameters: {
@@ -37,7 +36,6 @@ export const Default: Story = {
 
 export const Primary: Story = {
   args: {
-    type: "time",
     values: ["10 : 00", "10 : 50"],
   },
   parameters: {
@@ -51,7 +49,6 @@ export const Primary: Story = {
 
 export const NoData: Story = {
   args: {
-    type: "time",
     values: [],
   },
   parameters: {
