@@ -104,7 +104,6 @@ export const CalendarWrapper = styled.div`
     background-color: transparent !important;
     position: relative;
     color: var(--color-white);
-
     .fc-daygrid-day-top {
       position: relative;
       z-index: 1;
@@ -140,6 +139,7 @@ export const CalendarWrapper = styled.div`
   .fc-event {
     border-radius: var(--border-radius-default);
     margin: 2px 0;
+
     text-align: center;
     font-size: var(--font-size-micro-small);
     color: var(--color-black);
@@ -148,14 +148,14 @@ export const CalendarWrapper = styled.div`
   /* 이벤트 제목 스타일링 */
   .fc-event-title {
     font-size: var(--font-size-micro-small);
-    color: var(--color-black);
+    color: var(--color-gray-dark);
   }
 
   /* 더보기 링크 스타일링 */
   .fc-more-link {
     color: var(--color-gray-medium);
     font-size: var(--font-size-micro-small);
-    font-weight: bold;
+    font-weight: var(--font-weight-regular);
     &:hover {
       text-decoration: underline;
     }
@@ -167,16 +167,23 @@ export const CalendarWrapper = styled.div`
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    width: 8rem;
 
     .fc-popover-header {
       // background: var(--color-primary);
       background: transparent;
-      padding: 8px;
-      font-weight: bold;
+      padding: 4px;
+      font-weight: var(--font-weight-regular);
     }
 
     .fc-popover-body {
-      padding: 8px;
+      width: 8rem;
+      padding: 4px;
+
+      .fc-daygrid-event-harness {
+        // (padding * 2 + 2px) 만큼 빼줘야 정렬이 적절해 보입니다.
+        width: calc(8rem - 10px) !important;
+      }
 
       .fc-more-popover-misc {
         display: none;

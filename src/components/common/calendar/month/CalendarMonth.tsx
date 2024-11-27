@@ -5,17 +5,21 @@ import { CalendarWrapper } from "./CalendarMonth.style";
 
 import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
 
+const CATEGORY_COLOR = {
+  "1": "#ffe1fd",
+  "2": "#ffe3e1",
+  "3": "#fff0e1",
+  "4": "#fbffe1",
+  "5": "#ebffe1",
+  "6": "#e1e1ff",
+  "7": "#e1edff",
+  "8": "#e1fbff",
+  "9": "#e8e8e8",
+};
+
 /**
  * 홈 페이지에 컴포넌트 콜 한거 삭제하기
  */
-
-const CATEGORY_COLOR = {
-  "1": "#FFF0E1",
-  "2": "#EBFFE1",
-  "3": "#E1FBFF",
-  "4": "#E1E1FF",
-};
-
 /**
  * TODO:
  * 카테고리 로직 나오면 해당 카테고리 색상 사용하도록 변경
