@@ -13,6 +13,7 @@ html {
   --font-size-medium: 1rem; /* 15px */
   --font-size-small: 0.8rem; /* 12px */
   --font-size-micro: 0.667rem; /* 10px */
+  --font-size-micro-small: 0.533rem; /* 8px */
 
   /* font-weight */
   --font-weight-bold: 600;
@@ -27,6 +28,7 @@ html {
   /* color */
   --color-primary: #97cdbd;
   --color-primary-hover: #5fb69c;
+  --color-red: #ff7a7a;
 
   /* 무채색 계열 */
   --color-white: #ffffff;
