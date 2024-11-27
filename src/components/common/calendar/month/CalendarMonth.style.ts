@@ -126,7 +126,12 @@ export const CalendarWrapper = styled.div`
   .fc-day-today {
     background-color: transparent !important;
     position: relative;
-    color: var(--color-white);
+
+    /* 날짜 숫자 흰색으로 변경 */
+    .fc-daygrid-day-number {
+      color: var(--color-white);
+    }
+
     .fc-daygrid-day-top {
       position: relative;
       z-index: 1;

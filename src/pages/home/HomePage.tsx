@@ -4,9 +4,6 @@ function HomePage() {
   return (
     <div>
       <div>HomePage</div>
-      <div>
-        <CalendarMonth />
-      </div>
     </div>
   );
 }

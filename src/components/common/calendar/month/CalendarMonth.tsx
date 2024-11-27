@@ -20,9 +20,6 @@ const CATEGORY_COLOR = {
 };
 
 /**
- * 홈 페이지에 컴포넌트 콜 한거 삭제하기
- */
-/**
  * TODO:
  * 카테고리 로직 나오면 해당 카테고리 색상 사용하도록 변경
  *
@@ -32,6 +29,8 @@ const CATEGORY_COLOR = {
  * 투두 관련 로직
  * - 월간 캘린더에 투두 점 표시
  * - 주간 캘린더에 투두 리스트 표시
+ *
+ * 페이지 작업 시 임시로 감싼 div 제거
  */
 function CalendarMonth() {
   const events = PERSONAL_EVENT_DATA.map((event) => {
