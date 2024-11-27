@@ -119,8 +119,8 @@ export const CalendarWrapper = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.2rem;
+      height: 1.2rem;
       background-color: var(--color-primary);
       border-radius: var(--border-radius-default);
       z-index: -1;

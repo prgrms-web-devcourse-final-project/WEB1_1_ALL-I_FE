@@ -1,7 +1,7 @@
 export const PERSONAL_EVENT_DATA = [
   {
     personalEventId: "282bc4fe-ea35-4737-8156-c4a879cc4e0a",
-    title: "놀기",
+    title: "일정 1",
     startDate: "2024-11-12",
     endDate: "2024-11-15",
     startTime: null,
@@ -13,7 +13,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "430458ec-4476-4b1f-9a36-c757ae6cdf22",
-    title: "밥 먹기",
+    title: "일정 2",
     startDate: "2024-11-13",
     endDate: "2024-11-15",
     startTime: "18:00:00",
@@ -25,7 +25,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "52551f9a-7815-4543-9d90-47ddf6f54f49",
-    title: "밥 먹기",
+    title: "일정 3",
     startDate: "2024-11-13",
     endDate: "2024-11-13",
     startTime: null,
@@ -37,7 +37,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "52eed857-7e65-4f46-87a6-0bbaa25ab200",
-    title: "밥 먹기",
+    title: "일정 4",
     startDate: "2024-11-13",
     endDate: "2024-11-13",
     startTime: "18:00:00",
@@ -49,7 +49,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 5",
     startDate: "2024-11-13",
     endDate: "2024-11-13",
     startTime: "18:00:00",
@@ -61,7 +61,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 6",
     startDate: "2024-11-13",
     endDate: "2024-11-13",
     startTime: "18:00:00",
@@ -73,7 +73,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 7",
     startDate: "2024-11-13",
     endDate: "2024-11-13",
     startTime: "18:00:00",
@@ -85,7 +85,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 8",
     startDate: "2024-11-13",
     endDate: "2024-11-26",
     startTime: "18:00:00",
@@ -97,7 +97,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 9",
     startDate: "2024-11-26",
     endDate: "2024-11-26",
     startTime: "18:00:00",
@@ -109,7 +109,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 10",
     startDate: "2024-11-26",
     endDate: "2024-11-26",
     startTime: "18:00:00",
@@ -121,7 +121,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 11",
     startDate: "2024-11-26",
     endDate: "2024-11-26",
     startTime: "18:00:00",
@@ -133,7 +133,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 12",
     startDate: "2024-11-26",
     endDate: "2024-11-26",
     startTime: "18:00:00",
@@ -145,7 +145,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 13",
     startDate: "2024-11-26",
     endDate: "2024-11-27",
     startTime: "18:00:00",
@@ -157,7 +157,7 @@ export const PERSONAL_EVENT_DATA = [
   },
   {
     personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "밥 먹기",
+    title: "일정 14",
     startDate: "2024-11-26",
     endDate: "2024-11-28",
     startTime: "18:00:00",
@@ -165,6 +165,18 @@ export const PERSONAL_EVENT_DATA = [
     isAlarmed: false,
     createdAt: "2024-11-26 16:42:00",
     categoryId: "5",
+    userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
+  },
+  {
+    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    title: "일정 15",
+    startDate: "2024-11-27",
+    endDate: "2024-12-20",
+    startTime: "18:00:00",
+    endTime: "19:00:00",
+    isAlarmed: false,
+    createdAt: "2024-11-26 16:42:00",
+    categoryId: "6",
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
 ];

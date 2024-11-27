@@ -23,6 +23,9 @@ const CATEGORY_COLOR = {
 /**
  * TODO:
  * 카테고리 로직 나오면 해당 카테고리 색상 사용하도록 변경
+ *
+ * 한달 씩의 이벤트, 투두 데이터와 해당 카테고리 색상 등은
+ * 전역 상태로 관리 되어야 할 것 같습니다.
  */
 function CalendarMonth() {
   const events = PERSONAL_EVENT_DATA.map((event) => {
@@ -95,7 +98,10 @@ function CalendarMonth() {
             views={{
               dayGridWeek: {
                 // 주간 보기 커스터마이징
-                titleFormat: { year: "numeric", month: "long", day: "numeric" }, // 주간 보기 제목 형식
+                titleFormat: {
+                  year: "numeric",
+                  month: "long",
+                }, // 주간 보기 제목 형식
                 dayHeaderFormat: { weekday: "short" }, // 요일 표시 형식
               },
             }}
