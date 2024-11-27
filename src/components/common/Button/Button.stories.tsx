@@ -3,7 +3,7 @@ import Button from "@/components/common/Button/Button";
 
 const meta = {
   // 스토리북 경로 - 파일 경로와 동일하게 설정하는 것이 좋을 것 같습니다.
-  title: "Components/Common/Button",
+  title: "Components/Common/Button/Button",
   component: Button,
   parameters: {
     // 스토리북 캔버스에 표시되는 위치
@@ -24,8 +24,10 @@ const meta = {
         "primaryLarge",
         "primaryMedium",
         "primarySmall",
+        "primaryMicro",
         "whiteMedium",
         "whiteSmall",
+        "whiteMicro",
       ],
     },
     isHoverEffect: {
@@ -62,6 +64,14 @@ export const PrimarySmall: Story = {
   },
 };
 
+export const PrimaryMicro: Story = {
+  args: {
+    buttonType: "primaryMicro",
+    isHoverEffect: false,
+    children: "가장 작은 기본 버튼",
+  },
+};
+
 // White 스토리
 export const WhiteMedium: Story = {
   args: {
@@ -76,5 +86,13 @@ export const WhiteSmall: Story = {
     buttonType: "whiteSmall",
     isHoverEffect: false,
     children: "작은 흰색 버튼",
+  },
+};
+
+export const WhiteMicro: Story = {
+  args: {
+    buttonType: "whiteMicro",
+    isHoverEffect: false,
+    children: "가장 작은 흰색 버튼",
   },
 };
