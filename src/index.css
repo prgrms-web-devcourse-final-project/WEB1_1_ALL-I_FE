@@ -40,6 +40,17 @@ html {
   --text-primary: var(--color-black);
   --text-secondary: var(--color-gray-dark);
 
+  /* 카테고리 기본 색상 설정 */
+  --color-category1: #ffe1fd;
+  --color-category2: #ffe3e1;
+  --color-category3: #fff0e1;
+  --color-category4: #fbffe1;
+  --color-category5: #ebffe1;
+  --color-category6: #e1e1ff;
+  --color-category7: #e1edff;
+  --color-category8: #e1fbff;
+  --color-category9: #e8e8e8;
+
   /* breakpoint */
   --breakpoint-mobile: 768px;
 }
