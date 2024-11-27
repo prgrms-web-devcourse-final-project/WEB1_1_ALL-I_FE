@@ -3,7 +3,7 @@ import EditDeleteModal from "@/components/common/EditDeleteModal/EditDeleteModal
 
 const meta = {
   // 스토리북 경로 - 파일 경로와 동일하게 설정하는 것이 좋을 것 같습니다.
-  title: "Components/Common/EditDeleteModal",
+  title: "Components/Common/EditDeleteModal/EditDeleteModal",
   component: EditDeleteModal,
   parameters: {
     // 스토리북 캔버스에 표시되는 위치
