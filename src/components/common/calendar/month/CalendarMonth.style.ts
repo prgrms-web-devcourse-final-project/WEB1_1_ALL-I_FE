@@ -88,6 +88,8 @@ export const CalendarWrapper = styled.div`
   .fc-daygrid-day-events {
     min-height: 1rem !important;
     margin: 0 !important;
+    // 이벤트와 하단 날짜 간의 간격
+    margin-bottom: 4px !important;
   }
 
   /* 날짜 숫자 위치 정렬 */
@@ -97,6 +99,8 @@ export const CalendarWrapper = styled.div`
     align-items: center;
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-small);
+    // 날짜와 이벤트 간의 간격 축소
+    margin-bottom: -4px;
   }
 
   /* 오늘 날짜 강조 스타일 */
