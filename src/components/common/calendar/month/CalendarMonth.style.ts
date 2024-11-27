@@ -24,7 +24,7 @@ export const CalendarWrapper = styled.div`
     .fc-toolbar-chunk {
       display: flex;
       align-items: center;
-      gap: 2rem; // 버튼과 제목 사이 간격
+      justify-content: center;
     }
 
     /* 각 섹션 자리 조정*/
@@ -42,8 +42,11 @@ export const CalendarWrapper = styled.div`
 
   /* 캘린더 제목 스타일링 */
   .fc-toolbar-title {
-    font-size: var(--font-size-medium);
+    font-size: var(--font-size-small);
     font-weight: var(--font-weight-bold);
+    white-space: nowrap;
+
+    text-align: center;
   }
 
   /* 헤더 버튼 스타일링 */
@@ -226,10 +229,10 @@ export const CalendarWrapper = styled.div`
       // border-radius: var(--border-radius-default);
     }
 
-    &:focus {
-      box-shadow: none;
-      background: transparent;
-      outline: none;
+    &:focus,
+    &:active {
+      box-shadow: none !important;
+      outline: none !important;
     }
 
     &:hover:not(.fc-button-active) {

@@ -28,6 +28,10 @@ const CATEGORY_COLOR = {
  *
  * 한달 씩의 이벤트, 투두 데이터와 해당 카테고리 색상 등은
  * 전역 상태로 관리 되어야 할 것 같습니다.
+ *
+ * 투두 관련 로직
+ * - 월간 캘린더에 투두 점 표시
+ * - 주간 캘린더에 투두 리스트 표시
  */
 function CalendarMonth() {
   const events = PERSONAL_EVENT_DATA.map((event) => {
