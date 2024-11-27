@@ -15,6 +15,13 @@ const meta = {
       },
     },
   },
+  argTypes: {
+    color: {
+      control: "color",
+      description: "Circle의 배경 색상",
+      defaultValue: "#c9c9c9", // 기본 값 설정
+    },
+  },
 } satisfies Meta<typeof Circle>;
 
 export default meta;
@@ -22,12 +29,8 @@ type Story = StoryObj<typeof meta>;
 
 // 기본 스토리
 export const Default: Story = {
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
   args: {
-    title: "기본 테스트",
-    description: "색을 기본으로 아무 값이나 넣어둔 상태입니다.",
+    color: "#c9c9c9", // 기본 색상
   },
   parameters: {
     docs: {
