@@ -40,7 +40,7 @@ function CalendarMonth() {
         alignItems: "center",
       }}
     >
-      <div style={{ width: "80%", height: "100%" }}>
+      <div style={{ width: "80%" }}>
         <CalendarWrapper>
           <FullCalendar
             // 기본 설정
@@ -50,9 +50,9 @@ function CalendarMonth() {
             contentHeight="auto"
             // 헤더 설정
             headerToolbar={{
-              left: "prev,next today", // 이전, 다음, 오늘 버튼
-              center: "title", // 달력 제목
-              right: "dayGridMonth,timeGridWeek,timeGridDay", // 월/주/일 보기 옵션
+              left: "", // 왼쪽 비움
+              center: "prev title next", // 이전, 제목, 다음 버튼을 중앙에 모두 배치
+              right: "", // 오른쪽 비움
             }}
             dayHeaderFormat={{ weekday: "short" }} // 요일 표시 형식
             // 이벤트 데이터 및 표시 설정

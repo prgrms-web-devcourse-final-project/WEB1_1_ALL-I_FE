@@ -12,19 +12,54 @@ export const CalendarWrapper = styled.div`
   /* 캘린더 상단 툴바 스타일링 */
   .fc-header-toolbar {
     padding: 10px;
-    background-color: #f5f5f5;
+    background-color: transparent;
     border-bottom: 1px solid #ddd;
+    margin-bottom: 10px !important;
+
+    /* 중앙 섹션 스타일링 */
+    .fc-toolbar-chunk {
+      display: flex;
+      align-items: center;
+      gap: 8px; // 버튼과 제목 사이 간격
+    }
   }
 
   /* 캘린더 제목 스타일링 */
   .fc-toolbar-title {
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* 헤더 버튼 스타일링 */
+  .fc-button {
+    background: none;
+    border: none;
+    box-shadow: none;
+    // padding: 4px 8px;
+
+    &:focus {
+      box-shadow: none;
+      background: transparent;
+    }
+
+    &:hover {
+      background: var(--color-primary);
+    }
+  }
+
+  /* prev/next 버튼 스타일링 */
+  .fc-prev-button,
+  .fc-next-button {
+    color: var(--color-black);
+
+    .fc-icon {
+      font-size: var(--font-size-medium);
+    }
   }
 
   /* 요일 헤더 셀 스타일링 */
   .fc-col-header-cell {
-    padding: 8px;
+    padding: 4px;
     font-weight: bold;
     text-align: center;
   }
@@ -91,10 +126,10 @@ export const CalendarWrapper = styled.div`
   /* 이벤트 스타일링 */
   /* 이벤트 블록 스타일링 */
   .fc-event {
-    border-radius: 4px;
+    border-radius: var(--border-radius-default);
     margin: 2px 0;
     text-align: center;
-    font-size: 8px;
+    font-size: var(--font-size-micro-small);
     color: var(--color-black);
   }
 
