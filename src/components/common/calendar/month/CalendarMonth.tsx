@@ -74,6 +74,10 @@ function CalendarMonth() {
               center: "prev title next", // 이전, 제목, 다음 버튼을 중앙에 모두 배치
               right: "dayGridMonth,dayGridWeek", // 월간/주간 전환 버튼 추가
             }}
+            buttonText={{
+              dayGridMonth: "월", // "Month"를 "월"로 변경
+              dayGridWeek: "주", // "Week"를 "주"로 변경
+            }}
             dayHeaderFormat={{ weekday: "short" }} // 요일 표시 형식
             // 이벤트 데이터 및 표시 설정
             events={events}

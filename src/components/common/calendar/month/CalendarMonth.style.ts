@@ -16,11 +16,27 @@ export const CalendarWrapper = styled.div`
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px !important;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     /* 중앙 섹션 스타일링 */
     .fc-toolbar-chunk {
       display: flex;
       align-items: center;
-      gap: 8px; // 버튼과 제목 사이 간격
+      gap: 2rem; // 버튼과 제목 사이 간격
+    }
+
+    /* 각 섹션 자리 조정*/
+    .fc-toolbar-chunk {
+      flex: 1; /* 각 섹션에 동일한 공간 할당 */
+      justify-content: center;
+    }
+    .fc-toolbar-chunk:first-child {
+      justify-content: flex-start; /* 왼쪽 섹션 */
+    }
+    .fc-toolbar-chunk:last-child {
+      justify-content: flex-end; /* 오른쪽 섹션 */
     }
   }
 
@@ -198,31 +214,27 @@ export const CalendarWrapper = styled.div`
   /* 뷰 전환 버튼 스타일링 */
   .fc-dayGridMonth-button,
   .fc-dayGridWeek-button {
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    color: var(--color-black) !important;
-    padding: 4px 8px !important;
-    font-size: var(--font-size-micro) !important;
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: var(--color-gray-dark);
+    font-size: var(--font-size-micro-);
 
     &.fc-button-active {
       background: var(--color-primary) !important;
-      color: var(--color-white) !important;
-      border-radius: var(--border-radius-default) !important;
+      color: var(--color-white);
+      // border-radius: var(--border-radius-default);
     }
 
     &:focus {
-      box-shadow: none !important;
+      box-shadow: none;
+      background: transparent;
+      outline: none;
     }
 
     &:hover:not(.fc-button-active) {
-      background: var(--color-gray-light) !important;
-      border-radius: var(--border-radius-default) !important;
+      background: var(--color-primary);
+      // border-radius: var(--border-radius-default);
     }
-  }
-
-  /* 버튼 그룹 스타일링 */
-  .fc-button-group {
-    gap: 4px;
   }
 `;
