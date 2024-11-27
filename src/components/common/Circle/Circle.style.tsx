@@ -12,6 +12,7 @@ export const CircleColor = styled.div<{
 `;
 
 // CircleInput.tsx
+//  나중에 버튼이 생기기 때문에 div로 변경? / 값을 확인하기 해 form으로 작성
 export const ColorWrapper = styled.div`
   width: 100%;
   display: flex;
