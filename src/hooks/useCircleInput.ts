@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useCircleInput = () => {
+function useCircleInput() {
   const [selectedColor, setSelectedColor] = useState<string>("#000000"); // 상태 공유
 
   // 현재는 값을 확인하기 위해 onChange로 해두었는데,
@@ -19,6 +19,6 @@ const useCircleInput = () => {
   };
 
   return { selectedColor, handleChange };
-};
+}
 
 export default useCircleInput;
