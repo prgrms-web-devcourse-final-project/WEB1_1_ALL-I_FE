@@ -7,18 +7,18 @@ export const InputContainer = styled.div`
   align-items: center;
 `;
 
-export const DateInput = styled.input`
+export const InputDate = styled.input`
   width: 100%;
   box-sizing: border-box;
   border: none;
-  border-bottom: 1px solid var(--color-gray-light);
+  border-bottom: 1px solid var(--color-primary);
   padding: 0.5rem;
   color: var(--color-black);
   outline: none;
   transition: 0.3s;
 
   &:focus {
-    border-bottom: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary-hover);
   }
 
   &::placeholder {
