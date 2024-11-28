@@ -1,18 +1,7 @@
 import Select from "react-select";
 import * as Style from "./GroupSelect.style";
 import ProfileImg from "../../ProfileImg/ProfileImg";
-
-export interface GroupMember {
-  value: string; // 유저 id
-  label: string; // 유저 nickname
-  profileImage: string; // 유저 image_url
-}
-
-interface GroupProps {
-  groupMembers: GroupMember[];
-  selectedMembers: GroupMember[];
-  onMemberChange: (selectedMembers: GroupMember[]) => void;
-}
+import { GroupMember, GroupProps } from "@/types/select.types";
 
 function GroupSelect({
   groupMembers,

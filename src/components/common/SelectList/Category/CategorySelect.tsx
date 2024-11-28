@@ -1,16 +1,7 @@
 import Select, { SingleValue } from "react-select";
 import * as Style from "./CategorySelect.style";
 import Circle from "../../Circle/Circle";
-
-export interface OptionType {
-  name: string; // 카테고리 이름 name
-  color: string; // 카테고리 색상 color
-}
-
-interface CategoryProps {
-  options: OptionType[];
-  onCategoryChange: (selectedCategory: OptionType | null) => void;
-}
+import { OptionType, CategoryProps } from "@/types/select.types";
 
 const CategoryValue = (props: { data: OptionType }) => {
   const { data } = props;
