@@ -12,7 +12,7 @@ export const Nav = styled.nav`
   bottom: 0;
   width: 100%;
   max-width: var(--breakpoint-mobile);
-  z-index: 1000;
+  z-index: 100;
   box-sizing: border-box;
 `;
 
