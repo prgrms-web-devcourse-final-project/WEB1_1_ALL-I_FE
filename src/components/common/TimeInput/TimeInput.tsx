@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import * as Style from "./TimeInput.style";
 import { TimeInputProps } from "@/types/input.types";
+import { useToast } from "@/hooks/useToast";
 
 function TimeInput({
-  defaultStartTime = "09:00",
-  defaultEndTime = "10:00",
+  startTime,
+  endTime,
   withEndTime = false,
   onChange,
 }: TimeInputProps) {
-  const [startTime, setStartTime] = useState(defaultStartTime);
-  const [endTime, setEndTime] = useState(defaultEndTime);
+  const { showToast } = useToast();
 
   const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newStartTime = e.target.value;
-    setStartTime(newStartTime);
-
-    if (withEndTime && endTime && newStartTime > endTime) {
-      setEndTime(newStartTime); // 종료 시간 초기화
+    // 투두 작업할 때
+    if (!endTime) {
+      onChange(newStartTime);
+      return;
+    }
+    // 일정 작업할 때
+    if (newStartTime > endTime) {
       onChange(newStartTime, newStartTime);
     } else {
       onChange(newStartTime, endTime);
@@ -24,14 +27,12 @@ function TimeInput({
   };
 
   const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!withEndTime) return; // 종료 시간이 사용되지 않을 때는 X
     const newEndTime = e.target.value;
-    if (newEndTime >= startTime) {
-      setEndTime(newEndTime);
-      onChange(startTime, endTime);
-    } else {
-      alert("종료 시간을 다시 입력해주세요.");
+    if (newEndTime < startTime) {
+      showToast("종료 시간을 다시 입력해주세요.", "error");
+      return;
     }
+    onChange(startTime, newEndTime);
   };
 
   useEffect(() => {

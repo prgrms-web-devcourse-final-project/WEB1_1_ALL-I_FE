@@ -13,15 +13,16 @@ export interface TextInputProps {
 
 // 시간 입력 interface (시작, 종료 시간 입력)
 export interface TimeInputProps {
-  defaultStartTime?: string; // default 시작시간
-  defaultEndTime?: string; // default 종료시간
+  startTime: string; // default 시작시간
+  endTime?: string; // default 종료시간
   withEndTime?: boolean; // 종료시간 옵션 (true: 사용, false: 사용하지 않음)
   onChange: (startTime: string, endTime?: string) => void; // 시간 바뀔때마다 호출해서 바뀐 시간 전달
 }
 
 // 날짜 입력 interface
 export interface DateProps {
-  defaultDate: string; // 시작 날짜와 종료 날짜의 기본값 (메인페이지 달력 날짜 기준으로 받아와야함)
-  onChange: (startDate: Date, endDate: Date | null) => void; // 날짜 변경될 때마다 호출해서 변경된 날짜 전달
+  startDate: Date; // 시작 날짜와 종료 날짜의 기본값 (메인페이지 달력 날짜 기준으로 받아와야함)
+  endDate?: Date; // 종료 날짜의 기본값
+  onChange: (startDate: Date, endDate?: Date) => void; // 날짜 변경될 때마다 호출해서 변경된 날짜 전달
   withEndDate?: boolean; // 종료날짜 입력 옵션
 }
