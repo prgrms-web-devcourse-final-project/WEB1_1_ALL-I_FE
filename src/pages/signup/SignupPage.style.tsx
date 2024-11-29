@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   gap: 60px;
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 20px;
 `;
 
 export const Form = styled.form`
