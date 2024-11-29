@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import { DateClickArg } from "@fullcalendar/interaction";
 import interactionPlugin from "@fullcalendar/interaction";
 
-import { CalendarWrapper } from "./CalendarMonth.style";
+import * as Styled from "./Calendar.style";
 
 import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
 
@@ -64,7 +64,7 @@ function CalendarMonth() {
       }}
     >
       <div style={{ width: "80%" }}>
-        <CalendarWrapper>
+        <Styled.CalendarWrapper>
           <FullCalendar
             // 기본 설정
             plugins={[dayGridPlugin, interactionPlugin]}
@@ -122,7 +122,7 @@ function CalendarMonth() {
             // 날짜 클릭 이벤트 추가
             dateClick={handleDateClick}
           />
-        </CalendarWrapper>
+        </Styled.CalendarWrapper>
       </div>
     </div>
   );
