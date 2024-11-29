@@ -16,6 +16,7 @@ html {
   --font-size-micro-small: 0.533rem; /* 8px */
 
   /* font-weight */
+  --font-weight-extrabold: 800;
   --font-weight-bold: 600;
   --font-weight-regular: 400;
   --font-weight-thin: 300;
@@ -54,7 +55,7 @@ html {
   --color-category9: #e8e8e8;
 
   /* breakpoint */
-  --breakpoint-mobile: 768px;
+  --breakpoint-mobile: 600px;
 }
 
 /* 다크모드 */

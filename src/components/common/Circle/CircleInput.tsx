@@ -1,11 +1,22 @@
 import * as Styled from "./Circle.style";
 import useCircleInput from "@/hooks/useCircleInput";
 
-function CircleInput() {
+interface CircleInputProps {
+  onChange: (value: string) => void; // 선택된 색상을 상위 컴포넌트로 전달
+}
+
+function CircleInput({ onChange }: CircleInputProps) {
   const { selectedColor, handleChange } = useCircleInput();
+
+  // 상태 변경 시 상위 컴포넌트로 전달
+  const handleCircleChange = (value: string) => {
+    handleChange(value); // 내부 상태 업데이트
+    onChange(value); // 상위 컴포넌트로 전달
+  };
 
   return (
     <Styled.ColorWrapper>
+      <Styled.Label>색상</Styled.Label>
       <Styled.ColorContainer>
         {[
           "var(--color-category1)",
@@ -26,7 +37,7 @@ function CircleInput() {
                 .getPropertyValue(color.replace(/var\(|\)/g, "").trim())
                 .trim()
             }
-            onChange={(e) => handleChange(e.target.value)} // 상태 변경
+            onChange={(e) => handleCircleChange(e.target.value)} // 상태 변경
           />
         ))}
       </Styled.ColorContainer>
@@ -49,13 +60,13 @@ function CircleInput() {
                 .getPropertyValue(color.replace(/var\(|\)/g, "").trim())
                 .trim()
             }
-            onChange={(e) => handleChange(e.target.value)} // 상태 변경
+            onChange={(e) => handleCircleChange(e.target.value)} // 상태 변경
           />
         ))}
         <Styled.CirclePicker
           type="color"
           value={selectedColor} // 상태와 동기화
-          onChange={(e) => handleChange(e.target.value)} // color picker 선택
+          onChange={(e) => handleCircleChange(e.target.value)} // color picker 선택
         />
       </Styled.ColorContainer>
     </Styled.ColorWrapper>
