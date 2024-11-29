@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Style from "./TimeInput.style";
 import { TimeInputProps } from "@/types/input.types";
 
@@ -13,10 +13,12 @@ function TimeInput({
 
   const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newStartTime = e.target.value;
+    setStartTime(newStartTime);
+
     if (withEndTime && endTime && newStartTime > endTime) {
-      alert("시작 시간을 다시 입력해주세요.");
+      setEndTime(newStartTime); // 종료 시간 초기화
+      onChange(newStartTime, newStartTime);
     } else {
-      setStartTime(newStartTime);
       onChange(newStartTime, endTime);
     }
   };
@@ -31,6 +33,10 @@ function TimeInput({
       alert("종료 시간을 다시 입력해주세요.");
     }
   };
+
+  useEffect(() => {
+    onChange(startTime, endTime);
+  }, [startTime, endTime, onChange]);
 
   return (
     <Style.Container>
@@ -52,6 +58,7 @@ function TimeInput({
             value={endTime || ""}
             onChange={handleEndTimeChange}
             required={withEndTime}
+            min={startTime}
           />
         </>
       )}
