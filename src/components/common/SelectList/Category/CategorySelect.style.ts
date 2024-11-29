@@ -36,14 +36,14 @@ export const customsControl: (
   ...provided,
   border: "none",
   borderBottom: state.isFocused
-    ? "1px solid var(--color-primary)"
-    : "1px solid var(--color-gray-light)",
+    ? "1px solid var(--color-primary-hover)"
+    : "1px solid var(--color-primary)",
   boxShadow: "none",
   minHeight: "40px",
   borderRadius: "0",
   transition: " 0.3s ease",
   "&:hover": {
-    borderColor: "var(--color-primary)",
+    borderColor: "var(--color-primary-hover)",
   },
 });
 

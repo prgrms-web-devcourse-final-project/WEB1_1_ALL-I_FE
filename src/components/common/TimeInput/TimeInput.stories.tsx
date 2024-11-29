@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import TimeInput from "./TimeInput";
 
 const meta = {
-  title: "Components/TimeInput",
+  title: "Components/common/TimeInput/TimeInput",
   component: TimeInput,
   parameters: {
     docs: {

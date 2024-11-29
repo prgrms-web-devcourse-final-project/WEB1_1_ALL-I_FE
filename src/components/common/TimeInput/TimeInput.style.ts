@@ -10,14 +10,14 @@ export const Container = styled.div`
 export const StyledTimeInput = styled.input.attrs({ type: "time" })`
   width: 100%;
   border: none;
-  border-bottom: 1px solid var(--color-gray-light);
+  border-bottom: 1px solid var(--color-primary);
   padding: 0.5rem;
   font-size: var(--font-size-medium);
   color: var(--color-black);
   outline: none;
 
   &:focus {
-    border-bottom: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary-hover);
   }
 
   &::placeholder {

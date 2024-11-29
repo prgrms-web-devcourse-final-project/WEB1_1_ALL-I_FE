@@ -1,12 +1,6 @@
 import { useState } from "react";
 import * as Style from "./TimeInput.style";
-
-interface TimeInputProps {
-  defaultStartTime?: string; // default 시작시간
-  defaultEndTime?: string; // default 종료시간
-  withEndTime?: boolean; // 종료시간 옵션 (true: 사용, false: 사용하지 않음)
-  onChange: (startTime: string, endTime?: string) => void; // 시간 바뀔때마다 호출해서 바뀐 시간 전달
-}
+import { TimeInputProps } from "@/types/input.types";
 
 function TimeInput({
   defaultStartTime = "09:00",
@@ -42,18 +36,22 @@ function TimeInput({
     <Style.Container>
       <Style.StyledTimeInput
         id="start-time"
+        name="startTime"
         type="time"
         value={startTime}
         onChange={handleStartTimeChange}
+        required
       />
       {withEndTime && (
         <>
           →
           <Style.StyledTimeInput
             id="end-time"
+            name="endTime"
             type="time"
             value={endTime || ""}
             onChange={handleEndTimeChange}
+            required={withEndTime}
           />
         </>
       )}
