@@ -32,7 +32,6 @@ export const Span = styled.span`
     color: var(--color-gray-light);
   }
   &:last-child {
-    // 임시 컬러
-    color: red;
+    color: var(--color-red);
   }
 `;
