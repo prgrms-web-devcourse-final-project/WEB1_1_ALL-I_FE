@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate();
 
   // 로고를 보여줄 경로 리스트
-  const pathLogo = ["/", "/main", "/group", "/chat", "/mypage"];
+  const pathLogo = ["/", "/main", "/group", "/chat", "/mypage", "/signup"];
 
   // 경로에 따라 로고를 보여줄지 결정
   const showLogo = pathLogo.includes(location.pathname);
