@@ -16,9 +16,10 @@ function EditDeleteModal({
   right,
   onClickEdit,
   onClickDelete,
-}: IProps) {
+  isVisible,
+}: IProps & { isVisible: boolean }) {
   return (
-    <Styled.Modal style={{ top, bottom, left, right }}>
+    <Styled.Modal style={{ top, bottom, left, right }} isVisible={isVisible}>
       <Styled.Span onClick={onClickEdit}>수정</Styled.Span>
       <Styled.Span onClick={onClickDelete}>삭제</Styled.Span>
     </Styled.Modal>

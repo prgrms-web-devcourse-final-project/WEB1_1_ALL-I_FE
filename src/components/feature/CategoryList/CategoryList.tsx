@@ -18,12 +18,14 @@ function CategoryList({ categoryId, color, name }: CategoryListProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const navigate = useNavigate();
 
   // DotsIcon 클릭 시 모달 열기
   const handleDotsClick = () => {
     setIsModalOpen((prev) => !prev); // 현재 상태를 반전시켜 모달 열거나 닫기
+    setIsVisible(true);
   };
 
   // 모달 외부 클릭 시 모달 닫기 함수
@@ -72,7 +74,10 @@ function CategoryList({ categoryId, color, name }: CategoryListProps) {
 
   // 모달 닫기 함수
   const handleCloseModal = () => {
-    setIsModalOpen(false);
+    setIsVisible(false); // 애니메이션 시작
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 300); // fadeOut 지속 시간과 동일
   };
 
   return (
@@ -100,6 +105,7 @@ function CategoryList({ categoryId, color, name }: CategoryListProps) {
               left={-55}
               onClickEdit={handleEditClick}
               onClickDelete={handleDeleteClick}
+              isVisible={isVisible}
             />
           </div>
         )}
