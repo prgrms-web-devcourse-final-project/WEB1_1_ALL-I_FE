@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-// 애니메이션 정의
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -12,9 +11,7 @@ const fadeIn = keyframes`
   }
 `;
 
-export const Modal = styled.div<{
-  isVisible: boolean;
-}>`
+export const Modal = styled.div`
   position: absolute;
   width: 72px;
   height: 74px;
@@ -27,8 +24,6 @@ export const Modal = styled.div<{
   align-items: center;
   gap: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-
-  // 애니메이션 적용
   animation: ${fadeIn} 0.3s forwards;
 `;
 

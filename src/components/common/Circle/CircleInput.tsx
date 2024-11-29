@@ -2,11 +2,12 @@ import * as Styled from "./Circle.style";
 import useCircleInput from "@/hooks/useCircleInput";
 
 interface CircleInputProps {
+  defaultColor: string; // 초기 색상
   onChange: (value: string) => void; // 선택된 색상을 상위 컴포넌트로 전달
 }
 
-function CircleInput({ onChange }: CircleInputProps) {
-  const { selectedColor, handleChange } = useCircleInput();
+function CircleInput({ defaultColor, onChange }: CircleInputProps) {
+  const { selectedColor, handleChange } = useCircleInput(defaultColor);
 
   // 상태 변경 시 상위 컴포넌트로 전달
   const handleCircleChange = (value: string) => {

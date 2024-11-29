@@ -7,10 +7,11 @@ interface FormData {
 
 const defaultColor = "var(--color-category1)";
 
-function useCategoryForm() {
+function useCategoryForm(defaultData?: FormData) {
+  // 초기값 설정 (defaultData 없으면 기본값 사용)
   const [formData, setFormData] = useState<FormData>({
-    categoryName: "",
-    categoryColor: defaultColor,
+    categoryName: defaultData?.categoryName || "",
+    categoryColor: defaultData?.categoryColor || defaultColor,
   });
 
   // TextInput 변경 핸들러
@@ -24,10 +25,12 @@ function useCategoryForm() {
   };
 
   // 폼 제출 핸들러
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // 기본 폼 제출 방지
-    console.log(formData);
-    // 나중에 API POST 코드 추가
+  const handleSubmit = (
+    event: React.FormEvent<HTMLFormElement>,
+    onSave: (data: FormData) => void
+  ) => {
+    event.preventDefault();
+    onSave(formData); // 상위 컴포넌트로 데이터 전달
   };
 
   return {

@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-function useCircleInput() {
-  const defaultColor = "var(--color-category1)";
+function useCircleInput(defaultColor: string) {
   const [selectedColor, setSelectedColor] = useState<string>(
-    getComputedStyle(document.documentElement)
-      .getPropertyValue(defaultColor.replace(/var\(|\)/g, "").trim())
-      .trim()
+    defaultColor.startsWith("var")
+      ? getComputedStyle(document.documentElement)
+          .getPropertyValue(defaultColor.replace(/var\(|\)/g, "").trim())
+          .trim()
+      : defaultColor
   );
 
   // 현재는 값을 확인하기 위해 onChange로 해두었는데,

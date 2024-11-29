@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 function CategoriesPage() {
   // 예시 데이터 나중에 삭제할 예정
   const categories = [
-    { categoryId: 1, color: "red", name: "수학" },
-    { categoryId: 2, color: "blue", name: "과학" },
-    { categoryId: 3, color: "green", name: "영어" },
-    { categoryId: 4, color: "yellow", name: "역사" },
+    { categoryId: 1, color: "#ffe3e1", name: "개발" },
+    { categoryId: 2, color: "#fbffe1", name: "영어" },
+    { categoryId: 3, color: "#e1edff", name: "스터디" },
+    { categoryId: 4, color: "#ebffe1", name: "약속" },
   ];
 
   return (
