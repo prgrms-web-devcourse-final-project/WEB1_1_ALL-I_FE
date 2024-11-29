@@ -1,4 +1,4 @@
-import * as Style from "./TextButton.style";
+import * as Styled from "./TextButton.style";
 
 interface IProps {
   children: string;
@@ -6,7 +6,7 @@ interface IProps {
 }
 
 function Textbutton({ children, size }: IProps) {
-  return <Style.Container $size={size}>{children}</Style.Container>;
+  return <Styled.Container $size={size}>{children}</Styled.Container>;
 }
 
 export default Textbutton;

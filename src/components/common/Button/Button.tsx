@@ -1,4 +1,4 @@
-import * as S from "./Button.style";
+import * as Styled from "./Button.style";
 
 interface IProps {
   children: string;
@@ -16,13 +16,13 @@ interface IProps {
 
 function Button({ children, buttonType, isHoverEffect, type }: IProps) {
   return (
-    <S.Button
+    <Styled.Button
       $buttonType={buttonType}
       $isHoverEffect={isHoverEffect}
       type={type}
     >
       {children}
-    </S.Button>
+    </Styled.Button>
   );
 }
 

@@ -1,4 +1,4 @@
-import * as Style from "./Toggle.style";
+import * as Styled from "./Toggle.style";
 
 interface IProps {
   isOn: boolean;
@@ -7,11 +7,11 @@ interface IProps {
 
 function Toggle({ isOn, onClick }: IProps) {
   return (
-    <Style.ToggleWrapper onClick={onClick}>
-      <Style.ToggleContainer $isOn={isOn}>
-        <Style.ToggleCircle $isOn={isOn} />
-      </Style.ToggleContainer>
-    </Style.ToggleWrapper>
+    <Styled.ToggleWrapper onClick={onClick}>
+      <Styled.ToggleContainer $isOn={isOn}>
+        <Styled.ToggleCircle $isOn={isOn} />
+      </Styled.ToggleContainer>
+    </Styled.ToggleWrapper>
   );
 }
 
