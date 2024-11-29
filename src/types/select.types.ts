@@ -20,6 +20,7 @@ export interface OptionType {
 
 // 선택한 카테고리 바뀔 때마다 props
 export interface CategoryProps {
+  category: OptionType | null; // 선택한 카테고리 데이터
   options: OptionType[]; // 카테고리 데이터
   onCategoryChange: (selectedCategory: OptionType | null) => void;
 }

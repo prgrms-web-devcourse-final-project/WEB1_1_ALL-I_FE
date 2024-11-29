@@ -28,7 +28,11 @@ const OptionCategory = (props: {
   );
 };
 
-function CategorySelect({ options, onCategoryChange }: CategoryProps) {
+function CategorySelect({
+  category,
+  options,
+  onCategoryChange,
+}: CategoryProps) {
   const handleCategory = (newValue: SingleValue<OptionType>) => {
     if (newValue) {
       onCategoryChange(newValue);
@@ -40,6 +44,7 @@ function CategorySelect({ options, onCategoryChange }: CategoryProps) {
   return (
     <Style.Div>
       <Select
+        value={category}
         onChange={handleCategory}
         options={options}
         placeholder={
