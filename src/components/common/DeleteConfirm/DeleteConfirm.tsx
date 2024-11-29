@@ -1,5 +1,5 @@
 import { Button } from "@/components/common/Button/Button.style";
-import * as Style from "./DeleteConfirm.style";
+import * as Styled from "./DeleteConfirm.style";
 
 interface IProps {
   text: string;
@@ -9,19 +9,19 @@ interface IProps {
 
 function DeleteConfirm({ text, onClickCancel, onClickDelete }: IProps) {
   return (
-    <Style.Modal>
-      <Style.ConfirmBox>
-        <Style.Text>{text}</Style.Text>
-        <Style.ButtonBox>
+    <Styled.Modal>
+      <Styled.ConfirmBox>
+        <Styled.Text>{text}</Styled.Text>
+        <Styled.ButtonBox>
           <Button $buttonType="whiteMicro" onClick={onClickCancel}>
             취소
           </Button>
           <Button $buttonType="primaryMicro" onClick={onClickDelete}>
             삭제
           </Button>
-        </Style.ButtonBox>
-      </Style.ConfirmBox>
-    </Style.Modal>
+        </Styled.ButtonBox>
+      </Styled.ConfirmBox>
+    </Styled.Modal>
   );
 }
 

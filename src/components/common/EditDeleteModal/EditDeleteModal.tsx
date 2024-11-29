@@ -1,4 +1,4 @@
-import * as Style from "./EditDeleteModal.style";
+import * as Styled from "./EditDeleteModal.style";
 
 interface IProps {
   top?: number;
@@ -18,10 +18,10 @@ function EditDeleteModal({
   onClickDelete,
 }: IProps) {
   return (
-    <Style.Modal style={{ top, bottom, left, right }}>
-      <Style.Span onClick={onClickEdit}>수정</Style.Span>
-      <Style.Span onClick={onClickDelete}>삭제</Style.Span>
-    </Style.Modal>
+    <Styled.Modal style={{ top, bottom, left, right }}>
+      <Styled.Span onClick={onClickEdit}>수정</Styled.Span>
+      <Styled.Span onClick={onClickDelete}>삭제</Styled.Span>
+    </Styled.Modal>
   );
 }
 
