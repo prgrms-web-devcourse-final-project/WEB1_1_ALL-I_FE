@@ -43,16 +43,17 @@ export const CircleBtn = styled.input.attrs({ type: "radio" })<{
   position: relative;
   box-shadow: 0px 1.5px 4px rgba(0, 0, 0, 0.35);
   background-color: ${(props) => props.$color};
+  transition:
+    transform 0.2s,
+    border 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   /* 체크 됐을 때 내부 모습 */
-  &:checked::after {
-    content: "✓";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: var(--font-size-small);
-    color: #111;
+  &:checked {
+    border: 3px solid var(--color-primary);
   }
 `;
 
@@ -76,6 +77,13 @@ export const CirclePicker = styled.input.attrs({ type: "color" })`
   &::-webkit-color-swatch {
     border: none;
     border-radius: 50%;
+  }
+  transition:
+    transform 0.2s,
+    border 0.2s;
+
+  &:hover {
+    transform: scale(1.05);
   }
 `;
 export const Label = styled.label`
