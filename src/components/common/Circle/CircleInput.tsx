@@ -6,6 +6,7 @@ function CircleInput() {
 
   return (
     <Styled.ColorWrapper>
+      <Styled.Label>색상</Styled.Label>
       <Styled.ColorContainer>
         {[
           "var(--color-category1)",

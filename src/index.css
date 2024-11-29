@@ -54,7 +54,7 @@ html {
   --color-category9: #e8e8e8;
 
   /* breakpoint */
-  --breakpoint-mobile: 768px;
+  --breakpoint-mobile: 600px;
 }
 
 /* 다크모드 */
