@@ -22,6 +22,6 @@ export interface TimeInputProps {
 // 날짜 입력 interface
 export interface DateProps {
   defaultDate: string; // 시작 날짜와 종료 날짜의 기본값 (메인페이지 달력 날짜 기준으로 받아와야함)
-  onChange: (startDate: Date | null, endDate: Date | null) => void; // 날짜 변경될 때마다 호출해서 변경된 날짜 전달
+  onChange: (startDate: Date, endDate: Date | null) => void; // 날짜 변경될 때마다 호출해서 변경된 날짜 전달
   withEndDate?: boolean; // 종료날짜 입력 옵션
 }

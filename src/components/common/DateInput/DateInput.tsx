@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,21 +8,25 @@ import { DateProps } from "@/types/input.types";
 
 function DateInput({ defaultDate, onChange, withEndDate }: DateProps) {
   const initialDate = new Date(defaultDate);
-  const [startDate, setStartDate] = useState<Date | null>(initialDate);
+  const [startDate, setStartDate] = useState<Date>(initialDate);
   const [endDate, setEndDate] = useState<Date | null>(initialDate);
 
   const handleStartDateChange = (date: Date | null) => {
-    setStartDate(date);
+    setStartDate(date || new Date());
     if (endDate && date && date > endDate) {
-      setEndDate(null); // 시작 날짜가 종료 날짜보다 늦으면 종료 날짜 초기화
+      setEndDate(date); // 시작 날짜가 종료 날짜보다 늦으면 종료 날짜 초기화
     }
-    onChange(date, endDate);
+    onChange(date || new Date(), endDate);
   };
 
   const handleEndDateChange = (date: Date | null) => {
     setEndDate(date);
     onChange(startDate, date);
   };
+
+  useEffect(() => {
+    onChange(startDate, endDate);
+  }, [startDate, endDate, onChange]);
 
   return (
     <Style.InputContainer>
