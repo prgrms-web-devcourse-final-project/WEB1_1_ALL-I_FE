@@ -11,11 +11,16 @@ interface IProps {
     | "whiteSmall"
     | "whiteMicro";
   isHoverEffect?: boolean;
+  type: "button" | "submit" | "reset";
 }
 
-function Button({ children, buttonType, isHoverEffect }: IProps) {
+function Button({ children, buttonType, isHoverEffect, type }: IProps) {
   return (
-    <S.Button $buttonType={buttonType} $isHoverEffect={isHoverEffect}>
+    <S.Button
+      $buttonType={buttonType}
+      $isHoverEffect={isHoverEffect}
+      type={type}
+    >
       {children}
     </S.Button>
   );
