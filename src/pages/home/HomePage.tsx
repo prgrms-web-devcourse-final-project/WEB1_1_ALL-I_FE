@@ -1,4 +1,4 @@
-import CalendarMonth from "@/components/common/calendar/month/CalendarMonth";
+import CalendarMonth from "@/components/common/Calendar/month/CalendarMonth";
 
 function HomePage() {
   return (
