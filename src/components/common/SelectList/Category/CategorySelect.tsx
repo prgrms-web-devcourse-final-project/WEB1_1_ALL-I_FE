@@ -21,7 +21,7 @@ const OptionCategory = (props: {
 }) => {
   const { data, innerRef, innerProps, isFocused } = props;
   return (
-    <Style.Option ref={innerRef} {...innerProps} isFocused={isFocused}>
+    <Style.Option ref={innerRef} {...innerProps} $isFocused={isFocused}>
       <Circle color={data.color} />
       <Style.Label>{data.name}</Style.Label>
     </Style.Option>

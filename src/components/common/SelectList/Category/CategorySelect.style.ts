@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { CSSObjectWithLabel } from "react-select";
 
-export const Option = styled.div<{ isFocused: boolean }>`
+export const Option = styled.div<{ $isFocused: boolean }>`
   display: flex;
   align-items: center;
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isFocused ? "#F6F7F8" : "white")};
+  background-color: ${(props) => (props.$isFocused ? "#F6F7F8" : "white")};
 `;
 
 export const Placeholder = styled.div`
