@@ -1,7 +1,12 @@
 import { useState } from "react";
 
 function useCircleInput() {
-  const [selectedColor, setSelectedColor] = useState<string>("#000000"); // 상태 공유
+  const defaultColor = "var(--color-category1)";
+  const [selectedColor, setSelectedColor] = useState<string>(
+    getComputedStyle(document.documentElement)
+      .getPropertyValue(defaultColor.replace(/var\(|\)/g, "").trim())
+      .trim()
+  );
 
   // 현재는 값을 확인하기 위해 onChange로 해두었는데,
   // submit으로 변경하거나 useState를 추가하면 될 것 같습니다.
