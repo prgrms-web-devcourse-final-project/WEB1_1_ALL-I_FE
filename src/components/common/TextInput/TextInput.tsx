@@ -41,7 +41,7 @@ function TextInput({
   };
 
   return (
-    <>
+    <div>
       {label && <Style.Label htmlFor={name}>{label}</Style.Label>}
       <Style.Input
         id={name}
@@ -66,7 +66,7 @@ function TextInput({
           합니다.
         </Style.ErrorMessage>
       )}
-    </>
+    </div>
   );
 }
 export default TextInput;
