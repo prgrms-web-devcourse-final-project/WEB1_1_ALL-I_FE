@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import GroupSelect from "@/components/common/SelectList/Group/GroupSelect";
-import { GroupMember } from "@/components/common/SelectList/Group/GroupSelect";
+import { GroupMember } from "@/types/select.types";
 
 const groupMembers: GroupMember[] = [
   {
