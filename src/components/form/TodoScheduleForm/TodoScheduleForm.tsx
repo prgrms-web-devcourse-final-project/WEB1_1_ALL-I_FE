@@ -7,24 +7,27 @@ import Toggle from "@/components/common/Toggle/Toggle";
 import TextSetting from "@/components/common/TextSetting/TextSetting";
 import Button from "@/components/common/Button/Button";
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
+import GroupSelect from "@/components/common/SelectList/Group/GroupSelect";
 
-interface ScheduleFormProps {
+interface TodoScheduleFormProps {
   form: ReturnType<typeof useTodoScheduleForm>;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   withEndDate?: boolean;
   withEndTime?: boolean;
+  withGroup?: boolean;
   withAlarm?: boolean;
   submitButtonText: string;
 }
 
-function ScheduleForm({
+function TodoScheduleForm({
   form,
   onSubmit,
   withEndDate = false,
   withEndTime = false,
+  withGroup = false,
   withAlarm = false,
   submitButtonText,
-}: ScheduleFormProps) {
+}: TodoScheduleFormProps) {
   return (
     <Styled.Container>
       <Styled.Form onSubmit={onSubmit}>
@@ -36,6 +39,13 @@ function ScheduleForm({
           value={form.content}
           onChange={form.handleContentChange}
         />
+        {withGroup && (
+          <GroupSelect
+            groupMembers={form.memberList}
+            selectedMembers={form.member}
+            onMemberChange={form.handleMemberChange}
+          />
+        )}
         <CategorySelect
           category={form.category}
           options={form.categoryList}
@@ -73,4 +83,4 @@ function ScheduleForm({
   );
 }
 
-export default ScheduleForm;
+export default TodoScheduleForm;

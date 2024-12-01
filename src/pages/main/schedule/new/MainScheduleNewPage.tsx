@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
-import ScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
+import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
 
 function MainScheduleNewPage() {
   const form = useTodoScheduleForm({
@@ -33,7 +33,7 @@ function MainScheduleNewPage() {
   }, []);
 
   return (
-    <ScheduleForm
+    <TodoScheduleForm
       form={form}
       onSubmit={handleSubmit}
       withEndDate={true}

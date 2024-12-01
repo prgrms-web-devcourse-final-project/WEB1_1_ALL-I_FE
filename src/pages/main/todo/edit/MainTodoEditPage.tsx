@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
-import ScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
+import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
 
 function MainTodoEditPage() {
   const form = useTodoScheduleForm();
@@ -31,7 +31,11 @@ function MainTodoEditPage() {
   }, []);
 
   return (
-    <ScheduleForm form={form} onSubmit={handleSubmit} submitButtonText="수정" />
+    <TodoScheduleForm
+      form={form}
+      onSubmit={handleSubmit}
+      submitButtonText="수정"
+    />
   );
 }
 
