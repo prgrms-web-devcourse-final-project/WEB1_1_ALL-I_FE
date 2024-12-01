@@ -20,8 +20,8 @@ function GroupSelect({
       <Style.Option
         ref={innerRef}
         {...innerProps}
-        isFocused={isFocused}
-        isSelected={isSelected}
+        $isFocused={isFocused}
+        $isSelected={isSelected}
       >
         <ProfileImg size="small" src={data.profileImage} alt={data.label} />
         {data.label}
