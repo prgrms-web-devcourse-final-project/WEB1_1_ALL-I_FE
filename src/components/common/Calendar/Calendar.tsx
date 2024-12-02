@@ -101,26 +101,41 @@ function CalendarMonth() {
             events={[...events, ...todoEvents]}
             //
             //
-            eventContent={(arg) => {
-              // 월간 뷰에서는 투두 아이템을 점으로만 표시
+            // eventContent={(arg) => {
+            //   // 월간 뷰에서는 투두 아이템을 점으로만 표시
+            //   if (
+            //     arg.view.type === "dayGridMonth" &&
+            //     arg.event.extendedProps.isTodo
+            //   ) {
+            //     return { html: "" }; // 내용을 비워서 기본 이벤트 표시 숨김
+            //   }
+            //   // 주간 뷰에서는 투두 리스트로 표시
+            //   if (
+            //     arg.view.type === "dayGridWeek" &&
+            //     arg.event.extendedProps.isTodo
+            //   ) {
+            //     return {
+            //       html: `<div class="todo-item">
+            //         <span class="todo-title">${arg.event.title}</span>
+            //       </div>`,
+            //     };
+            //   }
+            //   return { html: arg.event.title }; // 일반 이벤트는 기본 표시
+            // }}
+            // eventContent 제거하고
+            eventDidMount={(arg) => {
               if (
                 arg.view.type === "dayGridMonth" &&
                 arg.event.extendedProps.isTodo
               ) {
-                return { html: "" }; // 내용을 비워서 기본 이벤트 표시 숨김
+                arg.el.style.display = "none";
               }
-              // 주간 뷰에서는 투두 리스트로 표시
               if (
                 arg.view.type === "dayGridWeek" &&
                 arg.event.extendedProps.isTodo
               ) {
-                return {
-                  html: `<div class="todo-item">
-                    <span class="todo-title">${arg.event.title}</span>
-                  </div>`,
-                };
+                arg.el.classList.add("todo-item");
               }
-              return { html: arg.event.title }; // 일반 이벤트는 기본 표시
             }}
             dayCellDidMount={(arg) => {
               // 날짜 포맷을 맞추기 위해 arg.date를 현지 시간 기준으로 변환
