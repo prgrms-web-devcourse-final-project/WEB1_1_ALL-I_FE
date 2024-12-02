@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import * as Style from "./TimeInput.style";
 import { TimeInputProps } from "@/types/input.types";
 import { useToast } from "@/hooks/useToast";
@@ -34,10 +33,6 @@ function TimeInput({
     }
     onChange(startTime, newEndTime);
   };
-
-  useEffect(() => {
-    onChange(startTime, endTime);
-  }, [startTime, endTime, onChange]);
 
   return (
     <Style.Container>
