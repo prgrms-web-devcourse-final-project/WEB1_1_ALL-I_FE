@@ -269,12 +269,30 @@ export const CalendarWrapper = styled.div`
   }
 
   /* 투두 아이템 스타일링 */
-  .todo-item {
-    font-size: var(--font-size-micro-small);
-    margin: 2px 0;
-  }
+  // .fc-daygrid-event-harness {
+  //   &.todo-item {
+  //     width: 100%;
 
-  .todo-title {
-    font-weight: var(--font-weight-bold);
+  //     > .fc-event {
+  //       // 직계 자식 선택자 사용
+  //       border-radius: var(--border-radius-small);
+  //       background-color: var(--color-gray-light) !important;
+  //       border: none;
+  //     }
+
+  //     .fc-event-title {
+  //       display: flex;
+  //       font-size: var(--font-size-micro-small);
+  //       align-items: center;
+  //       gap: 8px;
+  //     }
+
+  //     .todo-checkbox {
+  //       width: var(--font-size-micro-small);
+  //       height: var(--font-size-micro-small);
+  //       margin: 0;
+  //       cursor: pointer;
+  //     }
+  //   }
   }
 `;

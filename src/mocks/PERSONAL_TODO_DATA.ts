@@ -87,4 +87,15 @@ export const PERSONAL_TODO_DATA = [
     userId: "a4cca6e1-de26-4771-bb7b-f89950804400",
     categoryId: "8",
   },
+  {
+    personalTodoId: "c1369e5b-dc7b-4abb-b826-f23c722dd5fd",
+    title: "투두 8",
+    done: true,
+    todoOrder: 0,
+    date: "2024-12-05",
+    startTime: null,
+    createdAt: "2024-12-02T17:10:37",
+    userId: "a4cca6e1-de26-4771-bb7b-f89950804400",
+    categoryId: "9",
+  },
 ];
