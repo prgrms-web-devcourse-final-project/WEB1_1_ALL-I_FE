@@ -1,22 +1,25 @@
 import * as Styled from "./LoginPage.style";
+import { Link } from "react-router-dom";
+import useLoginForm from "@/hooks/useLoginForm";
 import TextInput from "@/components/common/TextInput/TextInput";
 import Button from "@/components/common/Button/Button";
-import { Link } from "react-router-dom";
 
 function LoginPage() {
+  const { formData, handleChange, handleSubmit } = useLoginForm();
+
   return (
     <Styled.Wrapper>
       <Styled.Name>J - AI</Styled.Name>
       <Styled.Explan>계획과 일정을 AI와 함께 시작해보세요!</Styled.Explan>
-      <Styled.Form>
+      <Styled.Form onSubmit={handleSubmit}>
         <TextInput
           name="email"
           label=""
           placeholder="이메일"
           required
           type="email"
-          value=""
-          onChange={(e) => console.log(e)}
+          value={formData.email}
+          onChange={handleChange("email")}
         />
         <TextInput
           name="password"
@@ -24,10 +27,10 @@ function LoginPage() {
           placeholder="비밀번호"
           required
           type="password"
-          value=""
-          onChange={(e) => console.log(e)}
+          value={formData.password}
+          onChange={handleChange("password")}
         />
-        <Button buttonType="primaryLarge" children="로그인" type="button" />
+        <Button buttonType="primaryLarge" children="로그인" type="submit" />
       </Styled.Form>
       <Styled.UserWrapper>
         <span>아이디 찾기</span>
