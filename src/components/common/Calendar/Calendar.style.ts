@@ -113,6 +113,7 @@ export const CalendarWrapper = styled.div`
 
   /* 날짜 숫자 위치 정렬 */
   .fc-daygrid-day-top {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,11 +182,6 @@ export const CalendarWrapper = styled.div`
 
   /* 더보기 링크 스타일링 */
   .fc-more-link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
     color: var(--color-gray-medium);
     font-size: var(--font-size-micro-small);
     font-weight: var(--font-weight-regular);
@@ -251,26 +247,26 @@ export const CalendarWrapper = styled.div`
     }
   }
 
+  /* 투두 점 스타일링 */
   .todo-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--color-primary);
-    border-radius: 50%;
-    margin-left: 4px;
-    display: inline-block;
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    /* 다른 레이아웃에서도 점 위치 적절히 유지되도록 중앙에서 이동 */
+    top: 50%;
+    right: 50%;
+    transform: translate(180%, -180%);
+    background: linear-gradient(to right, #e1e1ff, #ebffe1); // 그라데이션 적용
+    border-radius: var(--border-radius-circle);
   }
 
+  /* 투두 관련 스타일링 */
   .todo-item {
-    font-size: 0.9em;
+    font-size: var(--font-size-micro-small);
     margin: 2px 0;
   }
 
-  .todo-time {
-    margin-right: 8px;
-    color: var(--color-gray-600);
-  }
-
   .todo-title {
-    font-weight: 500;
+    font-weight: var(--font-weight-bold);
   }
 `;

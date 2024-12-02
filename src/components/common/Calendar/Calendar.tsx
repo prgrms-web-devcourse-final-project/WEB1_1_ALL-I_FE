@@ -100,6 +100,7 @@ function CalendarMonth() {
             // 이벤트 데이터 및 표시 설정
             events={[...events, ...todoEvents]}
             //
+            //
             eventContent={(arg) => {
               // 월간 뷰에서는 투두 아이템을 점으로만 표시
               if (
@@ -138,6 +139,7 @@ function CalendarMonth() {
                 arg.el.querySelector(".fc-daygrid-day-top")?.appendChild(dot);
               }
             }}
+            //
             //
             weekends={true}
             eventDisplay="block"
