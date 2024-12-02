@@ -276,4 +276,16 @@ export const PERSONAL_EVENT_DATA = [
     categoryId: "5",
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
+  {
+    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    title: "일정 23",
+    startDate: "2024-12-03",
+    endDate: "2024-12-03",
+    startTime: "18:00:00",
+    endTime: "19:00:00",
+    isAlarmed: false,
+    createdAt: "2024-11-26 16:42:00",
+    categoryId: "6",
+    userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
+  },
 ];

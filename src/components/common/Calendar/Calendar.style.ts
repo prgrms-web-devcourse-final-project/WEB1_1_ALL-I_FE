@@ -181,6 +181,11 @@ export const CalendarWrapper = styled.div`
 
   /* 더보기 링크 스타일링 */
   .fc-more-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     color: var(--color-gray-medium);
     font-size: var(--font-size-micro-small);
     font-weight: var(--font-weight-regular);
@@ -191,7 +196,7 @@ export const CalendarWrapper = styled.div`
 
   /* 더보기 팝오버 스타일링 */
   .fc-popover {
-    background: white;
+    background: var(--background-primary);
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);

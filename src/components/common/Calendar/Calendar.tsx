@@ -95,13 +95,11 @@ function CalendarMonth() {
             }}
             // 이벤트 표시 제한 설정
             dayMaxEvents={3} // 숫자로 직접 최대 표시 개수 지정 가능
-            moreLinkContent={({ num }) => `+${num} 더보기`} // 더보기 텍스트 커스터마이징
+            moreLinkContent={({ num }) => `+${num}`} // 더보기 텍스트 커스터마이징
             // 더보기 클릭 시 동작 커스터마이징
-            // moreLinkClick={(arg) => {
-            //   // 기본 팝오버 대신 커스텀 동작 실행
-            //   // console.log("더보기 클릭:", arg.date, arg.events);
-            //   return;
-            // }}
+            moreLinkClick={() => {
+              return "background";
+            }}
             // 더보기 팝오버 헤더 포맷 설정
             dayPopoverFormat={{
               month: "long",
