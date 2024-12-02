@@ -29,6 +29,7 @@ function MainScheduleNewPage() {
     <TodoScheduleForm
       form={form}
       onSubmit={handleSubmit}
+      withCategory={true}
       withEndDate={true}
       withEndTime={true}
       withAlarm={true}

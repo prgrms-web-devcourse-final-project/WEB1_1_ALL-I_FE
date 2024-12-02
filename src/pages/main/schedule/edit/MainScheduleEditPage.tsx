@@ -46,6 +46,7 @@ function MainScheduleEditPage() {
     <TodoScheduleForm
       form={form}
       onSubmit={handleSubmit}
+      withCategory={true}
       withEndDate={true}
       withEndTime={true}
       withAlarm={true}

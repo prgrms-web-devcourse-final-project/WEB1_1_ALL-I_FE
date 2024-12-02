@@ -12,6 +12,7 @@ import GroupSelect from "@/components/common/SelectList/Group/GroupSelect";
 interface TodoScheduleFormProps {
   form: ReturnType<typeof useTodoScheduleForm>;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  withCategory?: boolean;
   withEndDate?: boolean;
   withEndTime?: boolean;
   withGroup?: boolean;
@@ -22,6 +23,7 @@ interface TodoScheduleFormProps {
 function TodoScheduleForm({
   form,
   onSubmit,
+  withCategory = false,
   withEndDate = false,
   withEndTime = false,
   withGroup = false,
@@ -46,11 +48,13 @@ function TodoScheduleForm({
             onMemberChange={form.handleMemberUpdate}
           />
         )}
-        <CategorySelect
-          category={form.category}
-          options={form.list.categories}
-          onCategoryChange={form.handleCategoryUpdate}
-        />
+        {withCategory && (
+          <CategorySelect
+            category={form.category}
+            options={form.list.categories}
+            onCategoryChange={form.handleCategoryUpdate}
+          />
+        )}
         <Styled.ToggleContainer>
           <TextSetting text="시간 옵션" />
           <Toggle

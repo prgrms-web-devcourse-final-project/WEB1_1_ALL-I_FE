@@ -26,6 +26,7 @@ function MainTodoNewPage() {
     <TodoScheduleForm
       form={form}
       onSubmit={handleSubmit}
+      withCategory={true}
       submitButtonText="생성"
     />
   );
