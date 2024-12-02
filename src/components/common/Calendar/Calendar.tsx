@@ -117,6 +117,7 @@ function CalendarMonth() {
                   month: "long",
                 }, // 주간 보기 제목 형식
                 dayHeaderFormat: { weekday: "short" }, // 요일 표시 형식
+                dayMaxEvents: false,
               },
             }}
             // 날짜 클릭 이벤트 추가
