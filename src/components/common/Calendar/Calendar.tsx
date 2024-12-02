@@ -6,6 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import * as Styled from "./Calendar.style";
 
 import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
+import { PERSONAL_TODO_DATA } from "@/mocks/PERSONAL_TODO_DATA";
 
 const CATEGORY_COLOR = {
   "1": "#ffe1fd",
@@ -50,6 +51,19 @@ function CalendarMonth() {
     return formattedEvent;
   });
 
+  // // 투두 데이터를 FullCalendar 이벤트 형식으로 변환
+  // const todoEvents = PERSONAL_TODO_DATA.map((todo) => ({
+  //   id: todo.personalTodoId,
+  //   title: todo.title,
+  //   start: todo.date,
+  //   backgroundColor:
+  //     CATEGORY_COLOR[todo.categoryId as keyof typeof CATEGORY_COLOR],
+  //   display: "list-item", // 주간 뷰에서 리스트 형태로 표시
+  //   extendedProps: {
+  //     isTodo: true, // 투두 아이템 구분을 위한 플래그
+  //   },
+  // }));
+
   // DateClickArg 타입 사용
   const handleDateClick = (arg: DateClickArg) => {
     console.log("날짜 클릭:", arg.date);
@@ -71,6 +85,7 @@ function CalendarMonth() {
             initialView="dayGridMonth"
             locale="ko"
             contentHeight="auto"
+            fixedWeekCount={false} // 고정된 6주 레이아웃 비활성화
             // 헤더 설정
             headerToolbar={{
               left: "", // 왼쪽 비움
@@ -83,7 +98,7 @@ function CalendarMonth() {
             }}
             dayHeaderFormat={{ weekday: "short" }} // 요일 표시 형식
             // 이벤트 데이터 및 표시 설정
-            events={events}
+            events={[...events]}
             weekends={true}
             eventDisplay="block"
             eventBackgroundColor="var(--color-primary)"

@@ -250,4 +250,27 @@ export const CalendarWrapper = styled.div`
       // border-radius: var(--border-radius-default);
     }
   }
+
+  .todo-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    margin-left: 4px;
+    display: inline-block;
+  }
+
+  .todo-item {
+    font-size: 0.9em;
+    margin: 2px 0;
+  }
+
+  .todo-time {
+    margin-right: 8px;
+    color: var(--color-gray-600);
+  }
+
+  .todo-title {
+    font-weight: 500;
+  }
 `;
