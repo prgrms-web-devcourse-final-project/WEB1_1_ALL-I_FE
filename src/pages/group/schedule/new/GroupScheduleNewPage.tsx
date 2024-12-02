@@ -12,21 +12,12 @@ function GroupScheduleNewPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.validateContentAndCategory()) return;
-    console.log(
-      form.content,
-      form.category,
-      form.member,
-      form.startDate,
-      form.endDate,
-      form.startTime,
-      form.endTime
-    );
     // Todo 생성 api
   };
 
   useEffect(() => {
     // 카테고리 목록 가져오는 api
-    form.setCategoryList([
+    form.handleCategoryListChange([
       { name: "카테고리1", color: "blue" },
       { name: "카테고리2", color: "red" },
       { name: "카테고리3", color: "black" },
@@ -35,7 +26,7 @@ function GroupScheduleNewPage() {
 
   useEffect(() => {
     // 멤버 목록 가져오는 api
-    form.setMemberList([
+    form.handleMemberListChange([
       {
         value: "1",
         label: "이름1",
@@ -63,6 +54,7 @@ function GroupScheduleNewPage() {
       withEndDate={true}
       withEndTime={true}
       withGroup={true}
+      withAlarm={true}
       onSubmit={handleSubmit}
       submitButtonText="생성"
     />

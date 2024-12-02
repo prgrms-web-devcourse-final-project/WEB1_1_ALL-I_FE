@@ -41,30 +41,30 @@ function TodoScheduleForm({
         />
         {withGroup && (
           <GroupSelect
-            groupMembers={form.memberList}
+            groupMembers={form.list.member}
             selectedMembers={form.member}
             onMemberChange={form.handleMemberChange}
           />
         )}
         <CategorySelect
           category={form.category}
-          options={form.categoryList}
+          options={form.list.category}
           onCategoryChange={form.handleCategoryChange}
         />
         <Styled.ToggleContainer>
           <TextSetting text="시간 옵션" />
-          <Toggle isOn={form.isTimeOn} onClick={form.handleTimeToggle} />
+          <Toggle isOn={form.toggle.isTimeOn} onClick={form.handleTimeToggle} />
         </Styled.ToggleContainer>
         <DateInput
-          startDate={form.startDate}
-          endDate={withEndDate ? form.endDate : undefined}
+          startDate={form.date.start}
+          endDate={withEndDate ? form.date.end : undefined}
           onChange={form.handleDateChange}
           withEndDate={withEndDate}
         />
-        {form.isTimeOn && (
+        {form.toggle.isTimeOn && (
           <TimeInput
-            startTime={form.startTime}
-            endTime={withEndTime ? form.endTime : undefined}
+            startTime={form.time.start}
+            endTime={withEndTime ? form.time.end : undefined}
             onChange={form.handleTimeChange}
             withEndTime={withEndTime}
           />
@@ -72,7 +72,10 @@ function TodoScheduleForm({
         {withAlarm && (
           <Styled.ToggleContainer>
             <TextSetting text="알림 추가" />
-            <Toggle isOn={form.isAlarmOn} onClick={form.handleAlarmToggle} />
+            <Toggle
+              isOn={form.toggle.isAlarmOn}
+              onClick={form.handleAlarmToggle}
+            />
           </Styled.ToggleContainer>
         )}
         <Button buttonType="primaryLarge" isHoverEffect={true} type="submit">
