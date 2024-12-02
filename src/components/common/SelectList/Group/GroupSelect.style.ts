@@ -12,8 +12,8 @@ export const Placeholder = styled.div`
 `;
 
 export const Option = styled.div<{
-  isFocused: boolean;
-  isSelected: boolean;
+  $isFocused: boolean;
+  $isSelected: boolean;
 }>`
   display: flex;
   gap: 8px;
@@ -21,11 +21,11 @@ export const Option = styled.div<{
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isFocused ? "#F6F7F8" : "white")};
+  background-color: ${(props) => (props.$isFocused ? "#F6F7F8" : "white")};
   color: ${(props) =>
-    props.isSelected ? "var(--color-primary-hover)" : "var(--color-black)"};
+    props.$isSelected ? "var(--color-primary-hover)" : "var(--color-black)"};
   font-weight: ${(props) =>
-    props.isSelected ? "var(  --font-weight-bold)" : "normal"};
+    props.$isSelected ? "var(  --font-weight-bold)" : "normal"};
 
   &:last-child {
     border-bottom: none;

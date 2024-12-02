@@ -7,24 +7,29 @@ import Toggle from "@/components/common/Toggle/Toggle";
 import TextSetting from "@/components/common/TextSetting/TextSetting";
 import Button from "@/components/common/Button/Button";
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
+import GroupSelect from "@/components/common/SelectList/Group/GroupSelect";
 
-interface ScheduleFormProps {
+interface TodoScheduleFormProps {
   form: ReturnType<typeof useTodoScheduleForm>;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  withCategory?: boolean;
   withEndDate?: boolean;
   withEndTime?: boolean;
+  withGroup?: boolean;
   withAlarm?: boolean;
   submitButtonText: string;
 }
 
-function ScheduleForm({
+function TodoScheduleForm({
   form,
   onSubmit,
+  withCategory = false,
   withEndDate = false,
   withEndTime = false,
+  withGroup = false,
   withAlarm = false,
   submitButtonText,
-}: ScheduleFormProps) {
+}: TodoScheduleFormProps) {
   return (
     <Styled.Container>
       <Styled.Form onSubmit={onSubmit}>
@@ -34,35 +39,52 @@ function ScheduleForm({
           placeholder="내용"
           required={false}
           value={form.content}
-          onChange={form.handleContentChange}
+          onChange={form.handleContentUpdate}
         />
-        <CategorySelect
-          category={form.category}
-          options={form.categoryList}
-          onCategoryChange={form.handleCategoryChange}
-        />
+        {withGroup && (
+          <GroupSelect
+            groupMembers={form.list.members}
+            selectedMembers={form.member}
+            onMemberChange={form.handleMemberUpdate}
+          />
+        )}
+        {withCategory && (
+          <CategorySelect
+            category={form.category}
+            options={form.list.categories}
+            onCategoryChange={form.handleCategoryUpdate}
+          />
+        )}
         <Styled.ToggleContainer>
           <TextSetting text="시간 옵션" />
-          <Toggle isOn={form.isTimeOn} onClick={form.handleTimeToggle} />
+          <Toggle
+            type="time"
+            isOn={form.toggle.isTimeOn}
+            onClick={form.handleToggleUpdate}
+          />
         </Styled.ToggleContainer>
         <DateInput
-          startDate={form.startDate}
-          endDate={withEndDate ? form.endDate : undefined}
-          onChange={form.handleDateChange}
+          startDate={form.date.start}
+          endDate={withEndDate ? form.date.end : undefined}
+          onChange={form.handleDateUpdate}
           withEndDate={withEndDate}
         />
-        {form.isTimeOn && (
+        {form.toggle.isTimeOn && (
           <TimeInput
-            startTime={form.startTime}
-            endTime={withEndTime ? form.endTime : undefined}
-            onChange={form.handleTimeChange}
+            startTime={form.time.start}
+            endTime={withEndTime ? form.time.end : undefined}
+            onChange={form.handleTimeUpdate}
             withEndTime={withEndTime}
           />
         )}
         {withAlarm && (
           <Styled.ToggleContainer>
             <TextSetting text="알림 추가" />
-            <Toggle isOn={form.isAlarmOn} onClick={form.handleAlarmToggle} />
+            <Toggle
+              type="alarm"
+              isOn={form.toggle.isAlarmOn}
+              onClick={form.handleToggleUpdate}
+            />
           </Styled.ToggleContainer>
         )}
         <Button buttonType="primaryLarge" isHoverEffect={true} type="submit">
@@ -73,4 +95,4 @@ function ScheduleForm({
   );
 }
 
-export default ScheduleForm;
+export default TodoScheduleForm;
