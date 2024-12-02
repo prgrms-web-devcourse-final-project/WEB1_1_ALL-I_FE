@@ -9,17 +9,19 @@ function MainTodoEditPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!form.validateContentAndCategory()) return;
+    if (!form.handleFormValidation()) return;
     // Todo 수정 api
   };
 
   useEffect(() => {
-    // 카테고리 목록 가져오는 api
-    form.handleCategoryListChange([
-      { name: "카테고리1", color: "blue" },
-      { name: "카테고리2", color: "red" },
-      { name: "카테고리3", color: "black" },
-    ]);
+    // 카테고리 목록을 업데이트
+    form.handleListUpdate({
+      categories: [
+        { name: "카테고리1", color: "blue" },
+        { name: "카테고리2", color: "red" },
+        { name: "카테고리3", color: "black" },
+      ],
+    });
   }, []);
 
   useEffect(() => {

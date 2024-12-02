@@ -19,8 +19,8 @@ interface TodoScheduleFormState {
     isAlarmOn: boolean; // 알람 설정 여부
   };
   list: {
-    category: OptionType[]; // 카테고리 목록
-    member: GroupMember[]; // 멤버 목록
+    categories: OptionType[]; // 카테고리 목록
+    members: GroupMember[]; // 멤버 목록
   };
 }
 
@@ -53,32 +53,32 @@ export function useTodoScheduleForm({
       isAlarmOn: false,
     },
     list: {
-      category: [],
-      member: [],
+      categories: [],
+      members: [],
     },
   });
 
   const { showToast } = useToast();
 
   // 폼 전체 업데이트 함수
-  const updateForm = (updates: Partial<TodoScheduleFormState>) => {
+  const handleFormUpdate = (updates: Partial<TodoScheduleFormState>) => {
     setForm((prev) => ({ ...prev, ...updates }));
   };
 
-  const handleContentChange = (value: string) => {
-    updateForm({ content: value });
+  const handleContentUpdate = (value: string) => {
+    handleFormUpdate({ content: value });
   };
 
-  const handleCategoryChange = (value: OptionType | null) => {
-    updateForm({ category: value });
+  const handleCategoryUpdate = (value: OptionType | null) => {
+    handleFormUpdate({ category: value });
   };
 
-  const handleMemberChange = (value: GroupMember[]) => {
-    updateForm({ member: value });
+  const handleMemberUpdate = (value: GroupMember[]) => {
+    handleFormUpdate({ member: value });
   };
 
-  const handleDateChange = (newStartDate: Date, newEndDate?: Date) => {
-    updateForm({
+  const handleDateUpdate = (newStartDate: Date, newEndDate?: Date) => {
+    handleFormUpdate({
       date: {
         start: newStartDate,
         end: withEndDate && newEndDate ? newEndDate : newStartDate,
@@ -86,8 +86,8 @@ export function useTodoScheduleForm({
     });
   };
 
-  const handleTimeChange = (newStartTime: string, newEndTime?: string) => {
-    updateForm({
+  const handleTimeUpdate = (newStartTime: string, newEndTime?: string) => {
+    handleFormUpdate({
       time: {
         start: newStartTime,
         end: withEndTime && newEndTime ? newEndTime : newStartTime,
@@ -95,44 +95,30 @@ export function useTodoScheduleForm({
     });
   };
 
-  const handleTimeToggle = (isOn: boolean) => {
-    updateForm({
+  const handleToggleUpdate = (type: "time" | "alarm", isOn: boolean) => {
+    handleFormUpdate({
       toggle: {
         ...form.toggle,
-        isTimeOn: isOn,
+        [type === "time" ? "isTimeOn" : "isAlarmOn"]: isOn,
       },
     });
   };
 
-  const handleAlarmToggle = (isOn: boolean) => {
-    updateForm({
-      toggle: {
-        ...form.toggle,
-        isAlarmOn: isOn,
-      },
-    });
-  };
-
-  const handleCategoryListChange = (categories: OptionType[]) => {
-    updateForm({
+  const handleListUpdate = (updates: {
+    categories?: OptionType[];
+    members?: GroupMember[];
+  }) => {
+    handleFormUpdate({
       list: {
         ...form.list,
-        category: categories,
-      },
-    });
-  };
-
-  const handleMemberListChange = (members: GroupMember[]) => {
-    updateForm({
-      list: {
-        ...form.list,
-        member: members,
+        ...(updates.categories && { categories: updates.categories }),
+        ...(updates.members && { members: updates.members }),
       },
     });
   };
 
   // 폼 유효성 검사 함수
-  const validateContentAndCategory = () => {
+  const handleFormValidation = () => {
     const validationRules = [
       { condition: !form.content, message: "내용을 입력해주세요." },
       { condition: !form.category, message: "카테고리를 입력해주세요." },
@@ -154,16 +140,14 @@ export function useTodoScheduleForm({
   // 폼 상태와 핸들러 함수들을 반환
   return {
     ...form,
-    updateForm,
-    handleContentChange,
-    handleCategoryChange,
-    handleMemberChange,
-    handleDateChange,
-    handleTimeChange,
-    handleTimeToggle,
-    handleAlarmToggle,
-    handleCategoryListChange,
-    handleMemberListChange,
-    validateContentAndCategory,
+    handleFormUpdate,
+    handleContentUpdate,
+    handleCategoryUpdate,
+    handleMemberUpdate,
+    handleDateUpdate,
+    handleTimeUpdate,
+    handleToggleUpdate,
+    handleListUpdate,
+    handleFormValidation,
   };
 }

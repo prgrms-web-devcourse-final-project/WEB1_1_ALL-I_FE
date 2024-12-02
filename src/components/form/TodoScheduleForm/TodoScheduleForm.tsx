@@ -37,35 +37,39 @@ function TodoScheduleForm({
           placeholder="내용"
           required={false}
           value={form.content}
-          onChange={form.handleContentChange}
+          onChange={form.handleContentUpdate}
         />
         {withGroup && (
           <GroupSelect
-            groupMembers={form.list.member}
+            groupMembers={form.list.members}
             selectedMembers={form.member}
-            onMemberChange={form.handleMemberChange}
+            onMemberChange={form.handleMemberUpdate}
           />
         )}
         <CategorySelect
           category={form.category}
-          options={form.list.category}
-          onCategoryChange={form.handleCategoryChange}
+          options={form.list.categories}
+          onCategoryChange={form.handleCategoryUpdate}
         />
         <Styled.ToggleContainer>
           <TextSetting text="시간 옵션" />
-          <Toggle isOn={form.toggle.isTimeOn} onClick={form.handleTimeToggle} />
+          <Toggle
+            type="time"
+            isOn={form.toggle.isTimeOn}
+            onClick={form.handleToggleUpdate}
+          />
         </Styled.ToggleContainer>
         <DateInput
           startDate={form.date.start}
           endDate={withEndDate ? form.date.end : undefined}
-          onChange={form.handleDateChange}
+          onChange={form.handleDateUpdate}
           withEndDate={withEndDate}
         />
         {form.toggle.isTimeOn && (
           <TimeInput
             startTime={form.time.start}
             endTime={withEndTime ? form.time.end : undefined}
-            onChange={form.handleTimeChange}
+            onChange={form.handleTimeUpdate}
             withEndTime={withEndTime}
           />
         )}
@@ -73,8 +77,9 @@ function TodoScheduleForm({
           <Styled.ToggleContainer>
             <TextSetting text="알림 추가" />
             <Toggle
+              type="alarm"
               isOn={form.toggle.isAlarmOn}
-              onClick={form.handleAlarmToggle}
+              onClick={form.handleToggleUpdate}
             />
           </Styled.ToggleContainer>
         )}
