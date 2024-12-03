@@ -3,7 +3,7 @@ import HomeIcon from "@/assets/icons/home.svg?react";
 import GroupIcon from "@/assets/icons/group.svg?react";
 import ChatbotIcon from "@/assets/icons/chatbot.svg?react";
 import ProfileIcon from "@/assets/icons/profile.svg?react";
-import * as Style from "./NavBar.style";
+import * as Styled from "./NavBar.style";
 
 function NavBar() {
   // 네브바를 보여주지 않을 경로 리스트
@@ -13,8 +13,8 @@ function NavBar() {
   return (
     <>
       {!noNav && (
-        <Style.Nav>
-          <Style.NavItem>
+        <Styled.Nav>
+          <Styled.NavItem>
             <NavLink
               to="/main"
               className={({ isActive }) => (isActive ? "active" : "")}
@@ -27,8 +27,8 @@ function NavBar() {
               />
               <span>홈</span>
             </NavLink>
-          </Style.NavItem>
-          <Style.NavItem>
+          </Styled.NavItem>
+          <Styled.NavItem>
             <NavLink
               to="/group"
               className={({ isActive }) => (isActive ? "active" : "")}
@@ -41,8 +41,8 @@ function NavBar() {
               />
               <span>그룹</span>
             </NavLink>
-          </Style.NavItem>
-          <Style.NavItem>
+          </Styled.NavItem>
+          <Styled.NavItem>
             <NavLink
               to="/chat"
               className={({ isActive }) => (isActive ? "active" : "")}
@@ -55,8 +55,8 @@ function NavBar() {
               />
               <span>챗봇</span>
             </NavLink>
-          </Style.NavItem>
-          <Style.NavItem>
+          </Styled.NavItem>
+          <Styled.NavItem>
             <NavLink
               to="/mypage"
               className={({ isActive }) => (isActive ? "active" : "")}
@@ -69,8 +69,8 @@ function NavBar() {
               />
               <span>프로필</span>
             </NavLink>
-          </Style.NavItem>
-        </Style.Nav>
+          </Styled.NavItem>
+        </Styled.Nav>
       )}
     </>
   );

@@ -1,6 +1,6 @@
 import BackIcon from "@/assets/icons/back.svg?react";
 import AlarmIcon from "@/assets/icons/alarm.svg?react";
-import * as Style from "./Header.style";
+import * as Styled from "./Header.style";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Header() {
@@ -24,24 +24,25 @@ function Header() {
   const handleBackClick = () => {
     navigate(-1); // 이전 페이지로 이동
   };
+
   return (
-    <Style.HeaderDiv>
+    <Styled.HeaderDiv>
       {showLogo ? (
-        <Style.StyledNavLink to="/main">로고</Style.StyledNavLink>
+        <Styled.StyledNavLink to="/main">로고</Styled.StyledNavLink>
       ) : (
-        <Style.IconWrapper onClick={handleBackClick}>
+        <Styled.IconWrapper onClick={handleBackClick}>
           <BackIcon
             width={25}
             height={25}
             fill="currentColor"
             stroke="currentColor"
           />
-        </Style.IconWrapper>
+        </Styled.IconWrapper>
       )}
-      <Style.StyledNavLink to="/notifications">
+      <Styled.StyledNavLink to="/notifications">
         <AlarmIcon width={24} height={24} fill="none" stroke="currentColor" />
-      </Style.StyledNavLink>
-    </Style.HeaderDiv>
+      </Styled.StyledNavLink>
+    </Styled.HeaderDiv>
   );
 }
 export default Header;
