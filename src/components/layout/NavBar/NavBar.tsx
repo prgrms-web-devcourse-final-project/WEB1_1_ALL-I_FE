@@ -7,7 +7,7 @@ import * as Style from "./NavBar.style";
 
 function NavBar() {
   // 네브바를 보여주지 않을 경로 리스트
-  const pathNav = ["/signup"];
+  const pathNav = ["/signup", "/group/new"];
   const noNav = pathNav.includes(location.pathname);
 
   return (
