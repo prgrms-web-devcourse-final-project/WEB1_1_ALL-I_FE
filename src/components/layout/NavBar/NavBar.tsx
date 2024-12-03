@@ -13,15 +13,15 @@ function NavBar() {
   return (
     <>
       {!noNav && (
-        <Styled.Nav>
+        <Styled.NavContainer>
           <Styled.NavItem>
             <NavLink
               to="/main"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <HomeIcon
-                width={24}
-                height={24}
+                width="100%"
+                height="100%"
                 fill="none"
                 stroke="currentColor"
               />
@@ -34,8 +34,8 @@ function NavBar() {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <GroupIcon
-                width={24}
-                height={24}
+                width="100%"
+                height="100%"
                 fill="none"
                 stroke="currentColor"
               />
@@ -48,8 +48,8 @@ function NavBar() {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <ChatbotIcon
-                width={24}
-                height={24}
+                width="100%"
+                height="100%"
                 fill="none"
                 stroke="currentColor"
               />
@@ -62,15 +62,15 @@ function NavBar() {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <ProfileIcon
-                width={24}
-                height={24}
+                width="100%"
+                height="100%"
                 fill="none"
                 stroke="currentColor"
               />
               <span>프로필</span>
             </NavLink>
           </Styled.NavItem>
-        </Styled.Nav>
+        </Styled.NavContainer>
       )}
     </>
   );

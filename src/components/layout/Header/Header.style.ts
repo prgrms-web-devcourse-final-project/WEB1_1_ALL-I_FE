@@ -15,18 +15,15 @@ export const HeaderContainer = styled.div`
   max-width: var(--breakpoint-mobile);
 
   z-index: 1000;
+  text-decoration: none;
 
   box-sizing: border-box;
   transition:
     border-bottom 0.3s ease,
     box-shadow 0.3s ease;
-
-  background-color: red;
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  text-decoration: none;
-  color: var(--color-primary);
   transition: color 0.3s ease;
 
   &:hover {
@@ -39,7 +36,10 @@ export const LogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: var(--icon-size-group-1);
+
+  // 로고 이미지 추가되면 삭제할 부분
   font-size: var(--icon-size-group-1);
+  color: var(--color-primary);
 `;
 
 export const IconWrapper = styled.div`

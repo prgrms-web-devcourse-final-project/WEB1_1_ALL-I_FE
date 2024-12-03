@@ -18,6 +18,7 @@ html {
   /* font-weight */
   --font-weight-extrabold: 800;
   --font-weight-bold: 600;
+  --font-weight-medium: 500;
   --font-weight-regular: 400;
   --font-weight-thin: 300;
 
