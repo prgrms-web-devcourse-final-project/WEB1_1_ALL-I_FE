@@ -1,13 +1,14 @@
 import * as Styled from "./Toggle.style";
 
 interface IProps {
+  type: "time" | "alarm";
   isOn: boolean;
-  onClick: () => void;
+  onClick: (type: "time" | "alarm", isOn: boolean) => void;
 }
 
-function Toggle({ isOn, onClick }: IProps) {
+function Toggle({ type, isOn, onClick }: IProps) {
   return (
-    <Styled.ToggleWrapper onClick={onClick}>
+    <Styled.ToggleWrapper onClick={() => onClick(type, !isOn)}>
       <Styled.ToggleContainer $isOn={isOn}>
         <Styled.ToggleCircle $isOn={isOn} />
       </Styled.ToggleContainer>

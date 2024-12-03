@@ -7,9 +7,11 @@ import * as Style from "./NavBar.style";
 
 function NavBar() {
   // 네브바를 보여주지 않을 경로 리스트
+
   const pathNav = ["/signup", "/group/*"];
   // const noNav = pathNav.includes(location.pathname);
   const noNav = pathNav.some((path) => matchPath(path, location.pathname)); // mathPath를 사용하여 특정 경로 패턴을 매칭할 수 있음
+
   return (
     <>
       {!noNav && (

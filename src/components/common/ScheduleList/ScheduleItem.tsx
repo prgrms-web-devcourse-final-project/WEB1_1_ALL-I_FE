@@ -1,29 +1,67 @@
 import * as Styled from "./ScheduleItem.style";
 import TextDate from "../TextDate/TextDate";
 import ListBar from "../ListBar/ListBar";
+import EditDeleteIcon from "@/components/feature/EditDeleteIcon/EditDeleteIcon";
+import { useNavigate } from "react-router-dom";
+import { FormatDate, FormatTime } from "@/utils/format";
 
 interface ScheduleItemProps {
-  values: string[]; // 날짜 or 시간 시작 및 종료
-  color: string;
-  schedule: string;
+  id: string; // 일정 id
+  title: string; // 일정 제목
+  startDate: string; // 시작 날짜
+  endDate: string; // 종료 날짜
+  startTime?: string | null; // 시작 시간
+  endTime?: string | null; // 종료 시간
+  isAlarmed: boolean; // 알림 여부
+  categoryId: string; // 카테고리 id
+  color: string; // 카테고리 색상
+  onDelete: (id: string) => void; // 삭제 핸들러
 }
 
-// 일정 아이템, props 값은 임시로 설정해뒀습니다.
-// values는 시작/종료 값을 넣어주면 됩니다.
-//  ex. ["1월 00일", "10월 50일"], ["1 : 00", "12 : 00"]
 function ScheduleItem({
-  values = [],
-  color = "#E1FBFF",
-  schedule = "기말고사",
+  id,
+  title,
+  startDate,
+  endDate,
+  startTime,
+  endTime,
+  isAlarmed,
+  categoryId,
+  color,
+  onDelete,
 }: ScheduleItemProps) {
+  const navigate = useNavigate();
+
+  // 수정 버튼 클릭
+  const handleEditClick = () => {
+    navigate(`/main/schedule/${id}/edit`, {
+      state: {
+        id,
+        title,
+        startDate,
+        endDate,
+        startTime,
+        endTime,
+        isAlarmed,
+        categoryId,
+      },
+    });
+  };
+
+  // values 설정 (날짜 or 시간)
+  const values =
+    startDate === endDate && startTime && endTime
+      ? [FormatTime(startTime), FormatTime(endTime)] // startDate와 endDate가 같고 startTime, endTime이 존재하면 시간 표시
+      : [FormatDate(startDate), FormatDate(endDate)]; // 그렇지 않으면 날짜 표시
+
   return (
     <Styled.Wrapper>
       <Styled.Explan>
-        {values.length > 0 ? <TextDate values={values} /> : ""}
+        <TextDate values={values} />
         <ListBar color={color} />
-        <Styled.ScheduleText>{schedule}</Styled.ScheduleText>
+        <Styled.ScheduleText>{title}</Styled.ScheduleText>
       </Styled.Explan>
-      <span>(수정 아이콘)</span>
+      <EditDeleteIcon onEdit={handleEditClick} onDelete={() => onDelete(id)} />
     </Styled.Wrapper>
   );
 }
