@@ -26,7 +26,7 @@ function Header() {
   };
 
   return (
-    <Styled.HeaderDiv>
+    <Styled.HeaderContainer>
       {showLogo ? (
         <Styled.StyledNavLink to="/main">로고</Styled.StyledNavLink>
       ) : (
@@ -40,9 +40,16 @@ function Header() {
         </Styled.IconWrapper>
       )}
       <Styled.StyledNavLink to="/notifications">
-        <AlarmIcon width={24} height={24} fill="none" stroke="currentColor" />
+        <Styled.IconWrapper>
+          <AlarmIcon
+            width="100%"
+            height="100%"
+            fill="none"
+            stroke="currentColor"
+          />
+        </Styled.IconWrapper>
       </Styled.StyledNavLink>
-    </Styled.HeaderDiv>
+    </Styled.HeaderContainer>
   );
 }
 export default Header;
