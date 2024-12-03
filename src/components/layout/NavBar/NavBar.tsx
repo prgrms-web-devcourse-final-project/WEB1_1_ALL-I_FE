@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import HomeIcon from "@/assets/icons/home.svg?react";
 import GroupIcon from "@/assets/icons/group.svg?react";
 import ChatbotIcon from "@/assets/icons/chatbot.svg?react";
@@ -14,61 +13,53 @@ function NavBar() {
     <>
       {!noNav && (
         <Styled.NavContainer>
-          <Styled.NavItem>
-            <NavLink
-              to="/main"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <HomeIcon
-                width="100%"
-                height="100%"
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>홈</span>
-            </NavLink>
+          <Styled.NavItem
+            to="/main"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <HomeIcon
+              width="100%"
+              height="100%"
+              fill="none"
+              stroke="currentColor"
+            />
+            <span>홈</span>
           </Styled.NavItem>
-          <Styled.NavItem>
-            <NavLink
-              to="/group"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <GroupIcon
-                width="100%"
-                height="100%"
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>그룹</span>
-            </NavLink>
+          <Styled.NavItem
+            to="/group"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <GroupIcon
+              width="100%"
+              height="100%"
+              fill="none"
+              stroke="currentColor"
+            />
+            <span>그룹</span>
           </Styled.NavItem>
-          <Styled.NavItem>
-            <NavLink
-              to="/chat"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <ChatbotIcon
-                width="100%"
-                height="100%"
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>챗봇</span>
-            </NavLink>
+          <Styled.NavItem
+            to="/chat"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <ChatbotIcon
+              width="100%"
+              height="100%"
+              fill="none"
+              stroke="currentColor"
+            />
+            <span>챗봇</span>
           </Styled.NavItem>
-          <Styled.NavItem>
-            <NavLink
-              to="/mypage"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <ProfileIcon
-                width="100%"
-                height="100%"
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>프로필</span>
-            </NavLink>
+          <Styled.NavItem
+            to="/mypage"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            <ProfileIcon
+              width="100%"
+              height="100%"
+              fill="none"
+              stroke="currentColor"
+            />
+            <span>프로필</span>
           </Styled.NavItem>
         </Styled.NavContainer>
       )}
