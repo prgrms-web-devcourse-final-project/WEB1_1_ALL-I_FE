@@ -27,12 +27,7 @@ export const HeaderContainer = styled.div`
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: var(--color-primary);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   transition: color 0.3s ease;
-
-  font-size: var(--icon-size-group-2);
 
   &:hover {
     color: var(--color-primary-hover);
@@ -40,17 +35,20 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const LogoWrapper = styled.div`
-  font-size: var(--icon-size-group-2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--icon-size-group-1);
+  font-size: var(--icon-size-group-1);
 `;
 
 export const IconWrapper = styled.div`
   color: var(--color-primary);
   transition: color 0.3s ease;
   cursor: pointer;
-  width: var(--icon-size-group-1);
   height: var(--icon-size-group-1);
+  width: var(--icon-size-group-1);
 
-  background-color: yellow;
   &:hover {
     color: var(--color-primary-hover);
   }

@@ -28,16 +28,20 @@ function Header() {
   return (
     <Styled.HeaderContainer>
       {showLogo ? (
-        <Styled.StyledNavLink to="/main">로고</Styled.StyledNavLink>
+        <Styled.StyledNavLink to="/main">
+          <Styled.LogoWrapper>로고</Styled.LogoWrapper>
+        </Styled.StyledNavLink>
       ) : (
-        <Styled.IconWrapper onClick={handleBackClick}>
-          <BackIcon
-            width="100%"
-            height="100%"
-            fill="currentColor"
-            stroke="currentColor"
-          />
-        </Styled.IconWrapper>
+        <button onClick={handleBackClick}>
+          <Styled.IconWrapper>
+            <BackIcon
+              width="100%"
+              height="100%"
+              fill="currentColor"
+              stroke="currentColor"
+            />
+          </Styled.IconWrapper>
+        </button>
       )}
       <Styled.StyledNavLink to="/notifications">
         <Styled.IconWrapper>
