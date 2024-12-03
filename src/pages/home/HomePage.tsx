@@ -1,5 +1,3 @@
-import CalendarMonth from "@/components/common/Calendar/month/CalendarMonth";
-
 function HomePage() {
   return (
     <div>

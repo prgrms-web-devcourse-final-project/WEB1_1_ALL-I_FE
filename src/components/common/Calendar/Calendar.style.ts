@@ -108,18 +108,19 @@ export const CalendarWrapper = styled.div`
     min-height: 1rem !important;
     margin: 0 !important;
     // 이벤트와 하단 날짜 간의 간격
-    margin-bottom: 4px !important;
+    margin-bottom: 0px !important;
   }
 
   /* 날짜 숫자 위치 정렬 */
   .fc-daygrid-day-top {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-small);
     // 날짜와 이벤트 간의 간격 축소
-    margin-bottom: -4px;
+    margin-bottom: 0px;
   }
 
   /* 오늘 날짜 강조 스타일 */
@@ -130,6 +131,7 @@ export const CalendarWrapper = styled.div`
     /* 날짜 숫자 흰색으로 변경 */
     .fc-daygrid-day-number {
       color: var(--color-white);
+      // color: var(--color-primary);
     }
 
     .fc-daygrid-day-top {
@@ -143,9 +145,10 @@ export const CalendarWrapper = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 1.2rem;
-      height: 1.2rem;
+      width: 1.5rem;
+      height: 1.5rem;
       background-color: var(--color-primary);
+      // border: 1px solid var(--color-primary);
       border-radius: var(--border-radius-default);
       z-index: -1;
     }
@@ -184,6 +187,8 @@ export const CalendarWrapper = styled.div`
     color: var(--color-gray-medium);
     font-size: var(--font-size-micro-small);
     font-weight: var(--font-weight-regular);
+    width: 100%;
+    text-align: center;
     &:hover {
       text-decoration: underline;
     }
@@ -191,7 +196,7 @@ export const CalendarWrapper = styled.div`
 
   /* 더보기 팝오버 스타일링 */
   .fc-popover {
-    background: white;
+    background: var(--background-primary);
     border: 1px solid #ddd;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
@@ -244,5 +249,50 @@ export const CalendarWrapper = styled.div`
       background: var(--color-primary);
       // border-radius: var(--border-radius-default);
     }
+  }
+
+  /* 투두 관련 스타일링 */
+  /* 투두 점 스타일링 */
+  .todo-dot {
+    width: 4px;
+    height: 4px;
+    position: absolute;
+    /* 다른 레이아웃에서도 점 위치 적절히 유지되도록 중앙에서 이동 */
+    top: 50%;
+    right: 50%;
+    transform: translate(225%, -225%);
+    background: linear-gradient(to right, #e1e1ff, #ebffe1); // 그라데이션 적용
+    border: 0.01px solid var(--color-primary);
+    // box-shadow: 0px 1.5px 4px rgba(0, 0, 0, 0.35);
+    // background-color: var(--color-gray-medium);
+    border-radius: var(--border-radius-circle);
+  }
+
+  /* 투두 아이템 스타일링 */
+  // .fc-daygrid-event-harness {
+  //   &.todo-item {
+  //     width: 100%;
+
+  //     > .fc-event {
+  //       // 직계 자식 선택자 사용
+  //       border-radius: var(--border-radius-small);
+  //       background-color: var(--color-gray-light) !important;
+  //       border: none;
+  //     }
+
+  //     .fc-event-title {
+  //       display: flex;
+  //       font-size: var(--font-size-micro-small);
+  //       align-items: center;
+  //       gap: 8px;
+  //     }
+
+  //     .todo-checkbox {
+  //       width: var(--font-size-micro-small);
+  //       height: var(--font-size-micro-small);
+  //       margin: 0;
+  //       cursor: pointer;
+  //     }
+  //   }
   }
 `;
