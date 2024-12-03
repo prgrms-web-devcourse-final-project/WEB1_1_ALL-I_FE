@@ -6,7 +6,8 @@ export const HeaderDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: var(--breakpoint-mobile);
-  padding: 1rem;
+  padding: var(--padding-side-default);
+
   z-index: 1000;
   background-color: #ffffff;
   position: fixed;
@@ -24,6 +25,8 @@ export const StyledNavLink = styled(NavLink)`
   align-items: center;
   transition: color 0.3s ease;
 
+  font-size: var(--icon-size-group-2);
+
   &:hover {
     color: var(--color-primary-hover);
   }
@@ -33,6 +36,8 @@ export const IconWrapper = styled.div`
   color: var(--color-primary);
   transition: color 0.3s ease;
   cursor: pointer;
+  width: var(--icon-size-group-2);
+  height: var(--icon-size-group-2);
 
   &:hover {
     color: var(--color-primary-hover);

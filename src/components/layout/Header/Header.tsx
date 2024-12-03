@@ -32,8 +32,8 @@ function Header() {
       ) : (
         <Styled.IconWrapper onClick={handleBackClick}>
           <BackIcon
-            width={25}
-            height={25}
+            width="100%"
+            height="100%"
             fill="currentColor"
             stroke="currentColor"
           />
