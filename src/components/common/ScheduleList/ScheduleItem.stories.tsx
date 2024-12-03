@@ -22,9 +22,16 @@ type Story = StoryObj<typeof meta>;
 // 기본 스토리
 export const Default: Story = {
   args: {
-    values: ["12월 16일", "12월 20일"],
+    id: "1",
+    title: "기말고사",
+    startDate: "2023-12-16",
+    endDate: "2023-12-20",
+    startTime: null,
+    endTime: null,
+    isAlarmed: false,
+    categoryId: "1",
     color: "#FFE3E1",
-    schedule: "기말고사",
+    onDelete: () => {},
   },
   parameters: {
     docs: {

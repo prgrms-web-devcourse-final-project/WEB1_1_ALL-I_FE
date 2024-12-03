@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import CategorySelect from "@/components/common/SelectList/Category/CategorySelect";
-import { OptionType } from "@/components/common/SelectList/Category/CategorySelect";
+import { OptionType } from "@/types/select.types";
 
 // 카테고리 데이터 예시
 const categoryOptions: OptionType[] = [
@@ -39,6 +39,7 @@ type Story = StoryObj<typeof meta>;
 // 기본 스토리
 export const Default: Story = {
   args: {
+    category: null,
     options: categoryOptions,
     onCategoryChange: (selectedCategory) => console.log(selectedCategory), // 필수 prop 추가
   },
@@ -54,6 +55,7 @@ export const Default: Story = {
 // 선택된 카테고리가 있는 경우
 export const WithSelectedCategory: Story = {
   args: {
+    category: { name: "운동", color: "#FF5733" },
     options: categoryOptions,
     onCategoryChange: (selectedCategory) => console.log(selectedCategory), // 필수 prop 추가
   },
