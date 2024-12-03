@@ -1,4 +1,4 @@
-// import CalendarMonth from "@/components/common/Calendar/Calendar";
+import Calendar from "@/components/common/Calendar/Calendar";
 import { useState } from "react";
 import MainList from "@/components/feature/MainList/MainList";
 import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
@@ -37,7 +37,7 @@ function MainPage() {
   return (
     <div>
       {/* 달력 수정 필요  */}
-      {/* <CalendarMonth /> */}
+      <Calendar onDateSelect={() => {}} />
       <MainList
         schedules={schedules} // 일정 데이터 전달
         todos={todos} // // 카테고리 데이터 전달
