@@ -14,6 +14,9 @@ export const HeaderContainer = styled.div`
 
   max-width: var(--breakpoint-mobile);
 
+  // border-bottom: 1px solid #e0e0e0;
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
   z-index: 1000;
   text-decoration: none;
 

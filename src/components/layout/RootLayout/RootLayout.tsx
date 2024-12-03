@@ -5,13 +5,13 @@ import Header from "../Header/Header";
 
 function RootLayout() {
   return (
-    <Styled.RootLayoutWrapper>
+    <>
       <Header />
-      <main>
+      <Styled.MainContainer>
         <Outlet />
-      </main>
+      </Styled.MainContainer>
       <NavBar />
-    </Styled.RootLayoutWrapper>
+    </>
   );
 }
 
