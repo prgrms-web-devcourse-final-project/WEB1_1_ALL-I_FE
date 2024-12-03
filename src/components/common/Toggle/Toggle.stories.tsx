@@ -15,6 +15,7 @@ const meta = {
     },
   },
   argTypes: {
+    type: { control: "select", options: ["time", "alarm"] },
     isOn: { control: "boolean" },
     onClick: { action: "clicked" },
   },
@@ -26,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 // 기본 스토리
 export const Default: Story = {
   args: {
+    type: "time",
     isOn: true,
     onClick: () => {},
   },

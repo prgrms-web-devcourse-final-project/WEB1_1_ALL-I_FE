@@ -23,11 +23,14 @@ type Story = StoryObj<typeof meta>;
 // 기본 스토리
 export const Default: Story = {
   args: {
-    values: [],
+    id: "1",
+    title: "기말고사",
+    date: "2023-12-16",
+    startTime: null,
+    done: false,
+    categoryId: "1",
     color: "#EBFFE1",
-    todo: "기말고사",
-    isComplete: false,
-    isMember: [],
+    onDelete: () => {},
   },
   parameters: {
     docs: {
@@ -40,16 +43,14 @@ export const Default: Story = {
 
 export const AddData: Story = {
   args: {
-    values: ["10 : 00", "10 : 50"],
+    id: "1",
+    title: "기말고사",
+    date: "2023-12-16",
+    startTime: null,
+    done: false,
+    categoryId: "1",
     color: "#EBFFE1",
-    todo: "기말고사",
-    isComplete: false,
-    isMember: [
-      { name: "가을", process: true },
-      { name: "영서", process: false },
-      { name: "보라", process: false },
-      { name: "미래", process: true },
-    ],
+    onDelete: () => {},
   },
   parameters: {
     docs: {

@@ -33,6 +33,10 @@ const meta = {
     isHoverEffect: {
       control: "boolean",
     },
+    type: {
+      control: "select",
+      options: ["button", "submit", "reset"],
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -45,6 +49,7 @@ export const PrimaryLarge: Story = {
     buttonType: "primaryLarge",
     isHoverEffect: false,
     children: "큰 기본 버튼",
+    type: "button",
   },
 };
 
@@ -53,6 +58,7 @@ export const PrimaryMedium: Story = {
     buttonType: "primaryMedium",
     isHoverEffect: false,
     children: "중간 기본 버튼",
+    type: "button",
   },
 };
 
@@ -61,6 +67,7 @@ export const PrimarySmall: Story = {
     buttonType: "primarySmall",
     isHoverEffect: false,
     children: "작은 기본 버튼",
+    type: "button",
   },
 };
 
@@ -69,6 +76,7 @@ export const PrimaryMicro: Story = {
     buttonType: "primaryMicro",
     isHoverEffect: false,
     children: "가장 작은 기본 버튼",
+    type: "button",
   },
 };
 
@@ -78,6 +86,7 @@ export const WhiteMedium: Story = {
     buttonType: "whiteMedium",
     isHoverEffect: false,
     children: "중간 흰색 버튼",
+    type: "button",
   },
 };
 
@@ -86,6 +95,7 @@ export const WhiteSmall: Story = {
     buttonType: "whiteSmall",
     isHoverEffect: false,
     children: "작은 흰색 버튼",
+    type: "button",
   },
 };
 
@@ -94,5 +104,6 @@ export const WhiteMicro: Story = {
     buttonType: "whiteMicro",
     isHoverEffect: false,
     children: "가장 작은 흰색 버튼",
+    type: "button",
   },
 };
