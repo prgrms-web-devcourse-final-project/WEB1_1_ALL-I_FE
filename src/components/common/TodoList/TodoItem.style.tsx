@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: calc(100% - 2rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
-  margin: 0 auto;
-  padding: 0.5rem;
+  margin: 10px 0;
+  padding: 0.8rem;
   border-bottom: 1px solid #97cdbd;
 `;
 
@@ -15,12 +13,14 @@ export const ExplanContainer = styled.div`
   min-width: 50%;
   display: flex;
   flex: 1;
-  gap: 7px;
+  gap: 1rem;
   align-items: center;
   overflow: hidden;
 `;
 
-export const TodoText = styled.p<{ isChecked: boolean }>`
+export const TodoText = styled.p.withConfig({
+  shouldForwardProp: (prop) => prop !== "isChecked",
+})<{ isChecked?: boolean }>`
   width: 100%;
   font-size: 1rem;
   overflow: hidden;
@@ -28,6 +28,7 @@ export const TodoText = styled.p<{ isChecked: boolean }>`
   text-overflow: ellipsis;
   word-break: break-all;
   text-decoration: ${(props) => (props.isChecked ? "line-through" : "none")};
+  color: ${(props) => (props.isChecked ? "gray" : "black")};
 `;
 
 export const SetContainer = styled.div`
@@ -51,8 +52,34 @@ export const AssignPeople = styled.span<{ isMemDone: boolean }>`
 `;
 
 export const CheckboxCustom = styled.input.attrs({ type: "checkbox" })`
+  /* 기본 체크박스 숨기기 */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* 커스텀 스타일 */
   width: 17px;
   height: 17px;
   border: 1px solid #97cdbd;
-  accent-color: #97cdbd; // 체크 됐을 때의 색상
+  border-radius: 3px; /* 선택 사항: 둥근 모서리 */
+  background-color: transparent;
+  cursor: pointer;
+
+  /* 체크된 상태 스타일 */
+  &:checked {
+    background-color: #97cdbd; /* 배경색 */
+    position: relative;
+  }
+
+  /* 체크 표시 */
+  &:checked::after {
+    content: "✓"; /* 체크 표시 */
+    font-size: 14px; /* 체크 표시 크기 */
+    color: #ffffff; /* 체크 표시 색상 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `;
