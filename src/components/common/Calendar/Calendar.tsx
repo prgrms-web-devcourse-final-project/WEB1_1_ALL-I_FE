@@ -24,16 +24,26 @@ const CATEGORY_COLOR = {
  * TODO:
  * 카테고리 로직 나오면 해당 카테고리 색상 사용하도록 변경
  *
- * 한달 씩의 이벤트, 투두 데이터와 해당 카테고리 색상 등은
- * 전역 상태로 관리 되어야 할 것 같습니다.
- *
  * 페이지 작업 시 임시로 감싼 div 제거
  *
  * 투두 관련 로직 최적화 할것
  * - 여러번 확인하지 않도록
  * - 스타일 파일, 컴포넌트 파일 코드 정리
+ * - 이벤트 마운트 부분 정리
+ *
+ * handleDateClick 함수 prop으로 받도록 변경
+ *
+ * 홈페이지에서 삭제
  */
-function Calendar() {
+interface CalendarProps {
+  onDateSelect: (date: Date) => void;
+}
+
+const Calendar = ({ onDateSelect }: CalendarProps) => {
+  const handleDateClick = (arg: DateClickArg) => {
+    onDateSelect(arg.date);
+  };
+
   // 일정 map 함수
   const events = PERSONAL_EVENT_DATA.map((event) => {
     // 시간 없을 때 마지막 날짜 포함 안되는 문제 해결
@@ -67,11 +77,6 @@ function Calendar() {
       isTodo: true, // 투두 아이템 구분을 위한 플래그
     },
   }));
-
-  // DateClickArg 타입 사용
-  const handleDateClick = (arg: DateClickArg) => {
-    console.log("날짜 클릭:", arg.date);
-  };
 
   return (
     <div
@@ -128,7 +133,6 @@ function Calendar() {
               if (arg.event.extendedProps.isTodo) {
                 if (arg.view.type === "dayGridMonth") {
                   arg.el.style.display = "none";
-                  arg.el.classList.add("fc-no-count");
                 }
                 // if (arg.view.type === "dayGridWeek") {
                 //   arg.el.style.display = "block";
@@ -212,6 +216,6 @@ function Calendar() {
       </div>
     </div>
   );
-}
+};
 
 export default Calendar;
