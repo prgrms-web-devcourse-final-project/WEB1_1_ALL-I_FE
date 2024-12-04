@@ -12,14 +12,22 @@ interface IProps {
     | "whiteMicro";
   isHoverEffect?: boolean;
   type: "button" | "submit" | "reset";
+  onClick?: () => void;
 }
 
-function Button({ children, buttonType, isHoverEffect, type }: IProps) {
+function Button({
+  children,
+  buttonType,
+  isHoverEffect,
+  type,
+  onClick,
+}: IProps) {
   return (
     <Styled.Button
       $buttonType={buttonType}
       $isHoverEffect={isHoverEffect}
       type={type}
+      onClick={onClick}
     >
       {children}
     </Styled.Button>
