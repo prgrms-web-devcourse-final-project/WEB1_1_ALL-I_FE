@@ -5,9 +5,11 @@ import { usePersonalTodos } from "./usePersonalTodos";
 import { useGroupTodos } from "./useGroupTodos";
 import { usePersonalGroupSchedules } from "./usePersonalGroupSchedules";
 import { usePersonalGroupTodos } from "./usePersonalGroupTodos";
+import { useGroups } from "./useGroups";
 
 export {
   useCategories,
+  useGroups,
   usePersonalSchedules,
   usePersonalTodos,
   usePersonalGroupSchedules,
