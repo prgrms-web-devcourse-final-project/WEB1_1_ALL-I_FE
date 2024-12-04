@@ -16,10 +16,20 @@ function MainCategoryButton() {
   return (
     <Styled.Container>
       <Styled.Button onClick={handleFilterClick}>
-        <FilterIcon width={20} height={20} fill="none" stroke="currentColor" />
+        <FilterIcon
+          width="100%"
+          height="100%"
+          fill="none"
+          stroke="currentColor"
+        />
       </Styled.Button>
       <Styled.Button onClick={handleSettingClick}>
-        <SettingIcon width={20} height={20} fill="none" stroke="currentColor" />
+        <SettingIcon
+          width="100%"
+          height="100%"
+          fill="none"
+          stroke="currentColor"
+        />
       </Styled.Button>
     </Styled.Container>
   );
