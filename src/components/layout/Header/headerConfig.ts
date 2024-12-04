@@ -1,7 +1,7 @@
 /**
  *
  * 헤더 없는 페이지
- * /signup
+ * /, /login
  *
  * 로고, 종 페이지
  * /main, /group, /group/:groupId, /chat, /mypage, /mypage/edit, /notifications
@@ -11,7 +11,7 @@
  */
 export const HEADER_CONFIG = {
   // 헤더를 보여주지 않을 경로
-  NO_HEADER: ["/signup", "/"],
+  NO_HEADER: ["/", "/login"],
 
   // 로고와 알림 아이콘을 보여줄 경로
   SHOW_LOGO: [
