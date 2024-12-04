@@ -34,7 +34,11 @@ function Mypage() {
             children="수정"
             buttonType="whiteMedium"
             type="button"
-            onClick={() => navigate("./edit")}
+            onClick={() =>
+              navigate("./edit", {
+                state: "닉네임",
+              })
+            }
           />
           <Button
             children="로그아웃"
