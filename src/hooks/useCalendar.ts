@@ -110,13 +110,13 @@ export function useCalendar(usage: "main" | "group") {
             )?.color || DEFAULT_COLOR,
         };
       }),
-    [calendarData.events, calendarData.categories, groups]
+    [calendarData.events, calendarData.categories]
   );
 
   // 투두 날짜 Set
   const todoDateSet = useMemo(
     () => new Set(calendarData.todos.map((todo) => todo.date)),
-    [calendarData.todos, calendarData.categories, groups]
+    [calendarData.todos, calendarData.categories]
   );
 
   return {
