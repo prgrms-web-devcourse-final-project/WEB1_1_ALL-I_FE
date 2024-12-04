@@ -18,8 +18,14 @@ html {
   /* font-weight */
   --font-weight-extrabold: 800;
   --font-weight-bold: 600;
+  --font-weight-medium: 500;
   --font-weight-regular: 400;
   --font-weight-thin: 300;
+
+  /* icon size */
+  --icon-size-group-1: 1.5rem; /* 24px */
+  --icon-size-group-2: 1.333rem; /* 20px */
+  --icon-size-group-3: 1rem; /* 15px */
 
   /* radius */
   --border-radius-default: 5px;
@@ -56,6 +62,9 @@ html {
 
   /* breakpoint */
   --breakpoint-mobile: 600px;
+
+  /* padding */
+  --padding-side-default: 2rem;
 }
 
 /* 다크모드 */

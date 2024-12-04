@@ -1,80 +1,32 @@
-import { matchPath, NavLink } from "react-router-dom";
-import HomeIcon from "@/assets/icons/home.svg?react";
-import GroupIcon from "@/assets/icons/group.svg?react";
-import ChatbotIcon from "@/assets/icons/chatbot.svg?react";
-import ProfileIcon from "@/assets/icons/profile.svg?react";
-import * as Style from "./NavBar.style";
+import { useLocation, matchPath } from "react-router-dom";
+import * as Styled from "./NavBar.style";
+import { NAV_ITEMS, SHOW_NAV } from "./navConfig";
 
 function NavBar() {
-  // 네브바를 보여주지 않을 경로 리스트
+  const { pathname } = useLocation();
 
-  const pathNav = ["/signup", "/group/*"];
-  // const noNav = pathNav.includes(location.pathname);
-  const noNav = pathNav.some((path) => matchPath(path, location.pathname)); // mathPath를 사용하여 특정 경로 패턴을 매칭할 수 있음
+  const showNav = SHOW_NAV.some(
+    ({ pattern, excludes = [] }) =>
+      matchPath(pattern, pathname) &&
+      !excludes.some((exclude) => matchPath(exclude, pathname))
+  );
+
+  if (!showNav) return null;
 
   return (
-    <>
-      {!noNav && (
-        <Style.Nav>
-          <Style.NavItem>
-            <NavLink
-              to="/main"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <HomeIcon
-                width={24}
-                height={24}
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>홈</span>
-            </NavLink>
-          </Style.NavItem>
-          <Style.NavItem>
-            <NavLink
-              to="/group"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <GroupIcon
-                width={24}
-                height={24}
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>그룹</span>
-            </NavLink>
-          </Style.NavItem>
-          <Style.NavItem>
-            <NavLink
-              to="/chat"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <ChatbotIcon
-                width={24}
-                height={24}
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>챗봇</span>
-            </NavLink>
-          </Style.NavItem>
-          <Style.NavItem>
-            <NavLink
-              to="/mypage"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <ProfileIcon
-                width={24}
-                height={24}
-                fill="none"
-                stroke="currentColor"
-              />
-              <span>프로필</span>
-            </NavLink>
-          </Style.NavItem>
-        </Style.Nav>
-      )}
-    </>
+    <Styled.NavContainer>
+      {NAV_ITEMS.map(({ path, icon: Icon, label }) => (
+        <Styled.NavItem
+          key={path}
+          to={path}
+          className={({ isActive }) => (isActive ? "active" : "")}
+          aria-label={label}
+        >
+          <Icon width="100%" height="100%" fill="none" stroke="currentColor" />
+          <span>{label}</span>
+        </Styled.NavItem>
+      ))}
+    </Styled.NavContainer>
   );
 }
 

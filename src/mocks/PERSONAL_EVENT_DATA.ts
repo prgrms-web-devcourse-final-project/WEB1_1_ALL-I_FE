@@ -1,6 +1,6 @@
 export const PERSONAL_EVENT_DATA = [
   {
-    personalEventId: "282bc4fe-ea35-4737-8156-c4a879cc4e0a",
+    personalEventId: "1",
     title: "일정 1",
     startDate: "2024-12-12",
     endDate: "2024-12-15",
@@ -12,7 +12,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "430458ec-4476-4b1f-9a36-c757ae6cdf22",
+    personalEventId: "2",
     title: "일정 2",
     startDate: "2024-12-13",
     endDate: "2024-12-15",
@@ -24,7 +24,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "52551f9a-7815-4543-9d90-47ddf6f54f49",
+    personalEventId: "3",
     title: "일정 3",
     startDate: "2024-12-13",
     endDate: "2024-12-13",
@@ -36,7 +36,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "52eed857-7e65-4f46-87a6-0bbaa25ab200",
+    personalEventId: "4",
     title: "일정 4",
     startDate: "2024-12-13",
     endDate: "2024-12-13",
@@ -48,7 +48,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "5",
     title: "일정 5",
     startDate: "2024-12-13",
     endDate: "2024-12-13",
@@ -60,7 +60,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "6",
     title: "일정 6",
     startDate: "2024-12-13",
     endDate: "2024-12-13",
@@ -72,7 +72,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "7",
     title: "일정 7",
     startDate: "2024-12-13",
     endDate: "2024-12-13",
@@ -84,7 +84,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "8",
     title: "일정 8",
     startDate: "2024-12-13",
     endDate: "2024-12-26",
@@ -96,7 +96,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "9",
     title: "일정 9",
     startDate: "2024-12-26",
     endDate: "2024-12-26",
@@ -108,7 +108,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "10",
     title: "일정 10",
     startDate: "2024-12-26",
     endDate: "2024-12-26",
@@ -120,7 +120,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "11",
     title: "일정 11",
     startDate: "2024-12-26",
     endDate: "2024-12-26",
@@ -132,7 +132,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "12",
     title: "일정 12",
     startDate: "2024-12-26",
     endDate: "2024-12-26",
@@ -144,7 +144,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "13",
     title: "일정 13",
     startDate: "2024-12-26",
     endDate: "2024-12-27",
@@ -157,7 +157,7 @@ export const PERSONAL_EVENT_DATA = [
   },
 
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "14",
     title: "일정 14",
     startDate: "2024-12-26",
     endDate: "2024-12-28",
@@ -169,7 +169,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "15",
     title: "일정 15",
     startDate: "2024-12-27",
     endDate: "2025-01-20",
@@ -181,7 +181,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "16",
     title: "일정 16",
     startDate: "2024-12-18",
     endDate: "2024-12-18",
@@ -193,7 +193,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "17",
     title: "일정 17",
     startDate: "2024-12-02",
     endDate: "2024-12-18",
@@ -205,7 +205,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "18",
     title: "일정 18",
     startDate: "2024-12-02",
     endDate: "2024-12-04",
@@ -217,7 +217,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "19",
     title: "일정 19",
     startDate: "2024-12-02",
     endDate: "2024-12-02",
@@ -229,7 +229,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "20",
     title: "일정 20",
     startDate: "2024-12-02",
     endDate: "2024-12-02",
@@ -241,7 +241,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "21",
     title: "일정 21",
     startDate: "2024-12-02",
     endDate: "2024-12-02",
@@ -253,7 +253,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "22",
     title: "일정 22",
     startDate: "2024-12-02",
     endDate: "2024-12-02",
@@ -265,7 +265,7 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
+    personalEventId: "23",
     title: "일정 23",
     startDate: "2024-12-02",
     endDate: "2024-12-10",
@@ -277,8 +277,8 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "일정 23",
+    personalEventId: "24",
+    title: "일정 24",
     startDate: "2024-12-03",
     endDate: "2024-12-03",
     startTime: "18:00:00",
@@ -289,8 +289,8 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "일정 24",
+    personalEventId: "25",
+    title: "일정 25",
     startDate: "2024-12-23",
     endDate: "2024-12-23",
     startTime: "18:00:00",
@@ -301,8 +301,32 @@ export const PERSONAL_EVENT_DATA = [
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
-    personalEventId: "f7fbf8fb-6fe8-4870-945f-3fd1719e0ac3",
-    title: "일정 25",
+    personalEventId: "26",
+    title: "일정 26",
+    startDate: "2024-12-23",
+    endDate: "2024-12-24",
+    startTime: "18:00:00",
+    endTime: "19:00:00",
+    isAlarmed: false,
+    createdAt: "2024-11-26 16:42:00",
+    categoryId: "8",
+    userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
+  },
+  {
+    personalEventId: "27",
+    title: "일정 27",
+    startDate: "2024-12-23",
+    endDate: "2024-12-24",
+    startTime: "18:00:00",
+    endTime: "19:00:00",
+    isAlarmed: false,
+    createdAt: "2024-11-26 16:42:00",
+    categoryId: "8",
+    userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
+  },
+  {
+    personalEventId: "28",
+    title: "일정 28",
     startDate: "2024-12-23",
     endDate: "2024-12-24",
     startTime: "18:00:00",

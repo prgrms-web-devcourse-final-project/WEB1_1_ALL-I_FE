@@ -1,47 +1,66 @@
+import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import BackIcon from "@/assets/icons/back.svg?react";
 import AlarmIcon from "@/assets/icons/alarm.svg?react";
-import * as Style from "./Header.style";
-import { useLocation, useNavigate } from "react-router-dom";
+import * as Styled from "./Header.style";
+import { HEADER_CONFIG } from "./headerConfig";
 
 function Header() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  // 로고를 보여줄 경로 리스트
-  const pathLogo = [
-    "/",
-    "/main",
-    "/group",
-    "/chat",
-    "/mypage",
-    "/signup",
-    "/login",
-  ];
+  // 헤더 없는 페이지
+  const noHeader = HEADER_CONFIG.NO_HEADER.some((path) =>
+    matchPath(path, pathname)
+  );
 
-  // 경로에 따라 로고를 보여줄지 결정
-  const showLogo = pathLogo.includes(location.pathname);
+  if (noHeader) return null;
+
+  // 로고, 종 페이지
+  const showLogo = HEADER_CONFIG.SHOW_LOGO.some((path) =>
+    matchPath(path, pathname)
+  );
+
+  if (showLogo) {
+    return (
+      <Styled.HeaderContainer>
+        <Styled.StyledNavLink to="/main">
+          <Styled.LogoWrapper>로고</Styled.LogoWrapper>
+        </Styled.StyledNavLink>
+        <Styled.StyledNavLink to="/notifications">
+          <Styled.IconWrapper>
+            <AlarmIcon
+              width="100%"
+              height="100%"
+              fill="none"
+              stroke="currentColor"
+            />
+          </Styled.IconWrapper>
+        </Styled.StyledNavLink>
+      </Styled.HeaderContainer>
+    );
+  }
+
+  // 뒤로가기 페이지
 
   const handleBackClick = () => {
     navigate(-1); // 이전 페이지로 이동
   };
+
   return (
-    <Style.HeaderDiv>
-      {showLogo ? (
-        <Style.StyledNavLink to="/main">로고</Style.StyledNavLink>
-      ) : (
-        <Style.IconWrapper onClick={handleBackClick}>
+    <Styled.HeaderContainer>
+      <button onClick={handleBackClick}>
+        <Styled.IconWrapper>
           <BackIcon
-            width={25}
-            height={25}
+            width="100%"
+            height="100%"
             fill="currentColor"
             stroke="currentColor"
           />
-        </Style.IconWrapper>
-      )}
-      <Style.StyledNavLink to="/notifications">
-        <AlarmIcon width={24} height={24} fill="none" stroke="currentColor" />
-      </Style.StyledNavLink>
-    </Style.HeaderDiv>
+        </Styled.IconWrapper>
+      </button>
+      <div></div>
+    </Styled.HeaderContainer>
   );
 }
+
 export default Header;
