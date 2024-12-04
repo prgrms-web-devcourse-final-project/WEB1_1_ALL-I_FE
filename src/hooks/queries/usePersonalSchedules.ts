@@ -5,6 +5,6 @@
 
 import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
 
-export const useMainSchedules = () => {
+export const usePersonalSchedules = () => {
   return { data: PERSONAL_EVENT_DATA, isLoading: false, error: null };
 };

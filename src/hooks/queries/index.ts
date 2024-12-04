@@ -1,13 +1,17 @@
 import { useCategories } from "./useCategories";
-import { useMainSchedules } from "./useMainSchedules";
+import { usePersonalSchedules } from "./usePersonalSchedules";
 import { useGroupSchedules } from "./useGroupSchedules";
-import { useMainTodos } from "./useMainTodos";
+import { usePersonalTodos } from "./usePersonalTodos";
 import { useGroupTodos } from "./useGroupTodos";
+import { usePersonalGroupSchedules } from "./usePersonalGroupSchedules";
+import { usePersonalGroupTodos } from "./usePersonalGroupTodos";
 
 export {
   useCategories,
-  useMainSchedules,
+  usePersonalSchedules,
+  usePersonalTodos,
+  usePersonalGroupSchedules,
+  usePersonalGroupTodos,
   useGroupSchedules,
-  useMainTodos,
   useGroupTodos,
 };
