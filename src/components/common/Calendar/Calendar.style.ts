@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const CalendarWrapper = styled.div`
+  margin-bottom: 1rem;
+
   /* 기본 설정 */
   .fc {
     /* 캘린더의 기본 폰트 패밀리와 크기 설정 */
