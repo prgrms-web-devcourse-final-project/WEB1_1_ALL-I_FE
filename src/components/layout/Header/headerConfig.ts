@@ -19,7 +19,6 @@ export const HEADER_CONFIG = {
     "/group/:groupId",
     "/chat",
     "/mypage",
-    "/mypage/edit",
     "/notifications",
   ],
 } as const;

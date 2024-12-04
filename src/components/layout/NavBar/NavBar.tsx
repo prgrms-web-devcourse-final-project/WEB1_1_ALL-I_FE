@@ -1,12 +1,19 @@
 import { useLocation, matchPath } from "react-router-dom";
 import * as Styled from "./NavBar.style";
-import { NAV_ITEMS, HIDDEN_PATHS } from "./navConfig";
+import { NAV_ITEMS, SHOW_NAV } from "./navConfig";
+
+// 더미 파일들 id 수정할 것
 
 function NavBar() {
   const { pathname } = useLocation();
-  const shouldHideNav = HIDDEN_PATHS.some((path) => matchPath(path, pathname));
 
-  if (shouldHideNav) return null;
+  const showNav = SHOW_NAV.some(
+    ({ pattern, excludes = [] }) =>
+      matchPath(pattern, pathname) &&
+      !excludes.some((exclude) => matchPath(exclude, pathname))
+  );
+
+  if (!showNav) return null;
 
   return (
     <Styled.NavContainer>

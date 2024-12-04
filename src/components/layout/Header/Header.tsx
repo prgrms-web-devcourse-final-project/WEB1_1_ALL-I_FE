@@ -10,14 +10,14 @@ function Header() {
 
   // 헤더 없는 페이지
   const noHeader = HEADER_CONFIG.NO_HEADER.some((path) =>
-    matchPath(pathname, path)
+    matchPath(path, pathname)
   );
 
   if (noHeader) return null;
 
   // 로고, 종 페이지
   const showLogo = HEADER_CONFIG.SHOW_LOGO.some((path) =>
-    matchPath(pathname, path)
+    matchPath(path, pathname)
   );
 
   if (showLogo) {
