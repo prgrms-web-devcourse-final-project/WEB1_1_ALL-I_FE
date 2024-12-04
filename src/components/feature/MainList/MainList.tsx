@@ -1,7 +1,7 @@
-import ScheduleItem from "@/components/common/ScheduleList/ScheduleItem";
+import ScheduleItem from "@/components/common/ScheduleItem/ScheduleItem";
 import PlusButton from "../PlusButton/PlusButton";
-import TodoItem from "@/components/common/TodoList/TodoItem";
-import MainCategoryButton from "../MainCategoryButton/MainCategoryButton";
+import TodoItem from "@/components/common/TodoItem/TodoItem";
+import CategoryButtons from "@/components/feature/main/CategoryButtons/CategoryButtons";
 import { useNavigate } from "react-router-dom";
 import SortedTodo from "@/utils/sortedTodo";
 import SortedSchedule from "@/utils/sortedSchedule";
@@ -68,7 +68,7 @@ function MainList({ schedules, todos, categories, onDelete }: MainListProps) {
   return (
     <>
       {/* 카테고리 설정/필터 버튼 */}
-      <MainCategoryButton />
+      <CategoryButtons />
       {/* 일정 + 버튼*/}
       <PlusButton label="일정" onClick={() => navigate("/main/schedule/new")} />
       {/* 일정 리스트 */}

@@ -321,7 +321,7 @@ export const PERSONAL_EVENT_DATA = [
     endTime: "19:00:00",
     isAlarmed: false,
     createdAt: "2024-11-26 16:42:00",
-    categoryId: "8",
+    categoryId: "9",
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
   {
@@ -333,7 +333,7 @@ export const PERSONAL_EVENT_DATA = [
     endTime: "19:00:00",
     isAlarmed: false,
     createdAt: "2024-11-26 16:42:00",
-    categoryId: "8",
+    categoryId: "1",
     userId: "91a81a0e-f886-43f2-a984-194ba77eab1d",
   },
 ];

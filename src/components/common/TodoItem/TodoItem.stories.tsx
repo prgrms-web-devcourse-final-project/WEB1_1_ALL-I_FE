@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import TodoItem from "@/components/common/TodoList/TodoItem";
+import TodoItem from "@/components/common/TodoItem/TodoItem";
 
 const meta = {
   // 스토리북 경로 - 파일 경로와 동일하게 설정하는 것이 좋을 것 같습니다.
