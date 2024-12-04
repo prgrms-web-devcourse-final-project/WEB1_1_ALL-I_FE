@@ -2,8 +2,6 @@ import { useLocation, matchPath } from "react-router-dom";
 import * as Styled from "./NavBar.style";
 import { NAV_ITEMS, SHOW_NAV } from "./navConfig";
 
-// 더미 파일들 id 수정할 것
-
 function NavBar() {
   const { pathname } = useLocation();
 
