@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { AlarmResDTO } from "@/types/notification";
+import GroupInviteForm from "@/components/feature/notifications/GroupInviteForm/GroupInviteForm";
+import * as Styled from "./Notifications.style";
+import ScheduleForm from "@/components/feature/notifications/ScheduleForm/ScheduleForm";
 
 function NotificationsPage() {
   const [notifications, setNotifications] = useState<AlarmResDTO[]>([]);
@@ -46,7 +49,12 @@ function NotificationsPage() {
     setNotifications(dummyNotifications);
   }, []);
 
-  return <div></div>;
+  return (
+    <Styled.Container>
+      <GroupInviteForm groupId="1" name="홍길동" groupName="학교" />
+      <ScheduleForm scheduleName="코딩 스터디" scheduleDate="2024-12-04" />
+    </Styled.Container>
+  );
 }
 
 export default NotificationsPage;
