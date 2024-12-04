@@ -1,6 +1,6 @@
 import ScheduleItem from "@/components/common/ScheduleList/ScheduleItem";
 import PlusButton from "../PlusButton/PlusButton";
-import TodoItem from "@/components/common/TodoList/TodoItem";
+import TodoItem from "@/components/common/TodoItem/TodoItem";
 import MainCategoryButton from "../MainCategoryButton/MainCategoryButton";
 import { useNavigate } from "react-router-dom";
 import SortedTodo from "@/utils/sortedTodo";
