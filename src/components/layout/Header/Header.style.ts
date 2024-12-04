@@ -21,9 +21,8 @@ export const HeaderContainer = styled.div`
   text-decoration: none;
 
   box-sizing: border-box;
-  transition:
-    border-bottom 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: border-bottom 0.3s ease;
+  // box-shadow 0.3s ease;
 `;
 
 export const StyledNavLink = styled(NavLink)`

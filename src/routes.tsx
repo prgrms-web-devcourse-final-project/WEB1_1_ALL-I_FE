@@ -80,6 +80,8 @@ export const router = createBrowserRouter([
           // /group -> /group/:groupId 로 어떻게 전달해줄지 고민 및 수정 필요
           // group index: true를 없애고,
           // group 페이지로 이동 전에 어떤 아이디로 보낼지 결정해서 그 경로로 navigate 하는 방법도 있습니다.
+          // /group 경로 - 그룹 없을 때 '새 그룹을 생성해 보세요' 페이지
+          // /group으로 접근 시 속한 그룹이 있거나, 마지막 열람한 그룹 정보가 있으면 navigate
           { index: true, element: <GroupNewPage /> },
           // group/schedule, group/todo 를 :groupId로 인식해서 생기는 버그 해결
           { path: "schedule/*", element: <Navigate to="/" replace /> },

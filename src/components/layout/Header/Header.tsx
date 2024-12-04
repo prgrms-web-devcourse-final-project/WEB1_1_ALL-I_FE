@@ -18,14 +18,6 @@ function Header() {
     "/login",
   ];
 
-  /**
-   * 로고 있어야 하는 페이지
-   * 회원가입 - 로고, 종X
-   * 로그인 - 헤더X
-   * 메인, 그룹/아이디/ 챗봇/ 마이페이지 / 알림 - 로고, 종
-   * 나머지 - 뒤로가기, 종
-   */
-
   // 경로에 따라 로고를 보여줄지 결정
   const showLogo = pathLogo.includes(location.pathname);
 

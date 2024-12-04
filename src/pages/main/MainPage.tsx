@@ -36,7 +36,6 @@ function MainPage() {
 
   return (
     <div>
-      {/* 달력 수정 필요  */}
       <Calendar onDateSelect={() => {}} />
       <MainList
         schedules={schedules} // 일정 데이터 전달
