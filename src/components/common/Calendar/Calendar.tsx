@@ -5,6 +5,10 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 import * as Styled from "./Calendar.style";
 
+import { useCategories } from "@/hooks/queries/useCategories";
+import { useMainSchedules } from "@/hooks/queries/useMainSchedules";
+import { useTodos } from "@/hooks/queries/useTodos";
+
 import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
 import { PERSONAL_TODO_DATA } from "@/mocks/PERSONAL_TODO_DATA";
 
@@ -28,10 +32,11 @@ const CATEGORY_COLOR = {
  * 홈페이지에서 삭제
  */
 interface CalendarProps {
+  usage: "main" | "group";
   onDateSelect: (date: Date) => void;
 }
 
-const Calendar = ({ onDateSelect }: CalendarProps) => {
+function Calendar({ usage, onDateSelect }: CalendarProps) {
   const handleDateClick = (arg: DateClickArg) => {
     onDateSelect(arg.date);
   };
@@ -188,6 +193,6 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
       </Styled.CalendarWrapper>
     </div>
   );
-};
+}
 
 export default Calendar;

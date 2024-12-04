@@ -6,5 +6,5 @@
 import { CATEGORY_DATA } from "@/mocks/CTEGORY_DATA";
 
 export const useCategories = () => {
-  return { data: CATEGORY_DATA, isLoading: false };
+  return { data: CATEGORY_DATA, isLoading: false, error: null };
 };

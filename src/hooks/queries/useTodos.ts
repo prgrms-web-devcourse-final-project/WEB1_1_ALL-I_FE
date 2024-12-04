@@ -6,5 +6,5 @@
 import { PERSONAL_TODO_DATA } from "@/mocks/PERSONAL_TODO_DATA";
 
 export const useTodos = () => {
-  return { data: PERSONAL_TODO_DATA, isLoading: false };
+  return { data: PERSONAL_TODO_DATA, isLoading: false, error: null };
 };
