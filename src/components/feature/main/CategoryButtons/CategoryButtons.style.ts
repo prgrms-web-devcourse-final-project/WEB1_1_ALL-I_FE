@@ -17,6 +17,7 @@ export const Button = styled.button`
 
   width: var(--icon-size-group-2);
   height: var(--icon-size-group-2);
+
   &:hover {
     transform: scale(1.1);
     transition: transform 0.25s ease;
