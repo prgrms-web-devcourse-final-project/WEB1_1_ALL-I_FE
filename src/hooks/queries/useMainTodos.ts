@@ -5,6 +5,6 @@
 
 import { PERSONAL_TODO_DATA } from "@/mocks/PERSONAL_TODO_DATA";
 
-export const useTodos = () => {
+export const useMainTodos = () => {
   return { data: PERSONAL_TODO_DATA, isLoading: false, error: null };
 };

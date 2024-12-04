@@ -5,9 +5,13 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 import * as Styled from "./Calendar.style";
 
-import { useCategories } from "@/hooks/queries/useCategories";
-import { useMainSchedules } from "@/hooks/queries/useMainSchedules";
-import { useTodos } from "@/hooks/queries/useTodos";
+import {
+  useCategories,
+  useMainSchedules,
+  useGroupSchedules,
+  useMainTodos,
+  useGroupTodos,
+} from "@/hooks/queries";
 
 import { PERSONAL_EVENT_DATA } from "@/mocks/PERSONAL_EVENT_DATA";
 import { PERSONAL_TODO_DATA } from "@/mocks/PERSONAL_TODO_DATA";
@@ -40,6 +44,20 @@ function Calendar({ usage, onDateSelect }: CalendarProps) {
   const handleDateClick = (arg: DateClickArg) => {
     onDateSelect(arg.date);
   };
+
+  let calendarData: {
+    events: [];
+    todos: [];
+    categories: [];
+  };
+
+  if (usage === "main") {
+    const { data: mainSchedules } = useMainSchedules();
+    events = mainSchedules;
+  } else if (usage === "group") {
+    const { data: groupSchedules } = useGroupSchedules();
+    events = groupSchedules;
+  }
 
   // 일정 map 함수
   const events = PERSONAL_EVENT_DATA.map((event) => {
