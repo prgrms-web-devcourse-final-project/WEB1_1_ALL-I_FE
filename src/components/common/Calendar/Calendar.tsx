@@ -54,10 +54,8 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
     return formattedEvent;
   });
 
-  // 투두 날짜 map 함수
-  const todoEventsDate = PERSONAL_TODO_DATA.map((todo) => ({
-    start: todo.date,
-  }));
+  // 투두 날짜를 Set으로 관리
+  const todoDateSet = new Set(PERSONAL_TODO_DATA.map((todo) => todo.date));
 
   return (
     <div
@@ -143,12 +141,7 @@ const Calendar = ({ onDateSelect }: CalendarProps) => {
             const currentDate = arg.date.toLocaleDateString("en-CA"); // en-CA는 YYYY-MM-DD 형식을 반환
 
             // 해당 날짜에 투두가 있는지 확인
-            const hasTodo = todoEventsDate.some(
-              (todo) => todo.start === currentDate
-            );
-
-            // 투두가 있으면 점 표시 추가
-            if (hasTodo) {
+            if (todoDateSet.has(currentDate)) {
               const dot = document.createElement("div");
               dot.className = "todo-dot";
               arg.el.querySelector(".fc-daygrid-day-top")?.appendChild(dot);
