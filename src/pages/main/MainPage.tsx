@@ -24,9 +24,9 @@ function MainPage() {
       />
       <CategoryButtons />
       <Styled.ListContainer>
-        <NewButton />
+        <NewButton label="일정" />
         <ScheduleList />
-        <NewButton />
+        <NewButton label="투두" />
         <TodoList />
       </Styled.ListContainer>
     </>
