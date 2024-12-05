@@ -43,7 +43,7 @@ export const CustomCheckbox = styled.input.attrs({ type: "checkbox" })`
     &::after {
       content: "✓";
       position: absolute;
-      color: white;
+      color: var(--color-white);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

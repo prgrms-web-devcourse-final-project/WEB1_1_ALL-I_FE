@@ -18,6 +18,7 @@ import { filterByDate } from "@/utils/mainPage/filterByDate";
 // Models
 import { MainSchedule } from "@/models/MainSchedule";
 import { MainTodo } from "@/models/MainTodo";
+import { FormatDate } from "@/utils/format";
 
 function MainPage() {
   const { data, isLoading, error } = useMainPage();
@@ -47,7 +48,10 @@ function MainPage() {
         todos={data.calendar.todos}
         onDateSelect={setSelectedDate}
       />
-      <CategoryButtons />
+      <Styled.MiddleContainer>
+        <Styled.DateText>{FormatDate(selectedDate)}</Styled.DateText>
+        <CategoryButtons />
+      </Styled.MiddleContainer>
       <Styled.ListContainer>
         <NewButton label="일정" />
         <ScheduleList schedules={filteredSchedules} />
