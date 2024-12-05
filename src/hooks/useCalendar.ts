@@ -42,7 +42,8 @@ export function useCalendar(usage: "main" | "group") {
     data: personalTodos = [],
     isLoading: isPersonalTodosLoading,
     error: personalTodosError,
-  } = usePersonalTodos();
+    // 아래의 usePersonalTodos 매개변수 dateParams가 비어있으면 오류가 떠서 임시로 값을 넣었습니다. 수정필요!
+  } = usePersonalTodos({ year: 2024, month: 12 });
   const {
     data: personalGroupSchedules = [],
     isLoading: isPersonalGroupSchedulesLoading,
