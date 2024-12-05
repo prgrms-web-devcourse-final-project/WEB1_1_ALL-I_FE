@@ -1,4 +1,18 @@
 import { useMemo } from "react";
+
+import { CalendarSchedule } from "@/models/CalendarSchedule";
+import { CalendarTodo } from "@/models/CalendarTodo";
+import { MainSchedule } from "@/models/MainSchedule";
+import { MainTodo } from "@/models/MainTodo";
+import {
+  Category,
+  PersonalSchedule,
+  PersonalTodo,
+  PersonalGroupSchedule,
+  PersonalGroupTodo,
+} from "@/types";
+import { getCategoryColor } from "@/utils/mainPage/getCategoryColor";
+
 import {
   useCategories,
   useGroups,
@@ -7,16 +21,6 @@ import {
   usePersonalGroupSchedules,
   usePersonalGroupTodos,
 } from "./queries";
-import { CalendarSchedule } from "@/models/CalendarSchedule";
-import { CalendarTodo } from "@/models/CalendarTodo";
-
-import {
-  Category,
-  PersonalSchedule,
-  PersonalTodo,
-  PersonalGroupSchedule,
-  PersonalGroupTodo,
-} from "@/types";
 
 /**
  * TODO:
@@ -28,6 +32,15 @@ export function useMainPage() {
     isLoading: isCategoriesLoading,
     error: categoriesError,
   } = useCategories();
+
+  const categoryColorMap = useMemo(
+    () =>
+      categories.reduce(
+        (acc, category) => ({ ...acc, [category.categoryId]: category.color }),
+        {}
+      ),
+    [categories]
+  );
 
   const {
     data: groups = [],
@@ -56,9 +69,6 @@ export function useMainPage() {
     error: personalGroupTodosError,
   } = usePersonalGroupTodos();
 
-  /**
-   * schedules, todos 제거할 것
-   */
   const schedules = useMemo(
     () => [...personalSchedules, ...personalGroupSchedules],
     [categories, groups, personalSchedules, personalGroupSchedules]
@@ -70,8 +80,17 @@ export function useMainPage() {
 
   // 달력용 데이터
   const calendarSchedules = useMemo(
-    () => schedules.map((schedule) => new CalendarSchedule(schedule)),
-    [schedules]
+    () =>
+      schedules.map((schedule) => {
+        const calendarSchedule = new CalendarSchedule(schedule);
+        calendarSchedule.color = getCategoryColor(
+          schedule.categoryId,
+          categoryColorMap
+        );
+
+        return calendarSchedule;
+      }),
+    [schedules, categories]
   );
   const calendarTodos = useMemo(
     () => todos.map((todo) => new CalendarTodo(todo)),
@@ -79,12 +98,29 @@ export function useMainPage() {
   );
 
   // 리스트용 데이터
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const listSchedules: any[] = [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const listPersonalTodos: any[] = [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const listPersonalGroupTodos: any[] = [];
+  const listSchedules = useMemo(
+    () =>
+      schedules.map((schedule) => {
+        const mainSchedule = new MainSchedule(schedule);
+        mainSchedule.color = getCategoryColor(
+          schedule.categoryId,
+          categoryColorMap
+        );
+
+        return mainSchedule;
+      }),
+    [schedules, categories]
+  );
+  const listTodos = useMemo(
+    () =>
+      todos.map((todo) => {
+        const mainTodo = new MainTodo(todo);
+        mainTodo.color = getCategoryColor(todo.categoryId, categoryColorMap);
+
+        return mainTodo;
+      }),
+    [todos, categories]
+  );
 
   return {
     data: {
@@ -96,8 +132,7 @@ export function useMainPage() {
       },
       list: {
         schedules: listSchedules,
-        personalTodos: listPersonalTodos,
-        personalGroupTodos: listPersonalGroupTodos,
+        todos: listTodos,
       },
     },
     isLoading:

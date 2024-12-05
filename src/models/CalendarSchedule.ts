@@ -10,6 +10,7 @@ export class CalendarSchedule {
   start: string;
   end: string;
   categoryId: string;
+  color: string | undefined;
 
   constructor(event: PersonalSchedule | PersonalGroupSchedule | GroupSchedule) {
     this.id =
@@ -18,5 +19,6 @@ export class CalendarSchedule {
     this.start = event.startDate;
     this.end = event.endDate;
     this.categoryId = event.categoryId;
+    this.color = undefined;
   }
 }

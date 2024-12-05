@@ -1,3 +1,6 @@
+import { CalendarTodo } from "@/models/CalendarTodo";
+import { CalendarSchedule } from "@/models/CalendarSchedule";
+
 interface CalendarEvent {
   id: string;
   title: string;
@@ -6,13 +9,7 @@ interface CalendarEvent {
   backgroundColor: string;
 }
 
-import { CalendarTodo } from "@/models/CalendarTodo";
-import { CalendarSchedule } from "@/models/CalendarSchedule";
-import { Category } from "@/types";
-const DEFAULT_COLOR = "#000000";
-
 export function useCalendar(
-  categories: Category[],
   schedules: CalendarSchedule[],
   todos: CalendarTodo[]
 ) {
@@ -26,9 +23,7 @@ export function useCalendar(
       title: event.title,
       start: event.start,
       end: endDate.toISOString().split("T")[0],
-      backgroundColor:
-        categories.find((category) => category.categoryId === event.categoryId)
-          ?.color || DEFAULT_COLOR,
+      backgroundColor: event.color!,
     };
   });
 
