@@ -8,6 +8,7 @@ import MainPage from "@/pages/main/MainPage";
 import MyPage from "@/pages/mypage/MyPage";
 import MyEditPage from "@/pages/mypage/edit/MyEditPage";
 import ChatPage from "@/pages/chat/ChatPage";
+import GroupNoData from "@/pages/group/noData/GroupNoData";
 import GroupPage from "@/pages/group/GroupPage";
 import GroupNewPage from "@/pages/group/new/GroupNewPage";
 import GroupEditPage from "@/pages/group/edit/GroupEditPage";
@@ -82,7 +83,8 @@ export const router = createBrowserRouter([
           // group 페이지로 이동 전에 어떤 아이디로 보낼지 결정해서 그 경로로 navigate 하는 방법도 있습니다.
           // /group 경로 - 그룹 없을 때 '새 그룹을 생성해 보세요' 페이지
           // /group으로 접근 시 속한 그룹이 있거나, 마지막 열람한 그룹 정보가 있으면 navigate
-          { index: true, element: <GroupNewPage /> },
+          // { index: true, element: <GroupNoData /> },
+          { path: "", element: <GroupNoData /> },
           // group/schedule, group/todo 를 :groupId로 인식해서 생기는 버그 해결
           { path: "schedule/*", element: <Navigate to="/" replace /> },
           { path: "todo/*", element: <Navigate to="/" replace /> },
