@@ -1,13 +1,17 @@
-import { PersonalEvent, PersonalGroupEvent, GroupEvent } from "@/types";
+import {
+  PersonalSchedule,
+  PersonalGroupSchedule,
+  GroupSchedule,
+} from "@/types";
 
-export class CalendarEvent {
+export class CalendarSchedule {
   id: string;
   title: string;
   start: string;
   end: string;
   categoryId: string;
 
-  constructor(event: PersonalEvent | PersonalGroupEvent | GroupEvent) {
+  constructor(event: PersonalSchedule | PersonalGroupSchedule | GroupSchedule) {
     this.id =
       "personalEventId" in event ? event.personalEventId : event.groupEventId;
     this.title = event.title;

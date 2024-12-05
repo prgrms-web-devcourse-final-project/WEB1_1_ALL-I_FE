@@ -1,4 +1,4 @@
-export interface PersonalEvent {
+export interface PersonalSchedule {
   personalEventId: string;
   title: string;
   startDate: string;

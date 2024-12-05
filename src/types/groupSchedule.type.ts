@@ -1,4 +1,4 @@
-export interface GroupEvent {
+export interface GroupSchedule {
   groupEventId: string;
   title: string;
   startDate: string;

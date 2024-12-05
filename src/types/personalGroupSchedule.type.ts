@@ -1,4 +1,4 @@
-export interface PersonalGroupEvent {
+export interface PersonalGroupSchedule {
   groupEventId: string;
   title: string;
   startDate: string;

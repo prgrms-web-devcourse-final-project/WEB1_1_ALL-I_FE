@@ -1,15 +1,17 @@
-import { PersonalEvent } from "./personalEvent.type";
+import { PersonalSchedule } from "./personalSchedule.type";
 import { PersonalTodo } from "./personalTodo.type";
-import { PersonalGroupEvent } from "./personalGroupEvent.type";
+import { PersonalGroupSchedule } from "./personalGroupSchedule.type";
 import { PersonalGroupTodo } from "./personalGroupTodo.type";
-import { GroupEvent } from "./groupEvent.type";
+import { GroupSchedule } from "./groupSchedule.type";
 import { GroupTodo } from "./groupTodo.type";
+import { Category } from "./category.type";
 
 export type {
   PersonalTodo,
-  PersonalEvent,
+  PersonalSchedule,
   PersonalGroupTodo,
-  PersonalGroupEvent,
+  PersonalGroupSchedule,
   GroupTodo,
-  GroupEvent,
+  GroupSchedule,
+  Category,
 };

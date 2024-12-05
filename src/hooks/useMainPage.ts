@@ -7,6 +7,16 @@ import {
   usePersonalGroupSchedules,
   usePersonalGroupTodos,
 } from "./queries";
+import { CalendarSchedule } from "@/models/CalendarSchedule";
+import { CalendarTodo } from "@/models/CalendarTodo";
+
+import {
+  Category,
+  PersonalSchedule,
+  PersonalTodo,
+  PersonalGroupSchedule,
+  PersonalGroupTodo,
+} from "@/types";
 
 /**
  * TODO:
@@ -14,7 +24,7 @@ import {
  */
 export function useMainPage() {
   const {
-    data: categories = [],
+    data: categories = [] as Category[],
     isLoading: isCategoriesLoading,
     error: categoriesError,
   } = useCategories();
@@ -26,22 +36,22 @@ export function useMainPage() {
   } = useGroups();
 
   const {
-    data: personalSchedules = [],
+    data: personalSchedules = [] as PersonalSchedule[],
     isLoading: isPersonalSchedulesLoading,
     error: personalSchedulesError,
   } = usePersonalSchedules();
   const {
-    data: personalTodos = [],
+    data: personalTodos = [] as PersonalTodo[],
     isLoading: isPersonalTodosLoading,
     error: personalTodosError,
   } = usePersonalTodos();
   const {
-    data: personalGroupSchedules = [],
+    data: personalGroupSchedules = [] as PersonalGroupSchedule[],
     isLoading: isPersonalGroupSchedulesLoading,
     error: personalGroupSchedulesError,
   } = usePersonalGroupSchedules();
   const {
-    data: personalGroupTodos = [],
+    data: personalGroupTodos = [] as PersonalGroupTodo[],
     isLoading: isPersonalGroupTodosLoading,
     error: personalGroupTodosError,
   } = usePersonalGroupTodos();
@@ -55,11 +65,31 @@ export function useMainPage() {
     [categories, groups, personalTodos, personalGroupTodos]
   );
 
+  const calendarSchedules = useMemo(
+    () => schedules.map((schedule) => new CalendarSchedule(schedule)),
+    [schedules]
+  );
+  const calendarTodos = useMemo(
+    () => todos.map((todo) => new CalendarTodo(todo)),
+    [todos]
+  );
+
+  const listSchedules = [];
+  const listTodos = [];
+
   return {
-    categories,
-    groups,
-    schedules,
-    todos,
+    data: {
+      categories,
+      groups,
+      calendar: {
+        schedules: calendarSchedules,
+        todos: calendarTodos,
+      },
+      list: {
+        schedules: listSchedules,
+        todos: listTodos,
+      },
+    },
     isLoading:
       isCategoriesLoading ||
       isGroupsLoading ||
