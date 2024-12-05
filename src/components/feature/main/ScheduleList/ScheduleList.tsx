@@ -11,11 +11,13 @@ interface ScheduleListProps {
 }
 
 function ScheduleList({ categories, schedules }: ScheduleListProps) {
-  return schedules.map((schedule) => (
+  return (
     <Styled.ScheduleListWrapper>
-      <ScheduleItem key={schedule.id} schedule={schedule} />
+      {schedules.map((schedule) => (
+        <ScheduleItem key={schedule.id} schedule={schedule} />
+      ))}
     </Styled.ScheduleListWrapper>
-  ));
+  );
 }
 
 export default ScheduleList;

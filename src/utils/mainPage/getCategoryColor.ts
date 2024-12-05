@@ -1,5 +1,3 @@
-import { Category } from "@/types";
-
 const DEFAULT_COLOR = "#000000";
 
 export const getCategoryColor = (

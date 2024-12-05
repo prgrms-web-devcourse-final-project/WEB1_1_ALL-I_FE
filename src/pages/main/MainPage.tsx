@@ -29,7 +29,7 @@ function MainPage() {
           schedules={data.list.schedules}
         />
         <NewButton label="투두" />
-        <TodoList />
+        <TodoList categories={data.categories} todos={data.list.todos} />
       </Styled.ListContainer>
     </>
   );

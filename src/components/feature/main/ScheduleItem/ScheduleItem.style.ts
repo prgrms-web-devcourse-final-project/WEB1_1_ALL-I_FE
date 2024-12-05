@@ -4,8 +4,8 @@ export const ScheduleItemWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 0.2rem;
-  margin-bottom: 0.2rem;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.7rem;
   border-bottom: 1px solid var(--color-primary);
 `;
 

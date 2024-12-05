@@ -27,6 +27,9 @@ html {
   --icon-size-group-2: 1.333rem; /* 20px */
   --icon-size-group-3: 1rem; /* 15px */
 
+  /* checkbox size */
+  --size-checkbox: 1rem; /* 15px */
+
   /* radius */
   --border-radius-default: 5px;
   --border-radius-large: 8px;

@@ -2,7 +2,7 @@ export const PERSONAL_TODO_DATA = [
   {
     personalTodoId: "1",
     title: "투두 1",
-    done: true,
+    done: false,
     todoOrder: 0,
     date: "2024-12-04",
     startTime: null,
@@ -24,7 +24,7 @@ export const PERSONAL_TODO_DATA = [
   {
     personalTodoId: "3",
     title: "투두 3",
-    done: true,
+    done: false,
     todoOrder: 0,
     date: "2024-12-04",
     startTime: null,
@@ -57,7 +57,7 @@ export const PERSONAL_TODO_DATA = [
   {
     personalTodoId: "6",
     title: "투두 6",
-    done: true,
+    done: false,
     todoOrder: 0,
     date: "2024-12-05",
     startTime: null,
