@@ -2,6 +2,8 @@ import ListBar from "@/components/common/ListBar/ListBar";
 import TextDate from "@/components/common/TextDate/TextDate";
 import { MainSchedule } from "@/models/MainSchedule";
 import { useNavigate } from "react-router-dom";
+import * as Styled from "./ScheduleItem.style";
+import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
 
 interface ScheduleItemProps {
   schedule: MainSchedule;
@@ -23,11 +25,16 @@ function ScheduleItem({ schedule }: ScheduleItemProps) {
   };
 
   return (
-    <>
-      <TextDate values={[schedule.startDate, schedule.endDate]} />
-      <ListBar color={schedule.categoryId} />
-      {schedule.title}
-    </>
+    <Styled.ScheduleItemWrapper>
+      <Styled.LeftWrapper>
+        <ListBar color={schedule.color!} />
+        <TextDate values={[schedule.startDate, schedule.endDate]} />
+        <Styled.ScheduleTitle>{schedule.title}</Styled.ScheduleTitle>
+      </Styled.LeftWrapper>
+      <Styled.RightWrapper>
+        <EditDeleteIcon onEdit={handleEditClick} onDelete={handleDeleteClick} />
+      </Styled.RightWrapper>
+    </Styled.ScheduleItemWrapper>
   );
 }
 
