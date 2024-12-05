@@ -12,14 +12,14 @@ import { useCalendar } from "@/hooks/useCalendar";
 interface CalendarProps {
   schedules: CalendarSchedule[];
   todos: CalendarTodo[];
-  onDateSelect: (date: Date) => void;
+  onDateSelect: (date: string) => void;
 }
 
 function Calendar({ schedules, todos, onDateSelect }: CalendarProps) {
   const { events, todoDateSet } = useCalendar(schedules, todos);
 
   const handleDateClick = (arg: DateClickArg) => {
-    onDateSelect(arg.date);
+    onDateSelect(arg.date.toLocaleDateString("en-CA"));
   };
 
   return (

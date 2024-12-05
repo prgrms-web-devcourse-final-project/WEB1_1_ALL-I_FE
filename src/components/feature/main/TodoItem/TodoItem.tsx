@@ -4,7 +4,6 @@ import ListBar from "@/components/common/ListBar/ListBar";
 import TextDate from "@/components/common/TextDate/TextDate";
 import { useNavigate } from "react-router-dom";
 import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
-import useTodoItem from "@/hooks/useTodoItem";
 
 interface TodoItemProps {
   todo: MainTodo;
@@ -22,7 +21,6 @@ function TodoItem({ todo }: TodoItemProps) {
   };
 
   // 체크박스 로직 수정
-  const { isChecked, toggleChecked } = useTodoItem({ isComplete: todo.done });
 
   return (
     <Styled.TodoItemWrapper>
@@ -35,7 +33,7 @@ function TodoItem({ todo }: TodoItemProps) {
         <Styled.CustomCheckbox
           type="checkbox"
           checked={todo.done}
-          onChange={toggleChecked}
+          onClick={() => {}}
         />
         <EditDeleteIcon onEdit={handleEditClick} onDelete={handleDeleteClick} />
       </Styled.RightWrapper>
