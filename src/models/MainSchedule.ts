@@ -10,6 +10,7 @@ export class MainSchedule {
   isAlarmed: boolean;
   createdAt: string;
   categoryId: string;
+  color: string | undefined;
 
   constructor(data: PersonalSchedule | PersonalGroupSchedule) {
     this.id =
@@ -22,6 +23,7 @@ export class MainSchedule {
     this.isAlarmed = data.isAlarmed;
     this.createdAt = data.createdAt;
     this.categoryId = data.categoryId;
+    this.color = undefined;
   }
 }
 

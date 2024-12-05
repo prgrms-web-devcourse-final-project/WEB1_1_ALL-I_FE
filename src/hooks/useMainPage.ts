@@ -20,6 +20,8 @@ import {
 import { MainSchedule } from "@/models/MainSchedule";
 import { MainTodo } from "@/models/MainTodo";
 
+const DEFAULT_COLOR = "#000000";
+
 /**
  * TODO:
  * 필터링 로직 여기서 처리하고 보내줄지, 메인페이지 내부에서 처리할지
@@ -72,9 +74,10 @@ export function useMainPage() {
     () =>
       schedules.map((schedule) => {
         const calendarSchedule = new CalendarSchedule(schedule);
-        calendarSchedule.color = categories.find(
-          (category) => category.categoryId === schedule.categoryId
-        )?.color;
+        calendarSchedule.color =
+          categories.find(
+            (category) => category.categoryId === schedule.categoryId
+          )?.color || DEFAULT_COLOR;
 
         return calendarSchedule;
       }),
@@ -87,11 +90,26 @@ export function useMainPage() {
 
   // 리스트용 데이터
   const listSchedules = useMemo(
-    () => schedules.map((schedule) => new MainSchedule(schedule)),
-    [schedules]
+    () =>
+      schedules.map((schedule) => {
+        const mainSchedule = new MainSchedule(schedule);
+        mainSchedule.color =
+          categories.find(
+            (category) => category.categoryId === schedule.categoryId
+          )?.color || DEFAULT_COLOR;
+        return mainSchedule;
+      }),
+    [schedules, categories]
   );
   const listTodos = useMemo(
-    () => todos.map((todo) => new MainTodo(todo)),
+    () =>
+      todos.map((todo) => {
+        const mainTodo = new MainTodo(todo);
+        mainTodo.color = categories.find(
+          (category) => category.categoryId === todo.categoryId
+        )?.color;
+        return mainTodo;
+      }),
     [todos]
   );
 

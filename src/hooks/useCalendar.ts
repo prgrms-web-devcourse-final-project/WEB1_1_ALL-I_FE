@@ -8,7 +8,6 @@ interface CalendarEvent {
 
 import { CalendarTodo } from "@/models/CalendarTodo";
 import { CalendarSchedule } from "@/models/CalendarSchedule";
-const DEFAULT_COLOR = "#000000";
 
 export function useCalendar(
   schedules: CalendarSchedule[],
@@ -24,7 +23,7 @@ export function useCalendar(
       title: event.title,
       start: event.start,
       end: endDate.toISOString().split("T")[0],
-      backgroundColor: event.color || DEFAULT_COLOR,
+      backgroundColor: event.color!,
     };
   });
 

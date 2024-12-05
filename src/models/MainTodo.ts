@@ -8,6 +8,7 @@ export class MainTodo {
   startTime: string | null;
   createdAt: string;
   categoryId: string;
+  color: string | undefined;
 
   constructor(data: PersonalTodo | PersonalGroupTodo) {
     this.id = "personalTodoId" in data ? data.personalTodoId : data.groupTodoId;
@@ -17,5 +18,6 @@ export class MainTodo {
     this.startTime = data.startTime || null;
     this.createdAt = data.createdAt;
     this.categoryId = data.categoryId;
+    this.color = undefined;
   }
 }
