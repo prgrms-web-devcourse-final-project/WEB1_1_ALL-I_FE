@@ -9,6 +9,8 @@ import { useCalendar } from "@/hooks/useCalendar";
 
 interface CalendarProps {
   usage: "main" | "group";
+  schedules: Schedule[];
+  todos: Todo[];
   onDateSelect: (date: Date) => void;
 }
 
@@ -23,7 +25,6 @@ function Calendar({ usage, onDateSelect }: CalendarProps) {
     onDateSelect(arg.date);
   };
 
-  
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
