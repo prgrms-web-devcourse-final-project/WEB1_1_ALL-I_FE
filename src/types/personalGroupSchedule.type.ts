@@ -3,8 +3,8 @@ export interface PersonalGroupSchedule {
   title: string;
   startDate: string;
   endDate: string;
-  startTime: string;
-  endTime: string;
+  startTime: string | null;
+  endTime: string | null;
   isAlarmed: boolean;
   createdAt: string;
   groupId: string;

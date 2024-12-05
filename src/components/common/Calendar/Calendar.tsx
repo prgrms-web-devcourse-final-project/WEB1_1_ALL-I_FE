@@ -8,22 +8,15 @@ import { CalendarTodo } from "@/models/CalendarTodo";
 import * as Styled from "./Calendar.style";
 
 import { useCalendar } from "@/hooks/useCalendar";
-import { Category } from "@/types";
 
 interface CalendarProps {
-  categories: Category[];
   schedules: CalendarSchedule[];
   todos: CalendarTodo[];
   onDateSelect: (date: Date) => void;
 }
 
-function Calendar({
-  categories,
-  schedules,
-  todos,
-  onDateSelect,
-}: CalendarProps) {
-  const { events, todoDateSet } = useCalendar(categories, schedules, todos);
+function Calendar({ schedules, todos, onDateSelect }: CalendarProps) {
+  const { events, todoDateSet } = useCalendar(schedules, todos);
 
   const handleDateClick = (arg: DateClickArg) => {
     onDateSelect(arg.date);

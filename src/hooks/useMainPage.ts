@@ -17,6 +17,8 @@ import {
   PersonalGroupSchedule,
   PersonalGroupTodo,
 } from "@/types";
+import { MainSchedule } from "@/models/MainSchedule";
+import { MainTodo } from "@/models/MainTodo";
 
 /**
  * TODO:
@@ -56,9 +58,6 @@ export function useMainPage() {
     error: personalGroupTodosError,
   } = usePersonalGroupTodos();
 
-  /**
-   * schedules, todos 제거할 것
-   */
   const schedules = useMemo(
     () => [...personalSchedules, ...personalGroupSchedules],
     [categories, groups, personalSchedules, personalGroupSchedules]
@@ -70,8 +69,16 @@ export function useMainPage() {
 
   // 달력용 데이터
   const calendarSchedules = useMemo(
-    () => schedules.map((schedule) => new CalendarSchedule(schedule)),
-    [schedules]
+    () =>
+      schedules.map((schedule) => {
+        const calendarSchedule = new CalendarSchedule(schedule);
+        calendarSchedule.color = categories.find(
+          (category) => category.categoryId === schedule.categoryId
+        )?.color;
+
+        return calendarSchedule;
+      }),
+    [schedules, categories]
   );
   const calendarTodos = useMemo(
     () => todos.map((todo) => new CalendarTodo(todo)),
@@ -79,9 +86,14 @@ export function useMainPage() {
   );
 
   // 리스트용 데이터
-  const listSchedules = [];
-  const listPersonalTodos = [];
-  const listPersonalGroupTodos = [];
+  const listSchedules = useMemo(
+    () => schedules.map((schedule) => new MainSchedule(schedule)),
+    [schedules]
+  );
+  const listTodos = useMemo(
+    () => todos.map((todo) => new MainTodo(todo)),
+    [todos]
+  );
 
   return {
     data: {
@@ -93,8 +105,7 @@ export function useMainPage() {
       },
       list: {
         schedules: listSchedules,
-        personalTodos: listPersonalTodos,
-        personalGroupTodos: listPersonalGroupTodos,
+        todos: listTodos,
       },
     },
     isLoading:

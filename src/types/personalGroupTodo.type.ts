@@ -5,7 +5,7 @@ export interface PersonalGroupTodo {
   done: boolean;
   todoOrder: number;
   date: string;
-  startTime: string;
+  startTime: string | null;
   createdAt: string;
   groupId: string;
   categoryId: string;

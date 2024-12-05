@@ -17,7 +17,6 @@ function MainPage() {
   return (
     <>
       <Calendar
-        categories={data.categories}
         schedules={data.calendar.schedules}
         todos={data.calendar.todos}
         onDateSelect={() => {}}
@@ -25,7 +24,10 @@ function MainPage() {
       <CategoryButtons />
       <Styled.ListContainer>
         <NewButton label="일정" />
-        <ScheduleList />
+        <ScheduleList
+          categories={data.categories}
+          schedules={data.list.schedules}
+        />
         <NewButton label="투두" />
         <TodoList />
       </Styled.ListContainer>

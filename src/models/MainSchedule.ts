@@ -1,23 +1,24 @@
-import { PersonalGroupSchedule } from "@/types";
+import { PersonalGroupSchedule, PersonalSchedule } from "@/types";
 
 export class MainSchedule {
   id: string;
   title: string;
   startDate: string;
   endDate: string;
-  startTime: string;
-  endTime: string;
+  startTime: string | null;
+  endTime: string | null;
   isAlarmed: boolean;
   createdAt: string;
   categoryId: string;
 
-  constructor(data: PersonalGroupSchedule) {
-    this.id = data.groupEventId;
+  constructor(data: PersonalSchedule | PersonalGroupSchedule) {
+    this.id =
+      "personalEventId" in data ? data.personalEventId : data.groupEventId;
     this.title = data.title;
     this.startDate = data.startDate;
     this.endDate = data.endDate;
-    this.startTime = data.startTime;
-    this.endTime = data.endTime;
+    this.startTime = data.startTime || null;
+    this.endTime = data.endTime || null;
     this.isAlarmed = data.isAlarmed;
     this.createdAt = data.createdAt;
     this.categoryId = data.categoryId;
