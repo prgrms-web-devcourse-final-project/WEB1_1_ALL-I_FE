@@ -32,6 +32,15 @@ export function useMainPage() {
     error: categoriesError,
   } = useCategories();
 
+  const categoryColorMap = useMemo(
+    () =>
+      categories.reduce(
+        (acc, category) => ({ ...acc, [category.categoryId]: category.color }),
+        {}
+      ),
+    [categories]
+  );
+
   const {
     data: groups = [],
     isLoading: isGroupsLoading,
@@ -75,7 +84,7 @@ export function useMainPage() {
         const calendarSchedule = new CalendarSchedule(schedule);
         calendarSchedule.color = getCategoryColor(
           schedule.categoryId,
-          categories
+          categoryColorMap
         );
 
         return calendarSchedule;
@@ -92,7 +101,10 @@ export function useMainPage() {
     () =>
       schedules.map((schedule) => {
         const mainSchedule = new MainSchedule(schedule);
-        mainSchedule.color = getCategoryColor(schedule.categoryId, categories);
+        mainSchedule.color = getCategoryColor(
+          schedule.categoryId,
+          categoryColorMap
+        );
 
         return mainSchedule;
       }),
@@ -102,7 +114,7 @@ export function useMainPage() {
     () =>
       todos.map((todo) => {
         const mainTodo = new MainTodo(todo);
-        mainTodo.color = getCategoryColor(todo.categoryId, categories);
+        mainTodo.color = getCategoryColor(todo.categoryId, categoryColorMap);
 
         return mainTodo;
       }),

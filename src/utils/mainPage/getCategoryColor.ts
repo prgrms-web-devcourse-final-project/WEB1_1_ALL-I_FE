@@ -4,10 +4,7 @@ const DEFAULT_COLOR = "#000000";
 
 export const getCategoryColor = (
   categoryId: string,
-  categories: Category[]
+  categoryColorMap: Record<string, string>
 ) => {
-  return (
-    categories.find((category) => category.categoryId === categoryId)?.color ||
-    DEFAULT_COLOR
-  );
+  return categoryColorMap[categoryId] || DEFAULT_COLOR;
 };
