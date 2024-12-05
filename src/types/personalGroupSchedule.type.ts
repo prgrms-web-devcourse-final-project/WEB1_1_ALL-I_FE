@@ -8,6 +8,6 @@ export interface PersonalGroupSchedule {
   isAlarmed: boolean;
   createdAt: string;
   groupId: string;
-
   categoryId: string;
+  assignedUserIds: string[];
 }
