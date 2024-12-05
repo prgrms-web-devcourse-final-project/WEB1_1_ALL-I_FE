@@ -7,4 +7,6 @@ export interface PersonalGroupTodo {
   startTime: string;
   createdAt: string;
   groupId: string;
+
+  categoryId: string;
 }

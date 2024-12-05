@@ -8,4 +8,6 @@ export interface PersonalGroupEvent {
   isAlarmed: boolean;
   createdAt: string;
   groupId: string;
+
+  categoryId: string;
 }
