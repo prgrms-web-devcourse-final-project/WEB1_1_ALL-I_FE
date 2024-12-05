@@ -79,9 +79,12 @@ export function useMainPage() {
   );
 
   // 리스트용 데이터
-  const listSchedules = [];
-  const listPersonalTodos = [];
-  const listPersonalGroupTodos = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const listSchedules: any[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const listPersonalTodos: any[] = [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const listPersonalGroupTodos: any[] = [];
 
   return {
     data: {
