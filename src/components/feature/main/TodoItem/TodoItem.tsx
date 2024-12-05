@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 import { MainTodo } from "@/models/MainTodo";
-import * as Styled from "./TodoItem.styled";
+import { FormatTime } from "@/utils/format";
+
 import ListBar from "@/components/common/ListBar/ListBar";
 import TextDate from "@/components/common/TextDate/TextDate";
-import { useNavigate } from "react-router-dom";
-import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
 
-import { FormatTime } from "@/utils/format";
+import * as Styled from "./TodoItem.styled";
+import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
 
 interface TodoItemProps {
   todo: MainTodo;

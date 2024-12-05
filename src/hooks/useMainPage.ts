@@ -1,4 +1,18 @@
 import { useMemo } from "react";
+
+import { CalendarSchedule } from "@/models/CalendarSchedule";
+import { CalendarTodo } from "@/models/CalendarTodo";
+import { MainSchedule } from "@/models/MainSchedule";
+import { MainTodo } from "@/models/MainTodo";
+import {
+  Category,
+  PersonalSchedule,
+  PersonalTodo,
+  PersonalGroupSchedule,
+  PersonalGroupTodo,
+} from "@/types";
+import { getCategoryColor } from "@/utils/mainPage/getCategoryColor";
+
 import {
   useCategories,
   useGroups,
@@ -7,19 +21,6 @@ import {
   usePersonalGroupSchedules,
   usePersonalGroupTodos,
 } from "./queries";
-import { CalendarSchedule } from "@/models/CalendarSchedule";
-import { CalendarTodo } from "@/models/CalendarTodo";
-
-import {
-  Category,
-  PersonalSchedule,
-  PersonalTodo,
-  PersonalGroupSchedule,
-  PersonalGroupTodo,
-} from "@/types";
-import { MainSchedule } from "@/models/MainSchedule";
-import { MainTodo } from "@/models/MainTodo";
-import { getCategoryColor } from "@/utils/mainPage/getCategoryColor";
 
 /**
  * TODO:

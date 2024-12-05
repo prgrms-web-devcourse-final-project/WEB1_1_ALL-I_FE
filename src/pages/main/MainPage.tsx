@@ -30,8 +30,6 @@ function MainPage() {
   if (error) return <div>Error occurred</div>;
   if (!data) return null;
 
-  console.log(selectedDate);
-
   const filteredSchedules = filterByDate(
     data.list.schedules,
     selectedDate

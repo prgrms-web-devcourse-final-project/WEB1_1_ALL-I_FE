@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 import SettingIcon from "@/assets/icons/setting.svg?react";
 import FilterIcon from "@/assets/icons/filtering.svg?react";
+
 import * as Styled from "./CategoryButtons.style";
-import { useNavigate } from "react-router-dom";
 
 function MainCategoryButton() {
   const navigate = useNavigate();

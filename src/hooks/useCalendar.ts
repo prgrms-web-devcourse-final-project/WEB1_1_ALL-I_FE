@@ -1,3 +1,6 @@
+import { CalendarTodo } from "@/models/CalendarTodo";
+import { CalendarSchedule } from "@/models/CalendarSchedule";
+
 interface CalendarEvent {
   id: string;
   title: string;
@@ -5,9 +8,6 @@ interface CalendarEvent {
   end: string;
   backgroundColor: string;
 }
-
-import { CalendarTodo } from "@/models/CalendarTodo";
-import { CalendarSchedule } from "@/models/CalendarSchedule";
 
 export function useCalendar(
   schedules: CalendarSchedule[],

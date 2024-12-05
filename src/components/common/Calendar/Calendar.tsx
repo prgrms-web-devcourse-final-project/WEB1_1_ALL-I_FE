@@ -2,12 +2,12 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { DateClickArg } from "@fullcalendar/interaction";
 import interactionPlugin from "@fullcalendar/interaction";
+
 import { CalendarSchedule } from "@/models/CalendarSchedule";
 import { CalendarTodo } from "@/models/CalendarTodo";
+import { useCalendar } from "@/hooks/useCalendar";
 
 import * as Styled from "./Calendar.style";
-
-import { useCalendar } from "@/hooks/useCalendar";
 
 interface CalendarProps {
   schedules: CalendarSchedule[];
