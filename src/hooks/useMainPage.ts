@@ -56,6 +56,9 @@ export function useMainPage() {
     error: personalGroupTodosError,
   } = usePersonalGroupTodos();
 
+  /**
+   * schedules, todos 제거할 것
+   */
   const schedules = useMemo(
     () => [...personalSchedules, ...personalGroupSchedules],
     [categories, groups, personalSchedules, personalGroupSchedules]
@@ -75,7 +78,8 @@ export function useMainPage() {
   );
 
   const listSchedules = [];
-  const listTodos = [];
+  const listPersonalTodos = [];
+  const listPersonalGroupTodos = [];
 
   return {
     data: {
@@ -87,7 +91,8 @@ export function useMainPage() {
       },
       list: {
         schedules: listSchedules,
-        todos: listTodos,
+        personalTodos: listPersonalTodos,
+        personalGroupTodos: listPersonalGroupTodos,
       },
     },
     isLoading:
