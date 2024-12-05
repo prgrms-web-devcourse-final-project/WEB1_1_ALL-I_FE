@@ -5,6 +5,8 @@ import TextDate from "@/components/common/TextDate/TextDate";
 import { useNavigate } from "react-router-dom";
 import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
 
+import { FormatTime } from "@/utils/format";
+
 interface TodoItemProps {
   todo: MainTodo;
 }
@@ -26,7 +28,7 @@ function TodoItem({ todo }: TodoItemProps) {
     <Styled.TodoItemWrapper>
       <Styled.LeftWrapper>
         <ListBar color={todo.color!} />
-        <TextDate values={[todo.date]} />
+        <TextDate values={[FormatTime(todo.startTime)]} />
         <Styled.TodoTitle>{todo.title}</Styled.TodoTitle>
       </Styled.LeftWrapper>
       <Styled.RightWrapper>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TextContainer = styled.div`
-  width: 4rem;
+  width: 3rem;
 `;
 
 export const Text = styled.div`

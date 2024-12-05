@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import * as Styled from "./ScheduleItem.style";
 import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
 
+import { FormatTime, FormatDate } from "@/utils/format";
+
 interface ScheduleItemProps {
   schedule: MainSchedule;
 }
@@ -24,11 +26,16 @@ function ScheduleItem({ schedule }: ScheduleItemProps) {
     // TODO: 삭제 로직 추가
   };
 
+  const TextDateValues =
+    schedule.startDate === schedule.endDate && schedule.startTime
+      ? [FormatTime(schedule.startTime), FormatTime(schedule.endTime)]
+      : [FormatDate(schedule.startDate), FormatDate(schedule.endDate)];
+
   return (
     <Styled.ScheduleItemWrapper>
       <Styled.LeftWrapper>
         <ListBar color={schedule.color!} />
-        <TextDate values={[schedule.startDate, schedule.endDate]} />
+        <TextDate values={TextDateValues} />
         <Styled.ScheduleTitle>{schedule.title}</Styled.ScheduleTitle>
       </Styled.LeftWrapper>
       <Styled.RightWrapper>

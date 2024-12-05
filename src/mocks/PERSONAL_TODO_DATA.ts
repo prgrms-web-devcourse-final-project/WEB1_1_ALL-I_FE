@@ -60,7 +60,7 @@ export const PERSONAL_TODO_DATA = [
     done: false,
     todoOrder: 0,
     date: "2024-12-05",
-    startTime: null,
+    startTime: "10:00:00",
     createdAt: "2024-12-02T17:10:37",
     userId: "a4cca6e1-de26-4771-bb7b-f89950804400",
     categoryId: "6",
