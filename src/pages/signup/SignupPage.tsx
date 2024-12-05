@@ -2,7 +2,7 @@ import useSignupForm from "@/hooks/useSignupForm";
 import * as Styled from "./SignupPage.style";
 import TextInput from "@/components/common/TextInput/TextInput";
 import Button from "@/components/common/Button/Button";
-import Camera from "@/assets/icons/Camera.svg?react";
+import Camera from "@/assets/icons/camera.svg?react";
 
 function SignupPage() {
   const { formData, handleChange, handleImageChange, handleSubmit } =
