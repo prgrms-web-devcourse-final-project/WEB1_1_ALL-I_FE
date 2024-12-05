@@ -3,6 +3,7 @@ import { useState } from "react";
 interface FormData {
   groupName: string;
   color: string;
+  description: string;
 }
 
 function useGroupNewForm(initialState: FormData) {

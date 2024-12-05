@@ -2,19 +2,25 @@ import { useState } from "react";
 
 interface UseGroupEditProps {
   initialColor: string;
+  description: string;
 }
 
-function useGroupEditForm({ initialColor }: UseGroupEditProps) {
-  const [formData, setFormData] = useState(initialColor);
+function useGroupEditForm(initialState: UseGroupEditProps) {
+  const [formData, setFormData] = useState(initialState);
 
-  const handleChange = (value: string) => {
-    setFormData(value);
+  const handleChange = (name: keyof UseGroupEditProps) => (value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+  const handleSubmit =
+    (callback: (data: UseGroupEditProps) => void) =>
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      callback(formData); // formData를 전달해 콜백 실행
+    };
 
   return {
     formData,

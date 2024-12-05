@@ -9,6 +9,7 @@ function GroupNewPage() {
   const { formData, handleChange, handleSubmit } = useGroupNewForm({
     groupName: "",
     color: "",
+    description: "",
   });
 
   const onSubmit = (data: typeof formData) => {
@@ -25,6 +26,15 @@ function GroupNewPage() {
         required
         value={formData.groupName}
         onChange={handleChange("groupName")}
+      />
+      <TextInput
+        name="description"
+        type="text"
+        label="그룹 설명"
+        placeholder="그룹 설명을 작성해주세요."
+        required
+        value={formData.description}
+        onChange={handleChange("description")}
       />
       <MemberList />
       <CircleInput
