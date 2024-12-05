@@ -23,9 +23,8 @@ function Calendar({ usage, onDateSelect }: CalendarProps) {
     onDateSelect(arg.date);
   };
 
-  
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div
