@@ -1,6 +1,6 @@
 import useGroupNewForm from "@/hooks/useGroupNewForm";
 import * as Styled from "./GroupNewPage.style";
-import MemberList from "@/components/feature/GroupNewPage/MemberList";
+// import MemberList from "@/components/feature/GroupNewPage/MemberList";
 import TextInput from "@/components/common/TextInput/TextInput";
 import CircleInput from "@/components/common/Circle/CircleInput";
 import Button from "@/components/common/Button/Button";
@@ -36,7 +36,7 @@ function GroupNewPage() {
         value={formData.description}
         onChange={handleChange("description")}
       />
-      <MemberList />
+      {/* <MemberList /> */}
       <CircleInput
         defaultColor="#000"
         onChange={(value) => handleChange("color")(value)}
