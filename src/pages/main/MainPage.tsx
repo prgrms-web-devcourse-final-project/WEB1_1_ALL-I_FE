@@ -1,11 +1,11 @@
 import Calendar from "@/components/common/Calendar/Calendar";
 import CategoryButtons from "@/components/feature/main/CategoryButtons/CategoryButtons";
-import ScheduleList from "@/components/common/ScheduleList/ScheduleList";
-import TodoList from "@/components/common/TodoList/TodoList";
+import ScheduleList from "@/components/feature/main/ScheduleList/ScheduleList";
+import TodoList from "@/components/feature/main/TodoList/TodoList";
 import * as Styled from "./MainPage.style";
 
 import { useMainPage } from "@/hooks/useMainPage";
-import NewButton from "@/components/feature/NewButton/NewButton";
+import NewButton from "@/components/common/NewButton/NewButton";
 
 function MainPage() {
   const { data, isLoading, error } = useMainPage();

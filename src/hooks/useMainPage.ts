@@ -68,6 +68,7 @@ export function useMainPage() {
     [categories, groups, personalTodos, personalGroupTodos]
   );
 
+  // 달력용 데이터
   const calendarSchedules = useMemo(
     () => schedules.map((schedule) => new CalendarSchedule(schedule)),
     [schedules]
@@ -77,6 +78,7 @@ export function useMainPage() {
     [todos]
   );
 
+  // 리스트용 데이터
   const listSchedules = [];
   const listPersonalTodos = [];
   const listPersonalGroupTodos = [];
