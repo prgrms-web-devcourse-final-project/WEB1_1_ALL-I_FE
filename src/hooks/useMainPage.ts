@@ -19,8 +19,7 @@ import {
 } from "@/types";
 import { MainSchedule } from "@/models/MainSchedule";
 import { MainTodo } from "@/models/MainTodo";
-
-const DEFAULT_COLOR = "#000000";
+import { getCategoryColor } from "@/utils/mainPage/getCategoryColor";
 
 /**
  * TODO:
@@ -74,10 +73,10 @@ export function useMainPage() {
     () =>
       schedules.map((schedule) => {
         const calendarSchedule = new CalendarSchedule(schedule);
-        calendarSchedule.color =
-          categories.find(
-            (category) => category.categoryId === schedule.categoryId
-          )?.color || DEFAULT_COLOR;
+        calendarSchedule.color = getCategoryColor(
+          schedule.categoryId,
+          categories
+        );
 
         return calendarSchedule;
       }),
@@ -93,10 +92,8 @@ export function useMainPage() {
     () =>
       schedules.map((schedule) => {
         const mainSchedule = new MainSchedule(schedule);
-        mainSchedule.color =
-          categories.find(
-            (category) => category.categoryId === schedule.categoryId
-          )?.color || DEFAULT_COLOR;
+        mainSchedule.color = getCategoryColor(schedule.categoryId, categories);
+
         return mainSchedule;
       }),
     [schedules, categories]
@@ -105,12 +102,11 @@ export function useMainPage() {
     () =>
       todos.map((todo) => {
         const mainTodo = new MainTodo(todo);
-        mainTodo.color = categories.find(
-          (category) => category.categoryId === todo.categoryId
-        )?.color;
+        mainTodo.color = getCategoryColor(todo.categoryId, categories);
+
         return mainTodo;
       }),
-    [todos]
+    [todos, categories]
   );
 
   return {
