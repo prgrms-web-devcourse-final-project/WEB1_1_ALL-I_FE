@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createPersonalTodo, editPersonalTodo } from "@/apis/todoAPI";
+import { createPersonalTodo, editPersonalTodo } from "@/apis/personalTodos";
 import {
   CreatePersonalTodoRequest,
   EditPersonalTodoRequest,

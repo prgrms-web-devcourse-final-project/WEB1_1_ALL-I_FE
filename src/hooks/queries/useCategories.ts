@@ -3,7 +3,7 @@ import {
   deleteCategory,
   editCategory,
   getCategories,
-} from "@/apis/categoriesAPI";
+} from "@/apis/categories";
 import {
   CreateCategoryRequest,
   EditCategoryRequest,
