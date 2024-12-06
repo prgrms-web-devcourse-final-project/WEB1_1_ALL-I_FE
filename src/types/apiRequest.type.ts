@@ -49,3 +49,19 @@ export interface EditPersonalScheduleRequest {
   isAlarmed: boolean;
   categoryId: string;
 }
+
+// 그룹 투두 생성
+export interface CreateGroupTodoRequest {
+  title: string;
+  date: string;
+  startTime: string | null;
+  userIdList: string[];
+}
+
+// 그룹 투두 수정
+export interface EditGroupTodoRequest {
+  title: string;
+  date: string;
+  startTime: string | null;
+  userIdList: string[];
+}
