@@ -1,6 +1,9 @@
 // React
 import { useState } from "react";
 
+// Store
+import { useCategoryStore } from "@/store/categoryStore";
+
 // Components
 import Calendar from "@/components/common/Calendar/Calendar";
 import NewButton from "@/components/common/NewButton/NewButton";
@@ -13,6 +16,7 @@ import * as Styled from "./MainPage.style";
 import { useMainPage } from "@/hooks/useMainPage";
 
 // Utils
+import { filterByCategory } from "@/utils/mainPage/filterByCategory";
 import { filterByDate } from "@/utils/mainPage/filterByDate";
 
 // Models
@@ -24,6 +28,7 @@ import { FormatDate } from "@/utils/format";
  * 날짜, 카테고리 필터링 관련 로직 useMainPage로 이동할 지 고민
  */
 function MainPage() {
+  const categories = useCategoryStore((state) => state.categories);
   const [selectedDate, setSelectedDate] = useState<string>(
     new Date().toISOString().split("T")[0]
   );
@@ -33,14 +38,27 @@ function MainPage() {
   if (error) return <div>Error occurred</div>;
   if (!data) return null;
 
-  const filteredSchedules = filterByDate(
-    data.list.schedules,
-    selectedDate
-  ) as MainSchedule[];
-  const filteredTodos = filterByDate(
-    data.list.todos,
-    selectedDate
-  ) as MainTodo[];
+  const selectedCategoryIds = categories
+    .filter((category) => category.isSelected)
+    .map((category) => category.categoryId);
+
+  const filterSchedules = (schedules: MainSchedule[]) => {
+    const filterdByCategory = filterByCategory(
+      schedules,
+      selectedCategoryIds
+    ) as MainSchedule[];
+    return filterByDate(filterdByCategory, selectedDate) as MainSchedule[];
+  };
+  const filterTodos = (todos: MainTodo[]) => {
+    const filterdByCategory = filterByCategory(
+      todos,
+      selectedCategoryIds
+    ) as MainTodo[];
+    return filterByDate(filterdByCategory, selectedDate) as MainTodo[];
+  };
+
+  const filteredSchedules = filterSchedules(data.list.schedules);
+  const filteredTodos = filterTodos(data.list.todos);
 
   return (
     <>
