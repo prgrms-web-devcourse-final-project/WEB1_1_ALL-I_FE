@@ -1,10 +1,71 @@
-/**
- * 임시로 더미데이터 사용하고,
- * api 연동시 query 로직이 포함될 예정입니다.
- */
+import {
+  createCategory,
+  deleteCategory,
+  editCategory,
+  getCategories,
+} from "@/apis/categoriesAPI";
+import {
+  CreateCategoryRequest,
+  EditCategoryRequest,
+} from "@/types/apiRequest.type";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { CATEGORY_DATA } from "@/mocks/CTEGORY_DATA";
+// 카테고리 조회
+export const useGetCategories = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["categories"], // 키값은 필요하면 바꾸시면 됩니다.
+    queryFn: () => getCategories(),
+  });
 
-export const useCategories = () => {
-  return { data: CATEGORY_DATA, isLoading: false, error: null };
+  return { data, isLoading, error };
+};
+
+// 카테고리 생성
+export const useCreateCategory = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: (categoryData: CreateCategoryRequest) =>
+      createCategory(categoryData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
+      });
+    },
+  });
+
+  return { mutate, isPending, error };
+};
+
+// 카테고리 수정
+export const useEditCategory = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: (categoryData: EditCategoryRequest) =>
+      editCategory(categoryData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
+      });
+    },
+  });
+
+  return { mutate, isPending, error };
+};
+
+// 카테고리 삭제
+export const useDeleteCategory = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: (categoryId: string) => deleteCategory(categoryId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["categories"],
+      });
+    },
+  });
+
+  return { mutate, isPending, error };
 };
