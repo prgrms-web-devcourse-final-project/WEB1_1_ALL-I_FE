@@ -77,3 +77,21 @@ export interface GetPersonalSchedulesRequest {
 export interface DeletePersonalScheduleRequest {
   date: string;
 }
+
+// 개인 그룹 일정 조회
+export interface GetPersonalGroupSchedulesRequest {
+  date: string;
+}
+
+// 개인 그룹 투두 조회
+export interface GetPersonalGroupTodosRequest {
+  date: string;
+}
+
+// 개인 그룹 투두 상태 변경
+export interface ChangePersonalGroupTodoStateRequest {
+  groupId: string;
+  groupTodoId: string;
+  done: boolean;
+  date: string;
+}

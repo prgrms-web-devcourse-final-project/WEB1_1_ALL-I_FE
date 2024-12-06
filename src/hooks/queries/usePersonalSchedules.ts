@@ -58,7 +58,9 @@ export const useEditPersonalSchedule = () => {
 
 //
 // 개인 일정 조회 query
-export const usePersonalSchedules = ({ date }: GetPersonalSchedulesRequest) => {
+export const useGetPersonalSchedules = ({
+  date,
+}: GetPersonalSchedulesRequest) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["schedules", getYear(date), getMonth(date)],
     queryFn: () =>
