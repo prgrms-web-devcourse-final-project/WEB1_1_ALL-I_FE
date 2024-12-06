@@ -172,5 +172,14 @@
 // }
 
 export const useMainPage = () => {
-  return { data: null, isLoading: false, error: true };
+  return {
+    data: {
+      categories: [],
+      groups: [],
+      calendar: { schedules: [], todos: [] },
+      list: { schedules: [], todos: [] },
+    },
+    isLoading: false,
+    error: true,
+  };
 };
