@@ -18,6 +18,8 @@ import { useMainPage } from "@/hooks/useMainPage";
 // Utils
 import { filterByCategory } from "@/utils/mainPage/filterByCategory";
 import { filterByDate } from "@/utils/mainPage/filterByDate";
+import { sortScheduleItems } from "@/utils/mainPage/sortScheduleItems";
+import { sortTodoItems } from "@/utils/mainPage/sortTodoItems";
 
 // Models
 import { MainSchedule } from "@/models/MainSchedule";
@@ -60,6 +62,9 @@ function MainPage() {
   const filteredSchedules = filterSchedules(data.list.schedules);
   const filteredTodos = filterTodos(data.list.todos);
 
+  const sortedSchedules = sortScheduleItems(filteredSchedules);
+  const sortedTodos = sortTodoItems(filteredTodos);
+
   return (
     <>
       <Calendar
@@ -73,9 +78,9 @@ function MainPage() {
       </Styled.MiddleContainer>
       <Styled.ListContainer>
         <NewButton label="일정" />
-        <ScheduleList schedules={filteredSchedules} />
+        <ScheduleList schedules={sortedSchedules} />
         <NewButton label="투두" />
-        <TodoList todos={filteredTodos} />
+        <TodoList todos={sortedTodos} />
       </Styled.ListContainer>
     </>
   );

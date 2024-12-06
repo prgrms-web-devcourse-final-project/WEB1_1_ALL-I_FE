@@ -1,6 +1,6 @@
 import { MainTodo } from "@/models/MainTodo";
 
-export function sortTodosByStatusAndTime(todos: MainTodo[]): MainTodo[] {
+export const sortTodoItems = (todos: MainTodo[]) => {
   return [...todos].sort((a, b) => {
     // 먼저 done 상태로 정렬 (done인 항목이 뒤로)
     if (a.done !== b.done) {
@@ -25,4 +25,4 @@ export function sortTodosByStatusAndTime(todos: MainTodo[]): MainTodo[] {
     // 나머지는 생성일시 순
     return a.createdAt.localeCompare(b.createdAt);
   });
-}
+};
