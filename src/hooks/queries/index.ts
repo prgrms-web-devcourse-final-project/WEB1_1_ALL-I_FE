@@ -8,7 +8,10 @@ import {
   useCreatePersonalSchedule,
   useEditPersonalSchedule,
 } from "./usePersonalSchedules";
-import { useGroupSchedules } from "./useGroupSchedules";
+import {
+  useCreateGroupSchedule,
+  useEditGroupSchedule,
+} from "./useGroupSchedules";
 import { useCreatePersonalTodo, useEditPersonalTodo } from "./usePersonalTodos";
 import { useCreateGroupTodo } from "./useGroupTodos";
 import { usePersonalGroupSchedules } from "./usePersonalGroupSchedules";
@@ -27,6 +30,7 @@ export {
   useEditPersonalTodo,
   usePersonalGroupSchedules,
   usePersonalGroupTodos,
-  useGroupSchedules,
+  useCreateGroupSchedule,
+  useEditGroupSchedule,
   useCreateGroupTodo,
 };
