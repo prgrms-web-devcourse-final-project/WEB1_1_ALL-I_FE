@@ -2,6 +2,8 @@ import Select, { SingleValue } from "react-select";
 import * as Style from "./CategorySelect.style";
 import Circle from "../../Circle/Circle";
 import { OptionType, CategoryProps } from "@/types/select.types";
+import { useGetCategories } from "@/hooks/queries";
+import { Category } from "@/types/category.type";
 
 const CategoryValue = (props: { data: OptionType }) => {
   const { data } = props;
@@ -28,40 +30,45 @@ const OptionCategory = (props: {
   );
 };
 
-function CategorySelect({
-  category,
-  options,
-  onCategoryChange,
-}: CategoryProps) {
-  const handleCategory = (newValue: SingleValue<OptionType>) => {
+function CategorySelect({ categoryId, onCategoryChange }: CategoryProps) {
+  const { data, isLoading } = useGetCategories();
+  const category = data?.data.find(
+    (category: Category) => category.categoryId === categoryId
+  );
+
+  const handleCategory = (newValue: SingleValue<Category>) => {
     if (newValue) {
-      onCategoryChange(newValue);
+      onCategoryChange(newValue.categoryId);
     } else {
       onCategoryChange(null);
     }
   };
 
   return (
-    <Style.Div>
-      <Select
-        value={category}
-        onChange={handleCategory}
-        options={options}
-        placeholder={
-          <Style.Placeholder>카테고리를 선택하세요</Style.Placeholder>
-        }
-        components={{
-          SingleValue: CategoryValue,
-          Option: OptionCategory,
-        }}
-        styles={{
-          control: Style.customsControl,
-          valueContainer: Style.customContainer,
-          singleValue: Style.customValue,
-        }}
-        isMulti={false}
-      />
-    </Style.Div>
+    <>
+      {!isLoading && (
+        <Style.Div>
+          <Select<Category>
+            value={category}
+            onChange={handleCategory}
+            options={data.data}
+            placeholder={
+              <Style.Placeholder>카테고리를 선택하세요</Style.Placeholder>
+            }
+            components={{
+              SingleValue: CategoryValue,
+              Option: OptionCategory,
+            }}
+            styles={{
+              control: Style.customsControl,
+              valueContainer: Style.customContainer,
+              singleValue: Style.customValue,
+            }}
+            isMulti={false}
+          />
+        </Style.Div>
+      )}
+    </>
   );
 }
 

@@ -4,7 +4,7 @@ import { useToast } from "@/hooks/useToast";
 
 interface TodoScheduleFormState {
   content: string; // 내용
-  category: OptionType | null; // 카테고리
+  categoryId: string | null; // 카테고리
   member: GroupMember[]; // 선택된 멤버들
   date: {
     start: Date; // 시작일
@@ -38,7 +38,7 @@ export function useTodoScheduleForm({
   // 폼의 초기 상태 설정
   const [form, setForm] = useState<TodoScheduleFormState>({
     content: "",
-    category: null,
+    categoryId: null,
     member: [],
     date: {
       start: new Date(),
@@ -69,8 +69,8 @@ export function useTodoScheduleForm({
     handleFormUpdate({ content: value });
   };
 
-  const handleCategoryUpdate = (value: OptionType | null) => {
-    handleFormUpdate({ category: value });
+  const handleCategoryUpdate = (value: string | null) => {
+    handleFormUpdate({ categoryId: value });
   };
 
   const handleMemberUpdate = (value: GroupMember[]) => {
@@ -121,7 +121,7 @@ export function useTodoScheduleForm({
   const handleFormValidation = () => {
     const validationRules = [
       { condition: !form.content, message: "내용을 입력해주세요." },
-      { condition: !form.category, message: "카테고리를 입력해주세요." },
+      { condition: !form.categoryId, message: "카테고리를 입력해주세요." },
       {
         condition: withGroup && form.member.length === 0,
         message: "멤버를 선택해주세요.",
