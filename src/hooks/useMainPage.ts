@@ -31,6 +31,7 @@ import {
  */
 export function useMainPage() {
   const setCategories = useCategoryStore((state) => state.setCategories);
+  const categoriesInStore = useCategoryStore((state) => state.categories);
 
   const {
     data: categories = [] as Category[],
@@ -38,18 +39,15 @@ export function useMainPage() {
     error: categoriesError,
   } = useCategories();
 
-  const categoriesWithSelection = useMemo(
-    () =>
-      categories.map((category) => ({
+  useEffect(() => {
+    if (!categoriesInStore.length) {
+      const categoriesWithSelection = categories.map((category) => ({
         ...category,
         isSelected: true,
-      })),
-    [categories]
-  );
-
-  useEffect(() => {
-    setCategories(categoriesWithSelection);
-  }, [categoriesWithSelection, setCategories]);
+      }));
+      setCategories(categoriesWithSelection);
+    }
+  }, [categories, categoriesInStore, setCategories]);
 
   const categoryColorMap = useMemo(
     () =>

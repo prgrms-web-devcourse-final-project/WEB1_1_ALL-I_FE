@@ -26,7 +26,7 @@ export const CATEGORY_DATA = [
     name: "카테고리 2",
     color: "#ffe3e1",
     userId: "8af30641-215d-42a6-aed6-006246e58732",
-    groupId: null,
+    groupId: "1",
   },
   {
     categoryId: "3",
@@ -47,7 +47,7 @@ export const CATEGORY_DATA = [
     name: "카테고리 5",
     color: "#ebffe1",
     userId: "8af30641-215d-42a6-aed6-006246e58732",
-    groupId: null,
+    groupId: "2",
   },
   {
     categoryId: "6",
@@ -68,7 +68,7 @@ export const CATEGORY_DATA = [
     name: "카테고리 8",
     color: "#e1fbff",
     userId: "8af30641-215d-42a6-aed6-006246e58732",
-    groupId: null,
+    groupId: "3",
   },
   {
     categoryId: "9",
