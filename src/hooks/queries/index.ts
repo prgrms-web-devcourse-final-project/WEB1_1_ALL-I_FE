@@ -10,7 +10,7 @@ import {
 } from "./usePersonalSchedules";
 import { useGroupSchedules } from "./useGroupSchedules";
 import { useCreatePersonalTodo, useEditPersonalTodo } from "./usePersonalTodos";
-import { useGroupTodos } from "./useGroupTodos";
+import { useCreateGroupTodo } from "./useGroupTodos";
 import { usePersonalGroupSchedules } from "./usePersonalGroupSchedules";
 import { usePersonalGroupTodos } from "./usePersonalGroupTodos";
 import { useGroups } from "./useGroups";
@@ -28,5 +28,5 @@ export {
   usePersonalGroupSchedules,
   usePersonalGroupTodos,
   useGroupSchedules,
-  useGroupTodos,
+  useCreateGroupTodo,
 };
