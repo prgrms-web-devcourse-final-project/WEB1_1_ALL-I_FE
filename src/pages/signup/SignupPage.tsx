@@ -2,11 +2,10 @@ import useSignupForm from "@/hooks/useSignupForm";
 import * as Styled from "./SignupPage.style";
 import TextInput from "@/components/common/TextInput/TextInput";
 import Button from "@/components/common/Button/Button";
-import Camera from "@/assets/icons/camera.svg?react";
+// import Camera from "@/assets/icons/camera.svg?react";
 
 function SignupPage() {
-  const { formData, handleChange, handleImageChange, handleSubmit } =
-    useSignupForm();
+  const { formData, handleChange, handleSubmit } = useSignupForm();
 
   return (
     <Styled.Wrapper>
@@ -16,7 +15,7 @@ function SignupPage() {
        ** 그 전에는 경로만 보낸다고 했었음
        ** 그거에 따라 이미지 업로드 보내는 방식이 달라짐 */}
       <Styled.Form onSubmit={handleSubmit}>
-        <div>
+        {/* <div>
           <Styled.Label htmlFor="profileImage">
             <Styled.FilePreview>
               {formData.profileImagePreview ? (
@@ -40,7 +39,7 @@ function SignupPage() {
             accept="image/*"
             onChange={handleImageChange}
           />
-        </div>
+        </div> */}
 
         <TextInput
           name="email"
