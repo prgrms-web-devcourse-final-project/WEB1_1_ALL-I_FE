@@ -1,4 +1,6 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
+
+import { useCategoryStore } from "@/store/categoryStore";
 
 import { CalendarSchedule } from "@/models/CalendarSchedule";
 import { CalendarTodo } from "@/models/CalendarTodo";
@@ -24,14 +26,30 @@ import {
 
 /**
  * TODO:
- * 필터링 로직 여기서 처리하고 보내줄지, 메인페이지 내부에서 처리할지
+ * 날짜, 카테고리 필터링 로직
+ * 여기서 처리하고 보내줄지, 메인페이지 내부에서 처리할지
  */
 export function useMainPage() {
+  const setCategories = useCategoryStore((state) => state.setCategories);
+
   const {
     data: categories = [] as Category[],
     isLoading: isCategoriesLoading,
     error: categoriesError,
   } = useCategories();
+
+  const categoriesWithSelection = useMemo(
+    () =>
+      categories.map((category) => ({
+        ...category,
+        isSelected: true,
+      })),
+    [categories]
+  );
+
+  useEffect(() => {
+    setCategories(categoriesWithSelection);
+  }, [categoriesWithSelection, setCategories]);
 
   const categoryColorMap = useMemo(
     () =>
