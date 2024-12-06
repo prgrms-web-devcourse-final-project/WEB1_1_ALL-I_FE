@@ -6,6 +6,16 @@ export const Wrapper = styled.div`
   gap: 20px;
 `;
 
+export const AddMemContainer = styled.div`
+  position: relative;
+
+  > button {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+  }
+`;
+
 export const InfoContainer = styled.div`
   display: flex;
   align-items: center;

@@ -8,8 +8,8 @@ interface FormData {
   email: string;
   password: string;
   checkPwd: string;
-  profileImage: File | null;
-  profileImagePreview: string | null;
+  // profileImage: File | null;
+  // profileImagePreview: string | null;
 }
 
 function useSignupForm() {
@@ -19,8 +19,8 @@ function useSignupForm() {
     email: "",
     password: "",
     checkPwd: "",
-    profileImage: null,
-    profileImagePreview: null,
+    // profileImage: null,
+    // profileImagePreview: null,
   });
 
   // input onChange 함수

@@ -15,8 +15,10 @@ function SignupPage() {
        ** 그 전에는 경로만 보낸다고 했었음
        ** 그거에 따라 이미지 업로드 보내는 방식이 달라짐 */}
       <Styled.Form onSubmit={handleSubmit}>
+
         {/* <div>
           <Styled.Label htmlFor="profileImage">
+
             <Styled.FilePreview>
               {formData.profileImagePreview ? (
                 <Styled.Img
@@ -32,14 +34,16 @@ function SignupPage() {
                 <Camera width={"3.5rem"} height={"3.5rem"} stroke={"#fff"} />
               )}
             </Styled.FilePreview>
-          </Styled.Label>
-          <Styled.InputFile
+          </Styled.Label> */}
+          {/* <Styled.InputFile
             type="file"
             id="profileImage"
             accept="image/*"
             onChange={handleImageChange}
           />
         </div> */}
+
+
 
         <TextInput
           name="email"

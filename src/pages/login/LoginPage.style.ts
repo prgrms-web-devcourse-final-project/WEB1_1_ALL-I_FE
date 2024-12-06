@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  max-width: 339px;
+  width: 100%;
   padding-top: 80px;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Name = styled.h1`
-  width: 100%;
   color: var(--color-primary);
   display: flex;
   justify-content: flex-start;
@@ -20,7 +19,6 @@ export const Name = styled.h1`
 
 // 소개 멘트
 export const Explan = styled.p`
-  width: 95%;
   display: flex;
   justify-content: flex-start;
 `;
