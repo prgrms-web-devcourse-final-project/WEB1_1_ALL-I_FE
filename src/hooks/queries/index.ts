@@ -4,7 +4,10 @@ import {
   useEditCategory,
   useDeleteCategory,
 } from "./useCategories";
-import { usePersonalSchedules } from "./usePersonalSchedules";
+import {
+  useCreatePersonalSchedule,
+  useEditPersonalSchedule,
+} from "./usePersonalSchedules";
 import { useGroupSchedules } from "./useGroupSchedules";
 import { useCreatePersonalTodo, useEditPersonalTodo } from "./usePersonalTodos";
 import { useGroupTodos } from "./useGroupTodos";
@@ -18,7 +21,8 @@ export {
   useEditCategory,
   useDeleteCategory,
   useGroups,
-  usePersonalSchedules,
+  useCreatePersonalSchedule,
+  useEditPersonalSchedule,
   useCreatePersonalTodo,
   useEditPersonalTodo,
   usePersonalGroupSchedules,

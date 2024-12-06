@@ -15,7 +15,6 @@ function SignupPage() {
        ** 그 전에는 경로만 보낸다고 했었음
        ** 그거에 따라 이미지 업로드 보내는 방식이 달라짐 */}
       <Styled.Form onSubmit={handleSubmit}>
-
         {/* <div>
           <Styled.Label htmlFor="profileImage">
 
@@ -35,15 +34,13 @@ function SignupPage() {
               )}
             </Styled.FilePreview>
           </Styled.Label> */}
-          {/* <Styled.InputFile
+        {/* <Styled.InputFile
             type="file"
             id="profileImage"
             accept="image/*"
             onChange={handleImageChange}
           />
         </div> */}
-
-
 
         <TextInput
           name="email"
@@ -73,8 +70,8 @@ function SignupPage() {
           label="비밀번호 확인"
           placeholder="비밀번호를 확인해주세요"
           required
-          maxLength={10}
-          minLength={5}
+          maxLength={16}
+          minLength={8}
           value={formData.checkPwd}
           onChange={handleChange("checkPwd")}
         />

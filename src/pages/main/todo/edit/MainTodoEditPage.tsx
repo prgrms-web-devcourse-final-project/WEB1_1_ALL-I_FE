@@ -17,7 +17,7 @@ function MainTodoEditPage() {
     // Todo 수정 api
     try {
       mutate({
-        todoId: "4be521bd-6e48-45c1-8b88-ed8f2812cfa8",
+        todoId: "29625a03-6e46-438c-86c9-fbebe5d60e51",
         todoData: {
           title: form.content,
           date: formatDateToYYYYMMDD(form.date.start),
@@ -34,7 +34,7 @@ function MainTodoEditPage() {
   useEffect(() => {
     const data: TodoScheduleFormData = {
       content: "투두 내용",
-      categoryId: "ed4a6d46-98e8-48db-8d4c-b229c66528af",
+      categoryId: "150f63ca-697d-4d3f-b610-304f7a851843",
       startDate: new Date(),
       startTime: "17:00",
       isTimeOn: true,

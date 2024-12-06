@@ -26,3 +26,26 @@ export interface EditPersonalTodoRequest {
   startTime: string | null;
   categoryId: string;
 }
+
+// 개인 일정 생성
+export interface CreatePersonalScheduleRequest {
+  title: string;
+  startDate: string;
+  endDate: string;
+  startTime: string | null;
+  endTime: string | null;
+  isAlarmed: boolean;
+  categoryId: string;
+}
+
+// 개인 일정 수정
+export interface EditPersonalScheduleRequest {
+  personalEventId: string;
+  title: string;
+  startDate: string;
+  endDate: string;
+  startTime: string | null;
+  endTime: string | null;
+  isAlarmed: boolean;
+  categoryId: string;
+}

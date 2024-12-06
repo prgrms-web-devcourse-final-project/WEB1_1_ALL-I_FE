@@ -96,12 +96,13 @@ export function useTodoScheduleForm({
   };
 
   const handleToggleUpdate = (type: "time" | "alarm", isOn: boolean) => {
-    handleFormUpdate({
+    setForm((prev) => ({
+      ...prev,
       toggle: {
-        ...form.toggle,
+        ...prev.toggle,
         [type === "time" ? "isTimeOn" : "isAlarmOn"]: isOn,
       },
-    });
+    }));
   };
 
   const handleListUpdate = (updates: {

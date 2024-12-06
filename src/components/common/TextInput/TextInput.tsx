@@ -8,7 +8,7 @@ function TextInput({
   label, // 입력 필드 라벨
   placeholder, // 입력 필드 플레이스홀더
   required = true, // 필수 입력
-  maxLength = 20, // 최대 입력 길이
+  maxLength = 30, // 최대 입력 길이
   minLength = 2, // 최소 입력 길이
   value,
   onChange,
