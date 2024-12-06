@@ -5,7 +5,7 @@ interface UserRequestParams {
   description: string;
   groupColor: string;
 }
-
+// 그룹 생성
 export const postGroup = async (userForm: UserRequestParams) => {
   try {
     const res = await postRequest("/groups", userForm);

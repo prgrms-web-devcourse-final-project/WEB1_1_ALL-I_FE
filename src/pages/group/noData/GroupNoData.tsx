@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Styled from "./GroupNoData.style";
 import Button from "@/components/common/Button/Button";
+import { getGroup } from "@/apis/group/getGroup";
 
 function GroupNoData() {
   const navigate = useNavigate();
@@ -9,10 +10,13 @@ function GroupNoData() {
   useEffect(() => {
     // 여기서 사용자의 그룹이 있는지 확인 (그룹 조회 api)
     // 그룹이 있다면 ->그룹 페이지로 렌더링
-    // if () {
-    // navigate("/group/1");
-    // }
-    // 그룹이 없다면 -> 현재 페이지 렌더링
+    getGroup()
+      .then((res) => {
+        console.log(res);
+        // /group/1 이 경로로 그룹 캘린더가 생길지도 모르겠음
+        // navigate("/group/1");
+      })
+      .catch((err) => console.log(err));
   }, []);
   return (
     <Styled.Wrapper>

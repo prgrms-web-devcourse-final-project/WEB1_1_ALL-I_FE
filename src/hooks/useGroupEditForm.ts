@@ -15,12 +15,10 @@ function useGroupEditForm(initialState: UseGroupEditProps) {
     }));
   };
 
-  const handleSubmit =
-    (callback: (data: UseGroupEditProps) => void) =>
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      callback(formData); // formData를 전달해 콜백 실행
-    };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+  };
 
   return {
     formData,
