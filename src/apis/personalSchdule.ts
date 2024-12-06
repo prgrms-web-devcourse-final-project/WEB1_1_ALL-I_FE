@@ -43,8 +43,8 @@ export const getPersonalSchedules = async ({
   year,
   month,
 }: {
-  year: number;
-  month: number;
+  year: string;
+  month: string;
 }) => {
   try {
     return await getRequest(`/events?year=${year}&month=${month}`);
@@ -71,8 +71,8 @@ export const getPersonalGroupSchedules = async ({
   year,
   month,
 }: {
-  year: number;
-  month: number;
+  year: string;
+  month: string;
 }) => {
   try {
     return await getRequest(`/groupEvents/me?year=${year}&month=${month}`);
