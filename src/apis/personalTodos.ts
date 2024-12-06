@@ -65,7 +65,7 @@ export const deletePersonalTodo = async (todoId: string) => {
   }
 };
 
-// 개인 투두 상태 변경(완료 여부)
+// 개인 투두 상태 변경(완료 여부) API
 // PATCH /todos/{todoId}/state
 export const changePersonalTodoState = async ({
   todoId,
@@ -78,6 +78,45 @@ export const changePersonalTodoState = async ({
     return await updateRequest(`/todos/${todoId}/state`, { done });
   } catch (error) {
     console.error("투두 상태 변경 실패:", error);
+    throw error;
+  }
+};
+
+// 개인 특정 달 그룹 투두 조회 API
+// GET /group-todos?year={year}&month={month}
+export const getPersonalGroupTodos = async ({
+  year,
+  month,
+}: {
+  year: number;
+  month: number;
+}) => {
+  try {
+    return await getRequest(`/group-todos?year=${year}&month=${month}`);
+  } catch (error) {
+    console.error("그룹 투두 조회 실패:", error);
+    throw error;
+  }
+};
+
+// 개인의 그룹 투두 상태 변경(완료 여부) API
+// PATCH /group-todos/{group_id}/todos/{group_todo_id}/state
+export const changePersonalGroupTodoState = async ({
+  groupId,
+  groupTodoId,
+  done,
+}: {
+  groupId: string;
+  groupTodoId: string;
+  done: boolean;
+}) => {
+  try {
+    return await updateRequest(
+      `/group-todos/${groupId}/todos/${groupTodoId}/state`,
+      { done }
+    );
+  } catch (error) {
+    console.error("그룹 투두 상태 변경 실패:", error);
     throw error;
   }
 };
