@@ -2,11 +2,10 @@ import useSignupForm from "@/hooks/useSignupForm";
 import * as Styled from "./SignupPage.style";
 import TextInput from "@/components/common/TextInput/TextInput";
 import Button from "@/components/common/Button/Button";
-import Camera from "@/assets/icons/camera.svg?react";
+// import Camera from "@/assets/icons/camera.svg?react";
 
 function SignupPage() {
-  const { formData, handleChange, handleImageChange, handleSubmit } =
-    useSignupForm();
+  const { formData, handleChange, handleSubmit } = useSignupForm();
 
   return (
     <Styled.Wrapper>
@@ -16,8 +15,9 @@ function SignupPage() {
        ** 그 전에는 경로만 보낸다고 했었음
        ** 그거에 따라 이미지 업로드 보내는 방식이 달라짐 */}
       <Styled.Form onSubmit={handleSubmit}>
-        <div>
+        {/* <div>
           <Styled.Label htmlFor="profileImage">
+
             <Styled.FilePreview>
               {formData.profileImagePreview ? (
                 <Styled.Img
@@ -33,14 +33,14 @@ function SignupPage() {
                 <Camera width={"3.5rem"} height={"3.5rem"} stroke={"#fff"} />
               )}
             </Styled.FilePreview>
-          </Styled.Label>
-          <Styled.InputFile
+          </Styled.Label> */}
+        {/* <Styled.InputFile
             type="file"
             id="profileImage"
             accept="image/*"
             onChange={handleImageChange}
           />
-        </div>
+        </div> */}
 
         <TextInput
           name="email"
@@ -70,8 +70,8 @@ function SignupPage() {
           label="비밀번호 확인"
           placeholder="비밀번호를 확인해주세요"
           required
-          maxLength={10}
-          minLength={5}
+          maxLength={16}
+          minLength={8}
           value={formData.checkPwd}
           onChange={handleChange("checkPwd")}
         />

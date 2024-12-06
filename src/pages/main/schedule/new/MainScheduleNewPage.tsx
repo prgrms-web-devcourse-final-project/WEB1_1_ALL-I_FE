@@ -1,6 +1,7 @@
-import { useEffect } from "react";
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
 import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
+import { useCreatePersonalSchedule } from "@/hooks/queries/usePersonalSchedules";
+import { formatDateToYYYYMMDD } from "@/utils/date";
 
 function MainScheduleNewPage() {
   const form = useTodoScheduleForm({
@@ -8,22 +9,27 @@ function MainScheduleNewPage() {
     withEndTime: true,
   });
 
+  const { mutate } = useCreatePersonalSchedule();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // 스케줄 생성 api
+    try {
+      mutate({
+        title: form.content,
+        startDate: formatDateToYYYYMMDD(form.date.start),
+        endDate: formatDateToYYYYMMDD(form.date.end),
+        startTime: form.toggle.isTimeOn ? form.time.start : null,
+        endTime: form.toggle.isTimeOn ? form.time.end : null,
+        categoryId: form.categoryId || "",
+        isAlarmed: form.toggle.isAlarmOn,
+      });
+      console.log("스케줄 생성 성공");
+    } catch (error) {
+      console.error(error);
+    }
   };
-
-  useEffect(() => {
-    // 카테고리 목록을 업데이트
-    form.handleListUpdate({
-      categories: [
-        { name: "카테고리1", color: "blue" },
-        { name: "카테고리2", color: "red" },
-        { name: "카테고리3", color: "black" },
-      ],
-    });
-  }, []);
 
   return (
     <TodoScheduleForm

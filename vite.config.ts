@@ -10,9 +10,6 @@ export default defineConfig({
     svgr(),
     VitePWA({
       registerType: "autoUpdate",
-      devOptions: {
-        enabled: true,
-      },
     }),
   ],
   // Path alias

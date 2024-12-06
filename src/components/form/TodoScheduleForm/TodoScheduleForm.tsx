@@ -50,8 +50,7 @@ function TodoScheduleForm({
         )}
         {withCategory && (
           <CategorySelect
-            category={form.category}
-            options={form.list.categories}
+            categoryId={form.categoryId}
             onCategoryChange={form.handleCategoryUpdate}
           />
         )}

@@ -1,9 +1,9 @@
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
-import { GroupMember, OptionType } from "@/types/select.types";
+import { GroupMember } from "@/types/select.types";
 
 export interface TodoScheduleFormData {
   content?: string;
-  category?: OptionType | null;
+  categoryId?: string | null;
   member?: GroupMember[];
   startDate?: Date;
   endDate?: Date;
@@ -18,7 +18,7 @@ export function setTodoScheduleForm(
   data: TodoScheduleFormData
 ) {
   if (data.content) form.handleContentUpdate(data.content);
-  if (data.category) form.handleCategoryUpdate(data.category);
+  if (data.categoryId) form.handleCategoryUpdate(data.categoryId);
   if (data.member) form.handleMemberUpdate(data.member);
   if (data.startDate || data.endDate) {
     form.handleDateUpdate(

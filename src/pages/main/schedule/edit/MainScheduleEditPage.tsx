@@ -3,6 +3,8 @@ import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
 import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
 import { TodoScheduleFormData } from "@/components/form/TodoScheduleForm/utils";
 import { setTodoScheduleForm } from "@/components/form/TodoScheduleForm/utils";
+import { useEditPersonalSchedule } from "@/hooks/queries/usePersonalSchedules";
+import { formatDateToYYYYMMDD } from "@/utils/date";
 
 function MainScheduleEditPage() {
   const form = useTodoScheduleForm({
@@ -10,28 +12,37 @@ function MainScheduleEditPage() {
     withEndTime: true,
   });
 
+  const { mutate } = useEditPersonalSchedule();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
-    // 스케줄 생성 api
+    // 스케줄 수정 api
+    try {
+      mutate({
+        scheduleId: "64b86382-ac6c-4d0d-9a37-9a11ddc96b79",
+        scheduleData: {
+          personalEventId: "64b86382-ac6c-4d0d-9a37-9a11ddc96b79",
+          title: form.content,
+          startDate: formatDateToYYYYMMDD(form.date.start),
+          endDate: formatDateToYYYYMMDD(form.date.end),
+          startTime: form.toggle.isTimeOn ? form.time.start : null,
+          endTime: form.toggle.isTimeOn ? form.time.end : null,
+          categoryId: form.categoryId || "",
+          isAlarmed: form.toggle.isAlarmOn,
+        },
+      });
+      console.log("스케줄 수정 성공");
+    } catch (error) {
+      console.error(error);
+    }
   };
-
-  useEffect(() => {
-    // 카테고리 목록을 업데이트
-    form.handleListUpdate({
-      categories: [
-        { name: "카테고리1", color: "blue" },
-        { name: "카테고리2", color: "red" },
-        { name: "카테고리3", color: "black" },
-      ],
-    });
-  }, []);
 
   useEffect(() => {
     // 임시 데이터
     const data: TodoScheduleFormData = {
-      content: "투두 내용",
-      category: { name: "카테고리1", color: "blue" },
+      content: "일정 내용",
+      categoryId: "150f63ca-697d-4d3f-b610-304f7a851843",
       startDate: new Date(),
       endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
       startTime: "17:00",

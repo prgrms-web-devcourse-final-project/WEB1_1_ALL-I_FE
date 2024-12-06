@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 80vh;
+  min-height: 450px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  position: relative;
+  gap: 30px;
 `;
 
 export const ToggleContainer = styled.div`
@@ -16,8 +19,8 @@ export const ToggleContainer = styled.div`
   align-items: center;
   gap: 13px;
   position: absolute;
-  right: 30px;
-  top: 60px;
+  right: 10px;
+  top: 0px;
 
   > p {
     font-weight: var(--font-weight-bold);
