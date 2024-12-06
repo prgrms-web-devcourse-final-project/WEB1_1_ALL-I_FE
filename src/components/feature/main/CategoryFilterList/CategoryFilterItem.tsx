@@ -16,9 +16,12 @@ function CategoryFilterItem({ category }: CategoryFilterItemProps) {
     <Styled.CategoryFilterItemWrapper>
       <Styled.LeftWrapper>
         <ListBar color={category.color} />
-
-        {category.name}
-        <div>{category.groupId && <span>그룹</span>}</div>
+        <Styled.TextWrapper>
+          <Styled.CategoryText>{category.name}</Styled.CategoryText>
+          <Styled.GroupText>
+            {category.groupId && <span>그룹</span>}
+          </Styled.GroupText>
+        </Styled.TextWrapper>
       </Styled.LeftWrapper>
       <Styled.RightWrapper>
         <Toggle
