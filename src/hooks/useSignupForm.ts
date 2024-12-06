@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { postSignup } from "@/apis/user/signup";
+import { postSignup } from "@/apis/user/postSignup";
 
 interface FormData {
   name: string;

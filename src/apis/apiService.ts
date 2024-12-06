@@ -1,8 +1,10 @@
 import axios, { AxiosInstance } from "axios";
+import useAuthStore from "@/store/useAuthStore";
 
 // Axios 인스턴스 생성
 const apiClient: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL, // 기본 URL 설정,
+  withCredentials: true, // 쿠키 데이터 전송
   timeout: 3000, // 요청 타임아웃 설정
   headers: { "Content-Type": "application/json" }, // 기본 헤더 설정
 });
@@ -11,9 +13,9 @@ const apiClient: AxiosInstance = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     // 토큰 저장한 방식에 맞춰 아래 코드 변경하면 될 것 같습니다.
-    const token = localStorage.getItem("accessToken");
+    const token = useAuthStore.getState().access_token;
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
     }
     return config;
   },
