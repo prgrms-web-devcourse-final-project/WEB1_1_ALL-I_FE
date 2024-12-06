@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AlarmResDTO } from "@/types/notification";
+import { AlarmResDTO } from "@/types/notification.types";
 import GroupInviteForm from "@/components/feature/notifications/GroupInviteForm/GroupInviteForm";
 import * as Styled from "./Notifications.style";
 import ScheduleForm from "@/components/feature/notifications/ScheduleForm/ScheduleForm";

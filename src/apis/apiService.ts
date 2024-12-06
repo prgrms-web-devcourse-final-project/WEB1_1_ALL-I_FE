@@ -47,7 +47,7 @@ export const postRequest = async (url: string, data: object) => {
 };
 
 // PATCH 요청 함수
-export const updateData = async (url: string, data: object) => {
+export const updateRequest = async (url: string, data: object) => {
   try {
     const response = await apiClient.patch(url, data);
     return response.data;
@@ -58,7 +58,7 @@ export const updateData = async (url: string, data: object) => {
 };
 
 // DELETE 요청 함수
-export const deleteData = async (url: string, params?: object) => {
+export const deleteRequest = async (url: string, params?: object) => {
   try {
     const response = await apiClient.delete(url, { params });
     return response.data;
