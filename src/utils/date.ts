@@ -5,3 +5,11 @@ export const formatDateToYYYYMMDD = (date: Date): string => {
 
   return `${year}-${month}-${day}`;
 };
+
+export const getYear = (date: string) => {
+  return date.split("-")[0];
+};
+
+export const getMonth = (date: string) => {
+  return date.split("-")[1];
+};

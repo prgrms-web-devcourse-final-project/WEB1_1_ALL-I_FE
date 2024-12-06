@@ -4,14 +4,7 @@ import {
   CreatePersonalTodoRequest,
   EditPersonalTodoRequest,
 } from "@/types/apiRequest.type";
-
-const getYear = (date: string) => {
-  return date.split("-")[0];
-};
-
-const getMonth = (date: string) => {
-  return date.split("-")[1];
-};
+import { getYear, getMonth } from "@/utils/date";
 
 // 개인 투두 생성 query
 export const useCreatePersonalTodo = () => {
