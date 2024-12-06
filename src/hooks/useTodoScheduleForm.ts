@@ -125,6 +125,8 @@ export function useTodoScheduleForm({
 
   // 폼 유효성 검사 함수
   const handleFormValidation = () => {
+    let ok = true;
+
     const validationRules = [
       { condition: !form.content, message: "내용을 입력해주세요." },
       {
@@ -140,10 +142,11 @@ export function useTodoScheduleForm({
     // 유효성 검사 실패 시 토스트 메시지 표시
     const failedRules = validationRules.filter((rule) => rule.condition);
     failedRules.forEach((rule) => {
+      ok = false;
       showToast(rule.message, "error");
     });
 
-    return true;
+    return ok;
   };
 
   // 폼 상태와 핸들러 함수들을 반환

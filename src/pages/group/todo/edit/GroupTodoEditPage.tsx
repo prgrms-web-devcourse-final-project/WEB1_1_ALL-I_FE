@@ -26,7 +26,7 @@ function GroupTodoEditPage() {
           userIdList: form.member,
         },
       });
-      console.log("스케줄 수정 성공");
+      console.log("투두 수정 성공");
     } catch (error) {
       console.error(error);
     }
