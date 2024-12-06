@@ -49,3 +49,20 @@ export interface EditPersonalScheduleRequest {
   isAlarmed: boolean;
   categoryId: string;
 }
+
+// 개인 투두 조회
+export interface GetPersonalTodosRequest {
+  date: string;
+}
+
+// 개인 투두 삭제
+export interface DeletePersonalTodoRequest {
+  date: string;
+}
+
+// 개인 투두 상태 변경
+export interface ChangePersonalTodoStateRequest {
+  todoId: string;
+  done: boolean;
+  date: string;
+}

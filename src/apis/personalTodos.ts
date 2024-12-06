@@ -43,8 +43,8 @@ export const getPersonalTodos = async ({
   year,
   month,
 }: {
-  year: number;
-  month: number;
+  year: string;
+  month: string;
 }) => {
   try {
     return await getRequest(`/todos/monthly?year=${year}&month=${month}`);
@@ -88,8 +88,8 @@ export const getPersonalGroupTodos = async ({
   year,
   month,
 }: {
-  year: number;
-  month: number;
+  year: string;
+  month: string;
 }) => {
   try {
     return await getRequest(`/group-todos?year=${year}&month=${month}`);
