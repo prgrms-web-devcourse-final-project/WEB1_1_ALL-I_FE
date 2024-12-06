@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { postSignup } from "@/apis/user/postSignup";
 
 interface FormData {
   name: string;
@@ -10,6 +13,7 @@ interface FormData {
 }
 
 function useSignupForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -39,14 +43,27 @@ function useSignupForm() {
   //   }
   // };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.password !== formData.checkPwd) {
-      alert("비밀번호가 일치하지 않습니다.");
+      toast("비밀번호가 일치하지 않습니다.");
       return;
     } else {
       // 여기에 formData를 백엔드로 보내는 로직 추가
       console.log("전송 Form Data:", formData);
+      const res = await postSignup({
+        email: formData.email,
+        password: formData.password,
+        nickname: formData.name,
+      });
+
+      console.log(res);
+      if (res.code == 200) {
+        toast("회원가입에 성공했습니다.");
+        navigate("/login");
+      } else {
+        toast.error(res.response.data.message);
+      }
     }
   };
 
