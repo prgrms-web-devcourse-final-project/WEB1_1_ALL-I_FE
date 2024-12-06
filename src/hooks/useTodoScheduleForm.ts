@@ -5,7 +5,8 @@ import { useToast } from "@/hooks/useToast";
 interface TodoScheduleFormState {
   content: string; // 내용
   categoryId: string | null; // 카테고리
-  member: GroupMember[]; // 선택된 멤버들
+  groupId: string; // 그룹 id
+  member: string[]; // 선택된 멤버들의 id
   date: {
     start: Date; // 시작일
     end: Date; // 종료일
@@ -39,6 +40,7 @@ export function useTodoScheduleForm({
   const [form, setForm] = useState<TodoScheduleFormState>({
     content: "",
     categoryId: null,
+    groupId: "",
     member: [],
     date: {
       start: new Date(),
@@ -69,11 +71,15 @@ export function useTodoScheduleForm({
     handleFormUpdate({ content: value });
   };
 
+  const handleGroupIdUpdate = (value: string) => {
+    handleFormUpdate({ groupId: value });
+  };
+
   const handleCategoryUpdate = (value: string | null) => {
     handleFormUpdate({ categoryId: value });
   };
 
-  const handleMemberUpdate = (value: GroupMember[]) => {
+  const handleMemberUpdate = (value: string[]) => {
     handleFormUpdate({ member: value });
   };
 
@@ -96,13 +102,12 @@ export function useTodoScheduleForm({
   };
 
   const handleToggleUpdate = (type: "time" | "alarm", isOn: boolean) => {
-    setForm((prev) => ({
-      ...prev,
+    handleFormUpdate({
       toggle: {
-        ...prev.toggle,
+        ...form.toggle,
         [type === "time" ? "isTimeOn" : "isAlarmOn"]: isOn,
       },
-    }));
+    });
   };
 
   const handleListUpdate = (updates: {
@@ -122,7 +127,10 @@ export function useTodoScheduleForm({
   const handleFormValidation = () => {
     const validationRules = [
       { condition: !form.content, message: "내용을 입력해주세요." },
-      { condition: !form.categoryId, message: "카테고리를 입력해주세요." },
+      {
+        condition: form.groupId === "" && !form.categoryId,
+        message: "카테고리를 입력해주세요.",
+      },
       {
         condition: withGroup && form.member.length === 0,
         message: "멤버를 선택해주세요.",
@@ -143,6 +151,7 @@ export function useTodoScheduleForm({
     ...form,
     handleFormUpdate,
     handleContentUpdate,
+    handleGroupIdUpdate,
     handleCategoryUpdate,
     handleMemberUpdate,
     handleDateUpdate,
