@@ -2,10 +2,13 @@ import Select from "react-select";
 import * as Style from "./GroupSelect.style";
 import ProfileImg from "../../ProfileImg/ProfileImg";
 import { GroupMember, GroupProps } from "@/types/select.types";
+import { useEffect, useState } from "react";
+import { getGroupMembers } from "@/apis/groups";
+import { GroupMembersResponse } from "@/types/apiResponse.type";
 
 function GroupSelect({
-  groupMembers,
-  selectedMembers,
+  groupId,
+  selectedMembersId,
   onMemberChange,
 }: GroupProps) {
   const Options = (props: {
@@ -23,11 +26,36 @@ function GroupSelect({
         $isFocused={isFocused}
         $isSelected={isSelected}
       >
-        <ProfileImg size="small" src={data.profileImage} alt={data.label} />
-        {data.label}
+        <ProfileImg size="small" src={""} alt={data.nickname} />
+        {data.nickname}
       </Style.Option>
     );
   };
+
+  const [groupMembers, setGroupMembers] = useState<GroupMember[]>([]);
+  const [selectedMembers, setSelectedMembers] = useState<GroupMember[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (!groupId) return;
+
+        const data: GroupMembersResponse = await getGroupMembers(groupId);
+        if (data?.data) {
+          setGroupMembers(data.data);
+          setSelectedMembers(
+            data.data.filter((member) =>
+              selectedMembersId.includes(member.userId)
+            )
+          );
+        }
+      } catch (error) {
+        console.error("그룹 멤버 조회 중 오류 발생:", error);
+      }
+    };
+
+    fetchData();
+  }, [groupId, selectedMembersId]);
 
   return (
     <div>
@@ -45,7 +73,9 @@ function GroupSelect({
           multiValueRemove: Style.customMultiValueRemove,
         }}
         placeholder={<Style.Placeholder>그룹원을 선택하세요</Style.Placeholder>}
-        onChange={(newValue) => onMemberChange(newValue as GroupMember[])}
+        onChange={(newValue) =>
+          onMemberChange(newValue.map((member) => member.userId))
+        }
         closeMenuOnSelect={false}
         hideSelectedOptions={false}
       />

@@ -43,8 +43,8 @@ function TodoScheduleForm({
         />
         {withGroup && (
           <GroupSelect
-            groupMembers={form.list.members}
-            selectedMembers={form.member}
+            groupId={form.groupId}
+            selectedMembersId={form.member}
             onMemberChange={form.handleMemberUpdate}
           />
         )}
