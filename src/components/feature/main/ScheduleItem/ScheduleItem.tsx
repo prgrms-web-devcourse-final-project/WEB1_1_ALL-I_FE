@@ -40,7 +40,12 @@ function ScheduleItem({ schedule }: ScheduleItemProps) {
         <Styled.ScheduleTitle>{schedule.title}</Styled.ScheduleTitle>
       </Styled.LeftWrapper>
       <Styled.RightWrapper>
-        <EditDeleteIcon onEdit={handleEditClick} onDelete={handleDeleteClick} />
+        {!schedule.isGroup && (
+          <EditDeleteIcon
+            onEdit={handleEditClick}
+            onDelete={handleDeleteClick}
+          />
+        )}
       </Styled.RightWrapper>
     </Styled.ScheduleItemWrapper>
   );

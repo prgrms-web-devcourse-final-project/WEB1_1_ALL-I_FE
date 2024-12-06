@@ -39,7 +39,12 @@ function TodoItem({ todo }: TodoItemProps) {
           checked={todo.done}
           onClick={() => {}}
         />
-        <EditDeleteIcon onEdit={handleEditClick} onDelete={handleDeleteClick} />
+        {!todo.isGroup && (
+          <EditDeleteIcon
+            onEdit={handleEditClick}
+            onDelete={handleDeleteClick}
+          />
+        )}
       </Styled.RightWrapper>
     </Styled.TodoItemWrapper>
   );
