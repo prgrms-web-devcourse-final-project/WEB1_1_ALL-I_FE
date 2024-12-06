@@ -1,6 +1,6 @@
 import * as Styled from "./MyEditPage.style";
 import { useLocation } from "react-router-dom";
-import Profile from "@/assets/icons/profile.svg?react";
+// import Profile from "@/assets/icons/profile.svg?react";
 import TextInput from "@/components/common/TextInput/TextInput";
 import Button from "@/components/common/Button/Button";
 import useEditPage from "@/hooks/useEditPage";
@@ -10,19 +10,19 @@ function MyEditPage() {
   console.log(location.state); // useNavigate로 가져온 데이터 (닉네임, 사진 데이터가 들어갈 것으로 예상)
 
   const {
-    inputRef,
+    // inputRef,
     formData,
-    handleImageUpload,
+    // handleImageUpload,
     handleInputChange,
     handleSubmit,
-    imagePreview,
+    // imagePreview,
   } = useEditPage();
 
   return (
     <Styled.Wrapper>
       <h1>내 정보 수정</h1>
       <Styled.Form onSubmit={handleSubmit}>
-        <Styled.ImgContainer htmlFor="profileImage">
+        {/* <Styled.ImgContainer htmlFor="profileImage">
           {imagePreview ? (
             <img src={imagePreview} alt="" />
           ) : (
@@ -36,7 +36,7 @@ function MyEditPage() {
           accept="image/*"
           ref={inputRef}
           onChange={handleImageUpload}
-        />
+        /> */}
 
         <TextInput
           name="name"
@@ -49,6 +49,7 @@ function MyEditPage() {
         <TextInput
           name="password"
           label="새 비밀번호"
+          placeholder="새 비밀번호를 입력해주세요"
           type="password"
           value={formData.password}
           onChange={handleInputChange("password")}
@@ -57,6 +58,7 @@ function MyEditPage() {
         <TextInput
           name="checkPwd"
           label="비밀번호 확인"
+          placeholder="새 비밀번호를 확인해주세요"
           type="password"
           value={formData.checkPwd}
           onChange={handleInputChange("checkPwd")}
