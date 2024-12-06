@@ -14,13 +14,14 @@ export interface GroupProps {
 
 // 카테고리 선택 드롭다운 interface
 export interface OptionType {
+  categoryId: string;
   name: string; // 카테고리 이름 name
   color: string; // 카테고리 색상 color
 }
 
 // 선택한 카테고리 바뀔 때마다 props
 export interface CategoryProps {
-  category: OptionType | null; // 선택한 카테고리 데이터
-  options: OptionType[]; // 카테고리 데이터
-  onCategoryChange: (selectedCategory: OptionType | null) => void;
+  categoryId: string | null; // 선택한 카테고리 데이터
+  // options: OptionType[]; // 카테고리 데이터
+  onCategoryChange: (selectedCategory: string | null) => void;
 }
