@@ -1,8 +1,61 @@
-/**
- * 임시로 더미데이터 사용하고,
- * api 연동시 query 로직이 포함될 예정입니다.
- */
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  CreateGroupTodoRequest,
+  EditGroupTodoRequest,
+} from "@/types/apiRequest.type";
+import { getYear, getMonth } from "@/utils/date";
+import { createGroupTodo, editGroupTodo } from "@/apis/groupTodos";
 
-export const useGroupTodos = () => {
-  return { data: [], isLoading: false, error: null };
+// 그룹 투두 생성 query
+export const useCreateGroupTodo = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: ({
+      groupId,
+      todoData,
+    }: {
+      groupId: string;
+      todoData: CreateGroupTodoRequest;
+    }) => createGroupTodo({ groupId, todoData }),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          "schedules",
+          getYear(variables.todoData.date),
+          getMonth(variables.todoData.date),
+        ],
+      });
+    },
+  });
+
+  return { mutate, isPending, error };
+};
+
+// 그룹 투두 수정 query
+export const useEditGroupTodo = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: ({
+      groupId,
+      todoId,
+      todoData,
+    }: {
+      groupId: string;
+      todoId: string;
+      todoData: EditGroupTodoRequest;
+    }) => editGroupTodo({ groupId, todoId, todoData }),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          "schedules",
+          getYear(variables.todoData.date),
+          getMonth(variables.todoData.date),
+        ],
+      });
+    },
+  });
+
+  return { mutate, isPending, error };
 };
