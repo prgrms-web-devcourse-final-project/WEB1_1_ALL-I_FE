@@ -122,6 +122,9 @@ export function useMainPage() {
     [todos, categories]
   );
 
+  /**
+   * Groups 넘겨줘야하는지 확인
+   */
   return {
     data: {
       categories,

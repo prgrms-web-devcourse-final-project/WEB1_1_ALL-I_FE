@@ -20,11 +20,14 @@ import { MainSchedule } from "@/models/MainSchedule";
 import { MainTodo } from "@/models/MainTodo";
 import { FormatDate } from "@/utils/format";
 
+/**
+ * 날짜, 카테고리 필터링 관련 로직 useMainPage로 이동할 지 고민
+ */
 function MainPage() {
-  const { data, isLoading, error } = useMainPage();
   const [selectedDate, setSelectedDate] = useState<string>(
     new Date().toISOString().split("T")[0]
   );
+  const { data, isLoading, error } = useMainPage();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error occurred</div>;
