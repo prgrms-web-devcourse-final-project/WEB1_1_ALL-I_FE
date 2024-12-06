@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createPersonalTodo, editPersonalTodo } from "@/apis/personalTodos";
 import {
   CreatePersonalTodoRequest,
@@ -47,4 +47,12 @@ export const useEditPersonalTodo = () => {
   });
 
   return { mutate, isPending, error };
+};
+
+// 개인 투두 조회 query
+export const usePersonalTodos = () => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["todos"],
+    queryFn: () => getPersonalTodos(),
+  });
 };
