@@ -13,26 +13,32 @@ interface GroupEditPageProps {
 
 // 수정 페이지에서는 color랑 description 만 변경됨.
 // 데이터를 props를 통해 받게 되어있는데, useParam or useLocation에 맞춰 추후 수정 필요
+
+// **가장 중요** -> 그룹 수정 api 연동해야 함
 function GroupEditPage({
   groupName = "DBDB DEEP",
   color = "#c9c9c9",
   description = "설명설명~",
 }: GroupEditPageProps) {
   const { formData, handleChange, handleSubmit } = useGroupEditForm({
+    groupName,
     initialColor: color,
     description,
+    groupId: "a85e5db7-593f-429a-bc80-385408f0b934",
   });
 
-  const onSubmit = (data: typeof formData) => {
-    console.log(data); // 제출된 데이터 처리
-  };
-
   return (
-    <Styled.Wrapper onSubmit={handleSubmit(onSubmit)}>
-      <Styled.GroupComtainer>
-        <p>그룹명</p>
-        <Styled.GroupNameBorder>{groupName}</Styled.GroupNameBorder>
-      </Styled.GroupComtainer>
+    <Styled.Wrapper onSubmit={handleSubmit}>
+      <TextInput
+        name="groupName"
+        type="text"
+        label="그룹명"
+        placeholder="그룹명을 작성해주세요."
+        required
+        value={formData.groupName}
+        onChange={handleChange("groupName")}
+      />
+
       <TextInput
         name="description"
         type="text"

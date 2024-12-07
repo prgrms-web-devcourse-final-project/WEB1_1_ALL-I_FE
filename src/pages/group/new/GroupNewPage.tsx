@@ -12,12 +12,8 @@ function GroupNewPage() {
     description: "",
   });
 
-  const onSubmit = (data: typeof formData) => {
-    console.log(data); // 제출된 데이터 처리
-  };
-
   return (
-    <Styled.Wrapper onSubmit={handleSubmit(onSubmit)}>
+    <Styled.Wrapper onSubmit={handleSubmit}>
       <TextInput
         name="groupName"
         type="text"
