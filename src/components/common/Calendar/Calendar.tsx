@@ -1,6 +1,6 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { DateClickArg } from "@fullcalendar/interaction";
+import { DateClickArg, DatesSetArg } from "@fullcalendar/interaction";
 import interactionPlugin from "@fullcalendar/interaction";
 
 import { CalendarSchedule } from "@/models/CalendarSchedule";
@@ -13,13 +13,24 @@ interface CalendarProps {
   schedules: CalendarSchedule[];
   todos: CalendarTodo[];
   onDateSelect: (date: string) => void;
+  onMonthChange: (year: number, month: number) => void;
 }
 
-function Calendar({ schedules, todos, onDateSelect }: CalendarProps) {
+function Calendar({
+  schedules,
+  todos,
+  onDateSelect,
+  onMonthChange,
+}: CalendarProps) {
   const { events, todoDateSet } = useCalendar(schedules, todos);
 
   const handleDateClick = (arg: DateClickArg) => {
     onDateSelect(arg.date.toLocaleDateString("en-CA"));
+  };
+
+  const handleDatesSet = (arg: DatesSetArg) => {
+    const start = arg.view.currentStart;
+    onMonthChange(start.getFullYear(), start.getMonth() + 1);
   };
 
   return (
@@ -100,6 +111,7 @@ function Calendar({ schedules, todos, onDateSelect }: CalendarProps) {
           }}
           // 날짜 클릭 이벤트 추가
           dateClick={handleDateClick}
+          datesSet={handleDatesSet}
         />
       </Styled.CalendarWrapper>
     </div>

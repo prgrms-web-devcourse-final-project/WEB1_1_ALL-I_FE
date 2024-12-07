@@ -60,13 +60,19 @@ export const useEditPersonalTodo = () => {
 
 //
 // 개인 투두 조회 query
-export const useGetPersonalTodos = ({ date }: GetPersonalTodosRequest) => {
+export const useGetPersonalTodos = ({
+  year,
+  month,
+}: {
+  year: string;
+  month: string;
+}) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["todos", getYear(date), getMonth(date)],
+    queryKey: ["todos", year, month],
     queryFn: () =>
       getPersonalTodos({
-        year: getYear(date),
-        month: getMonth(date),
+        year,
+        month,
       }),
   });
 

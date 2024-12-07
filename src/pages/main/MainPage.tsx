@@ -34,7 +34,14 @@ function MainPage() {
   const [selectedDate, setSelectedDate] = useState<string>(
     new Date().toISOString().split("T")[0]
   );
-  const { data, isLoading, error } = useMainPage();
+  const [currentYearMonth, setCurrentYearMonth] = useState({
+    year: new Date().getFullYear().toString(),
+    month: (new Date().getMonth() + 1).toString(),
+  });
+  const { data, isLoading, error } = useMainPage({
+    year: currentYearMonth.year,
+    month: currentYearMonth.month,
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error occurred</div>;
@@ -71,6 +78,12 @@ function MainPage() {
         schedules={data.calendar.schedules}
         todos={data.calendar.todos}
         onDateSelect={setSelectedDate}
+        onMonthChange={(year, month) =>
+          setCurrentYearMonth({
+            year: year.toString(),
+            month: month.toString(),
+          })
+        }
       />
       <Styled.MiddleContainer>
         <Styled.DateText>{FormatDate(selectedDate)}</Styled.DateText>

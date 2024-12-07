@@ -16,6 +16,9 @@ interface CategoryWithFilter extends Category {
  * add, update, remove 따로 처리하지 않고, 의존성만 추가하면 되나?
  */
 interface CategoryStore {
+  isInitialized: boolean;
+  setIsInitialized: (isInitialized: boolean) => void;
+
   categories: CategoryWithFilter[];
   setCategories: (categories: CategoryWithFilter[]) => void;
 
@@ -27,6 +30,9 @@ interface CategoryStore {
 }
 
 export const useCategoryStore = create<CategoryStore>((set) => ({
+  isInitialized: false,
+  setIsInitialized: (isInitialized) => set({ isInitialized }),
+
   categories: [],
   setCategories: (categories) => set({ categories }),
 

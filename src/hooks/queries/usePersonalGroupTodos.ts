@@ -11,14 +11,18 @@ import { getYear, getMonth } from "@/utils/date";
 
 // 개인 그룹 투두 조회 query
 export const useGetPersonalGroupTodos = ({
-  date,
-}: GetPersonalGroupTodosRequest) => {
+  year,
+  month,
+}: {
+  year: string;
+  month: string;
+}) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["personalGroupTodos", getYear(date), getMonth(date)],
+    queryKey: ["personalGroupTodos", year, month],
     queryFn: () =>
       getPersonalGroupTodos({
-        year: getYear(date),
-        month: getMonth(date),
+        year,
+        month,
       }),
   });
   return { data, isLoading, error };

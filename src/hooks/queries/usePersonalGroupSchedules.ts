@@ -5,14 +5,18 @@ import { getPersonalGroupSchedules } from "@/apis/personalSchdule";
 
 // 개인 그룹 일정 조회 query
 export const useGetPersonalGroupSchedules = ({
-  date,
-}: GetPersonalGroupSchedulesRequest) => {
+  year,
+  month,
+}: {
+  year: string;
+  month: string;
+}) => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["personalGroupSchedules", getYear(date), getMonth(date)],
+    queryKey: ["personalGroupSchedules", year, month],
     queryFn: () =>
       getPersonalGroupSchedules({
-        year: getYear(date),
-        month: getMonth(date),
+        year,
+        month,
       }),
   });
   return { data, isLoading, error };
