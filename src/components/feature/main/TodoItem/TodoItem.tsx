@@ -22,7 +22,7 @@ function TodoItem({ todo }: TodoItemProps) {
   const { mutate: changeGroupTodoState } = useChangePersonalGroupTodoState();
 
   const handleEditClick = () => {
-    navigate(`/main/todo/${todo.id}/edit`);
+    navigate(`/main/todo/${todo.id}/edit`, { state: { todo } });
   };
 
   const handleDeleteClick = () => {
