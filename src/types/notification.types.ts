@@ -1,3 +1,9 @@
+import {
+  parseGroupEventString,
+  parseGroupInvitationString,
+  parsePersonalEventString,
+} from "@/utils/alarm";
+
 export interface UserDTO {
   userId: string;
   nickname: string;
@@ -57,4 +63,10 @@ export interface AlarmResDTO {
   description: string;
   userId: string;
   isRead: boolean;
+}
+
+export interface ParsedAlarm extends AlarmResDTO {
+  groupEvent?: ReturnType<typeof parseGroupEventString>;
+  personalEvent?: ReturnType<typeof parsePersonalEventString>;
+  groupInvitation?: ReturnType<typeof parseGroupInvitationString>;
 }

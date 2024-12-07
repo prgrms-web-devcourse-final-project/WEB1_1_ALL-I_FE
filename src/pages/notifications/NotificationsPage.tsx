@@ -1,48 +1,42 @@
-import { useEffect, useState } from "react";
-import { AlarmResDTO } from "@/types/notification.types";
 import GroupInviteForm from "@/components/feature/notifications/GroupInviteForm/GroupInviteForm";
 import * as Styled from "./Notifications.style";
 import ScheduleForm from "@/components/feature/notifications/ScheduleForm/ScheduleForm";
-import { getAlarm } from "@/apis/alarm";
-import {
-  parseGroupEventString,
-  parsePersonalEventString,
-  parseGroupInvitationString,
-  parseNotificationDescription,
-} from "@/utils/alarm";
+import { useAlarmStore } from "@/store/useNotification.store";
+import { useEffect } from "react";
+
+// 로컬 스토리지 키 상수
+const UNREAD_NOTIFICATIONS_KEY = "unread_notifications";
+const READ_NOTIFICATIONS_KEY = "read_notifications";
 
 function NotificationsPage() {
-  // DTO로 응답이 오기 때문에 AlarmResDTO 타입과 파싱된 이벤트 데이터를 합쳐서 상태 관리
-  const [notifications, setNotifications] = useState<
-    (AlarmResDTO & {
-      groupEvent?: ReturnType<typeof parseGroupEventString>;
-      personalEvent?: ReturnType<typeof parsePersonalEventString>;
-      groupInvitation?: ReturnType<typeof parseGroupInvitationString>;
-    })[]
-  >([]);
+  const { notifications, updateUnreadCount, removeNotification } =
+    useAlarmStore();
 
-  // 알림 삭제 함수
-  const removeNotification = (index: number) => {
-    setNotifications((prev) => prev.filter((_, i) => i !== index));
-  };
-
-  // 알림 조회
+  // 읽지 않은 알림들 읽음 처리
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getAlarm();
-      // 알림 파싱
-      const parsedData = data.data.map((notification: AlarmResDTO) => {
-        const parsed = parseNotificationDescription(notification.description);
-        return {
-          ...notification,
-          ...parsed,
-        };
-      });
-      setNotifications(parsedData);
-    };
-
-    fetchData();
-  }, []);
+    // 읽은 알림 목록 가져오기
+    const readNotifications = JSON.parse(
+      localStorage.getItem(READ_NOTIFICATIONS_KEY) || "[]"
+    );
+    // 읽지 않은 알림 목록 가져오기
+    const unReadNotifications = JSON.parse(
+      localStorage.getItem(UNREAD_NOTIFICATIONS_KEY) || "[]"
+    );
+    // 이번에 읽은 알림들을 읽은 알림 목록에 추가
+    const updatedReadNotifications = [
+      ...readNotifications,
+      ...unReadNotifications,
+    ];
+    // 읽은 알림 목록 저장
+    localStorage.setItem(
+      READ_NOTIFICATIONS_KEY,
+      JSON.stringify(updatedReadNotifications)
+    );
+    // 읽지 않은 알림 목록 저장
+    localStorage.removeItem(UNREAD_NOTIFICATIONS_KEY);
+    // 읽지 않은 알림 개수 초기화
+    updateUnreadCount(0);
+  }, [notifications, updateUnreadCount]);
 
   return (
     <Styled.Container>
