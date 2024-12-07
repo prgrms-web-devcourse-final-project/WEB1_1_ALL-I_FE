@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
 import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
+import { TodoScheduleFormData } from "@/components/form/TodoScheduleForm/utils";
+import { setTodoScheduleForm } from "@/components/form/TodoScheduleForm/utils";
+import { useCreateGroupSchedule } from "@/hooks/queries/useGroupSchedules";
+import { formatDateToYYYYMMDD } from "@/utils/date";
 
 function GroupScheduleNewPage() {
   const form = useTodoScheduleForm({
@@ -9,41 +13,38 @@ function GroupScheduleNewPage() {
     withGroup: true,
   });
 
+  const { mutate } = useCreateGroupSchedule();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
-    // Todo 생성 api
+    // 스케줄 생성 api
+    try {
+      mutate({
+        groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+        scheduleData: {
+          title: form.content,
+          startDate: formatDateToYYYYMMDD(form.date.start),
+          endDate: formatDateToYYYYMMDD(form.date.end),
+          startTime: form.toggle.isTimeOn ? form.time.start : null,
+          endTime: form.toggle.isTimeOn ? form.time.end : null,
+          isAlarmed: form.toggle.isAlarmOn,
+          groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+          assignedMemberList: form.member,
+        },
+      });
+      console.log("스케줄 생성 성공");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    // 카테고리와 멤버 목록을 동시에 업데이트
-    form.handleListUpdate({
-      categories: [
-        { name: "카테고리1", color: "blue" },
-        { name: "카테고리2", color: "red" },
-        { name: "카테고리3", color: "black" },
-      ],
-      members: [
-        {
-          value: "1",
-          label: "이름1",
-          profileImage:
-            "https://img.freepik.com/premium-photo/sunset-sea-illustration-beautiful-landscape_900706-748.jpg",
-        },
-        {
-          value: "2",
-          label: "이름2",
-          profileImage:
-            "https://img.freepik.com/premium-photo/sunset-sea-illustration-beautiful-landscape_900706-748.jpg",
-        },
-        {
-          value: "3",
-          label: "이름3",
-          profileImage:
-            "https://img.freepik.com/premium-photo/sunset-sea-illustration-beautiful-landscape_900706-748.jpg",
-        },
-      ],
-    });
+    // 임시 데이터
+    const data: TodoScheduleFormData = {
+      groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+    };
+    setTodoScheduleForm(form, data);
   }, []);
 
   return (
