@@ -57,7 +57,6 @@ export interface GetPersonalTodosRequest {
 
 // 개인 투두 삭제
 export interface DeletePersonalTodoRequest {
-  todoId: string;
   date: string;
 }
 

@@ -8,6 +8,7 @@ import TextDate from "@/components/common/TextDate/TextDate";
 
 import * as Styled from "./TodoItem.styled";
 import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
+import { useDeletePersonalTodo } from "@/hooks/queries/usePersonalTodos";
 
 interface TodoItemProps {
   todo: MainTodo;
@@ -15,13 +16,19 @@ interface TodoItemProps {
 
 function TodoItem({ todo }: TodoItemProps) {
   const navigate = useNavigate();
+  const { mutate: deleteTodo } = useDeletePersonalTodo();
 
   const handleEditClick = () => {
     navigate(`/main/todo/${todo.id}/edit`);
   };
 
   const handleDeleteClick = () => {
-    // TODO: 삭제 로직 추가
+    deleteTodo({
+      todoId: todo.id,
+      data: {
+        date: todo.date,
+      },
+    });
   };
 
   // 체크박스 로직 수정

@@ -1,5 +1,6 @@
 // React
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Store
 import { useCategoryStore } from "@/store/categoryStore";
@@ -30,6 +31,7 @@ import { FormatDate } from "@/utils/format";
  * 날짜, 카테고리 필터링 관련 로직 useMainPage로 이동할 지 고민
  */
 function MainPage() {
+  const navigate = useNavigate();
   const categories = useCategoryStore((state) => state.categories);
   const [selectedDate, setSelectedDate] = useState<string>(
     new Date().toISOString().split("T")[0]
@@ -42,6 +44,16 @@ function MainPage() {
     year: currentYearMonth.year,
     month: currentYearMonth.month,
   });
+
+  console.log(currentYearMonth);
+
+  // 월 변경 시 해당 월의 1일로 selectedDate 업데이트
+  const handleMonthChange = (year: number, month: number) => {
+    setCurrentYearMonth({
+      year: year.toString(),
+      month: month.toString(),
+    });
+  };
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error occurred</div>;
@@ -72,27 +84,29 @@ function MainPage() {
   const sortedSchedules = sortScheduleItems(filteredSchedules);
   const sortedTodos = sortTodoItems(filteredTodos);
 
+  const handleAddPersonalSchedule = () => {
+    navigate("/main/schedule/new");
+  };
+  const handleAddPersonalTodo = () => {
+    navigate("/main/todo/new");
+  };
+
   return (
     <>
       <Calendar
         schedules={data.calendar.schedules}
         todos={data.calendar.todos}
         onDateSelect={setSelectedDate}
-        onMonthChange={(year, month) =>
-          setCurrentYearMonth({
-            year: year.toString(),
-            month: month.toString(),
-          })
-        }
+        onMonthChange={handleMonthChange}
       />
       <Styled.MiddleContainer>
         <Styled.DateText>{FormatDate(selectedDate)}</Styled.DateText>
         <CategoryButtons />
       </Styled.MiddleContainer>
       <Styled.ListContainer>
-        <NewButton label="일정" />
+        <NewButton label="일정" onClick={handleAddPersonalSchedule} />
         <ScheduleList schedules={sortedSchedules} />
-        <NewButton label="투두" />
+        <NewButton label="투두" onClick={handleAddPersonalTodo} />
         <TodoList todos={sortedTodos} />
       </Styled.ListContainer>
     </>

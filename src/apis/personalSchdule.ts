@@ -66,7 +66,7 @@ export const deletePersonalSchedule = async (eventId: string) => {
 };
 
 // 개인 특정 달 그룹 일정 조회 API
-// GET /groupEvents/me?year={year}&month={month}
+// GET /groupEvents?year={year}&month={month}
 export const getPersonalGroupSchedules = async ({
   year,
   month,
@@ -75,7 +75,7 @@ export const getPersonalGroupSchedules = async ({
   month: string;
 }) => {
   try {
-    return await getRequest(`/groupEvents/me?year=${year}&month=${month}`);
+    return await getRequest(`/groupEvents?year=${year}&month=${month}`);
   } catch (error) {
     console.error("개인 그룹 일정 조회 실패:", error);
     throw error;

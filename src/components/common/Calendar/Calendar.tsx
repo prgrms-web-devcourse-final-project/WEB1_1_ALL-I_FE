@@ -1,11 +1,11 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import { DateClickArg, DatesSetArg } from "@fullcalendar/interaction";
+import { DateClickArg } from "@fullcalendar/interaction";
 import interactionPlugin from "@fullcalendar/interaction";
-
 import { CalendarSchedule } from "@/models/CalendarSchedule";
 import { CalendarTodo } from "@/models/CalendarTodo";
 import { useCalendar } from "@/hooks/useCalendar";
+import { DatesSetArg } from "@fullcalendar/core";
 
 import * as Styled from "./Calendar.style";
 
@@ -49,7 +49,7 @@ function Calendar({
           locale="ko"
           contentHeight="auto"
           fixedWeekCount={false} // 고정된 6주 레이아웃 비활성화
-          // 헤더 설정
+          // 헤��� 설정
           headerToolbar={{
             left: "", // 왼쪽 비움
             center: "prev title next", // 이전, 제목, 다음 버튼을 중앙에 모두 배치

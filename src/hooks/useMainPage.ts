@@ -29,30 +29,32 @@ import {
  * 여기서 처리하고 보내줄지, 메인페이지 내부에서 처리할지
  */
 export function useMainPage({ year, month }: { year: string; month: string }) {
-  const setCategories = useCategoryStore((state) => state.setCategories);
+  const setStoredCategories = useCategoryStore((state) => state.setCategories);
   const isInitialized = useCategoryStore((state) => state.isInitialized);
   const setIsInitialized = useCategoryStore((state) => state.setIsInitialized);
 
   const {
-    data: categories = [] as Category[],
+    data: categoriesData,
     isLoading: isCategoriesLoading,
     error: categoriesError,
   } = useGetCategories();
+  const categories = categoriesData?.data ?? [];
 
   useEffect(() => {
+    if (categories.length === 0) return;
     if (!isInitialized) {
       const categoriesWithSelection = categories.map((category: Category) => ({
         ...category,
         isSelected: true,
       }));
-      setCategories(categoriesWithSelection);
+      setStoredCategories(categoriesWithSelection);
       setIsInitialized(true);
     }
-  }, [categories, isInitialized, setCategories]);
+  }, [categories, isInitialized, setStoredCategories]);
 
   const categoryColorMap = useMemo(
     () =>
-      categories.length
+      categories
         ? categories.reduce(
             (acc: Record<string, string>, category: Category) => ({
               ...acc,
@@ -71,37 +73,40 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
   // } = useGroups();
 
   const {
-    data: personalSchedules = [] as PersonalSchedule[],
+    data: personalSchedulesData,
     isLoading: isPersonalSchedulesLoading,
     error: personalSchedulesError,
   } = useGetPersonalSchedules({ year, month });
+  const personalSchedules = personalSchedulesData?.data ?? [];
   const {
-    data: personalTodos = [] as PersonalTodo[],
+    data: personalTodosData,
     isLoading: isPersonalTodosLoading,
     error: personalTodosError,
   } = useGetPersonalTodos({ year, month });
-  // const {
-  //   data: personalGroupSchedules = [] as PersonalGroupSchedule[],
-  //   isLoading: isPersonalGroupSchedulesLoading,
-  //   error: personalGroupSchedulesError,
-  // } = useGetPersonalGroupSchedules({ year, month });
-  // const {
-  //   data: personalGroupTodos = [] as PersonalGroupTodo[],
-  //   isLoading: isPersonalGroupTodosLoading,
-  //   error: personalGroupTodosError,
-  // } = useGetPersonalGroupTodos({ year, month });
+  const personalTodos = personalTodosData?.data ?? [];
+
+  const {
+    data: personalGroupSchedulesData,
+    isLoading: isPersonalGroupSchedulesLoading,
+    error: personalGroupSchedulesError,
+  } = useGetPersonalGroupSchedules({ year, month });
+  const personalGroupSchedules =
+    personalGroupSchedulesData?.data?.groupEvents ?? [];
+
+  const {
+    data: personalGroupTodosData,
+    isLoading: isPersonalGroupTodosLoading,
+    error: personalGroupTodosError,
+  } = useGetPersonalGroupTodos({ year, month });
+  const personalGroupTodos = personalGroupTodosData?.data?.groupTodos ?? [];
 
   const schedules = useMemo(
-    // () => [...personalSchedules, ...personalGroupSchedules],
-    () => (Array.isArray(personalSchedules) ? [...personalSchedules] : []),
-    // [categories, groups, personalSchedules, personalGroupSchedules]
-    [categories, personalSchedules]
+    () => [...personalSchedules, ...personalGroupSchedules],
+    [categories, personalSchedules, personalGroupSchedules]
   );
   const todos = useMemo(
-    // () => [...personalTodos, ...personalGroupTodos],
-    () => (Array.isArray(personalTodos) ? [...personalTodos] : []),
-    // [categories, groups, personalTodos, personalGroupTodos]
-    [categories, personalTodos]
+    () => [...personalTodos, ...personalGroupTodos],
+    [categories, personalTodos, personalGroupTodos]
   );
 
   // 달력용 데이터
@@ -137,6 +142,7 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
       }),
     [schedules, categories]
   );
+
   const listTodos = useMemo(
     () =>
       todos.map((todo) => {
@@ -168,16 +174,16 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
       isCategoriesLoading ||
       // isGroupsLoading ||
       isPersonalSchedulesLoading ||
-      isPersonalTodosLoading,
-    // isPersonalGroupSchedulesLoading ||
-    // isPersonalGroupTodosLoading,
+      isPersonalTodosLoading ||
+      isPersonalGroupSchedulesLoading ||
+      isPersonalGroupTodosLoading,
     error:
       categoriesError ||
       // groupsError ||
       personalSchedulesError ||
-      personalTodosError,
-    // personalGroupSchedulesError ||
-    // personalGroupTodosError,
+      personalTodosError ||
+      personalGroupSchedulesError ||
+      personalGroupTodosError,
   };
 }
 

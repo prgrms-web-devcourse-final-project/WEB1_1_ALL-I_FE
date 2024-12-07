@@ -7,6 +7,7 @@ import { FormatTime, FormatDate } from "@/utils/format";
 
 import * as Styled from "./ScheduleItem.style";
 import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
+import { useDeletePersonalSchedule } from "@/hooks/queries/usePersonalSchedules";
 
 interface ScheduleItemProps {
   schedule: MainSchedule;
@@ -14,6 +15,7 @@ interface ScheduleItemProps {
 
 function ScheduleItem({ schedule }: ScheduleItemProps) {
   const navigate = useNavigate();
+  const { mutate: deleteSchedule } = useDeletePersonalSchedule();
 
   // 수정 버튼 클릭
   const handleEditClick = () => {
@@ -24,7 +26,12 @@ function ScheduleItem({ schedule }: ScheduleItemProps) {
 
   // 삭제 버튼 클릭
   const handleDeleteClick = () => {
-    // TODO: 삭제 로직 추가
+    deleteSchedule({
+      scheduleId: schedule.id,
+      data: {
+        date: schedule.startDate,
+      },
+    });
   };
 
   const TextDateValues =
