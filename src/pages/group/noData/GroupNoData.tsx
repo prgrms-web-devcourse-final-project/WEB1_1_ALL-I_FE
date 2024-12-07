@@ -14,7 +14,7 @@ function GroupNoData() {
       .then((res) => {
         console.log(res);
         // /group/1 이 경로로 그룹 캘린더가 생길지도 모르겠음
-        // navigate("/group/1");
+        navigate("/group/1");
       })
       .catch((err) => console.log(err));
   }, []);
