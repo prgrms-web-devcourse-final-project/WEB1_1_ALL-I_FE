@@ -65,7 +65,7 @@ export const connectAlarmSSE = () => {
 
         setTimeout(() => {
           connectAlarmSSE();
-        }, 3000);
+        }, 30000);
       }
     };
 
