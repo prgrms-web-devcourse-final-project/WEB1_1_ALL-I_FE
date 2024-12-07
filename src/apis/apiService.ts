@@ -36,7 +36,7 @@ export const getRequest = async (url: string, params?: object) => {
 };
 
 // POST 요청 함수
-export const postRequest = async (url: string, data: object) => {
+export const postRequest = async (url: string, data?: object) => {
   try {
     const response = await apiClient.post(url, data);
     return response.data;
