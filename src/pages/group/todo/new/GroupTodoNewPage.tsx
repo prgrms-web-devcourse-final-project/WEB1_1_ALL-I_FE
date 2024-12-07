@@ -25,7 +25,7 @@ function GroupTodoNewPage() {
           userIdList: form.member,
         },
       });
-      console.log("스케줄 생성 성공");
+      console.log("투두 생성 성공");
     } catch (error) {
       console.error(error);
     }

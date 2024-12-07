@@ -2,10 +2,10 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { DateClickArg } from "@fullcalendar/interaction";
 import interactionPlugin from "@fullcalendar/interaction";
-
 import { CalendarSchedule } from "@/models/CalendarSchedule";
 import { CalendarTodo } from "@/models/CalendarTodo";
 import { useCalendar } from "@/hooks/useCalendar";
+import { DatesSetArg } from "@fullcalendar/core";
 
 import * as Styled from "./Calendar.style";
 
@@ -13,13 +13,24 @@ interface CalendarProps {
   schedules: CalendarSchedule[];
   todos: CalendarTodo[];
   onDateSelect: (date: string) => void;
+  onMonthChange: (year: number, month: number) => void;
 }
 
-function Calendar({ schedules, todos, onDateSelect }: CalendarProps) {
+function Calendar({
+  schedules,
+  todos,
+  onDateSelect,
+  onMonthChange,
+}: CalendarProps) {
   const { events, todoDateSet } = useCalendar(schedules, todos);
 
   const handleDateClick = (arg: DateClickArg) => {
     onDateSelect(arg.date.toLocaleDateString("en-CA"));
+  };
+
+  const handleDatesSet = (arg: DatesSetArg) => {
+    const start = arg.view.currentStart;
+    onMonthChange(start.getFullYear(), start.getMonth() + 1);
   };
 
   return (
@@ -38,7 +49,7 @@ function Calendar({ schedules, todos, onDateSelect }: CalendarProps) {
           locale="ko"
           contentHeight="auto"
           fixedWeekCount={false} // 고정된 6주 레이아웃 비활성화
-          // 헤더 설정
+          // 헤��� 설정
           headerToolbar={{
             left: "", // 왼쪽 비움
             center: "prev title next", // 이전, 제목, 다음 버튼을 중앙에 모두 배치
@@ -100,6 +111,7 @@ function Calendar({ schedules, todos, onDateSelect }: CalendarProps) {
           }}
           // 날짜 클릭 이벤트 추가
           dateClick={handleDateClick}
+          datesSet={handleDatesSet}
         />
       </Styled.CalendarWrapper>
     </div>

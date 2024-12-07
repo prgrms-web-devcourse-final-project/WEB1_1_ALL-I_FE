@@ -2,7 +2,7 @@ export const PERSONAL_TODO_DATA = [
   {
     personalTodoId: "1",
     title: "투두 1",
-    done: false,
+    done: true,
     todoOrder: 0,
     date: "2024-12-04",
     startTime: null,

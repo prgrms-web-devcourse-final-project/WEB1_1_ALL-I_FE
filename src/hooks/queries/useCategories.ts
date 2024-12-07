@@ -4,6 +4,7 @@ import {
   editCategory,
   getCategories,
 } from "@/apis/categories";
+import { useCategoryStore } from "@/store/categoryStore";
 import {
   CreateCategoryRequest,
   EditCategoryRequest,
@@ -23,11 +24,13 @@ export const useGetCategories = () => {
 // 카테고리 생성
 export const useCreateCategory = () => {
   const queryClient = useQueryClient();
+  const addCategory = useCategoryStore((state) => state.addCategory);
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: (categoryData: CreateCategoryRequest) =>
       createCategory(categoryData),
-    onSuccess: () => {
+    onSuccess: (response) => {
+      addCategory(response.data);
       queryClient.invalidateQueries({
         queryKey: ["categories"],
       });
@@ -40,11 +43,12 @@ export const useCreateCategory = () => {
 // 카테고리 수정
 export const useEditCategory = () => {
   const queryClient = useQueryClient();
-
+  const updateCategory = useCategoryStore((state) => state.updateCategory);
   const { mutate, isPending, error } = useMutation({
     mutationFn: (categoryData: EditCategoryRequest) =>
       editCategory(categoryData),
-    onSuccess: () => {
+    onSuccess: (response) => {
+      updateCategory(response.data);
       queryClient.invalidateQueries({
         queryKey: ["categories"],
       });
@@ -57,10 +61,12 @@ export const useEditCategory = () => {
 // 카테고리 삭제
 export const useDeleteCategory = () => {
   const queryClient = useQueryClient();
+  const removeCategory = useCategoryStore((state) => state.removeCategory);
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: (categoryId: string) => deleteCategory(categoryId),
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
+      removeCategory(variables);
       queryClient.invalidateQueries({
         queryKey: ["categories"],
       });

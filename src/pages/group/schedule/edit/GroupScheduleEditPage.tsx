@@ -5,6 +5,8 @@ import {
   setTodoScheduleForm,
   TodoScheduleFormData,
 } from "@/components/form/TodoScheduleForm/utils";
+import { useEditGroupSchedule } from "@/hooks/queries/useGroupSchedules";
+import { formatDateToYYYYMMDD } from "@/utils/date";
 
 function GroupScheduleEditPage() {
   const form = useTodoScheduleForm({
@@ -13,58 +15,45 @@ function GroupScheduleEditPage() {
     withGroup: true,
   });
 
+  const { mutate } = useEditGroupSchedule();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
-    // Todo 생성 api
-  };
+    // 스케줄 수정 api
 
-  useEffect(() => {
-    // 카테고리와 멤버 목록을 동시에 업데이트
-    form.handleListUpdate({
-      categories: [
-        { name: "카테고리1", color: "blue" },
-        { name: "카테고리2", color: "red" },
-        { name: "카테고리3", color: "black" },
-      ],
-      members: [
-        {
-          value: "1",
-          label: "이름1",
-          profileImage:
-            "https://img.freepik.com/premium-photo/sunset-sea-illustration-beautiful-landscape_900706-748.jpg",
+    try {
+      mutate({
+        groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+        scheduleId: "43c59b56-2cbb-4ace-8e0a-ad49e06d08fd",
+        scheduleData: {
+          groupEventId: "43c59b56-2cbb-4ace-8e0a-ad49e06d08fd",
+          title: form.content,
+          startDate: formatDateToYYYYMMDD(form.date.start),
+          endDate: formatDateToYYYYMMDD(form.date.end),
+          startTime: form.toggle.isTimeOn ? `${form.time.start}` : null,
+          endTime: form.toggle.isTimeOn ? `${form.time.end}` : null,
+          isAlarmed: form.toggle.isAlarmOn,
+          assignedMemberList: form.member,
         },
-        {
-          value: "2",
-          label: "이름2",
-          profileImage:
-            "https://img.freepik.com/premium-photo/sunset-sea-illustration-beautiful-landscape_900706-748.jpg",
-        },
-        {
-          value: "3",
-          label: "이름3",
-          profileImage:
-            "https://img.freepik.com/premium-photo/sunset-sea-illustration-beautiful-landscape_900706-748.jpg",
-        },
-      ],
-    });
-  }, []);
+      });
+      console.log("스케줄 수정 성공");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     // 임시 데이터
     const data: TodoScheduleFormData = {
       content: "투두 내용",
-      category: { name: "카테고리1", color: "blue" },
-      member: [
-        { value: "1", label: "이름1", profileImage: "" },
-        { value: "2", label: "이름2", profileImage: "" },
-      ],
       startDate: new Date(),
-      endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
+      endDate: new Date(),
+      member: ["64b86382-ac6c-4d0d-9a37-9a11ddc96b79"],
       startTime: "17:00",
       endTime: "18:00",
       isTimeOn: true,
-      isAlarmOn: true,
+      groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
     };
     setTodoScheduleForm(form, data);
   }, []);
