@@ -24,6 +24,50 @@ apiClient.interceptors.request.use(
   }
 );
 
+// 토큰 재발급, 오류로 인해 주석처리
+// apiClient.interceptors.response.use(
+//   (response) => {
+//     // 응답이 성공적이면 그대로 반환
+//     return response;
+//   },
+//   async (error) => {
+//     const originalRequest = error.config;
+
+//     // 401 오류이고, 재시도 중이 아닌 경우
+//     if (
+//       error.response?.status === 401 &&
+//       !originalRequest._retry // _retry 플래그를 사용하여 무한 루프 방지
+//     ) {
+//       originalRequest._retry = true;
+
+//       try {
+//         // Refresh 토큰을 사용하여 새 액세스 토큰 요청
+//         const { data } = await postRequest(`/user/reissue`, {});
+
+//         alert("리프레시 토큰을 통해 액세스 토큰 재발급 확인!");
+//         console.log(data); // 토큰값 확인
+//         // 새로운 액세스 토큰 저장
+//         useAuthStore.getState().setAccessToken(data.access_token);
+
+//         // 원래 요청에 새 토큰 추가
+//         originalRequest.headers.Authorization =
+//           useAuthStore.getState().access_token;
+
+//         // 원래 요청 재시도
+//         // return apiClient(originalRequest);
+//       } catch (refreshError) {
+//         // Refresh 실패 시 로그아웃 처리
+//         useAuthStore.getState().logout(); // 로그아웃 처리
+//         console.log("로그아웃 처리 ");
+//         return Promise.reject(refreshError);
+//       }
+//     }
+
+//     // 그 외의 에러는 그대로 반환
+//     // return Promise.reject(error);
+//   }
+// );
+
 // GET 요청 함수
 export const getRequest = async (url: string, params?: object) => {
   try {

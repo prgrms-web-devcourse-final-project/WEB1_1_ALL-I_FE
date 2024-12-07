@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Styled from "./MemberList.style";
 // import Plus from "@/assets/icons/plus.svg?react";
 import Profile from "@/assets/icons/profile.svg?react";
@@ -6,23 +6,65 @@ import Trashcan from "@/assets/icons/trashcan.svg?react";
 import TextInput from "@/components/common/TextInput/TextInput";
 import Button from "@/components/common/Button/Button";
 import { toast } from "react-toastify";
+import { postInvitation } from "@/apis/group/postInvitation";
+import { getMember } from "@/apis/group/getMember";
+import { deleteMember } from "@/apis/group/deleteMember";
 
-// css 해야됨.
+interface UserData {
+  groupSettingId: string;
+  userId: string;
+  nickname: string;
+  role: string;
+}
+
 function MemberList() {
+  // 테스트용 group_id, 나중엔 props 또는 useLocation을 사용하지 않을까 싶습니다.
+  const groupId = "a85e5db7-593f-429a-bc80-385408f0b934";
   const [nickname, setNickname] = useState("");
-  const [memberList, setMemberList] = useState<string[]>([]);
+  const [memberList, setMemberList] = useState<UserData[]>([]);
 
   const handleChange = (value: string) => {
     setNickname(value);
-    console.log(value);
   };
 
-  const handleSubmit = () => {
-    console.log(nickname); // 닉네임 출력
-    toast.success(`${nickname}에게 초대 메세지를 보냈습니다!`);
-    setNickname(""); // 닉네임 초기화
-    setMemberList((prev) => [...prev, nickname]);
+  const handleSubmit = async () => {
+    const res = await postInvitation({
+      // group_id 는 임시값 수정 필요
+      group_id: groupId,
+      nickname,
+    });
+    console.log(res);
+    if (res.code == 201) {
+      toast.success(`${nickname}에게 초대 메세지를 보냈습니다.`);
+      setNickname("");
+    } else {
+      toast.error(`${res.response.data.message}`);
+    }
   };
+
+  const handleEjection = async (groupSettingId: string) => {
+    // 그룹원 방출(그룹장)
+    const res = await deleteMember(groupSettingId);
+    if (res.code === 200) {
+      toast(res.message);
+      // 삭제된 멤버를 제외하고 상태를 업데이트
+      setMemberList((prevList) =>
+        prevList.filter((user) => user.groupSettingId !== groupSettingId)
+      );
+    } else if (res.code === 404 || res.code === 401) {
+      toast.error(res.message);
+    }
+  };
+
+  useEffect(() => {
+    // 이 그룹에 속해있는 그룹원을 조회 및 렌더링에 반영
+    getMember({ group_id: groupId })
+      .then((res) => {
+        console.log(res);
+        setMemberList(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <Styled.Wrapper>
@@ -35,7 +77,7 @@ function MemberList() {
           type="text"
           label="팀원 추가"
           placeholder="팀원의 닉네임을 입력하고 한 번에 한 명씩 초대해주세요."
-          required
+          required={false}
           value={nickname}
           onChange={handleChange}
         />
@@ -54,17 +96,19 @@ function MemberList() {
        */}
       <p>팀원 목록</p>
       <Styled.UserWrapper>
-        {memberList.map((name) => (
-          <Styled.UserInfoContainer>
+        {memberList.map((user) => (
+          <Styled.UserInfoContainer key={user.nickname}>
             <Styled.UserInfo>
               <Profile width={25} height={25} stroke="#97CDBD" fill="#97CDBD" />
-              <p>{name}</p>
+              <p>{user.nickname}</p>
+              <p>{user.role}</p>
             </Styled.UserInfo>
             <Trashcan
               width={16}
               height={16}
               stroke="#B1B1B1"
               cursor="pointer"
+              onClick={() => handleEjection(user.groupSettingId)}
             />
           </Styled.UserInfoContainer>
         ))}
