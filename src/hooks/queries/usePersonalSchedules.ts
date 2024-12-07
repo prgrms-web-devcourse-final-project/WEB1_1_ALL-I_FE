@@ -20,9 +20,13 @@ export const useCreatePersonalSchedule = () => {
   const { mutate, isPending, error } = useMutation({
     mutationFn: (scheduleData: CreatePersonalScheduleRequest) =>
       createPersonalSchedule(scheduleData),
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({
-        queryKey: ["schedules"],
+        queryKey: [
+          "schedules",
+          getYear(variables.startDate),
+          getMonth(variables.startDate),
+        ],
       });
     },
   });

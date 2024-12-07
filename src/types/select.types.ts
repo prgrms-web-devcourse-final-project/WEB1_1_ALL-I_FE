@@ -1,15 +1,19 @@
 // 그룹원 선택 드롭다운 interface
 export interface GroupMember {
-  value: string; // 유저 id
-  label: string; // 유저 nickname
-  profileImage: string; // 유저 image_url
+  groupSettingId: string;
+  userId: string;
+  nickname: string;
+  role: string;
+  // value: string; // 유저 id
+  // label: string; // 유저 nickname
+  // profileImage: string; // 유저 image_url
 }
 
 // 선택한 팀원이 변경될 때마다 props 주고받기
 export interface GroupProps {
-  groupMembers: GroupMember[]; // 그룹원 유저 데이터
-  selectedMembers: GroupMember[]; // 선택된 그룹원 유저 데이터
-  onMemberChange: (selectedMembers: GroupMember[]) => void;
+  groupId: string; // 그룹원 유저 데이터
+  selectedMembersId: string[]; // 선택된 그룹원 유저 데이터
+  onMemberChange: (selectedMembersId: string[]) => void;
 }
 
 // 카테고리 선택 드롭다운 interface

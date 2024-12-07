@@ -30,7 +30,11 @@ const OptionCategory = (props: {
   );
 };
 
-function CategorySelect({ categoryId, onCategoryChange }: CategoryProps) {
+function CategorySelect({
+  categoryId,
+  onCategoryChange,
+  menuPlacement = "bottom", // 기본값: 아래로 출력
+}: CategoryProps & { menuPlacement?: "top" | "bottom" }) {
   const { data, isLoading } = useGetCategories();
   const category = data?.data.find(
     (category: Category) => category.categoryId === categoryId
@@ -65,6 +69,7 @@ function CategorySelect({ categoryId, onCategoryChange }: CategoryProps) {
               singleValue: Style.customValue,
             }}
             isMulti={false}
+            menuPlacement={menuPlacement}
           />
         </Style.Div>
       )}
