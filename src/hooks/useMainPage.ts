@@ -77,28 +77,30 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
     isLoading: isPersonalSchedulesLoading,
     error: personalSchedulesError,
   } = useGetPersonalSchedules({ year, month });
-  const personalSchedules = personalSchedulesData?.data ?? [];
+  const personalSchedules = (personalSchedulesData?.data ??
+    []) as PersonalSchedule[];
   const {
     data: personalTodosData,
     isLoading: isPersonalTodosLoading,
     error: personalTodosError,
   } = useGetPersonalTodos({ year, month });
-  const personalTodos = personalTodosData?.data ?? [];
+  const personalTodos = (personalTodosData?.data ?? []) as PersonalTodo[];
 
   const {
     data: personalGroupSchedulesData,
     isLoading: isPersonalGroupSchedulesLoading,
     error: personalGroupSchedulesError,
   } = useGetPersonalGroupSchedules({ year, month });
-  const personalGroupSchedules =
-    personalGroupSchedulesData?.data?.groupEvents ?? [];
+  const personalGroupSchedules = (personalGroupSchedulesData?.data
+    ?.groupEvents ?? []) as PersonalGroupSchedule[];
 
   const {
     data: personalGroupTodosData,
     isLoading: isPersonalGroupTodosLoading,
     error: personalGroupTodosError,
   } = useGetPersonalGroupTodos({ year, month });
-  const personalGroupTodos = personalGroupTodosData?.data?.groupTodos ?? [];
+  const personalGroupTodos = (personalGroupTodosData?.data?.groupTodos ??
+    []) as PersonalGroupTodo[];
 
   const schedules = useMemo(
     () => [...personalSchedules, ...personalGroupSchedules],

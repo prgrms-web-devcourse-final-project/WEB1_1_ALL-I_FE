@@ -9,7 +9,8 @@ import TextDate from "@/components/common/TextDate/TextDate";
 import * as Styled from "./TodoItem.styled";
 import EditDeleteIcon from "../../EditDeleteIcon/EditDeleteIcon";
 import { useDeletePersonalTodo } from "@/hooks/queries/usePersonalTodos";
-
+import { useChangePersonalTodoState } from "@/hooks/queries/usePersonalTodos";
+import { useChangePersonalGroupTodoState } from "@/hooks/queries/usePersonalGroupTodos";
 interface TodoItemProps {
   todo: MainTodo;
 }
@@ -17,6 +18,8 @@ interface TodoItemProps {
 function TodoItem({ todo }: TodoItemProps) {
   const navigate = useNavigate();
   const { mutate: deleteTodo } = useDeletePersonalTodo();
+  const { mutate: changeTodoState } = useChangePersonalTodoState();
+  const { mutate: changeGroupTodoState } = useChangePersonalGroupTodoState();
 
   const handleEditClick = () => {
     navigate(`/main/todo/${todo.id}/edit`);
@@ -32,6 +35,22 @@ function TodoItem({ todo }: TodoItemProps) {
   };
 
   // 체크박스 로직 수정
+  const handleCheckboxClick = () => {
+    if (todo.isGroup) {
+      changeGroupTodoState({
+        groupId: todo.groupId!,
+        groupTodoId: todo.id,
+        done: !todo.done,
+        date: todo.date,
+      });
+    } else {
+      changeTodoState({
+        todoId: todo.id,
+        done: !todo.done,
+        date: todo.date,
+      });
+    }
+  };
 
   return (
     <Styled.TodoItemWrapper>
@@ -44,7 +63,7 @@ function TodoItem({ todo }: TodoItemProps) {
         <Styled.CustomCheckbox
           type="checkbox"
           checked={todo.done}
-          onClick={() => {}}
+          onChange={handleCheckboxClick}
         />
         {!todo.isGroup && (
           <EditDeleteIcon

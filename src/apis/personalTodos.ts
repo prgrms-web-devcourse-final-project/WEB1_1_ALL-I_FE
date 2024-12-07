@@ -74,8 +74,9 @@ export const changePersonalTodoState = async ({
   todoId: string;
   done: boolean;
 }) => {
+  console.log("changePersonalTodoState", todoId, done);
   try {
-    return await updateRequest(`/todos/${todoId}/state`, { done });
+    return await updateRequest(`/todos/${todoId}/state`, { state: done });
   } catch (error) {
     console.error("투두 상태 변경 실패:", error);
     throw error;
@@ -113,7 +114,7 @@ export const changePersonalGroupTodoState = async ({
   try {
     return await updateRequest(
       `/group-todos/${groupId}/todos/${groupTodoId}/state`,
-      { done }
+      { state: done }
     );
   } catch (error) {
     console.error("그룹 투두 상태 변경 실패:", error);
