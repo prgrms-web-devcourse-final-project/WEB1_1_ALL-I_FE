@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Styled from "./MyPage.style";
 import Button from "@/components/common/Button/Button";
 import Profile from "@/assets/icons/profile.svg?react";
 import Toggle from "@/components/common/Toggle/Toggle";
+import Pencil from "@/assets/icons/pencil.svg?react";
 
-import { useEffect } from "react";
 import { getUser } from "@/apis/mypage/getUser";
 import { postLogout } from "@/apis/mypage/postLogout";
 import { toast } from "react-toastify";
 import useAuthStore from "@/store/useAuthStore";
+import TextInput from "@/components/common/TextInput/TextInput";
+import { putGroup } from "@/apis/mypage/putUser";
 
 function Mypage() {
   const navigate = useNavigate();
@@ -22,6 +24,38 @@ function Mypage() {
     email: "",
     imageUrl: null,
   });
+  const [isEditing, setIsEditing] = useState(false); // 수정 가능 여부
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    if (userData.nickname.trim() === "") {
+      alert("닉네임은 비워둘 수 없습니다.");
+      return;
+    }
+    // 서버에 닉네임 업데이트 API 호출 로직 추가 가능
+    console.log("닉네임 저장:", userData.nickname);
+    putGroup(userData.nickname)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    setIsEditing(false);
+  };
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setUserData((prevData) => ({
+  //     ...prevData,
+  //     nickname: e.target.value, // nickname 필드만 업데이트
+  //   }));
+  // };
+
+  const handleChange = (fieldName: string) => (value: string) => {
+    setUserData((prev) => ({
+      ...prev,
+      [fieldName]: value,
+    }));
+  };
 
   const handleToggleUpdate = (type: "time" | "alarm", isOn: boolean) => {
     if (type === "time") {
@@ -75,10 +109,33 @@ function Mypage() {
             <Profile width={113} height={108} fill="var(--color-primary)" />
           )}
         </Styled.ImgContainer>
-        <Styled.UserName>{userData.nickname || "닉네임"}</Styled.UserName>
+        <Styled.UserNameContainer>
+          {isEditing ? (
+            <>
+              <TextInput
+                name="nickname"
+                label="닉네임"
+                type="text"
+                value={userData.nickname}
+                onChange={handleChange("nickname")}
+              />
+              <Button
+                children="저장"
+                buttonType="primarySmall"
+                type="button"
+                onClick={handleSaveClick}
+              />
+            </>
+          ) : (
+            <>
+              <Styled.UserName>{userData.nickname || "닉네임"}</Styled.UserName>
+              <Pencil onClick={handleEditClick} />
+            </>
+          )}
+        </Styled.UserNameContainer>
         <p>{userData.email || "이메일"}</p>
         <Styled.BtnContainer>
-          <Button
+          {/* <Button
             children="수정"
             buttonType="whiteMedium"
             type="button"
@@ -87,7 +144,7 @@ function Mypage() {
                 state: userData.nickname,
               })
             }
-          />
+          /> */}
           <Button
             children="로그아웃"
             buttonType="primaryMedium"

@@ -6,12 +6,12 @@ interface FormData {
   checkPwd: string;
 }
 
-function useEditPage() {
+function useEditPage(defaultName = "") {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // 정보 수정 데이터들
   const [formData, setFormData] = useState<FormData>({
-    name: "",
+    name: defaultName,
     password: "",
     checkPwd: "",
   });

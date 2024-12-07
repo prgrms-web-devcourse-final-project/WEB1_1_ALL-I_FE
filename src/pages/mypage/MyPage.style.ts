@@ -44,6 +44,12 @@ export const ImgContainer = styled.div`
   align-items: center;
 `;
 
+export const UserNameContainer = styled.div`
+  display: flex;
+  gap: 5px;
+  align-items: center;
+`;
+
 export const UserName = styled.div`
   font-weight: var(--font-weight-bold);
 `;

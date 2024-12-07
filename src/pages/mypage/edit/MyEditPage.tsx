@@ -7,7 +7,8 @@ import useEditPage from "@/hooks/useEditPage";
 
 function MyEditPage() {
   const location = useLocation();
-  console.log(location.state); // useNavigate로 가져온 데이터 (닉네임, 사진 데이터가 들어갈 것으로 예상)
+
+  const defaultName = location.state || "";
 
   const {
     // inputRef,
@@ -16,7 +17,7 @@ function MyEditPage() {
     handleInputChange,
     handleSubmit,
     // imagePreview,
-  } = useEditPage();
+  } = useEditPage(defaultName);
 
   return (
     <Styled.Wrapper>
