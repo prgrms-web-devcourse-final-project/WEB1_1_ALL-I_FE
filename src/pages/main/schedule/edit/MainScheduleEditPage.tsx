@@ -1,12 +1,17 @@
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
 import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
 import { TodoScheduleFormData } from "@/components/form/TodoScheduleForm/utils";
 import { setTodoScheduleForm } from "@/components/form/TodoScheduleForm/utils";
 import { useEditPersonalSchedule } from "@/hooks/queries/usePersonalSchedules";
 import { formatDateToYYYYMMDD } from "@/utils/date";
+import { MainSchedule } from "@/models/MainSchedule";
 
 function MainScheduleEditPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const form = useTodoScheduleForm({
     withEndDate: true,
     withEndTime: true,
@@ -17,12 +22,12 @@ function MainScheduleEditPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
-    // 스케줄 수정 api
-    try {
-      mutate({
-        scheduleId: "64b86382-ac6c-4d0d-9a37-9a11ddc96b79",
+
+    mutate(
+      {
+        scheduleId: form.scheduleId || "",
         scheduleData: {
-          personalEventId: "64b86382-ac6c-4d0d-9a37-9a11ddc96b79",
+          personalEventId: form.scheduleId || "",
           title: form.content,
           startDate: formatDateToYYYYMMDD(form.date.start),
           endDate: formatDateToYYYYMMDD(form.date.end),
@@ -31,24 +36,31 @@ function MainScheduleEditPage() {
           categoryId: form.categoryId || "",
           isAlarmed: form.toggle.isAlarmOn,
         },
-      });
-      console.log("스케줄 수정 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("스케줄 수정 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("스케줄 수정 실패:", error);
+        },
+      }
+    );
   };
 
   useEffect(() => {
-    // 임시 데이터
+    const schedule: MainSchedule = location.state?.schedule;
     const data: TodoScheduleFormData = {
-      content: "일정 내용",
-      categoryId: "150f63ca-697d-4d3f-b610-304f7a851843",
-      startDate: new Date(),
-      endDate: new Date(new Date().setDate(new Date().getDate() + 1)),
-      startTime: "17:00",
-      endTime: "18:00",
-      isTimeOn: true,
-      isAlarmOn: true,
+      scheduleId: schedule.id,
+      content: schedule.title,
+      categoryId: schedule.categoryId,
+      startDate: new Date(schedule.startDate),
+      endDate: new Date(schedule.endDate),
+      startTime: schedule.startTime || "",
+      endTime: schedule.endTime || "",
+      isTimeOn: !!schedule.startTime,
+      isAlarmOn: schedule.isAlarmed,
     };
     setTodoScheduleForm(form, data);
   }, []);
