@@ -8,6 +8,7 @@ import Button from "@/components/common/Button/Button";
 import { toast } from "react-toastify";
 import { postInvitation } from "@/apis/group/postInvitation";
 import { getMember } from "@/apis/group/getMember";
+import { deleteMember } from "@/apis/group/deleteMember";
 
 interface UserData {
   groupSettingId: string;
@@ -38,6 +39,20 @@ function MemberList() {
       setNickname("");
     } else {
       toast.error(`${res.response.data.message}`);
+    }
+  };
+
+  const handleEjection = async (groupSettingId: string) => {
+    // 그룹원 방출(그룹장)
+    const res = await deleteMember(groupSettingId);
+    if (res.code === 200) {
+      toast(res.message);
+      // 삭제된 멤버를 제외하고 상태를 업데이트
+      setMemberList((prevList) =>
+        prevList.filter((user) => user.groupSettingId !== groupSettingId)
+      );
+    } else if (res.code === 404 || res.code === 401) {
+      toast.error(res.message);
     }
   };
 
@@ -93,6 +108,7 @@ function MemberList() {
               height={16}
               stroke="#B1B1B1"
               cursor="pointer"
+              onClick={() => handleEjection(user.groupSettingId)}
             />
           </Styled.UserInfoContainer>
         ))}
