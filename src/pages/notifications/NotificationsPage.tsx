@@ -3,56 +3,84 @@ import { AlarmResDTO } from "@/types/notification.types";
 import GroupInviteForm from "@/components/feature/notifications/GroupInviteForm/GroupInviteForm";
 import * as Styled from "./Notifications.style";
 import ScheduleForm from "@/components/feature/notifications/ScheduleForm/ScheduleForm";
+import { getAlarm } from "@/apis/alarm";
+import {
+  parseGroupEventString,
+  parsePersonalEventString,
+  parseGroupInvitationString,
+  parseNotificationDescription,
+} from "@/utils/alarm";
 
 function NotificationsPage() {
-  const [notifications, setNotifications] = useState<AlarmResDTO[]>([]);
+  // DTO로 응답이 오기 때문에 AlarmResDTO 타입과 파싱된 이벤트 데이터를 합쳐서 상태 관리
+  const [notifications, setNotifications] = useState<
+    (AlarmResDTO & {
+      groupEvent?: ReturnType<typeof parseGroupEventString>;
+      personalEvent?: ReturnType<typeof parsePersonalEventString>;
+      groupInvitation?: ReturnType<typeof parseGroupInvitationString>;
+    })[]
+  >([]);
 
+  // 알림 삭제 함수
+  const removeNotification = (index: number) => {
+    setNotifications((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  // 알림 조회
   useEffect(() => {
-    // 더미 데이터
-    const dummyNotifications: AlarmResDTO[] = [
-      {
-        alarmId: "8f4230c3-cb53-4648-be0d-a82361354d71",
-        type: "EVENT",
-        description: {
-          personalEventId: "0f64a17d-bef6-4278-8d2b-194568a94807",
-          title: "뒹굴 뒹굴 대잔치",
-          startDate: "2024-12-03",
-          endDate: "2024-12-03",
-          startTime: null,
-          endTime: null,
-          isAlarmed: true,
-          createdAt: "2024-12-03T14:16:25.442234",
-          categoryId: "34a81a0e-f886-43f2-a984-194ba77eab1d",
-          userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-        },
-        userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-      },
-      {
-        alarmId: "7e4230c3-cb53-4648-be0d-a82361354d72",
-        type: "EVENT",
-        description: {
-          personalEventId: "1f64a17d-bef6-4278-8d2b-194568a94808",
-          title: "코딩 스터디",
-          startDate: "2024-12-04",
-          endDate: "2024-12-04",
-          startTime: "14:00",
-          endTime: "16:00",
-          isAlarmed: true,
-          createdAt: "2024-12-03T15:16:25.442234",
-          categoryId: "34a81a0e-f886-43f2-a984-194ba77eab1d",
-          userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-        },
-        userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-      },
-    ];
+    const fetchData = async () => {
+      const data = await getAlarm();
+      // 알림 파싱
+      const parsedData = data.data.map((notification: AlarmResDTO) => {
+        const parsed = parseNotificationDescription(notification.description);
+        return {
+          ...notification,
+          ...parsed,
+        };
+      });
+      setNotifications(parsedData);
+    };
 
-    setNotifications(dummyNotifications);
+    fetchData();
   }, []);
 
   return (
     <Styled.Container>
-      <GroupInviteForm groupId="1" name="홍길동" groupName="학교" />
-      <ScheduleForm scheduleName="코딩 스터디" scheduleDate="2024-12-04" />
+      {notifications.map((notification, index) => {
+        if (notification.groupEvent || notification.personalEvent) {
+          const event = notification.groupEvent || notification.personalEvent;
+          return (
+            <ScheduleForm
+              key={index}
+              scheduleName={event?.title}
+              scheduleDate={event?.startDate}
+            />
+          );
+        }
+
+        if (notification.groupInvitation) {
+          const invitation = notification.groupInvitation;
+          return (
+            <GroupInviteForm
+              key={index}
+              groupInvitationId={invitation.groupInvitationId}
+              senderId={invitation.senderId}
+              groupName={invitation.groupName}
+              index={index}
+              removeNotification={removeNotification}
+            />
+          );
+        }
+      })}
+      {/* 그룹 초대 없어서 임시 데이터 보기 */}
+      <GroupInviteForm
+        key={6}
+        groupInvitationId="1"
+        senderId="64b86382-ac6c-4d0d-9a37-9a11ddc96b79"
+        groupName="학교"
+        index={5}
+        removeNotification={removeNotification}
+      />
     </Styled.Container>
   );
 }
