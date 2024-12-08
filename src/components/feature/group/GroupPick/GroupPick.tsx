@@ -1,10 +1,12 @@
-import Select, { SingleValue } from "react-select";
+import Select, { SingleValue, MenuListProps } from "react-select";
 import * as Style from "./GroupPick.style";
 import { GroupOption } from "@/types/select.types";
 import TrashIcon from "@/assets/icons/trashcan.svg?react";
+import PlusIcon from "@/assets/icons/plus.svg?react";
 import { useDeleteGroup } from "@/hooks/queries/useGroups";
 import { useState } from "react";
 import DeleteConfirm from "@/components/common/DeleteConfirm/DeleteConfirm";
+import { useNavigate } from "react-router-dom";
 
 // 그룹 선택 컴포넌트에서 사용할 프롭스 타입 정의
 interface GroupPickProps {
@@ -30,7 +32,7 @@ const OptionGroup = (props: {
   innerProps: JSX.IntrinsicElements["div"];
   isFocused: boolean;
 }) => {
-  const { data, innerRef, innerProps, isFocused } = props;
+  const { data, innerRef, innerProps } = props;
   const { mutate: quitGroup } = useDeleteGroup();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
@@ -47,7 +49,7 @@ const OptionGroup = (props: {
 
   return (
     <>
-      <Style.Option ref={innerRef} {...innerProps} $isFocused={isFocused}>
+      <Style.Option ref={innerRef} {...innerProps}>
         <Style.Label>{data.groupName}</Style.Label>
         <Style.IconWrapper onClick={handleDelete}>
           <TrashIcon
@@ -70,6 +72,8 @@ const OptionGroup = (props: {
 };
 
 function GroupPick({ selectedGroup, options, onGroupChange }: GroupPickProps) {
+  const navigate = useNavigate();
+
   const handleGroupChange = (newValue: SingleValue<GroupOption>) => {
     if (newValue) {
       onGroupChange(newValue);
@@ -78,25 +82,52 @@ function GroupPick({ selectedGroup, options, onGroupChange }: GroupPickProps) {
     }
   };
 
+  // 그룹 추가 컴포넌트
+  const MenuList = (props: MenuListProps<GroupOption>) => {
+    return (
+      <div>
+        {props.children}
+        <Style.AddGroupButton onClick={() => navigate("/group/new")}>
+          <PlusIcon
+            width="16px"
+            height="16px"
+            fill="none"
+            stroke="currentColor"
+          />
+          <Style.AddGroupText>그룹 추가</Style.AddGroupText>
+        </Style.AddGroupButton>
+      </div>
+    );
+  };
+
   return (
-    <Style.Div>
-      <Select
-        value={selectedGroup}
-        onChange={handleGroupChange}
-        options={options}
-        components={{
-          SingleValue: GroupValue,
-          Option: OptionGroup,
-        }}
-        styles={{
-          control: Style.customsControl,
-          valueContainer: Style.customContainer,
-          singleValue: Style.customValue,
-          menu: Style.customMenu,
-        }}
-        isMulti={false}
-      />
-    </Style.Div>
+    <>
+      <Style.Div>
+        <Select
+          value={selectedGroup}
+          onChange={handleGroupChange}
+          options={options}
+          components={{
+            SingleValue: GroupValue,
+            Option: OptionGroup,
+            MenuList,
+            IndicatorSeparator: () => null,
+          }}
+          styles={{
+            control: Style.customsControl,
+            valueContainer: Style.customContainer,
+            singleValue: Style.customValue,
+            menu: Style.customMenu,
+          }}
+          isMulti={false}
+        />
+      </Style.Div>
+      {selectedGroup?.description && (
+        <Style.Description>
+          한줄 소개 : {selectedGroup.description}
+        </Style.Description>
+      )}
+    </>
   );
 }
 
