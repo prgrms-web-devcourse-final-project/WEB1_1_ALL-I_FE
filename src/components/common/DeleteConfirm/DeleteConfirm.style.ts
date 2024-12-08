@@ -11,7 +11,7 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(1px);
-  z-index: 1000;
+  z-index: 1100;
 `;
 
 export const ConfirmBox = styled.div`
