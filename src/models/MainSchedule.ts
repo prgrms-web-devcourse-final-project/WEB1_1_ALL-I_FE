@@ -24,7 +24,7 @@ export class MainSchedule {
     this.isAlarmed = data.isAlarmed;
     this.createdAt = data.createdAt;
     this.categoryId = data.categoryId;
-    this.isGroup = "personalGroupId" in data;
+    this.isGroup = "groupEventId" in data;
     this.color = undefined;
   }
 }

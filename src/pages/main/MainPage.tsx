@@ -26,6 +26,7 @@ import { sortTodoItems } from "@/utils/mainPage/sortTodoItems";
 import { MainSchedule } from "@/models/MainSchedule";
 import { MainTodo } from "@/models/MainTodo";
 import { FormatDate } from "@/utils/format";
+import { CalendarSchedule } from "@/models/CalendarSchedule";
 
 /**
  * 날짜, 카테고리 필터링 관련 로직 useMainPage로 이동할 지 고민
@@ -78,6 +79,11 @@ function MainPage() {
     return filterByDate(filterdByCategory, selectedDate) as MainTodo[];
   };
 
+  const filteredCalendarSchedules = filterByCategory(
+    data.calendar.schedules,
+    selectedCategoryIds
+  ) as CalendarSchedule[];
+
   const filteredSchedules = filterSchedules(data.list.schedules);
   const filteredTodos = filterTodos(data.list.todos);
 
@@ -94,9 +100,10 @@ function MainPage() {
   return (
     <>
       <Calendar
-        schedules={data.calendar.schedules}
+        schedules={filteredCalendarSchedules}
         todos={data.calendar.todos}
         onDateSelect={setSelectedDate}
+        initialDate={`${currentYearMonth.year}-${String(currentYearMonth.month).padStart(2, "0")}-01`}
         onMonthChange={handleMonthChange}
       />
       <Styled.MiddleContainer>

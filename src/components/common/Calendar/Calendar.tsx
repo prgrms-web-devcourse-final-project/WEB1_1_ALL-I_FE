@@ -12,6 +12,7 @@ import * as Styled from "./Calendar.style";
 interface CalendarProps {
   schedules: CalendarSchedule[];
   todos: CalendarTodo[];
+  initialDate: string;
   onDateSelect: (date: string) => void;
   onMonthChange: (year: number, month: number) => void;
 }
@@ -19,6 +20,7 @@ interface CalendarProps {
 function Calendar({
   schedules,
   todos,
+  initialDate,
   onDateSelect,
   onMonthChange,
 }: CalendarProps) {
@@ -33,6 +35,9 @@ function Calendar({
     onMonthChange(start.getFullYear(), start.getMonth() + 1);
   };
 
+  console.log("Calendar: ", todoDateSet);
+  console.log("key: ", Array.from(todoDateSet).join(","));
+
   return (
     <div
       style={{
@@ -43,13 +48,14 @@ function Calendar({
     >
       <Styled.CalendarWrapper>
         <FullCalendar
+          key={Array.from(todoDateSet).join(",")} // 상태 변화에 따라 강제 리렌더링
           // 기본 설정
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
           locale="ko"
           contentHeight="auto"
           fixedWeekCount={false} // 고정된 6주 레이아웃 비활성화
-          // 헤��� 설정
+          // 헤더 설정
           headerToolbar={{
             left: "", // 왼쪽 비움
             center: "prev title next", // 이전, 제목, 다음 버튼을 중앙에 모두 배치
@@ -112,6 +118,7 @@ function Calendar({
           // 날짜 클릭 이벤트 추가
           dateClick={handleDateClick}
           datesSet={handleDatesSet}
+          initialDate={initialDate}
         />
       </Styled.CalendarWrapper>
     </div>

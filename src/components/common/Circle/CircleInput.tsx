@@ -12,7 +12,7 @@ function CircleInput({ defaultColor, onChange }: CircleInputProps) {
   // 상태 변경 시 상위 컴포넌트로 전달
   const handleCircleChange = (value: string) => {
     handleChange(value); // 내부 상태 업데이트
-    onChange(selectedColor); // 상위 컴포넌트로 전달
+    onChange(value); // 상위 컴포넌트로 전달
   };
 
   return (

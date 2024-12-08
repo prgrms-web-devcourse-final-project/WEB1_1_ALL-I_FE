@@ -55,6 +55,7 @@ export const useCreateCategory = () => {
 export const useEditCategory = () => {
   const queryClient = useQueryClient();
   const updateCategory = useCategoryStore((state) => state.updateCategory);
+
   const { mutate, isPending, error } = useMutation({
     mutationFn: (categoryData: EditCategoryRequest) =>
       editCategory(categoryData),
