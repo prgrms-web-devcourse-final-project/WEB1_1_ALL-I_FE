@@ -1,6 +1,5 @@
 import Select from "react-select";
 import * as Style from "./GroupSelect.style";
-import ProfileImg from "../../ProfileImg/ProfileImg";
 import { GroupMember, GroupProps } from "@/types/select.types";
 import { useEffect, useState } from "react";
 import { getGroupMembers } from "@/apis/groups";
@@ -26,7 +25,6 @@ function GroupSelect({
         $isFocused={isFocused}
         $isSelected={isSelected}
       >
-        <ProfileImg size="small" src={""} alt={data.nickname} />
         {data.nickname}
       </Style.Option>
     );
@@ -61,10 +59,17 @@ function GroupSelect({
     <div>
       <Select
         options={groupMembers}
-        isMulti
+        isMulti={true}
         value={selectedMembers}
+        getOptionValue={(option) => option.userId}
+        getOptionLabel={(option) => option.nickname}
+        onChange={(newValue) => {
+          const selectedValues = newValue as GroupMember[];
+          onMemberChange(selectedValues.map((member) => member.userId));
+        }}
         components={{
           Option: Options,
+          IndicatorSeparator: () => null,
         }}
         styles={{
           control: Style.customControl,
@@ -73,9 +78,6 @@ function GroupSelect({
           multiValueRemove: Style.customMultiValueRemove,
         }}
         placeholder={<Style.Placeholder>그룹원을 선택하세요</Style.Placeholder>}
-        onChange={(newValue) =>
-          onMemberChange(newValue.map((member) => member.userId))
-        }
         closeMenuOnSelect={false}
         hideSelectedOptions={false}
       />
