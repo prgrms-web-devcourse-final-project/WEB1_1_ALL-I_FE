@@ -65,11 +65,13 @@ function TodoItem({ todo }: TodoItemProps) {
           checked={todo.done}
           onChange={handleCheckboxClick}
         />
-        {!todo.isGroup && (
+        {!todo.isGroup ? (
           <EditDeleteIcon
             onEdit={handleEditClick}
             onDelete={handleDeleteClick}
           />
+        ) : (
+          <div style={{ width: "20px", height: "20px" }}></div>
         )}
       </Styled.RightWrapper>
     </Styled.TodoItemWrapper>

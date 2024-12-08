@@ -20,7 +20,7 @@ export class MainTodo {
     this.startTime = data.startTime || null;
     this.createdAt = data.createdAt;
     this.categoryId = data.categoryId;
-    this.isGroup = "personalGroupId" in data;
+    this.isGroup = "groupTodoId" in data;
     this.groupId = "groupId" in data ? data.groupId : undefined;
     this.color = undefined;
   }
