@@ -5,6 +5,7 @@ import {
 } from "@/types/apiRequest.type";
 import { getYear, getMonth } from "@/utils/date";
 import { createGroupSchedule, editGroupSchedule } from "@/apis/groupSchdules";
+import { deleteRequest } from "@/apis/apiService";
 
 // 그룹 일정 생성 query
 export const useCreateGroupSchedule = () => {
@@ -58,4 +59,17 @@ export const useEditGroupSchedule = () => {
   });
 
   return { mutate, isPending, error };
+};
+
+// 그룹 일정 삭제
+export const useDeleteGroupSchedule = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ groupId, eventId }: { groupId: string; eventId: string }) =>
+      deleteRequest(`/groupEvents/${groupId}/events/${eventId}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["groupData"] });
+    },
+  });
 };

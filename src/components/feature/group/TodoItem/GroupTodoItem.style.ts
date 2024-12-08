@@ -21,11 +21,11 @@ export const RightWrapper = styled.div`
   gap: 0.5rem;
 `;
 
-export const TodoTitle = styled.div<{ isChecked?: boolean }>`
+export const TodoTitle = styled.div<{ $isChecked?: boolean }>`
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-regular);
-  text-decoration: ${(props) => (props.isChecked ? "line-through" : "none")};
-  color: ${(props) => (props.isChecked ? "gray" : "black")};
+  text-decoration: ${(props) => (props.$isChecked ? "line-through" : "none")};
+  color: ${(props) => (props.$isChecked ? "gray" : "black")};
 `;
 
 export const CustomCheckbox = styled.input.attrs({ type: "checkbox" })`
@@ -36,7 +36,6 @@ export const CustomCheckbox = styled.input.attrs({ type: "checkbox" })`
   border: 1px solid var(--color-primary);
   border-radius: var(--border-radius-default);
   background-color: transparent;
-  cursor: pointer;
 
   &:checked {
     background-color: var(--color-primary);
@@ -59,7 +58,7 @@ export const AssignWrapper = styled.div`
   gap: 0.3rem;
 `;
 
-export const AssignPeople = styled.span<{ isMemDone: boolean }>`
+export const AssignPeople = styled.span<{ $isMemDone: boolean }>`
   font-size: var(--font-size-small);
-  color: ${(props) => (props.isMemDone ? "var(--color-primary)" : "#B1B1B1")};
+  color: ${(props) => (props.$isMemDone ? "var(--color-primary)" : "#B1B1B1")};
 `;

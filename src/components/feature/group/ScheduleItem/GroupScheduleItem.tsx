@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { FormatDate, FormatTime } from "@/utils/format";
 import TextDate from "@/components/common/TextDate/TextDate";
 import ListBar from "@/components/common/ListBar/ListBar";
-import { useEffect, useState, useCallback } from "react";
-import { getRequest } from "@/apis/apiService";
+import { useUserNames } from "@/hooks/useUserNames";
+import { useDeleteGroupSchedule } from "@/hooks/queries/useGroupSchedules";
 
 interface ScheduleItemProps {
   groupEventId: string; // 일정 ID
@@ -20,7 +20,6 @@ interface ScheduleItemProps {
   categoryId: string; // 카테고리 ID
   color: string; // 카테고리 색상
   assignedUserIds: string[];
-  onDelete: (id: string) => void; // 삭제 핸들러
 }
 
 function GroupScheduleItem({
@@ -35,39 +34,10 @@ function GroupScheduleItem({
   categoryId,
   assignedUserIds,
   color,
-  onDelete,
 }: ScheduleItemProps) {
   const navigate = useNavigate();
-  const [userNames, setUserNames] = useState<Record<string, string>>({});
-
-  // 사용자 이름 데이터를 가져오는 함수
-  const fetchUserNames = useCallback(async () => {
-    try {
-      const promises = assignedUserIds.map(async (userId) => {
-        const url = `/user/${userId}`;
-        const response = await getRequest(url);
-        const userName = response?.data;
-        return { userId, userName };
-      });
-
-      const results = await Promise.all(promises);
-      const userNameMap = results.reduce(
-        (acc, { userId, userName }) => {
-          acc[userId] = userName || "Unknown User";
-          return acc;
-        },
-        {} as Record<string, string>
-      );
-
-      setUserNames(userNameMap);
-    } catch (error) {
-      console.error("사용자 이름 데이터를 가져오는 중 오류 발생:", error);
-    }
-  }, [assignedUserIds]);
-
-  useEffect(() => {
-    fetchUserNames();
-  }, [fetchUserNames]);
+  const userNames = useUserNames(assignedUserIds.map((id) => ({ userId: id })));
+  const { mutate: deleteSchedule } = useDeleteGroupSchedule();
 
   // 수정 버튼 클릭
   const handleEditClick = () => {
@@ -93,6 +63,10 @@ function GroupScheduleItem({
       ? [FormatTime(startTime), FormatTime(endTime)]
       : [FormatDate(startDate), FormatDate(endDate)];
 
+  const handleDelete = () => {
+    deleteSchedule({ groupId, eventId: groupEventId });
+  };
+
   return (
     <Styled.ScheduleItemWrapper>
       <Styled.LeftWrapper>
@@ -108,10 +82,7 @@ function GroupScheduleItem({
             </Styled.AssignPeople>
           ))}
         </Styled.AssignWrapper>
-        <EditDeleteIcon
-          onEdit={handleEditClick}
-          onDelete={() => onDelete(groupEventId)}
-        />
+        <EditDeleteIcon onEdit={handleEditClick} onDelete={handleDelete} />
       </Styled.RightWrapper>
     </Styled.ScheduleItemWrapper>
   );

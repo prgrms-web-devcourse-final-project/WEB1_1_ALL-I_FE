@@ -1,4 +1,4 @@
-import { getRequest } from "@/apis/apiService";
+import { getRequest, deleteRequest } from "@/apis/apiService";
 
 // 그룹 맴버 조회
 export const getGroupMembers = async (groupId: string) => {
@@ -49,7 +49,12 @@ export const getGroupSchedules = async (
     const url = `/groupEvents/${groupId}/events?year=${year}&month=${month}`;
     return await getRequest(url);
   } catch (error) {
-    console.error("그룹 스케줄 데이터를 가져오는 중 오류 발생:", error);
+    console.error("그룹 스케줄 ��이터를 가져오는 중 오류 발생:", error);
     throw error;
   }
+};
+
+// 그룹 삭제 API
+export const quitGroup = async (groupId: string) => {
+  return await deleteRequest(`/groups-setting/${groupId}/quit`);
 };

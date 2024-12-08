@@ -1,6 +1,10 @@
 import Select, { SingleValue } from "react-select";
 import * as Style from "./GroupPick.style";
 import { GroupOption } from "@/types/select.types";
+import TrashIcon from "@/assets/icons/trashcan.svg?react";
+import { useDeleteGroup } from "@/hooks/queries/useGroups";
+import { useState } from "react";
+import DeleteConfirm from "@/components/common/DeleteConfirm/DeleteConfirm";
 
 // 그룹 선택 컴포넌트에서 사용할 프롭스 타입 정의
 interface GroupPickProps {
@@ -27,10 +31,41 @@ const OptionGroup = (props: {
   isFocused: boolean;
 }) => {
   const { data, innerRef, innerProps, isFocused } = props;
+  const { mutate: quitGroup } = useDeleteGroup();
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  // 그룹 삭제
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation(); // 이벤트 버블링 방지
+    setShowDeleteConfirm(true);
+  };
+
+  const handleConfirmDelete = () => {
+    quitGroup(data.groupId);
+    setShowDeleteConfirm(false);
+  };
+
   return (
-    <Style.Option ref={innerRef} {...innerProps} $isFocused={isFocused}>
-      <Style.Label>{data.groupName}</Style.Label>
-    </Style.Option>
+    <>
+      <Style.Option ref={innerRef} {...innerProps} $isFocused={isFocused}>
+        <Style.Label>{data.groupName}</Style.Label>
+        <Style.IconWrapper onClick={handleDelete}>
+          <TrashIcon
+            width="16px"
+            height="16px"
+            fill="none"
+            stroke="currentColor"
+          />
+        </Style.IconWrapper>
+      </Style.Option>
+      {showDeleteConfirm && (
+        <DeleteConfirm
+          text="정말 이 그룹을 탈퇴하시겠습니까?"
+          onClickCancel={() => setShowDeleteConfirm(false)}
+          onClickDelete={handleConfirmDelete}
+        />
+      )}
+    </>
   );
 };
 
@@ -57,6 +92,7 @@ function GroupPick({ selectedGroup, options, onGroupChange }: GroupPickProps) {
           control: Style.customsControl,
           valueContainer: Style.customContainer,
           singleValue: Style.customValue,
+          menu: Style.customMenu,
         }}
         isMulti={false}
       />
