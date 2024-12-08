@@ -5,8 +5,13 @@ import { TodoScheduleFormData } from "@/components/form/TodoScheduleForm/utils";
 import { setTodoScheduleForm } from "@/components/form/TodoScheduleForm/utils";
 import { useEditGroupTodo } from "@/hooks/queries/useGroupTodos";
 import { formatDateToYYYYMMDD } from "@/utils/date";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function GroupTodoEditPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const form = useTodoScheduleForm({ withGroup: true });
 
   const { mutate } = useEditGroupTodo();
@@ -15,32 +20,41 @@ function GroupTodoEditPage() {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // Todo 수정 api
-    try {
-      mutate({
-        groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
-        todoId: "60277fff-8333-4602-9072-feb2686bb968",
+    mutate(
+      {
+        groupId: form.groupId,
+        todoId: form.todoId || "",
         todoData: {
           title: form.content,
           date: formatDateToYYYYMMDD(form.date.start),
           startTime: form.toggle.isTimeOn ? form.time.start : null,
           userIdList: form.member,
         },
-      });
-      console.log("투두 수정 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("투두 수정 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("투두 수정 실패:", error);
+        },
+      }
+    );
   };
 
   useEffect(() => {
-    // 임시 데이터
+    const state = location.state;
     const data: TodoScheduleFormData = {
-      content: "투두 내용",
-      startDate: new Date(),
-      member: ["64b86382-ac6c-4d0d-9a37-9a11ddc96b79"],
-      startTime: "17:00",
-      isTimeOn: true,
-      groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+      groupId: state.groupId,
+      todoId: state.groupTodoId,
+      content: state.title,
+      startDate: new Date(state.date),
+      member: state.userIdList.map(
+        (item: { done: boolean; userId: string }) => item.userId
+      ),
+      startTime: state.startTime,
+      isTimeOn: !!state.startTime,
     };
     setTodoScheduleForm(form, data);
   }, []);
