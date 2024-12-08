@@ -4,7 +4,7 @@ import Button from "@/components/common/Button/Button";
 import * as Styled from "./CategoryForm.style";
 
 interface CategoryFormProps {
-  formData: { categoryName: string; categoryColor: string };
+  formData: { name: string; color: string };
   onTextInputChange: (value: string) => void;
   onColorChange: (value: string) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -27,12 +27,12 @@ function CategoryForm({
           label="카테고리명"
           placeholder="카테고리명을 입력해주세요"
           required={true}
-          value={formData.categoryName}
+          value={formData.name} // 필드 이름 변경
           onChange={onTextInputChange}
         />
         <CircleInput
           onChange={onColorChange}
-          defaultColor={formData.categoryColor}
+          defaultColor={formData.color} // 필드 이름 변경
         />
       </Styled.CategoryListContainer>
       <Styled.ButtonWrapper>

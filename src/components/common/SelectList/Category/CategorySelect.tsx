@@ -2,7 +2,7 @@ import Select, { SingleValue } from "react-select";
 import * as Style from "./CategorySelect.style";
 import Circle from "../../Circle/Circle";
 import { OptionType, CategoryProps } from "@/types/select.types";
-import { useGetCategories } from "@/hooks/queries";
+import { useGetPersonalCategories } from "@/hooks/queries";
 import { Category } from "@/types/category.type";
 
 const CategoryValue = (props: { data: OptionType }) => {
@@ -35,7 +35,7 @@ function CategorySelect({
   onCategoryChange,
   menuPlacement = "bottom", // 기본값: 아래로 출력
 }: CategoryProps & { menuPlacement?: "top" | "bottom" }) {
-  const { data, isLoading } = useGetCategories();
+  const { data, isLoading } = useGetPersonalCategories();
   const category = data?.data.find(
     (category: Category) => category.categoryId === categoryId
   );
