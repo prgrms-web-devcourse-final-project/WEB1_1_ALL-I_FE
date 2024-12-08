@@ -29,3 +29,10 @@ export interface CategoryProps {
   // options: OptionType[]; // 카테고리 데이터
   onCategoryChange: (selectedCategory: string | null) => void;
 }
+
+// 그룹 리스트 선택 옵션
+export interface GroupOption {
+  groupId: string; // 그룹 ID
+  groupName: string; // 그룹 이름
+  description?: string; // 그룹 설명
+}
