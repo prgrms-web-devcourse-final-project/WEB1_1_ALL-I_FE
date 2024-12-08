@@ -57,6 +57,7 @@ function GroupPick({ selectedGroup, options, onGroupChange }: GroupPickProps) {
           control: Style.customsControl,
           valueContainer: Style.customContainer,
           singleValue: Style.customValue,
+          menu: Style.customMenu,
         }}
         isMulti={false}
       />
