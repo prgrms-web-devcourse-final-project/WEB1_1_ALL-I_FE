@@ -1,9 +1,7 @@
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import BackIcon from "@/assets/icons/back.svg?react";
-
-import AlarmIcon from "@/assets/icons/alarm.svg?react";
 import LogoIcon from "@/assets/icons/logo.svg?react";
-
+import AlarmIcon from "@/components/feature/header/AlarmIcon";
 import * as Styled from "./Header.style";
 import { HEADER_CONFIG } from "./headerConfig";
 
@@ -19,8 +17,10 @@ function Header() {
   if (noHeader) return null;
 
   // 로고, 종 페이지
-  const showLogo = HEADER_CONFIG.SHOW_LOGO.some((path) =>
-    matchPath(path, pathname)
+  const showLogo = HEADER_CONFIG.SHOW_LOGO.some(
+    ({ pattern, excludes = [] }) =>
+      matchPath(pattern, pathname) &&
+      !excludes?.some((exclude) => matchPath(exclude, pathname))
   );
 
   if (showLogo) {
