@@ -7,6 +7,7 @@ import SortedGroupTodo from "@/utils/sortedGroup";
 import { GroupSchedule, GroupTodo } from "@/types";
 import { GroupCategory } from "@/types/category.type";
 import * as Styled from "./GroupList.style";
+import { FormatDate } from "@/utils/format";
 
 interface MainListProps {
   schedules: GroupSchedule[];
@@ -40,8 +41,7 @@ function GroupList({
 
   return (
     <Styled.ListContainer>
-      {/* 카테고리 설정/필터 버튼 */}
-
+      <Styled.DateText>{FormatDate(selectedDate)}</Styled.DateText>
       {/* 일정 + 버튼 */}
       <NewButton
         label="일정"
@@ -57,15 +57,19 @@ function GroupList({
       />
       {/* 일정 리스트 */}
       <Styled.ScheduleListWrapper>
-        {sortedSchedules.map((schedule) => (
-          <GroupScheduleItem
-            key={schedule.groupEventId}
-            {...schedule}
-            color={category.color || "gray"}
-          />
-        ))}
+        {sortedSchedules.length > 0 ? (
+          sortedSchedules.map((schedule) => (
+            <GroupScheduleItem
+              key={schedule.groupEventId}
+              {...schedule}
+              color={category.color || "gray"}
+            />
+          ))
+        ) : (
+          <Styled.EmptyMessage>새로운 일정을 작성해주세요!</Styled.EmptyMessage>
+        )}
       </Styled.ScheduleListWrapper>
-      {/* 투두 생성 버튼 */}
+      {/* 투두 + 버튼 */}
       <NewButton
         label="투두"
         onClick={() =>
@@ -80,13 +84,19 @@ function GroupList({
       />
       {/* 투두 리스트 */}
       <Styled.TodoListWrapper>
-        {sortedTodos.map((todo) => (
-          <GroupTodoItem
-            key={todo.groupTodoId}
-            {...todo}
-            color={category.color || "gray"}
-          />
-        ))}
+        {sortedTodos.length > 0 ? (
+          sortedTodos.map((todo) => (
+            <GroupTodoItem
+              key={todo.groupTodoId}
+              {...todo}
+              color={category.color || "gray"}
+            />
+          ))
+        ) : (
+          <Styled.EmptyMessage>
+            새로운 투두를 작성해주세요 !
+          </Styled.EmptyMessage>
+        )}
       </Styled.TodoListWrapper>
     </Styled.ListContainer>
   );
