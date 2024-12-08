@@ -130,6 +130,7 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
       }),
     [schedules, categories]
   );
+
   const calendarTodos = useMemo(
     () => todos.map((todo) => new CalendarTodo(todo)),
     [todos]

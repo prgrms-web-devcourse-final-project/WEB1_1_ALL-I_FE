@@ -85,6 +85,7 @@ function GroupPage() {
           todos={transformToCalendarFormat().calendarTodos}
           onDateSelect={setSelectedDate}
           onMonthChange={handleMonthChange}
+          initialDate={`${currentYearMonth.year}-${String(currentYearMonth.month).padStart(2, "0")}-01`}
         />
       )}
       <ProfileSlider
