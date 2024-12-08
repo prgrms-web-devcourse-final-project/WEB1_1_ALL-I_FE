@@ -32,7 +32,10 @@ export const createCategory = async (categoryData: CreateCategoryRequest) => {
 // 카테고리 수정
 export const editCategory = async (categoryData: EditCategoryRequest) => {
   try {
-    return await updateRequest("/categories", categoryData);
+    return await updateRequest(
+      `/categories/${categoryData.categoryId} `,
+      categoryData
+    );
   } catch (error) {
     console.error("카테고리 수정 실패:", error);
     throw error;
