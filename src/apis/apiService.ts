@@ -91,7 +91,7 @@ export const postRequest = async (url: string, data?: object) => {
 };
 
 // PATCH 요청 함수
-export const updateRequest = async (url: string, data: object) => {
+export const updateRequest = async (url: string, data?: object) => {
   try {
     const response = await apiClient.patch(url, data);
     return response.data;

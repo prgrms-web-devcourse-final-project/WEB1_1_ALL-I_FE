@@ -1,8 +1,8 @@
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import BackIcon from "@/assets/icons/back.svg?react";
-import AlarmIcon from "@/assets/icons/alarm.svg?react";
 import * as Styled from "./Header.style";
 import { HEADER_CONFIG } from "./headerConfig";
+import AlarmIcon from "@/components/feature/header/AlarmIcon";
 
 function Header() {
   const { pathname } = useLocation();
@@ -28,12 +28,7 @@ function Header() {
         </Styled.StyledNavLink>
         <Styled.StyledNavLink to="/notifications">
           <Styled.IconWrapper>
-            <AlarmIcon
-              width="100%"
-              height="100%"
-              fill="none"
-              stroke="currentColor"
-            />
+            <AlarmIcon />
           </Styled.IconWrapper>
         </Styled.StyledNavLink>
       </Styled.HeaderContainer>
