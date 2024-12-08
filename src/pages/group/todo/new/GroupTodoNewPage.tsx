@@ -5,8 +5,13 @@ import { useEffect } from "react";
 import { TodoScheduleFormData } from "@/components/form/TodoScheduleForm/utils";
 import { useCreateGroupTodo } from "@/hooks/queries/useGroupTodos";
 import { formatDateToYYYYMMDD } from "@/utils/date";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function GroupTodoNewPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const form = useTodoScheduleForm({ withGroup: true });
 
   const { mutate } = useCreateGroupTodo();
@@ -15,26 +20,32 @@ function GroupTodoNewPage() {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // Todo 생성 api
-    try {
-      mutate({
-        groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+    mutate(
+      {
+        groupId: form.groupId,
         todoData: {
           title: form.content,
           date: formatDateToYYYYMMDD(form.date.start),
           startTime: form.toggle.isTimeOn ? form.time.start : null,
           userIdList: form.member,
         },
-      });
-      console.log("투두 생성 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("투두 생성 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("투두 생성 실패:", error);
+        },
+      }
+    );
   };
 
   useEffect(() => {
-    // 임시 데이터
+    const groupId = location.state?.groupId;
     const data: TodoScheduleFormData = {
-      groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+      groupId,
     };
     setTodoScheduleForm(form, data);
   }, []);
