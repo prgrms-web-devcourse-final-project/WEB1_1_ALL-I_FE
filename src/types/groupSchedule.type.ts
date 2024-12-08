@@ -3,11 +3,11 @@ export interface GroupSchedule {
   title: string;
   startDate: string;
   endDate: string;
-  startTime: string;
-  endTime: string;
+  startTime: string | null;
+  endTime: string | null;
   isAlarmed: boolean;
-  createdAt: string;
-  userIds: string[];
-
   categoryId: string;
+  createdAt: string;
+  groupId: string;
+  assignedUserIds: string[];
 }

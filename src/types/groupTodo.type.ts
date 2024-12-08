@@ -1,10 +1,12 @@
 export interface GroupTodo {
   groupTodoId: string;
   title: string;
+  date: string;
   done: boolean;
   todoOrder: number;
-  date: string;
-  startTime: string;
+  startTime: string | null;
+  categoryId: string;
   createdAt: string;
-  userIdList: string[];
+  groupId: string;
+  userIdList: { userId: string; done: boolean }[];
 }
