@@ -3,9 +3,10 @@ import {
   useDeleteCategory,
   useEditCategory,
   useGetCategories,
+  useGetPersonalCategories,
 } from "./useCategories";
 
-import { useGroups } from "./useGroups";
+import { useGetGroups, useGetGroupMembers } from "./useGroups";
 import {
   useCreateGroupSchedule,
   useEditGroupSchedule,
@@ -38,9 +39,11 @@ export {
   useDeleteCategory,
   useEditCategory,
   useGetCategories,
+  useGetPersonalCategories,
 
   // Groups
-  useGroups,
+  useGetGroups,
+  useGetGroupMembers,
   useCreateGroupSchedule,
   useEditGroupSchedule,
   useCreateGroupTodo,
