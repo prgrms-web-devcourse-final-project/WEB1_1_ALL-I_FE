@@ -10,6 +10,10 @@ import { postInvitation } from "@/apis/group/postInvitation";
 import { getMember } from "@/apis/group/getMember";
 import { deleteMember } from "@/apis/group/deleteMember";
 
+interface MemberListProps {
+  groupId: string;
+}
+
 interface UserData {
   groupSettingId: string;
   userId: string;
@@ -17,9 +21,9 @@ interface UserData {
   role: string;
 }
 
-function MemberList() {
+function MemberList({ groupId }: MemberListProps) {
   // 테스트용 group_id, 나중엔 props 또는 useLocation을 사용하지 않을까 싶습니다.
-  const groupId = "a85e5db7-593f-429a-bc80-385408f0b934";
+  // const group_id = "a85e5db7-593f-429a-bc80-385408f0b934";
   const [nickname, setNickname] = useState("");
   const [memberList, setMemberList] = useState<UserData[]>([]);
 
@@ -51,8 +55,8 @@ function MemberList() {
       setMemberList((prevList) =>
         prevList.filter((user) => user.groupSettingId !== groupSettingId)
       );
-    } else if (res.code === 404 || res.code === 401) {
-      toast.error(res.message);
+    } else if (res.status === 404 || res.status === 401) {
+      toast.error(res.response.data.message);
     }
   };
 
