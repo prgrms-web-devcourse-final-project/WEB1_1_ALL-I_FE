@@ -111,6 +111,8 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
     [categories, personalTodos, personalGroupTodos]
   );
 
+  const mainUserId = personalSchedulesData?.data?.[0].userId;
+
   // 달력용 데이터
   const calendarSchedules = useMemo(
     () =>
@@ -147,7 +149,7 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
   const listTodos = useMemo(
     () =>
       todos.map((todo) => {
-        const mainTodo = new MainTodo(todo);
+        const mainTodo = new MainTodo(todo, mainUserId);
         mainTodo.color = getCategoryColor(todo.categoryId, categoryColorMap);
 
         return mainTodo;
