@@ -1,7 +1,4 @@
-import {
-  ChangePersonalGroupTodoStateRequest,
-  GetPersonalGroupTodosRequest,
-} from "@/types/apiRequest.type";
+import { ChangePersonalGroupTodoStateRequest } from "@/types/apiRequest.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   changePersonalGroupTodoState,
