@@ -7,8 +7,12 @@ import {
 } from "@/components/form/TodoScheduleForm/utils";
 import { useEditGroupSchedule } from "@/hooks/queries/useGroupSchedules";
 import { formatDateToYYYYMMDD } from "@/utils/date";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function GroupScheduleEditPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const form = useTodoScheduleForm({
     withEndDate: true,
     withEndTime: true,
@@ -21,39 +25,46 @@ function GroupScheduleEditPage() {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // 스케줄 수정 api
-
-    try {
-      mutate({
-        groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
-        scheduleId: "43c59b56-2cbb-4ace-8e0a-ad49e06d08fd",
+    mutate(
+      {
+        groupId: form.groupId,
+        scheduleId: form.scheduleId || "",
         scheduleData: {
-          groupEventId: "43c59b56-2cbb-4ace-8e0a-ad49e06d08fd",
+          groupEventId: form.scheduleId || "",
           title: form.content,
           startDate: formatDateToYYYYMMDD(form.date.start),
           endDate: formatDateToYYYYMMDD(form.date.end),
-          startTime: form.toggle.isTimeOn ? `${form.time.start}` : null,
-          endTime: form.toggle.isTimeOn ? `${form.time.end}` : null,
+          startTime: form.toggle.isTimeOn ? form.time.start : null,
+          endTime: form.toggle.isTimeOn ? form.time.end : null,
           isAlarmed: form.toggle.isAlarmOn,
           assignedMemberList: form.member,
         },
-      });
-      console.log("스케줄 수정 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("일정 수정 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("일정 수정 실패:", error);
+        },
+      }
+    );
   };
 
   useEffect(() => {
-    // 임시 데이터
+    const state = location.state;
     const data: TodoScheduleFormData = {
-      content: "투두 내용",
-      startDate: new Date(),
-      endDate: new Date(),
-      member: ["64b86382-ac6c-4d0d-9a37-9a11ddc96b79"],
-      startTime: "17:00",
-      endTime: "18:00",
-      isTimeOn: true,
-      groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+      groupId: state.groupId,
+      scheduleId: state.groupEventId,
+      content: state.title,
+      startDate: new Date(state.startDate),
+      endDate: new Date(state.endDate),
+      startTime: state.startTime,
+      endTime: state.endTime,
+      isTimeOn: !!state.startTime,
+      isAlarmOn: state.isAlarmed,
+      member: state.assignedUserIds,
     };
     setTodoScheduleForm(form, data);
   }, []);
