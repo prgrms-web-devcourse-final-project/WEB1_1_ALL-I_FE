@@ -3,8 +3,11 @@ import * as Styled from "./AlarmIcon.style";
 import { parseNotificationDescription } from "@/utils/alarm";
 import { useEffect } from "react";
 import { AlarmResDTO, ParsedAlarm } from "@/types/notification.types";
-import { connectAlarmSSE, disconnectAlarmSSE, getAlarm } from "@/apis/alarm";
+import { getAlarm } from "@/apis/alarm";
 import { useAlarmStore } from "@/store/useNotification.store";
+import useAuthStore from "@/store/useAuthStore";
+import { EventSourcePolyfill } from "event-source-polyfill";
+import "event-source-polyfill";
 
 // 로컬 스토리지 키 상수
 const UNREAD_NOTIFICATIONS_KEY = "unread_notifications";
@@ -84,51 +87,37 @@ function AlarmIcon() {
     fetchData();
   }, [setNotifications]);
 
-  //테스트용 실시간알림 3초후 생성
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     const testNotification: AlarmResDTO = {
-  //       alarmId: `test-${Date.now()}`,
-  //       type: "EVENT",
-  //       userId: "testUser",
-  //       description: "GROUP_INVITATION|testUser|testGroup",
-  //       isRead: false,
-  //     };
-
-  //     const parsed = parseNotificationDescription(testNotification.description);
-  //     const newNotification = {
-  //       ...testNotification,
-  //       ...parsed,
-  //     };
-
-  //     addNotification(newNotification);
-  //     saveUnreadNotification(newNotification.alarmId);
-  //   }, 3000);
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // 실시간 알림 SSE 연결
+  //실시간 알림 SSE 연결
   useEffect(() => {
-    const eventSource = connectAlarmSSE();
-
-    eventSource.onmessage = (event) => {
-      const data: AlarmResDTO = JSON.parse(event.data);
-      // 새로운 알림 데이터 파싱
-      const parsed = parseNotificationDescription(data.description);
-      const newNotification = {
-        ...data,
-        ...parsed,
+    const connect = () => {
+      const token = useAuthStore.getState().access_token;
+      const eventSource = new EventSourcePolyfill(
+        `${import.meta.env.VITE_API_BASE_URL}/alarms/connect`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+          heartbeatTimeout: 10000000, // 10000초
+        }
+      );
+      eventSource.onopen = () => {
+        console.log("SSE 연결 성공");
       };
-      // 기존 알림 목록의 앞쪽에 새 알림 추가
-      addNotification(newNotification);
-      saveUnreadNotification(newNotification.alarmId);
+      eventSource.onmessage = (event) => {
+        console.log("Message from server:", event.data);
+        const parsed = parseNotificationDescription(event.data.description);
+        const newNotification = {
+          ...event.data,
+          ...parsed,
+        };
+
+        addNotification(newNotification);
+        saveUnreadNotification(newNotification.alarmId);
+      };
     };
 
-    return () => {
-      disconnectAlarmSSE(eventSource);
-    };
-  }, [addNotification]);
+    connect();
+  }, []);
 
   return (
     <Styled.Container>

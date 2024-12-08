@@ -66,15 +66,6 @@ function NotificationsPage() {
           );
         }
       })}
-      {/* 그룹 초대 없어서 임시 데이터 보기 */}
-      <GroupInviteForm
-        key={6}
-        groupInvitationId="1"
-        senderId="64b86382-ac6c-4d0d-9a37-9a11ddc96b79"
-        groupName="학교"
-        index={5}
-        removeNotification={removeNotification}
-      />
     </Styled.Container>
   );
 }
