@@ -78,7 +78,7 @@ function GroupScheduleItem({
         <Styled.AssignWrapper>
           {assignedUserIds.map((userId) => (
             <Styled.AssignPeople key={userId}>
-              {userNames[userId] || "불러오는 중..."}
+              {userNames[userId]}
             </Styled.AssignPeople>
           ))}
         </Styled.AssignWrapper>
