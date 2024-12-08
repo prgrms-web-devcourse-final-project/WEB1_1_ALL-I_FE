@@ -10,9 +10,11 @@ interface TodoListProps {
 function TodoList({ todos }: TodoListProps) {
   return (
     <Styled.TodoListWrapper>
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} />
-      ))}
+      {todos.length > 0 ? (
+        todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
+      ) : (
+        <Styled.EmptyMessage>새로운 투두를 작성해주세요!</Styled.EmptyMessage>
+      )}
     </Styled.TodoListWrapper>
   );
 }

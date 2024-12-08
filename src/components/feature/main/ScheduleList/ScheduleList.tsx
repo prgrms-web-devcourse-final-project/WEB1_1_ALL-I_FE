@@ -11,9 +11,13 @@ interface ScheduleListProps {
 function ScheduleList({ schedules }: ScheduleListProps) {
   return (
     <Styled.ScheduleListWrapper>
-      {schedules.map((schedule) => (
-        <ScheduleItem key={schedule.id} schedule={schedule} />
-      ))}
+      {schedules.length > 0 ? (
+        schedules.map((schedule) => (
+          <ScheduleItem key={schedule.id} schedule={schedule} />
+        ))
+      ) : (
+        <Styled.EmptyMessage>새로운 일정을 작성해주세요!</Styled.EmptyMessage>
+      )}
     </Styled.ScheduleListWrapper>
   );
 }
