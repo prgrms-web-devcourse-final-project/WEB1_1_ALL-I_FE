@@ -7,7 +7,7 @@ import { CalendarTodo } from "@/models/CalendarTodo";
 import { GroupTodo, GroupSchedule } from "@/types";
 import { useGetGroupMembers, useGetGroups } from "@/hooks/queries/useGroups";
 import { useGetGroupData } from "@/hooks/queries/useGroupData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { GroupOption } from "@/types/select.types";
 
 function GroupPage() {
@@ -19,6 +19,7 @@ function GroupPage() {
     year: new Date().getFullYear().toString(),
     month: (new Date().getMonth() + 1).toString(),
   });
+  const [selectedMemberId, setSelectedMemberId] = useState<string | null>(null);
 
   const { data: groupOptions = [] } = useGetGroups();
 
@@ -72,6 +73,21 @@ function GroupPage() {
     });
   };
 
+  // 선택된 그룹멤버로 필터링
+  const filteredData = useMemo(() => {
+    if (!selectedMemberId || !groupData) return groupData;
+
+    return {
+      ...groupData,
+      todos: groupData.todos.filter((todo) =>
+        todo.userIdList.some((user) => user.userId === selectedMemberId)
+      ),
+      schedules: groupData.schedules.filter((schedule) =>
+        schedule.assignedUserIds.includes(selectedMemberId)
+      ),
+    };
+  }, [groupData, selectedMemberId]);
+
   return (
     <div>
       <GroupPick
@@ -79,6 +95,7 @@ function GroupPage() {
         options={groupOptions}
         onGroupChange={setSelectedGroup}
       />
+
       {selectedGroup && (
         <Calendar
           schedules={transformToCalendarFormat().calendarSchedules}
@@ -100,11 +117,13 @@ function GroupPage() {
           id: member.userId,
           name: member.nickname,
         }))}
+        leaderUserId={groupData?.category[0]?.leaderUserId || ""}
+        onMemberSelect={setSelectedMemberId}
       />
       {groupData && (
         <GroupList
-          schedules={groupData.schedules}
-          todos={groupData.todos}
+          schedules={filteredData.schedules}
+          todos={filteredData.todos}
           category={groupData.category[0]}
           selectedDate={selectedDate}
         />

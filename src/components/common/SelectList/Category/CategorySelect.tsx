@@ -62,6 +62,7 @@ function CategorySelect({
             components={{
               SingleValue: CategoryValue,
               Option: OptionCategory,
+              IndicatorSeparator: () => null,
             }}
             styles={{
               control: Style.customsControl,

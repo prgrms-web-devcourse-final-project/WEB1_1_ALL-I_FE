@@ -60,13 +60,13 @@ function GroupTodoItem({
       <Styled.LeftWrapper>
         <ListBar color={color} />
         <TextDate values={[FormatTime(startTime)]} />
-        <Styled.TodoTitle $isChecked={isChecked}>{title}</Styled.TodoTitle>
+        <Styled.TodoTitle>{title}</Styled.TodoTitle>
       </Styled.LeftWrapper>
       <Styled.RightWrapper>
         <Styled.AssignWrapper>
           {userIdList.map((user) => (
             <Styled.AssignPeople key={user.userId} $isMemDone={user.done}>
-              {userNames[user.userId] || "불러오는 중..."}
+              {userNames[user.userId]}
             </Styled.AssignPeople>
           ))}
         </Styled.AssignWrapper>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/common/Button/Button.style";
 import * as Styled from "./DeleteConfirm.style";
+import { createPortal } from "react-dom";
 
 interface IProps {
   text: string;
@@ -8,7 +9,7 @@ interface IProps {
 }
 
 function DeleteConfirm({ text, onClickCancel, onClickDelete }: IProps) {
-  return (
+  return createPortal(
     <Styled.Modal>
       <Styled.ConfirmBox>
         <Styled.Text>{text}</Styled.Text>
@@ -21,7 +22,8 @@ function DeleteConfirm({ text, onClickCancel, onClickDelete }: IProps) {
           </Button>
         </Styled.ButtonBox>
       </Styled.ConfirmBox>
-    </Styled.Modal>
+    </Styled.Modal>,
+    document.body
   );
 }
 
