@@ -1,8 +1,8 @@
 import * as Styled from "./ScheduleForm.style";
 
 interface ScheduleFormProps {
-  scheduleName: string;
-  scheduleDate: string;
+  scheduleName?: string;
+  scheduleDate?: string;
 }
 
 function ScheduleForm({ scheduleName, scheduleDate }: ScheduleFormProps) {
