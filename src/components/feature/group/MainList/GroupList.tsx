@@ -51,7 +51,7 @@ function GroupList({
         onClick={() =>
           navigate(`/group/${category.groupId}/schedule/new`, {
             state: {
-              schedules,
+              groupId: category.groupId,
               categoryId: category.categoryId,
               color: category.color,
             },
@@ -84,7 +84,7 @@ function GroupList({
         onClick={() =>
           navigate(`/group/${category.groupId}/todo/new`, {
             state: {
-              todos,
+              groupId: category.groupId,
               categoryId: category.categoryId,
               color: category.color,
             },
