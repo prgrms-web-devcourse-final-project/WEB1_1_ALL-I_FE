@@ -1,29 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import GroupSelect from "@/components/common/SelectList/Group/GroupSelect";
-import { GroupMember } from "@/types/select.types";
-
-const groupMembers: GroupMember[] = [
-  {
-    value: "1",
-    label: "이가영",
-    profileImage: "https://via.placeholder.com/120",
-  },
-  {
-    value: "2",
-    label: "조준영",
-    profileImage: "https://via.placeholder.com/120",
-  },
-  {
-    value: "3",
-    label: "김우종",
-    profileImage: "https://via.placeholder.com/120",
-  },
-  {
-    value: "4",
-    label: "서진혁",
-    profileImage: "https://via.placeholder.com/120",
-  },
-];
 
 const meta = {
   title: "Components/common/SelectList/Group/GroupSelect",
@@ -37,13 +13,11 @@ const meta = {
     },
   },
   argTypes: {
-    groupMembers: {
+    groupId: {
       control: false,
-      description: "선택 가능한 그룹원 목록입니다.",
     },
-    selectedMembers: {
+    selectedMembersId: {
       control: false,
-      description: "현재 선택된 그룹원의 배열입니다.",
     },
     onMemberChange: { action: "onMemberChange" },
   },
@@ -55,8 +29,8 @@ type Story = StoryObj<typeof meta>;
 // 기본 스토리
 export const Default: Story = {
   args: {
-    groupMembers,
-    selectedMembers: [],
+    groupId: "1",
+    selectedMembersId: [],
     onMemberChange: (selected) => console.log(selected),
   },
   parameters: {
@@ -71,8 +45,8 @@ export const Default: Story = {
 // 일부 그룹원이 선택된 상태
 export const WithSelectedMembers: Story = {
   args: {
-    groupMembers,
-    selectedMembers: [groupMembers[0], groupMembers[2]],
+    groupId: "1",
+    selectedMembersId: [],
     onMemberChange: (selected) => console.log(selected),
   },
   parameters: {
