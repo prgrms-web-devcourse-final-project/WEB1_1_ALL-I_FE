@@ -5,8 +5,13 @@ import { TodoScheduleFormData } from "@/components/form/TodoScheduleForm/utils";
 import { setTodoScheduleForm } from "@/components/form/TodoScheduleForm/utils";
 import { useCreateGroupSchedule } from "@/hooks/queries/useGroupSchedules";
 import { formatDateToYYYYMMDD } from "@/utils/date";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function GroupScheduleNewPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const form = useTodoScheduleForm({
     withEndDate: true,
     withEndTime: true,
@@ -19,9 +24,9 @@ function GroupScheduleNewPage() {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // 스케줄 생성 api
-    try {
-      mutate({
-        groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+    mutate(
+      {
+        groupId: form.groupId,
         scheduleData: {
           title: form.content,
           startDate: formatDateToYYYYMMDD(form.date.start),
@@ -29,20 +34,26 @@ function GroupScheduleNewPage() {
           startTime: form.toggle.isTimeOn ? form.time.start : null,
           endTime: form.toggle.isTimeOn ? form.time.end : null,
           isAlarmed: form.toggle.isAlarmOn,
-          groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+          groupId: form.groupId,
           assignedMemberList: form.member,
         },
-      });
-      console.log("스케줄 생성 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("일정 생성 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("일정 생성 실패:", error);
+        },
+      }
+    );
   };
 
   useEffect(() => {
-    // 임시 데이터
+    const groupId = location.state?.groupId;
     const data: TodoScheduleFormData = {
-      groupId: "bbbea2e4-3f83-4a63-a69f-309559eb136a",
+      groupId,
     };
     setTodoScheduleForm(form, data);
   }, []);
