@@ -21,11 +21,9 @@ export const RightWrapper = styled.div`
   gap: 0.5rem;
 `;
 
-export const TodoTitle = styled.div<{ $isChecked?: boolean }>`
+export const TodoTitle = styled.div`
   font-size: var(--font-size-medium);
   font-weight: var(--font-weight-regular);
-  text-decoration: ${(props) => (props.$isChecked ? "line-through" : "none")};
-  color: ${(props) => (props.$isChecked ? "gray" : "black")};
 `;
 
 export const CustomCheckbox = styled.input.attrs({ type: "checkbox" })`

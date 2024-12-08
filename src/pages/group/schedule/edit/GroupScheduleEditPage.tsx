@@ -77,7 +77,7 @@ function GroupScheduleEditPage() {
       withGroup={true}
       withAlarm={true}
       onSubmit={handleSubmit}
-      submitButtonText="생성"
+      submitButtonText="수정"
     />
   );
 }

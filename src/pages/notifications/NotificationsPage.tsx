@@ -1,58 +1,71 @@
-import { useEffect, useState } from "react";
-import { AlarmResDTO } from "@/types/notification.types";
 import GroupInviteForm from "@/components/feature/notifications/GroupInviteForm/GroupInviteForm";
 import * as Styled from "./Notifications.style";
 import ScheduleForm from "@/components/feature/notifications/ScheduleForm/ScheduleForm";
+import { useAlarmStore } from "@/store/useNotification.store";
+import { useEffect } from "react";
+
+// 로컬 스토리지 키 상수
+const UNREAD_NOTIFICATIONS_KEY = "unread_notifications";
+const READ_NOTIFICATIONS_KEY = "read_notifications";
 
 function NotificationsPage() {
-  const [notifications, setNotifications] = useState<AlarmResDTO[]>([]);
+  const { notifications, updateUnreadCount, removeNotification } =
+    useAlarmStore();
 
+  // 읽지 않은 알림들 읽음 처리
   useEffect(() => {
-    // 더미 데이터
-    const dummyNotifications: AlarmResDTO[] = [
-      {
-        alarmId: "8f4230c3-cb53-4648-be0d-a82361354d71",
-        type: "EVENT",
-        description: {
-          personalEventId: "0f64a17d-bef6-4278-8d2b-194568a94807",
-          title: "뒹굴 뒹굴 대잔치",
-          startDate: "2024-12-03",
-          endDate: "2024-12-03",
-          startTime: null,
-          endTime: null,
-          isAlarmed: true,
-          createdAt: "2024-12-03T14:16:25.442234",
-          categoryId: "34a81a0e-f886-43f2-a984-194ba77eab1d",
-          userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-        },
-        userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-      },
-      {
-        alarmId: "7e4230c3-cb53-4648-be0d-a82361354d72",
-        type: "EVENT",
-        description: {
-          personalEventId: "1f64a17d-bef6-4278-8d2b-194568a94808",
-          title: "코딩 스터디",
-          startDate: "2024-12-04",
-          endDate: "2024-12-04",
-          startTime: "14:00",
-          endTime: "16:00",
-          isAlarmed: true,
-          createdAt: "2024-12-03T15:16:25.442234",
-          categoryId: "34a81a0e-f886-43f2-a984-194ba77eab1d",
-          userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-        },
-        userId: "8af30641-215d-42a6-aed6-006246e53d6e",
-      },
+    // 읽은 알림 목록 가져오기
+    const readNotifications = JSON.parse(
+      localStorage.getItem(READ_NOTIFICATIONS_KEY) || "[]"
+    );
+    // 읽지 않은 알림 목록 가져오기
+    const unReadNotifications = JSON.parse(
+      localStorage.getItem(UNREAD_NOTIFICATIONS_KEY) || "[]"
+    );
+    // 이번에 읽은 알림들을 읽은 알림 목록에 추가
+    const updatedReadNotifications = [
+      ...readNotifications,
+      ...unReadNotifications,
     ];
-
-    setNotifications(dummyNotifications);
-  }, []);
+    // 읽은 알림 목록 저장
+    localStorage.setItem(
+      READ_NOTIFICATIONS_KEY,
+      JSON.stringify(updatedReadNotifications)
+    );
+    // 읽지 않은 알림 목록 저장
+    localStorage.removeItem(UNREAD_NOTIFICATIONS_KEY);
+    // 읽지 않은 알림 개수 초기화
+    updateUnreadCount(0);
+  }, [notifications, updateUnreadCount]);
 
   return (
     <Styled.Container>
-      <GroupInviteForm groupId="1" name="홍길동" groupName="학교" />
-      <ScheduleForm scheduleName="코딩 스터디" scheduleDate="2024-12-04" />
+      {notifications.map((notification, index) => {
+        if (notification.groupEvent || notification.personalEvent) {
+          const event = notification.groupEvent || notification.personalEvent;
+          return (
+            <ScheduleForm
+              key={index}
+              scheduleName={event?.title}
+              scheduleDate={event?.startDate}
+            />
+          );
+        }
+
+        if (notification.groupInvitation) {
+          const invitation = notification.groupInvitation;
+          return (
+            <GroupInviteForm
+              key={index}
+              groupInvitationId={invitation.groupInvitationId}
+              senderId={invitation.senderId}
+              groupName={invitation.groupName}
+              index={index}
+              removeNotification={removeNotification}
+            />
+          );
+        }
+      })}
     </Styled.Container>
   );
 }

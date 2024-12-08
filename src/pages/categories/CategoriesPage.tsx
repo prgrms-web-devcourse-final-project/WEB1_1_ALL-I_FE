@@ -25,7 +25,7 @@ function CategoriesPage() {
       <Styled.ButtonWrapper>
         <Link to="/categories/new">
           <Button
-            children="카테고리 만들기"
+            children="카테고리 생성"
             buttonType="primaryLarge"
             type="button"
             isHoverEffect={true}

@@ -64,7 +64,7 @@ function GroupTodoEditPage() {
       form={form}
       withGroup={true}
       onSubmit={handleSubmit}
-      submitButtonText="생성"
+      submitButtonText="수정"
     />
   );
 }
