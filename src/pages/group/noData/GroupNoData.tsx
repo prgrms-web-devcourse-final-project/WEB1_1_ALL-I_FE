@@ -13,8 +13,11 @@ function GroupNoData() {
     getGroup()
       .then((res) => {
         console.log(res);
+        if (res.data.length > 0) {
+          // navigate(`/group/${res.data[0].groupId}`);
+          navigate(`/group/1`);
+        }
         // /group/1 이 경로로 그룹 캘린더가 생길지도 모르겠음
-        navigate("/group/1");
       })
       .catch((err) => console.log(err));
   }, []);
