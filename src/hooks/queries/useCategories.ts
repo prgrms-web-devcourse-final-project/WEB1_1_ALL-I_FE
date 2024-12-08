@@ -10,15 +10,26 @@ import {
   EditCategoryRequest,
 } from "@/types/apiRequest.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Category } from "@/types/category.type";
 
 // 카테고리 조회
 export const useGetCategories = () => {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["categories"], // 키값은 필요하면 바꾸시면 됩니다.
+  return useQuery({
+    queryKey: ["categories"],
     queryFn: () => getCategories(),
   });
+};
 
-  return { data, isLoading, error };
+// 개인 카테고리만 조회
+export const useGetPersonalCategories = () => {
+  return useQuery({
+    queryKey: ["categories"],
+    queryFn: () => getCategories(),
+    select: (response) => ({
+      ...response,
+      data: response.data.filter((category: Category) => !category.groupId),
+    }),
+  });
 };
 
 // 카테고리 생성
