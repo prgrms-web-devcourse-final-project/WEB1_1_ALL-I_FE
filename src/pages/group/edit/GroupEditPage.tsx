@@ -1,38 +1,37 @@
 import * as Styled from "./GroupEditPage.style";
+import { useLocation } from "react-router-dom";
 import Button from "@/components/common/Button/Button";
 import CircleInput from "@/components/common/Circle/CircleInput";
 import MemberList from "@/components/feature/GroupNewPage/MemberList";
 import TextInput from "@/components/common/TextInput/TextInput";
 import useGroupEditForm from "@/hooks/useGroupEditForm";
 
-interface GroupEditPageProps {
-  groupName?: string;
-  color?: string;
-  description?: string;
-}
-
 // 수정 페이지에서는 color랑 description 만 변경됨.
 // 데이터를 props를 통해 받게 되어있는데, useParam or useLocation에 맞춰 추후 수정 필요
-function GroupEditPage({
-  groupName = "DBDB DEEP",
-  color = "#c9c9c9",
-  description = "설명설명~",
-}: GroupEditPageProps) {
+
+// **가장 중요** -> 그룹 수정 api 연동해야 함
+function GroupEditPage() {
+  const location = useLocation();
+  console.log(location.state); //
   const { formData, handleChange, handleSubmit } = useGroupEditForm({
-    initialColor: color,
-    description,
+    groupName: location.state.groupName || "",
+    initialColor: location.state.color || "#FFFFFF",
+    description: location.state.description || "",
+    groupId: location.state.groupId,
   });
 
-  const onSubmit = (data: typeof formData) => {
-    console.log(data); // 제출된 데이터 처리
-  };
-
   return (
-    <Styled.Wrapper onSubmit={handleSubmit(onSubmit)}>
-      <Styled.GroupComtainer>
-        <p>그룹명</p>
-        <Styled.GroupNameBorder>{groupName}</Styled.GroupNameBorder>
-      </Styled.GroupComtainer>
+    <Styled.Wrapper onSubmit={handleSubmit}>
+      <TextInput
+        name="groupName"
+        type="text"
+        label="그룹명"
+        placeholder="그룹명을 작성해주세요."
+        required
+        value={formData.groupName}
+        onChange={handleChange("groupName")}
+      />
+
       <TextInput
         name="description"
         type="text"
@@ -42,7 +41,7 @@ function GroupEditPage({
         value={formData.description}
         onChange={handleChange("description")}
       />
-      <MemberList />
+      <MemberList groupId={location.state.groupId} />
       <CircleInput
         defaultColor={formData.initialColor}
         onChange={(value) => handleChange("initialColor")(value)}

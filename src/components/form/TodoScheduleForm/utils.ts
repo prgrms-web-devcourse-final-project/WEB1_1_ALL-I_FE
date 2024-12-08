@@ -1,6 +1,8 @@
 import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
 
 export interface TodoScheduleFormData {
+  todoId?: string;
+  scheduleId?: string;
   content?: string;
   groupId?: string;
   categoryId?: string | null;
@@ -17,6 +19,8 @@ export function setTodoScheduleForm(
   form: ReturnType<typeof useTodoScheduleForm>,
   data: TodoScheduleFormData
 ) {
+  if (data.todoId) form.handleTodoIdUpdate(data.todoId);
+  if (data.scheduleId) form.handleScheduleIdUpdate(data.scheduleId);
   if (data.content) form.handleContentUpdate(data.content);
   if (data.groupId) form.handleGroupIdUpdate(data.groupId);
   if (data.categoryId) form.handleCategoryUpdate(data.categoryId);

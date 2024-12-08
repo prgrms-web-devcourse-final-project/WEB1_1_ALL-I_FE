@@ -3,6 +3,8 @@ import { GroupMember, OptionType } from "@/types/select.types";
 import { useToast } from "@/hooks/useToast";
 
 interface TodoScheduleFormState {
+  todoId?: string; // 투두 id
+  scheduleId?: string; // 스케줄 id
   content: string; // 내용
   categoryId: string | null; // 카테고리
   groupId: string; // 그룹 id
@@ -38,6 +40,8 @@ export function useTodoScheduleForm({
 }: useTodoScheduleFormProps = {}) {
   // 폼의 초기 상태 설정
   const [form, setForm] = useState<TodoScheduleFormState>({
+    todoId: "",
+    scheduleId: "",
     content: "",
     categoryId: null,
     groupId: "",
@@ -65,6 +69,14 @@ export function useTodoScheduleForm({
   // 폼 전체 업데이트 함수
   const handleFormUpdate = (updates: Partial<TodoScheduleFormState>) => {
     setForm((prev) => ({ ...prev, ...updates }));
+  };
+
+  const handleTodoIdUpdate = (value: string) => {
+    handleFormUpdate({ todoId: value });
+  };
+
+  const handleScheduleIdUpdate = (value: string) => {
+    handleFormUpdate({ scheduleId: value });
   };
 
   const handleContentUpdate = (value: string) => {
@@ -102,10 +114,10 @@ export function useTodoScheduleForm({
   };
 
   const handleToggleUpdate = (type: "time" | "alarm", isOn: boolean) => {
-    setForm((prevForm) => ({
-      ...prevForm,
+    setForm((prev) => ({
+      ...prev,
       toggle: {
-        ...prevForm.toggle,
+        ...prev.toggle,
         [type === "time" ? "isTimeOn" : "isAlarmOn"]: isOn,
       },
     }));
@@ -153,6 +165,8 @@ export function useTodoScheduleForm({
   // 폼 상태와 핸들러 함수들을 반환
   return {
     ...form,
+    handleTodoIdUpdate,
+    handleScheduleIdUpdate,
     handleFormUpdate,
     handleContentUpdate,
     handleGroupIdUpdate,

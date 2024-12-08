@@ -1,12 +1,16 @@
 import {
   createPersonalSchedule,
+  deletePersonalSchedule,
   editPersonalSchedule,
+  getPersonalSchedules,
 } from "@/apis/personalSchdule";
 import {
   CreatePersonalScheduleRequest,
+  DeletePersonalScheduleRequest,
   EditPersonalScheduleRequest,
+  GetPersonalSchedulesRequest,
 } from "@/types/apiRequest.type";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getYear, getMonth } from "@/utils/date";
 
 // 개인 일정 생성 query
@@ -48,6 +52,49 @@ export const useEditPersonalSchedule = () => {
           "schedules",
           getYear(variables.scheduleData.startDate),
           getMonth(variables.scheduleData.startDate),
+        ],
+      });
+    },
+  });
+
+  return { mutate, isPending, error };
+};
+
+//
+// 개인 일정 조회 query
+export const useGetPersonalSchedules = ({
+  year,
+  month,
+}: {
+  year: string;
+  month: string;
+}) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["schedules", year, month],
+    queryFn: () => getPersonalSchedules({ year, month }),
+  });
+
+  return { data, isLoading, error };
+};
+
+// 개인 일정 삭제 query
+export const useDeletePersonalSchedule = () => {
+  const queryClient = useQueryClient();
+
+  const { mutate, isPending, error } = useMutation({
+    mutationFn: ({
+      scheduleId,
+      data: _,
+    }: {
+      scheduleId: string;
+      data: DeletePersonalScheduleRequest;
+    }) => deletePersonalSchedule(scheduleId),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({
+        queryKey: [
+          "schedules",
+          getYear(variables.data.date),
+          getMonth(variables.data.date),
         ],
       });
     },

@@ -5,6 +5,7 @@ import {
 } from "@/types/apiRequest.type";
 import { getYear, getMonth } from "@/utils/date";
 import { createGroupTodo, editGroupTodo } from "@/apis/groupTodos";
+import { deleteRequest } from "@/apis/apiService";
 
 // 그룹 투두 생성 query
 export const useCreateGroupTodo = () => {
@@ -58,4 +59,17 @@ export const useEditGroupTodo = () => {
   });
 
   return { mutate, isPending, error };
+};
+
+// 그룹 투두 삭제
+export const useDeleteGroupTodo = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({ groupId, todoId }: { groupId: string; todoId: string }) =>
+      deleteRequest(`/group-todos/${groupId}/todos/${todoId}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["groupData"] });
+    },
+  });
 };

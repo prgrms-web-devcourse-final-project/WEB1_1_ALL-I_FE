@@ -50,6 +50,51 @@ export interface EditPersonalScheduleRequest {
   categoryId: string;
 }
 
+// 개인 투두 조회
+export interface GetPersonalTodosRequest {
+  date: string;
+}
+
+// 개인 투두 삭제
+export interface DeletePersonalTodoRequest {
+  date: string;
+}
+
+// 개인 투두 상태 변경
+export interface ChangePersonalTodoStateRequest {
+  todoId: string;
+  done: boolean;
+  date: string;
+}
+
+// 개인 일정 조회
+export interface GetPersonalSchedulesRequest {
+  date: string;
+}
+
+// 개인 일정 삭제
+export interface DeletePersonalScheduleRequest {
+  date: string;
+}
+
+// 개인 그룹 일정 조회
+export interface GetPersonalGroupSchedulesRequest {
+  date: string;
+}
+
+// 개인 그룹 투두 조회
+export interface GetPersonalGroupTodosRequest {
+  date: string;
+}
+
+// 개인 그룹 투두 상태 변경
+export interface ChangePersonalGroupTodoStateRequest {
+  groupId: string;
+  groupTodoId: string;
+  done: boolean;
+  date: string;
+}
+
 // 그룹 투두 생성
 export interface CreateGroupTodoRequest {
   title: string;

@@ -2,15 +2,14 @@ import Circle from "@/components/common/Circle/Circle";
 import * as Styled from "./CategoryList.style";
 import { useNavigate } from "react-router-dom";
 import EditDeleteIcon from "../EditDeleteIcon/EditDeleteIcon";
+import { Category } from "@/types";
+import { useDeleteCategory } from "@/hooks/queries/useCategories";
+import { useToast } from "@/hooks/useToast";
 
-interface CategoryListProps {
-  categoryId: number;
-  color: string;
-  name: string;
-}
-
-function CategoryList({ categoryId, color, name }: CategoryListProps) {
+function CategoryList({ categoryId, color, name }: Category) {
   const navigate = useNavigate();
+  const { mutate: deleteCategory } = useDeleteCategory();
+  const { showToast } = useToast();
 
   // 수정 버튼 클릭
   const handleEditClick = () => {
@@ -21,8 +20,14 @@ function CategoryList({ categoryId, color, name }: CategoryListProps) {
 
   // 삭제 버튼 클릭
   const handleDeleteClick = () => {
-    console.log(categoryId);
-    // 실제 삭제 로직 추가
+    deleteCategory(categoryId, {
+      onSuccess: () => {
+        showToast("카테고리가 삭제되었습니다.", "success");
+      },
+      onError: () => {
+        showToast("카테고리 삭제에 실패했습니다.", "error");
+      },
+    });
   };
 
   return (
