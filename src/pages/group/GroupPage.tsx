@@ -72,12 +72,6 @@ function GroupPage() {
     });
   };
 
-  // 투두, 일정 삭제
-  const handleDelete = (type: "todo" | "schedule", id: string) => {
-    // 삭제 로직 구현 해야함
-    console.log(`Delete ${type} with id: ${id}`);
-  };
-
   return (
     <div>
       <GroupPick
@@ -113,7 +107,6 @@ function GroupPage() {
           todos={groupData.todos}
           category={groupData.category[0]}
           selectedDate={selectedDate}
-          onDelete={handleDelete}
         />
       )}
     </div>

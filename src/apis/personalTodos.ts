@@ -74,7 +74,6 @@ export const changePersonalTodoState = async ({
   todoId: string;
   done: boolean;
 }) => {
-  console.log("changePersonalTodoState", todoId, done);
   try {
     return await updateRequest(`/todos/${todoId}/state`, { state: done });
   } catch (error) {

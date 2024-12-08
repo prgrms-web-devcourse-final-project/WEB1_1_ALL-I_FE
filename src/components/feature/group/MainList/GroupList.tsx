@@ -12,7 +12,6 @@ interface MainListProps {
   schedules: GroupSchedule[];
   todos: GroupTodo[];
   category: GroupCategory;
-  onDelete: (type: "todo" | "schedule", id: string) => void;
   selectedDate: string;
 }
 
@@ -20,11 +19,9 @@ function GroupList({
   schedules,
   todos,
   category,
-  onDelete,
   selectedDate,
 }: MainListProps) {
   const navigate = useNavigate();
-  console.log(category);
 
   // 선택 날짜 필터링 스케줄
   const filteredSchedules = schedules.filter(
@@ -51,7 +48,7 @@ function GroupList({
         onClick={() =>
           navigate(`/group/${category.groupId}/schedule/new`, {
             state: {
-              schedules,
+              groupId: category.groupId,
               categoryId: category.categoryId,
               color: category.color,
             },
@@ -63,18 +60,8 @@ function GroupList({
         {sortedSchedules.map((schedule) => (
           <GroupScheduleItem
             key={schedule.groupEventId}
-            groupEventId={schedule.groupEventId}
-            groupId={schedule.groupId}
-            title={schedule.title}
-            startDate={schedule.startDate}
-            endDate={schedule.endDate}
-            startTime={schedule.startTime}
-            endTime={schedule.endTime}
-            isAlarmed={schedule.isAlarmed}
-            categoryId={schedule.categoryId}
+            {...schedule}
             color={category.color || "gray"}
-            assignedUserIds={schedule.assignedUserIds}
-            onDelete={() => onDelete("schedule", schedule.groupEventId)}
           />
         ))}
       </Styled.ScheduleListWrapper>
@@ -84,7 +71,7 @@ function GroupList({
         onClick={() =>
           navigate(`/group/${category.groupId}/todo/new`, {
             state: {
-              todos,
+              groupId: category.groupId,
               categoryId: category.categoryId,
               color: category.color,
             },
@@ -96,16 +83,8 @@ function GroupList({
         {sortedTodos.map((todo) => (
           <GroupTodoItem
             key={todo.groupTodoId}
-            groupTodoId={todo.groupTodoId}
-            title={todo.title}
-            date={todo.date}
-            startTime={todo.startTime}
-            done={todo.done}
-            categoryId={todo.categoryId}
-            groupId={todo.groupId}
+            {...todo}
             color={category.color || "gray"}
-            onDelete={() => onDelete("todo", todo.groupTodoId)}
-            userIdList={todo.userIdList}
           />
         ))}
       </Styled.TodoListWrapper>

@@ -1,5 +1,10 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { getGroupsList, getGroupMembers } from "@/apis/groups";
+import {
+  useQuery,
+  UseQueryOptions,
+  useQueryClient,
+  useMutation,
+} from "@tanstack/react-query";
+import { getGroupsList, getGroupMembers, quitGroup } from "@/apis/groups";
 import { GroupOption, GroupMember } from "@/types/select.types";
 
 // 그룹 목록 조회 query
@@ -19,5 +24,17 @@ export const useGetGroupMembers = (groupId: string | undefined) => {
     queryKey: ["groupMembers", groupId],
     queryFn: () => getGroupMembers(groupId!).then((res) => res.data),
     enabled: !!groupId,
+  });
+};
+
+// 그룹 삭제 mutation
+export const useDeleteGroup = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (groupId: string) => quitGroup(groupId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["groups"] });
+    },
   });
 };

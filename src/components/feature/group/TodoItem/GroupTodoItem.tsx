@@ -5,17 +5,18 @@ import { useNavigate } from "react-router-dom";
 import { FormatTime } from "@/utils/format";
 import TextDate from "@/components/common/TextDate/TextDate";
 import ListBar from "@/components/common/ListBar/ListBar";
+import { useUserNames } from "@/hooks/useUserNames";
+import { useDeleteGroupTodo } from "@/hooks/queries/useGroupTodos";
 
 interface TodoItemProps {
   groupTodoId: string; // ID
   title: string; // 투두 제목
   date: string; // 날짜
-  startTime?: string | null; // 시작 시간
+  startTime: string | null; // 시작 시간
   done: boolean; // 완료 여부
   categoryId: string; // 카테고리 ID
   groupId: string; // 그룹 아이디
   color: string; // 카테고리 색상
-  onDelete: (id: string) => void; // 삭제 핸들러
   userIdList: { userId: string; done: boolean }[]; // 사용자 목록
 }
 
@@ -28,11 +29,12 @@ function GroupTodoItem({
   categoryId,
   groupId,
   color,
-  onDelete,
   userIdList,
 }: TodoItemProps) {
   const { isChecked, toggleChecked } = useTodoItem({ isComplete: done });
   const navigate = useNavigate();
+  const userNames = useUserNames(userIdList);
+  const { mutate: deleteTodo } = useDeleteGroupTodo();
 
   // 수정 버튼 핸들러
   const handleEditClick = () => {
@@ -49,19 +51,22 @@ function GroupTodoItem({
     });
   };
 
+  const handleDelete = () => {
+    deleteTodo({ groupId, todoId: groupTodoId });
+  };
+
   return (
     <Styled.TodoItemWrapper>
       <Styled.LeftWrapper>
         <ListBar color={color} />
-        {startTime && <TextDate values={[FormatTime(startTime)]} />}
-        <Styled.TodoTitle isChecked={isChecked}>{title}</Styled.TodoTitle>
+        <TextDate values={[FormatTime(startTime)]} />
+        <Styled.TodoTitle $isChecked={isChecked}>{title}</Styled.TodoTitle>
       </Styled.LeftWrapper>
       <Styled.RightWrapper>
         <Styled.AssignWrapper>
-          {/* 사용자 목록 렌더링 */}
           {userIdList.map((user) => (
-            <Styled.AssignPeople key={user.userId} isMemDone={user.done}>
-              {user.userId}
+            <Styled.AssignPeople key={user.userId} $isMemDone={user.done}>
+              {userNames[user.userId] || "불러오는 중..."}
             </Styled.AssignPeople>
           ))}
         </Styled.AssignWrapper>
@@ -72,10 +77,7 @@ function GroupTodoItem({
           disabled
         />
         {/* 수정/삭제 모달 아이콘 */}
-        <EditDeleteIcon
-          onEdit={handleEditClick}
-          onDelete={() => onDelete(groupTodoId)}
-        />
+        <EditDeleteIcon onEdit={handleEditClick} onDelete={handleDelete} />
       </Styled.RightWrapper>
     </Styled.TodoItemWrapper>
   );
