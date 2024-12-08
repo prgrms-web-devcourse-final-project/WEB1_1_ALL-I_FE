@@ -2,8 +2,10 @@ import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
 import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
 import { formatDateToYYYYMMDD } from "@/utils/date";
 import { useCreatePersonalTodo } from "@/hooks/queries/usePersonalTodos";
+import { useNavigate } from "react-router-dom";
 
 function MainTodoNewPage() {
+  const navigate = useNavigate();
   const form = useTodoScheduleForm();
 
   const { mutate } = useCreatePersonalTodo();
@@ -12,17 +14,23 @@ function MainTodoNewPage() {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // Todo 생성 api
-    try {
-      mutate({
+    mutate(
+      {
         title: form.content,
         date: formatDateToYYYYMMDD(form.date.start),
         startTime: form.toggle.isTimeOn ? form.time.start : null,
         categoryId: form.categoryId || "",
-      });
-      console.log("투두 생성 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("투두 생성 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("투두 생성 실패:", error);
+        },
+      }
+    );
   };
 
   return (

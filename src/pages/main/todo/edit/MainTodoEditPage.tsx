@@ -5,8 +5,13 @@ import { TodoScheduleFormData } from "@/components/form/TodoScheduleForm/utils";
 import { setTodoScheduleForm } from "@/components/form/TodoScheduleForm/utils";
 import { useEditPersonalTodo } from "@/hooks/queries/usePersonalTodos";
 import { formatDateToYYYYMMDD } from "@/utils/date";
+import { useLocation, useNavigate } from "react-router-dom";
+import { MainTodo } from "@/models/MainTodo";
 
 function MainTodoEditPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const form = useTodoScheduleForm();
 
   const { mutate } = useEditPersonalTodo();
@@ -15,29 +20,37 @@ function MainTodoEditPage() {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // Todo 수정 api
-    try {
-      mutate({
-        todoId: "29625a03-6e46-438c-86c9-fbebe5d60e51",
+    mutate(
+      {
+        todoId: form.todoId || "",
         todoData: {
           title: form.content,
           date: formatDateToYYYYMMDD(form.date.start),
           startTime: form.toggle.isTimeOn ? form.time.start : null,
           categoryId: form.categoryId || "",
         },
-      });
-      console.log("투두 수정 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("투두 수정 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("투두 수정 실패:", error);
+        },
+      }
+    );
   };
 
   useEffect(() => {
+    const todo: MainTodo = location.state?.todo;
     const data: TodoScheduleFormData = {
-      content: "투두 내용",
-      categoryId: "150f63ca-697d-4d3f-b610-304f7a851843",
-      startDate: new Date(),
-      startTime: "17:00",
-      isTimeOn: true,
+      todoId: todo.id,
+      content: todo.title,
+      categoryId: todo.categoryId,
+      startDate: new Date(todo.date),
+      startTime: todo.startTime || "",
+      isTimeOn: !!todo.startTime,
     };
     setTodoScheduleForm(form, data);
   }, []);

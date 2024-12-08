@@ -2,8 +2,10 @@ import { useTodoScheduleForm } from "@/hooks/useTodoScheduleForm";
 import TodoScheduleForm from "@/components/form/TodoScheduleForm/TodoScheduleForm";
 import { useCreatePersonalSchedule } from "@/hooks/queries/usePersonalSchedules";
 import { formatDateToYYYYMMDD } from "@/utils/date";
-
+import { useNavigate } from "react-router-dom";
 function MainScheduleNewPage() {
+  const navigate = useNavigate();
+
   const form = useTodoScheduleForm({
     withEndDate: true,
     withEndTime: true,
@@ -15,8 +17,8 @@ function MainScheduleNewPage() {
     e.preventDefault();
     if (!form.handleFormValidation()) return;
     // 스케줄 생성 api
-    try {
-      mutate({
+    mutate(
+      {
         title: form.content,
         startDate: formatDateToYYYYMMDD(form.date.start),
         endDate: formatDateToYYYYMMDD(form.date.end),
@@ -24,11 +26,17 @@ function MainScheduleNewPage() {
         endTime: form.toggle.isTimeOn ? form.time.end : null,
         categoryId: form.categoryId || "",
         isAlarmed: form.toggle.isAlarmOn,
-      });
-      console.log("스케줄 생성 성공");
-    } catch (error) {
-      console.error(error);
-    }
+      },
+      {
+        onSuccess: () => {
+          console.log("일정 생성 성공");
+          navigate(-1);
+        },
+        onError: (error) => {
+          console.error("일정 생성 실패:", error);
+        },
+      }
+    );
   };
 
   return (
