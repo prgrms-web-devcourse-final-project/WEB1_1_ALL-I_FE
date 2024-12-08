@@ -6,7 +6,6 @@ import LogoIcon from "@/assets/icons/logo.svg?react";
 
 import * as Styled from "./Header.style";
 import { HEADER_CONFIG } from "./headerConfig";
-import AlarmIcon from "@/components/feature/header/AlarmIcon";
 
 function Header() {
   const { pathname } = useLocation();
