@@ -11,7 +11,7 @@ function LoginPage() {
   return (
     <Styled.Wrapper>
       <Styled.LogoWrapper>
-        <LogoIcon width="100%" height="100%" fill="none" stroke="none" />
+        <LogoIcon width="100%" height="100%" fill="var(--color-primary)" />
       </Styled.LogoWrapper>
 
       <Styled.Explan>계획과 일정을 AI와 함께 시작해보세요!</Styled.Explan>

@@ -28,7 +28,12 @@ function Header() {
       <Styled.HeaderContainer>
         <Styled.StyledNavLink to="/main">
           <Styled.LogoWrapper>
-            <LogoIcon width="100%" height="100%" fill="none" stroke="none" />
+            <LogoIcon
+              width="100%"
+              height="100%"
+              fill="var(--color-primary)"
+              stroke="none"
+            />
           </Styled.LogoWrapper>
         </Styled.StyledNavLink>
         <Styled.StyledNavLink to="/notifications">

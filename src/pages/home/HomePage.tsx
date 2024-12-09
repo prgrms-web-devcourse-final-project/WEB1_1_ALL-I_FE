@@ -1,7 +1,7 @@
 import * as Styled from "./HomePage.style";
 import { useNavigate } from "react-router-dom";
 import Blub from "@/assets/icons/bulb.svg?react";
-import logo from "@/assets/PlanWith_Logo.svg";
+import LogoIcon from "@/assets/PlanWith_Logo.svg?react";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -12,7 +12,12 @@ function HomePage() {
         <Styled.IconContainer>
           <Blub />
           <Styled.ImgContainer>
-            <img src={logo} alt="PlanWith" />
+            <LogoIcon
+              width="100%"
+              height="100%"
+              fill="currentColor"
+              stroke="none"
+            />
           </Styled.ImgContainer>
         </Styled.IconContainer>
         <Styled.explan>

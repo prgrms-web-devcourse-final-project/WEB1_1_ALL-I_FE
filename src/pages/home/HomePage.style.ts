@@ -24,12 +24,11 @@ export const IconContainer = styled.div`
 `;
 
 export const ImgContainer = styled.div`
-  width: 3rem;
   height: 1.6rem;
 
-  > img {
-    width: 100%;
-    height: 100%;
+  color: var(--color-white);
+  svg {
+    fill: currentColor;
   }
 `;
 
