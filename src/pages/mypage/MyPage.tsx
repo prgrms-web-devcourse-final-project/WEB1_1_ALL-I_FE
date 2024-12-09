@@ -136,7 +136,13 @@ function Mypage() {
           ) : (
             <>
               <Styled.UserName>{userData.nickname || "닉네임"}</Styled.UserName>
-              <Pencil onClick={handleEditClick} />
+              <Pencil
+                width="1rem"
+                height="1rem"
+                fill="none"
+                stroke="currentColor"
+                onClick={handleEditClick}
+              />
             </>
           )}
         </Styled.UserNameContainer>
