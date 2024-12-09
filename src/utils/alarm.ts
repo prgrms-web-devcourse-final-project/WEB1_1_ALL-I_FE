@@ -41,13 +41,43 @@ export const parsePersonalEventString = (str: string) => {
 export const parseGroupInvitationString = (str: string) => {
   if (!str.includes("GroupInvitationResDTO")) return null;
 
+  // group 정보를 추출하는 함수
+  const extractGroupInfo = (groupStr: string) => {
+    const groupId = groupStr.match(/groupId=([^,)]+)/)?.[1] || "";
+    const groupName = groupStr.match(/groupName=([^,)]+)/)?.[1] || "";
+    const description = groupStr.match(/description=([^,)]+)/)?.[1] || "";
+    return { groupId, groupName, description };
+  };
+
+  // sender와 receiver 정보를 추출하는 함수
+  const extractUserInfo = (userStr: string) => {
+    const userId = userStr.match(/userId=([^,)]+)/)?.[1] || "";
+    const nickname = userStr.match(/nickname=([^,)]+)/)?.[1] || "";
+    const email = userStr.match(/email=([^,)]+)/)?.[1] || "";
+    return { userId, nickname, email };
+  };
+
+  // 각 객체 문자열 추출
+  const groupMatch = str.match(/group=GroupListRes\([^)]+\)/)?.[0] || "";
+  const senderMatch = str.match(/sender=UserDTO\([^)]+\)/)?.[0] || "";
+  const receiverMatch = str.match(/receiver=UserDTO\([^)]+\)/)?.[0] || "";
+
+  const group = extractGroupInfo(groupMatch);
+  const sender = extractUserInfo(senderMatch);
+  const receiver = extractUserInfo(receiverMatch);
+
   return {
     groupInvitationId: extractValue(str, "groupInvitationId"),
     status: extractValue(str, "status"),
-    groupId: extractValue(str, "groupId"),
-    groupName: extractValue(str, "groupName"),
-    receiverId: extractValue(str, "receiverId"),
-    senderId: extractValue(str, "senderId"),
+    groupId: group.groupId,
+    groupName: group.groupName,
+    description: group.description,
+    senderId: sender.userId,
+    senderName: sender.nickname,
+    senderEmail: sender.email,
+    receiverId: receiver.userId,
+    receiverName: receiver.nickname,
+    receiverEmail: receiver.email,
   };
 };
 
