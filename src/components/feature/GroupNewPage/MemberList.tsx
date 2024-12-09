@@ -103,9 +103,18 @@ function MemberList({ groupId }: MemberListProps) {
         {memberList.map((user) => (
           <Styled.UserInfoContainer key={user.nickname}>
             <Styled.UserInfo>
-              <Profile width={25} height={25} stroke="#97CDBD" fill="#97CDBD" />
-              <p>{user.nickname}</p>
-              <p>{user.role === "LEADER" ? "그룹장" : "그룹원"}</p>
+              <Styled.UserInfoLeft>
+                <Profile
+                  width={25}
+                  height={25}
+                  stroke="#97CDBD"
+                  fill="#97CDBD"
+                />
+                <p>{user.nickname}</p>
+              </Styled.UserInfoLeft>
+              <Styled.UserRole>
+                {user.role === "LEADER" ? "그룹장" : "그룹원"}
+              </Styled.UserRole>
             </Styled.UserInfo>
             <Trashcan
               width={16}

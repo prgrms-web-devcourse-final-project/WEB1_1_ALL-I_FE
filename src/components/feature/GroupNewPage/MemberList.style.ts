@@ -36,5 +36,19 @@ export const UserInfoContainer = styled.div`
 
 export const UserInfo = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const UserInfoLeft = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const UserRole = styled.p`
+  font-size: var(--font-size-small);
+  color: var(--color-gray-medium);
+  margin-right: 1rem;
 `;
