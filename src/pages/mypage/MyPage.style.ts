@@ -10,6 +10,8 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   position: relative;
   gap: 30px;
+
+  padding-top: 2.5rem;
 `;
 
 export const ToggleContainer = styled.div`
@@ -19,7 +21,7 @@ export const ToggleContainer = styled.div`
   align-items: center;
   gap: 13px;
   position: absolute;
-  right: 10px;
+  right: 0.3rem;
   top: 0px;
 
   > p {

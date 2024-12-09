@@ -101,6 +101,7 @@ function GroupPage() {
           schedules={transformToCalendarFormat().calendarSchedules}
           todos={transformToCalendarFormat().calendarTodos}
           onDateSelect={setSelectedDate}
+          selectedDate={selectedDate}
           onMonthChange={handleMonthChange}
           initialDate={`${currentYearMonth.year}-${String(currentYearMonth.month).padStart(2, "0")}-01`}
         />

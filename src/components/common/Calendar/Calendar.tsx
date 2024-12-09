@@ -13,6 +13,7 @@ interface CalendarProps {
   schedules: CalendarSchedule[];
   todos: CalendarTodo[];
   initialDate: string;
+  selectedDate: string;
   onDateSelect: (date: string) => void;
   onMonthChange: (year: number, month: number) => void;
 }
@@ -21,6 +22,7 @@ function Calendar({
   schedules,
   todos,
   initialDate,
+  selectedDate,
   onDateSelect,
   onMonthChange,
 }: CalendarProps) {
@@ -34,9 +36,6 @@ function Calendar({
     const start = arg.view.currentStart;
     onMonthChange(start.getFullYear(), start.getMonth() + 1);
   };
-
-  console.log("Calendar: ", todoDateSet);
-  console.log("key: ", Array.from(todoDateSet).join(","));
 
   return (
     <div
@@ -85,7 +84,13 @@ function Calendar({
           eventBackgroundColor="var(--color-primary)"
           eventBorderColor="transparent"
           // 날짜 셀 설정
-          dayCellClassNames="calendar-day"
+          dayCellClassNames={(arg) => {
+            const date = arg.date.toLocaleDateString("en-CA");
+            return [
+              "calendar-day",
+              date === selectedDate ? "selected-date" : "",
+            ];
+          }}
           dayCellContent={({ date }) => {
             return { html: date.getDate().toString() };
           }}

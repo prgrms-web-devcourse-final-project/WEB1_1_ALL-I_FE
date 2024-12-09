@@ -12,7 +12,7 @@ import useGroupEditForm from "@/hooks/useGroupEditForm";
 // **가장 중요** -> 그룹 수정 api 연동해야 함
 function GroupEditPage() {
   const location = useLocation();
-  console.log(location.state); //
+  // console.log(location.state); //
   const { formData, handleChange, handleSubmit } = useGroupEditForm({
     groupName: location.state.groupName || "",
     initialColor: location.state.color || "#FFFFFF",

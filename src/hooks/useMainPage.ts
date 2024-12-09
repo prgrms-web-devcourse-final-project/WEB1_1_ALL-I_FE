@@ -22,7 +22,7 @@ import {
   useGetPersonalGroupSchedules,
   useGetPersonalGroupTodos,
 } from "./queries";
-
+import { useGetMyInfo } from "./queries/useUser";
 /**
  * TODO:
  * 날짜, 카테고리 필터링 로직
@@ -111,10 +111,8 @@ export function useMainPage({ year, month }: { year: string; month: string }) {
     [categories, personalTodos, personalGroupTodos]
   );
 
-  const mainUserId =
-    personalSchedulesData?.data && personalSchedulesData.data.length > 0
-      ? personalSchedulesData.data[0].userId
-      : undefined;
+  const { data: myInfoData } = useGetMyInfo();
+  const mainUserId = myInfoData?.userId;
 
   // 달력용 데이터
   const calendarSchedules = useMemo(
