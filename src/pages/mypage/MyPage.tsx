@@ -38,7 +38,9 @@ function Mypage() {
     // 서버에 닉네임 업데이트 API 호출 로직 추가 가능
     // console.log("닉네임 저장:", userData.nickname);
     putGroup(userData.nickname)
-      .then((res) => console.log(res))
+      .then
+      // (res) => console.log(res)
+      ()
       .catch((err) => console.log(err));
     setIsEditing(false);
   };
