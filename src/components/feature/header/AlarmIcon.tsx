@@ -91,15 +91,12 @@ function AlarmIcon() {
   useEffect(() => {
     const connect = () => {
       const token = useAuthStore.getState().access_token;
-      const eventSource = new EventSourcePolyfill(
-        `${import.meta.env.VITE_API_BASE_URL}/alarms/connect`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-          heartbeatTimeout: 10000000, // 10000초
-        }
-      );
+      const eventSource = new EventSourcePolyfill(`/api/alarms/connect`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+        heartbeatTimeout: 10000000, // 10000초
+      });
       eventSource.onopen = () => {
         console.log("SSE 연결 성공");
       };
