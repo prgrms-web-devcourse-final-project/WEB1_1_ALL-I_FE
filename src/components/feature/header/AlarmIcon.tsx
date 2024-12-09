@@ -91,17 +91,28 @@ function AlarmIcon() {
   useEffect(() => {
     const connect = () => {
       const token = useAuthStore.getState().access_token;
-      const eventSource = new EventSourcePolyfill(
-        `${import.meta.env.VITE_API_BASE_URL}/alarms/connect`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-          heartbeatTimeout: 10000000, // 10000초
-        }
-      );
+      const baseUrl =
+        import.meta.env.VITE_API_MODE === "development"
+          ? import.meta.env.VITE_API_DEVELOPMENT_BASE_URL
+          : import.meta.env.VITE_API_DEPLOYMENT_BASE_URL;
+      const eventSource = new EventSourcePolyfill(`${baseUrl}/alarms/connect`, {
+        headers: {
+          Authorization: `${token}`,
+          Accept: "text/event-stream",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
+        },
+        heartbeatTimeout: 10000000,
+        withCredentials: true,
+      });
       eventSource.onopen = () => {
         console.log("SSE 연결 성공");
+      };
+      eventSource.onerror = (error) => {
+        console.error("SSE 연결 에러:", error);
+        eventSource?.close();
+        // 연결이 끊기면 바로 재연결 시도
+        setTimeout(connect, 1000);
       };
       eventSource.onmessage = (event) => {
         console.log("Message from server:", event.data);

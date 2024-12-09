@@ -8,7 +8,6 @@ import {
   CreatePersonalScheduleRequest,
   DeletePersonalScheduleRequest,
   EditPersonalScheduleRequest,
-  GetPersonalSchedulesRequest,
 } from "@/types/apiRequest.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getYear, getMonth } from "@/utils/date";
