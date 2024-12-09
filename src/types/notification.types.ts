@@ -59,7 +59,7 @@ export interface EventResDTO {
 
 export interface AlarmResDTO {
   alarmId: string;
-  type: "EVENT";
+  type: string;
   description: string;
   userId: string;
   isRead: boolean;

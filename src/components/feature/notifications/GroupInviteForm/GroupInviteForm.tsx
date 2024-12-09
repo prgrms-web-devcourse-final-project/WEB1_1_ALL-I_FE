@@ -1,15 +1,10 @@
 import { Button } from "@/components/common/Button/Button.style";
 import * as Styled from "./GroupInviteForm.style";
-import {
-  acceptGroupInvitation,
-  getUserNameById,
-  rejectGroupInvitation,
-} from "@/apis/alarm";
-import { useEffect, useState } from "react";
+import { acceptGroupInvitation, rejectGroupInvitation } from "@/apis/alarm";
 
 interface GroupInviteFormProps {
   groupInvitationId: string;
-  senderId: string;
+  senderName: string;
   groupName: string;
   index: number;
   removeNotification: (index: number) => void;
@@ -17,13 +12,11 @@ interface GroupInviteFormProps {
 
 function GroupInviteForm({
   groupInvitationId,
-  senderId,
+  senderName,
   groupName,
   index,
   removeNotification,
 }: GroupInviteFormProps) {
-  const [senderName, setSenderName] = useState(""); // 보낸 사람 이름
-
   // 그룹 초대 수락
   const handleAccept = async () => {
     try {
@@ -43,16 +36,6 @@ function GroupInviteForm({
       console.error("그룹 초대 수락 실패:", error);
     }
   };
-
-  // senderId로 이름 조회
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getUserNameById(senderId);
-      setSenderName(data.data);
-    };
-
-    fetchData();
-  }, [senderId]);
 
   return (
     <Styled.Container>

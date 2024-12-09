@@ -116,9 +116,10 @@ function AlarmIcon() {
       };
       eventSource.onmessage = (event) => {
         console.log("Message from server:", event.data);
-        const parsed = parseNotificationDescription(event.data.description);
+        const jsObj = JSON.parse(event.data);
+        const parsed = parseNotificationDescription(jsObj.description);
         const newNotification = {
-          ...event.data,
+          ...jsObj,
           ...parsed,
         };
 
