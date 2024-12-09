@@ -33,8 +33,8 @@ function GroupTodoEditPage() {
       },
       {
         onSuccess: () => {
-          console.log("투두 수정 성공");
-          navigate(-1);
+          // console.log("투두 수정 성공");
+          navigate("/group");
         },
         onError: (error) => {
           console.error("투두 수정 실패:", error);

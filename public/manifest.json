@@ -1,6 +1,6 @@
 {
-  "name": "J-AI",
-  "short_name": "J-AI",
+  "name": "PlanWith",
+  "short_name": "PlanWith",
   "description": "Todo App with AI manager",
   "start_url": "/",
   "display": "standalone",

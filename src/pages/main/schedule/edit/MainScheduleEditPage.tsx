@@ -39,8 +39,8 @@ function MainScheduleEditPage() {
       },
       {
         onSuccess: () => {
-          console.log("스케줄 수정 성공");
-          navigate(-1);
+          // console.log("스케줄 수정 성공");
+          navigate("/main");
         },
         onError: (error) => {
           console.error("스케줄 수정 실패:", error);

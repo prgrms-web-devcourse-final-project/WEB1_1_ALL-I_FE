@@ -43,3 +43,7 @@ export const UserWrapper = styled.div`
     }
   }
 `;
+
+export const LogoWrapper = styled.div`
+  height: 2rem;
+`;
