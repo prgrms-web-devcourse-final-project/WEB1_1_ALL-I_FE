@@ -79,8 +79,8 @@ function MemberList({ groupId }: MemberListProps) {
         <TextInput
           name="member"
           type="text"
-          label="팀원 추가"
-          placeholder="팀원의 닉네임을 입력하고 한 번에 한 명씩 초대해주세요."
+          label="그룹원 추가"
+          placeholder="닉네임을 입력하고 한 번에 한 명씩 초대해주세요."
           required={false}
           value={nickname}
           onChange={handleChange}
@@ -98,7 +98,7 @@ function MemberList({ groupId }: MemberListProps) {
        *** 이는 알맞는 방법이 아닌 것 같음
        *** -> 팀원 목록은 "그룹원 조회 api"를 사용해서 보여주는게 맞지 않을까 싶음
        */}
-      <p>팀원 목록</p>
+      <p>그룹원 목록</p>
       <Styled.UserWrapper>
         {memberList.map((user) => (
           <Styled.UserInfoContainer key={user.nickname}>
