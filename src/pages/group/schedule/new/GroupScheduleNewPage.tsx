@@ -41,7 +41,7 @@ function GroupScheduleNewPage() {
       {
         onSuccess: () => {
           // console.log("일정 생성 성공");
-          navigate(-1);
+          navigate("/group");
         },
         onError: (error) => {
           console.error("일정 생성 실패:", error);

@@ -1,6 +1,6 @@
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import BackIcon from "@/assets/icons/back.svg?react";
-import LogoIcon from "@/assets/icons/logo.svg?react";
+import LogoIcon from "@/assets/PlanWith_Logo.svg?react";
 import AlarmIcon from "@/components/feature/header/AlarmIcon";
 import * as Styled from "./Header.style";
 import { HEADER_CONFIG } from "./headerConfig";
@@ -31,8 +31,8 @@ function Header() {
             <LogoIcon
               width="100%"
               height="100%"
-              fill="none"
-              stroke="currentColor"
+              fill="var(--color-primary)"
+              stroke="none"
             />
           </Styled.LogoWrapper>
         </Styled.StyledNavLink>
@@ -48,7 +48,11 @@ function Header() {
   // 뒤로가기 페이지
 
   const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 이동
+    if (pathname === "/categories") {
+      navigate("/main");
+    } else {
+      navigate(-1); // 이전 페이지로 이동
+    }
   };
 
   return (

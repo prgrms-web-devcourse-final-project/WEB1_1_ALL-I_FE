@@ -1,7 +1,6 @@
 import * as Styled from "./HomePage.style";
 import { useNavigate } from "react-router-dom";
-import Blub from "@/assets/icons/bulb.svg?react";
-import logo from "@/assets/onboard/logo.png";
+import LogoIcon from "@/assets/PlanWith_Logo.svg?react";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -10,9 +9,14 @@ function HomePage() {
     <Styled.Wrapper onClick={() => navigate("/login")}>
       <Styled.Container>
         <Styled.IconContainer>
-          <Blub />
+          <img src="logo192.png" alt="" style={{ width: "6rem" }} />
           <Styled.ImgContainer>
-            <img src={logo} alt="J-AI" />
+            <LogoIcon
+              width="100%"
+              height="100%"
+              fill="currentColor"
+              stroke="none"
+            />
           </Styled.ImgContainer>
         </Styled.IconContainer>
         <Styled.explan>

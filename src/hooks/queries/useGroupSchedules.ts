@@ -20,7 +20,7 @@ export const useCreateGroupSchedule = () => {
       scheduleData: CreateGroupScheduleRequest;
     }) => createGroupSchedule({ groupId, scheduleData }),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "schedules",
           getYear(variables.scheduleData.startDate),
@@ -48,7 +48,7 @@ export const useEditGroupSchedule = () => {
       scheduleData: EditGroupScheduleRequest;
     }) => editGroupSchedule({ groupId, scheduleId, scheduleData }),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "schedules",
           getYear(variables.scheduleData.startDate),
@@ -69,7 +69,7 @@ export const useDeleteGroupSchedule = () => {
     mutationFn: ({ groupId, eventId }: { groupId: string; eventId: string }) =>
       deleteRequest(`/groupEvents/${groupId}/events/${eventId}`),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["groupData"] });
+      queryClient.refetchQueries({ queryKey: ["groupData"] });
     },
   });
 };

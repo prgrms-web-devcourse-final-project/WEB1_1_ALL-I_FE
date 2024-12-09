@@ -26,7 +26,7 @@ function CategoriesEditPage() {
 
     editCategory(payload, {
       onSuccess: () => {
-        navigate(-1);
+        navigate("/categories");
       },
     });
   };

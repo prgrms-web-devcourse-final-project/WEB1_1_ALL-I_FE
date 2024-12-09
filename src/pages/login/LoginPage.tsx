@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import useLoginForm from "@/hooks/useLoginForm";
 import TextInput from "@/components/common/TextInput/TextInput";
 import Button from "@/components/common/Button/Button";
+import LogoIcon from "@/assets/PlanWith_Logo.svg?react";
 
 function LoginPage() {
   const { formData, handleChange, handleSubmit } = useLoginForm();
 
   return (
     <Styled.Wrapper>
-      <Styled.Name>J - AI</Styled.Name>
+      <Styled.LogoWrapper>
+        <LogoIcon width="100%" height="100%" fill="var(--color-primary)" />
+      </Styled.LogoWrapper>
+
       <Styled.Explan>계획과 일정을 AI와 함께 시작해보세요!</Styled.Explan>
       <Styled.Form onSubmit={handleSubmit}>
         <TextInput

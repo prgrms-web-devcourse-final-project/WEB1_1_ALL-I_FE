@@ -22,7 +22,7 @@ export const useCreatePersonalTodo = () => {
     mutationFn: (todoData: CreatePersonalTodoRequest) =>
       createPersonalTodo(todoData),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ["todos", getYear(variables.date), getMonth(variables.date)],
       });
     },
@@ -44,7 +44,7 @@ export const useEditPersonalTodo = () => {
       todoData: EditPersonalTodoRequest;
     }) => editPersonalTodo({ todoId, todoData }),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "todos",
           getYear(variables.todoData.date),
@@ -91,7 +91,7 @@ export const useDeletePersonalTodo = () => {
       data: DeletePersonalTodoRequest;
     }) => deletePersonalTodo(todoId),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "todos",
           getYear(variables.data.date),

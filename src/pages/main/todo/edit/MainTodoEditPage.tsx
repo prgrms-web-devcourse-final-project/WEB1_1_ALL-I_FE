@@ -32,8 +32,8 @@ function MainTodoEditPage() {
       },
       {
         onSuccess: () => {
-          console.log("투두 수정 성공");
-          navigate(-1);
+          // console.log("투두 수정 성공");
+          navigate("/main");
         },
         onError: (error) => {
           console.error("투두 수정 실패:", error);

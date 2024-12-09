@@ -20,7 +20,7 @@ export const useCreateGroupTodo = () => {
       todoData: CreateGroupTodoRequest;
     }) => createGroupTodo({ groupId, todoData }),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "schedules",
           getYear(variables.todoData.date),
@@ -48,7 +48,7 @@ export const useEditGroupTodo = () => {
       todoData: EditGroupTodoRequest;
     }) => editGroupTodo({ groupId, todoId, todoData }),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "schedules",
           getYear(variables.todoData.date),
@@ -69,7 +69,7 @@ export const useDeleteGroupTodo = () => {
     mutationFn: ({ groupId, todoId }: { groupId: string; todoId: string }) =>
       deleteRequest(`/group-todos/${groupId}/todos/${todoId}`),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["groupData"] });
+      queryClient.refetchQueries({ queryKey: ["groupData"] });
     },
   });
 };
