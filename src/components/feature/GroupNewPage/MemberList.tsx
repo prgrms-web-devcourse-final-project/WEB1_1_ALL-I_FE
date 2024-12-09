@@ -48,6 +48,13 @@ function MemberList({ groupId }: MemberListProps) {
 
   const handleEjection = async (groupSettingId: string) => {
     // 그룹원 방출(그룹장)
+    if (
+      memberList.find((user) => user.role === "LEADER")?.groupSettingId ===
+      groupSettingId
+    ) {
+      toast.error("그룹장은 방출할 수 없습니다.");
+      return;
+    }
     const res = await deleteMember(groupSettingId);
     if (res.code === 200) {
       toast(res.message);
