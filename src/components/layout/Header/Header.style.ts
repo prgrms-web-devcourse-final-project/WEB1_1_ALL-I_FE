@@ -37,11 +37,7 @@ export const LogoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 1.7rem;
-
-  // 로고 이미지 추가되면 삭제할 부분
-  font-size: var(--icon-size-group-1);
-  color: var(--color-primary);
+  height: var(--icon-size-group-2);
 `;
 
 export const IconWrapper = styled.div`
@@ -50,6 +46,7 @@ export const IconWrapper = styled.div`
   cursor: pointer;
   height: var(--icon-size-group-1);
   width: var(--icon-size-group-1);
+
   &:hover {
     color: var(--color-primary-hover);
   }
