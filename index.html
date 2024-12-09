@@ -10,7 +10,7 @@
     <link rel="manifest" href="manifest.json" />
     <title>JAI</title>
     <script>
-      if ("production" === "%VITE_API_MODE%") {
+      if ("development" !== "%VITE_API_MODE%") {
         const meta = document.createElement("meta");
         meta.httpEquiv = "Content-Security-Policy";
         meta.content = "upgrade-insecure-requests";
