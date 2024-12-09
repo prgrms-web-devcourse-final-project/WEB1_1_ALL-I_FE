@@ -94,8 +94,12 @@ function AlarmIcon() {
       const eventSource = new EventSourcePolyfill(`/api/alarms/connect`, {
         headers: {
           Authorization: `${token}`,
+          Accept: "text/event-stream",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
         },
-        heartbeatTimeout: 10000000, // 10000초
+        heartbeatTimeout: 10000000,
+        withCredentials: true,
       });
       eventSource.onopen = () => {
         console.log("SSE 연결 성공");
