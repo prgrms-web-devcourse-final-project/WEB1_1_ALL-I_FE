@@ -46,8 +46,6 @@ function MainPage() {
     month: currentYearMonth.month,
   });
 
-  console.log(currentYearMonth);
-
   // 월 변경 시 해당 월의 1일로 selectedDate 업데이트
   const handleMonthChange = (year: number, month: number) => {
     setCurrentYearMonth({

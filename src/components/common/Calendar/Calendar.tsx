@@ -35,9 +35,6 @@ function Calendar({
     onMonthChange(start.getFullYear(), start.getMonth() + 1);
   };
 
-  console.log("Calendar: ", todoDateSet);
-  console.log("key: ", Array.from(todoDateSet).join(","));
-
   return (
     <div
       style={{
