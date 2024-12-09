@@ -14,7 +14,7 @@ export const getAlarm = async () => {
 export const acceptGroupInvitation = async (groupInvitationId: string) => {
   try {
     return await updateRequest(
-      `/group-invitations/${groupInvitationId}/accept`
+      `/groups-invitation/${groupInvitationId}/accept`
     );
   } catch (error) {
     console.error("그룹 초대 수락 실패:", error);
@@ -26,7 +26,7 @@ export const acceptGroupInvitation = async (groupInvitationId: string) => {
 export const rejectGroupInvitation = async (groupInvitationId: string) => {
   try {
     return await updateRequest(
-      `/group-invitations/${groupInvitationId}/decline`
+      `/groups-invitation/${groupInvitationId}/decline`
     );
   } catch (error) {
     console.error("그룹 초대 거절 실패:", error);
