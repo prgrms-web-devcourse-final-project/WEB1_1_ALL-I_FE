@@ -3,7 +3,10 @@ import useAuthStore from "@/store/useAuthStore";
 
 // Axios 인스턴스 생성
 const apiClient: AxiosInstance = axios.create({
-  baseURL: "http://3.37.249.15:8080", // 환경변수에서 baseURL 가져오기
+  baseURL:
+    import.meta.env.VITE_API_MODE === "development"
+      ? import.meta.env.VITE_API_DEVELOPMENT_BASE_URL
+      : import.meta.env.VITE_API_DEPLOYMENT_BASE_URL, // 환경변수에서 baseURL 가져오기
   withCredentials: true, // 쿠키 데이터 전송
   timeout: 30000, // 요청 타임아웃 설정
   headers: { "Content-Type": "application/json" }, // 기본 헤더 설정
