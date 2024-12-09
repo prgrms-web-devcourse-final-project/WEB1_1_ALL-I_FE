@@ -101,6 +101,7 @@ function MainPage() {
         schedules={filteredCalendarSchedules}
         todos={data.calendar.todos}
         onDateSelect={setSelectedDate}
+        selectedDate={selectedDate}
         initialDate={`${currentYearMonth.year}-${String(currentYearMonth.month).padStart(2, "0")}-01`}
         onMonthChange={handleMonthChange}
       />

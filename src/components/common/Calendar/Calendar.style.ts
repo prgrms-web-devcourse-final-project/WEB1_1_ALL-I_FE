@@ -130,6 +130,36 @@ export const CalendarWrapper = styled.div`
     background-color: transparent !important;
     position: relative;
 
+    // /* 날짜 숫자 흰색으로 변경 */
+    // .fc-daygrid-day-number {
+    //   color: var(--color-white);
+    //   // color: var(--color-primary);
+    // }
+
+    // .fc-daygrid-day-top {
+    //   position: relative;
+    //   z-index: 1;
+    // }
+
+    // .fc-daygrid-day-top::after {
+    //   content: "";
+    //   position: absolute;
+    //   top: 50%;
+    //   left: 50%;
+    //   transform: translate(-50%, -50%);
+    //   width: 1.5rem;
+    //   height: 1.5rem;
+    //   background-color: var(--color-primary);
+    //   // border: 1px solid var(--color-primary);
+    //   border-radius: var(--border-radius-default);
+    //   z-index: -1;
+    // }
+  }
+
+  .selected-date {
+    background-color: transparent !important;
+    position: relative;
+
     /* 날짜 숫자 흰색으로 변경 */
     .fc-daygrid-day-number {
       color: var(--color-white);
@@ -150,7 +180,7 @@ export const CalendarWrapper = styled.div`
       width: 1.5rem;
       height: 1.5rem;
       background-color: var(--color-primary);
-      // border: 1px solid var(--color-primary);
+      border: 1px solid var(--color-primary);
       border-radius: var(--border-radius-default);
       z-index: -1;
     }
@@ -296,5 +326,7 @@ export const CalendarWrapper = styled.div`
   //       cursor: pointer;
   //     }
   //   }
+
+
   }
 `;
