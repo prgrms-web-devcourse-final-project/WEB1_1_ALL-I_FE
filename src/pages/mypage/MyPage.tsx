@@ -36,7 +36,7 @@ function Mypage() {
       return;
     }
     // 서버에 닉네임 업데이트 API 호출 로직 추가 가능
-    console.log("닉네임 저장:", userData.nickname);
+    // console.log("닉네임 저장:", userData.nickname);
     putGroup(userData.nickname)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
@@ -60,7 +60,7 @@ function Mypage() {
   const handleToggleUpdate = (type: "time" | "alarm", isOn: boolean) => {
     if (type === "time") {
       setIsDark(isOn);
-      console.log(isOn);
+      // console.log(isOn);
     }
     // 필요한 경우 type === "alarm"에 대한 로직 추가 가능
   };
@@ -79,7 +79,7 @@ function Mypage() {
   useEffect(() => {
     getUser()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // 데이터 상태에 저장
         setUserData({
           nickname: res.data.nickname,

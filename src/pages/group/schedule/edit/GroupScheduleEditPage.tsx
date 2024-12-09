@@ -42,7 +42,7 @@ function GroupScheduleEditPage() {
       },
       {
         onSuccess: () => {
-          console.log("일정 수정 성공");
+          // console.log("일정 수정 성공");
           navigate(-1);
         },
         onError: (error) => {

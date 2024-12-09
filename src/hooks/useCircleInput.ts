@@ -21,7 +21,7 @@ function useCircleInput(defaultColor: string) {
     } else {
       setSelectedColor(value); // color picker 값 그대로 사용
     }
-    console.log(`Selected Color: ${selectedColor}`);
+    // console.log(`Selected Color: ${selectedColor}`);
   };
 
   return { selectedColor, handleChange };

@@ -126,7 +126,7 @@ export function useChat() {
       prompt: inputValue,
     };
 
-    console.log("requestData 데이터:", requestData);
+    // console.log("requestData 데이터:", requestData);
 
     setInputValue("");
 
@@ -136,7 +136,7 @@ export function useChat() {
         requestData
       );
 
-      console.log("response 데이터:", response);
+      // console.log("response 데이터:", response);
 
       const token = response.data.tokenReqDTO?.token;
 

@@ -25,7 +25,7 @@ function useGroupEditForm(initialState: UseGroupEditProps) {
     e.preventDefault();
     putGroup({ formData })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.code == 200) {
           navigate("/group/1");
         } else if (res.status == 403) {

@@ -37,7 +37,7 @@ function MemberList({ groupId }: MemberListProps) {
       group_id: groupId,
       nickname,
     });
-    console.log(res);
+    // console.log(res);
     if (res.code == 201) {
       toast.success(`${nickname}에게 초대 메세지를 보냈습니다.`);
       setNickname("");
@@ -64,7 +64,7 @@ function MemberList({ groupId }: MemberListProps) {
     // 이 그룹에 속해있는 그룹원을 조회 및 렌더링에 반영
     getMember({ group_id: groupId })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setMemberList(res.data);
       })
       .catch((err) => console.log(err));

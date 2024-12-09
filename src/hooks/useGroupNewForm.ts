@@ -28,7 +28,7 @@ function useGroupNewForm(initialState: FormData) {
       groupColor: formData.color,
     });
 
-    console.log(res);
+    // console.log(res);
     if (res.code == 201) {
       toast(res.message);
       navigate("/group/1"); // 생성 후 그룹 페이지 1로 이동
