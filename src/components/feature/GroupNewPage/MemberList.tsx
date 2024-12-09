@@ -105,7 +105,7 @@ function MemberList({ groupId }: MemberListProps) {
             <Styled.UserInfo>
               <Profile width={25} height={25} stroke="#97CDBD" fill="#97CDBD" />
               <p>{user.nickname}</p>
-              <p>{user.role}</p>
+              <p>{user.role === "LEADER" ? "그룹장" : "그룹원"}</p>
             </Styled.UserInfo>
             <Trashcan
               width={16}
