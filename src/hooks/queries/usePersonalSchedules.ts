@@ -20,7 +20,7 @@ export const useCreatePersonalSchedule = () => {
     mutationFn: (scheduleData: CreatePersonalScheduleRequest) =>
       createPersonalSchedule(scheduleData),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "schedules",
           getYear(variables.startDate),
@@ -46,7 +46,7 @@ export const useEditPersonalSchedule = () => {
       scheduleData: EditPersonalScheduleRequest;
     }) => editPersonalSchedule({ scheduleId, scheduleData }),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "schedules",
           getYear(variables.scheduleData.startDate),
@@ -89,7 +89,7 @@ export const useDeletePersonalSchedule = () => {
       data: DeletePersonalScheduleRequest;
     }) => deletePersonalSchedule(scheduleId),
     onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: [
           "schedules",
           getYear(variables.data.date),

@@ -42,7 +42,7 @@ export const useCreateCategory = () => {
       createCategory(categoryData),
     onSuccess: (response) => {
       addCategory(response.data);
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ["categories"],
       });
     },
@@ -61,7 +61,7 @@ export const useEditCategory = () => {
       editCategory(categoryData),
     onSuccess: (response) => {
       updateCategory(response.data);
-      queryClient.invalidateQueries({
+      queryClient.refetchQueries({
         queryKey: ["categories"],
       });
     },
