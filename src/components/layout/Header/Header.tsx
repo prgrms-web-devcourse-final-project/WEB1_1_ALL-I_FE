@@ -1,6 +1,6 @@
 import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import BackIcon from "@/assets/icons/back.svg?react";
-import LogoIcon from "@/assets/icons/logo.svg?react";
+import LogoIcon from "@/assets/PlanWith_Logo.svg?react";
 import AlarmIcon from "@/components/feature/header/AlarmIcon";
 import * as Styled from "./Header.style";
 import { HEADER_CONFIG } from "./headerConfig";
@@ -28,12 +28,7 @@ function Header() {
       <Styled.HeaderContainer>
         <Styled.StyledNavLink to="/main">
           <Styled.LogoWrapper>
-            <LogoIcon
-              width="100%"
-              height="100%"
-              fill="none"
-              stroke="currentColor"
-            />
+            <LogoIcon width="100%" height="100%" fill="none" stroke="none" />
           </Styled.LogoWrapper>
         </Styled.StyledNavLink>
         <Styled.StyledNavLink to="/notifications">
