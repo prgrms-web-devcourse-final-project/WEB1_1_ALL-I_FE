@@ -63,6 +63,11 @@ function Mypage() {
     if (type === "time") {
       setIsDark(isOn);
       // console.log(isOn);
+      if (!isOn) {
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
     }
     // 필요한 경우 type === "alarm"에 대한 로직 추가 가능
   };
