@@ -32,8 +32,8 @@ function GroupTodoNewPage() {
       },
       {
         onSuccess: () => {
-          console.log("투두 생성 성공");
-          navigate(-1);
+          // console.log("투두 생성 성공");
+          navigate("/group");
         },
         onError: (error) => {
           console.error("투두 생성 실패:", error);

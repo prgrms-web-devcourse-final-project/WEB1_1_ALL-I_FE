@@ -24,7 +24,7 @@ function MainTodoNewPage() {
       {
         onSuccess: () => {
           // console.log("투두 생성 성공");
-          navigate(-1);
+          navigate("/main");
         },
         onError: (error) => {
           console.error("투두 생성 실패:", error);

@@ -30,7 +30,7 @@ function MainScheduleNewPage() {
       {
         onSuccess: () => {
           // console.log("일정 생성 성공");
-          navigate(-1);
+          navigate("/main");
         },
         onError: (error) => {
           console.error("일정 생성 실패:", error);

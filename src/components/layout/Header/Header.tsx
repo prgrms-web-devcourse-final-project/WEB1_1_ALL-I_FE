@@ -48,7 +48,11 @@ function Header() {
   // 뒤로가기 페이지
 
   const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 이동
+    if (pathname === "/categories") {
+      navigate("/main");
+    } else {
+      navigate(-1); // 이전 페이지로 이동
+    }
   };
 
   return (
