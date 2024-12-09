@@ -104,6 +104,12 @@ function AlarmIcon() {
       eventSource.onopen = () => {
         console.log("SSE 연결 성공");
       };
+      eventSource.onerror = (error) => {
+        console.error("SSE 연결 에러:", error);
+        eventSource?.close();
+        // 연결이 끊기면 바로 재연결 시도
+        setTimeout(connect, 1000);
+      };
       eventSource.onmessage = (event) => {
         console.log("Message from server:", event.data);
         const parsed = parseNotificationDescription(event.data.description);
