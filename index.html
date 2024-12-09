@@ -9,6 +9,14 @@
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="manifest.json" />
     <title>JAI</title>
+    <script>
+      if ("production" === "%VITE_API_MODE%") {
+        const meta = document.createElement("meta");
+        meta.httpEquiv = "Content-Security-Policy";
+        meta.content = "upgrade-insecure-requests";
+        document.head.appendChild(meta);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
