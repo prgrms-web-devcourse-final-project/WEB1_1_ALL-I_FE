@@ -11,7 +11,6 @@ import {
   CreatePersonalTodoRequest,
   DeletePersonalTodoRequest,
   EditPersonalTodoRequest,
-  GetPersonalTodosRequest,
 } from "@/types/apiRequest.type";
 import { getYear, getMonth } from "@/utils/date";
 

@@ -14,7 +14,7 @@
       ]
     },
     {
-      "source": "/workbox-.*.js",
+      "source": "/workbox-:any*.js",
       "headers": [
         {
           "key": "Content-Type",
