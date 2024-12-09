@@ -91,7 +91,11 @@ function AlarmIcon() {
   useEffect(() => {
     const connect = () => {
       const token = useAuthStore.getState().access_token;
-      const eventSource = new EventSourcePolyfill(`/api/alarms/connect`, {
+      const baseUrl =
+        import.meta.env.VITE_API_MODE === "development"
+          ? import.meta.env.VITE_API_DEVELOPMENT_BASE_URL
+          : import.meta.env.VITE_API_DEPLOYMENT_BASE_URL;
+      const eventSource = new EventSourcePolyfill(`${baseUrl}/alarms/connect`, {
         headers: {
           Authorization: `${token}`,
           Accept: "text/event-stream",
