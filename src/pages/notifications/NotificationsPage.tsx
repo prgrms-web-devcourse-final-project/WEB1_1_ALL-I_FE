@@ -32,7 +32,7 @@ function NotificationsPage() {
       READ_NOTIFICATIONS_KEY,
       JSON.stringify(updatedReadNotifications)
     );
-    // 읽지 않은 알림 목록 저장
+    // 읽지 않은 알림 목록 삭제
     localStorage.removeItem(UNREAD_NOTIFICATIONS_KEY);
     // 읽지 않은 알림 개수 초기화
     updateUnreadCount(0);
@@ -58,7 +58,7 @@ function NotificationsPage() {
             <GroupInviteForm
               key={index}
               groupInvitationId={invitation.groupInvitationId}
-              senderId={invitation.senderId}
+              senderName={invitation.senderName}
               groupName={invitation.groupName}
               index={index}
               removeNotification={removeNotification}
