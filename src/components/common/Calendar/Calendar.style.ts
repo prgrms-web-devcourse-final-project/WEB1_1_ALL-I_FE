@@ -156,6 +156,7 @@ export const CalendarWrapper = styled.div`
     // }
   }
 
+  // 선택한 날짜 스타일링
   .selected-date {
     background-color: transparent !important;
     position: relative;
@@ -177,8 +178,8 @@ export const CalendarWrapper = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.6rem;
+      height: 1.6rem;
       background-color: var(--color-primary);
       border: 1px solid var(--color-primary);
       border-radius: var(--border-radius-default);
@@ -286,15 +287,18 @@ export const CalendarWrapper = styled.div`
   /* 투두 관련 스타일링 */
   /* 투두 점 스타일링 */
   .todo-dot {
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     position: absolute;
     /* 다른 레이아웃에서도 점 위치 적절히 유지되도록 중앙에서 이동 */
     top: 50%;
     right: 50%;
-    transform: translate(225%, -225%);
-    background: linear-gradient(to right, #e1e1ff, #ebffe1); // 그라데이션 적용
-    border: 0.01px solid var(--color-primary);
+    transform: translate(200%, -200%);
+    // background: linear-radient(to right, #e1e1ff, #ebffe1); // 그라데이션 적용
+    // background: var(--color-primary-hover);
+    // background: var(--text-secondary);
+    background: var(--color-red);
+    // border: 0.01px solid var(--color-primary);
     // box-shadow: 0px 1.5px 4px rgba(0, 0, 0, 0.35);
     // background-color: var(--color-gray-medium);
     border-radius: var(--border-radius-circle);

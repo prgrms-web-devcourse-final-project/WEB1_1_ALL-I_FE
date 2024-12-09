@@ -23,7 +23,7 @@ function MainTodoNewPage() {
       },
       {
         onSuccess: () => {
-          console.log("투두 생성 성공");
+          // console.log("투두 생성 성공");
           navigate(-1);
         },
         onError: (error) => {

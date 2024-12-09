@@ -30,7 +30,7 @@ function useLoginForm() {
       email: formData.email,
       password: formData.password,
     });
-    console.log(res);
+    // console.log(res);
     if (res.message == "ok") {
       // 로그인 성공
       setAccessToken(res.access_token); // access_token 저장

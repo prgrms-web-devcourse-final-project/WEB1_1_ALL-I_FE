@@ -29,7 +29,7 @@ function MainScheduleNewPage() {
       },
       {
         onSuccess: () => {
-          console.log("일정 생성 성공");
+          // console.log("일정 생성 성공");
           navigate(-1);
         },
         onError: (error) => {

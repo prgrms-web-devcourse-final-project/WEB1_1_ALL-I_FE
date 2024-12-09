@@ -64,7 +64,7 @@ html {
   --color-category9: #e8e8e8;
 
   /* breakpoint */
-  --breakpoint-mobile: 600px;
+  --breakpoint-mobile: 430px;
 
   /* padding */
   --padding-side-default: 2rem;

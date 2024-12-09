@@ -33,6 +33,6 @@ export const SHOW_NAV: NavPath[] = [
 export const NAV_ITEMS = [
   { path: "/main", icon: HomeIcon, label: "메인" },
   { path: "/group", icon: GroupIcon, label: "그룹" },
-  { path: "/chat", icon: ChatbotIcon, label: "J-AI" },
+  { path: "/chat", icon: ChatbotIcon, label: "챗봇" },
   { path: "/mypage", icon: ProfileIcon, label: "프로필" },
 ] as const;
