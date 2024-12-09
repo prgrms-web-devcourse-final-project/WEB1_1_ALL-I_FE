@@ -46,8 +46,6 @@ function MainPage() {
     month: currentYearMonth.month,
   });
 
-  console.log(currentYearMonth);
-
   // 월 변경 시 해당 월의 1일로 selectedDate 업데이트
   const handleMonthChange = (year: number, month: number) => {
     setCurrentYearMonth({
@@ -103,6 +101,7 @@ function MainPage() {
         schedules={filteredCalendarSchedules}
         todos={data.calendar.todos}
         onDateSelect={setSelectedDate}
+        selectedDate={selectedDate}
         initialDate={`${currentYearMonth.year}-${String(currentYearMonth.month).padStart(2, "0")}-01`}
         onMonthChange={handleMonthChange}
       />

@@ -37,7 +37,7 @@ function MemberList({ groupId }: MemberListProps) {
       group_id: groupId,
       nickname,
     });
-    console.log(res);
+    // console.log(res);
     if (res.code == 201) {
       toast.success(`${nickname}에게 초대 메세지를 보냈습니다.`);
       setNickname("");
@@ -48,6 +48,13 @@ function MemberList({ groupId }: MemberListProps) {
 
   const handleEjection = async (groupSettingId: string) => {
     // 그룹원 방출(그룹장)
+    if (
+      memberList.find((user) => user.role === "LEADER")?.groupSettingId ===
+      groupSettingId
+    ) {
+      toast.error("그룹장은 방출할 수 없습니다.");
+      return;
+    }
     const res = await deleteMember(groupSettingId);
     if (res.code === 200) {
       toast(res.message);
@@ -64,7 +71,7 @@ function MemberList({ groupId }: MemberListProps) {
     // 이 그룹에 속해있는 그룹원을 조회 및 렌더링에 반영
     getMember({ group_id: groupId })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setMemberList(res.data);
       })
       .catch((err) => console.log(err));
@@ -79,8 +86,8 @@ function MemberList({ groupId }: MemberListProps) {
         <TextInput
           name="member"
           type="text"
-          label="팀원 추가"
-          placeholder="팀원의 닉네임을 입력하고 한 번에 한 명씩 초대해주세요."
+          label="그룹원 추가"
+          placeholder="닉네임을 입력하고 한 번에 한 명씩 초대해주세요."
           required={false}
           value={nickname}
           onChange={handleChange}
@@ -98,14 +105,23 @@ function MemberList({ groupId }: MemberListProps) {
        *** 이는 알맞는 방법이 아닌 것 같음
        *** -> 팀원 목록은 "그룹원 조회 api"를 사용해서 보여주는게 맞지 않을까 싶음
        */}
-      <p>팀원 목록</p>
+      <p>그룹원 목록</p>
       <Styled.UserWrapper>
         {memberList.map((user) => (
           <Styled.UserInfoContainer key={user.nickname}>
             <Styled.UserInfo>
-              <Profile width={25} height={25} stroke="#97CDBD" fill="#97CDBD" />
-              <p>{user.nickname}</p>
-              <p>{user.role}</p>
+              <Styled.UserInfoLeft>
+                <Profile
+                  width={25}
+                  height={25}
+                  stroke="#97CDBD"
+                  fill="#97CDBD"
+                />
+                <p>{user.nickname}</p>
+              </Styled.UserInfoLeft>
+              <Styled.UserRole>
+                {user.role === "LEADER" ? "그룹장" : "그룹원"}
+              </Styled.UserRole>
             </Styled.UserInfo>
             <Trashcan
               width={16}

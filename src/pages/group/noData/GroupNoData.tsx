@@ -12,7 +12,7 @@ function GroupNoData() {
     // 그룹이 있다면 ->그룹 페이지로 렌더링
     getGroup()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.length > 0) {
           // navigate(`/group/${res.data[0].groupId}`);
           navigate(`/group/1`);
