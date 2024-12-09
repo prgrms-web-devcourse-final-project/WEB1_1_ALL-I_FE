@@ -55,6 +55,10 @@
   ],
   "rewrites": [
     {
+      "source": "/server/(.*)",
+      "destination": "http://3.37.249.15:8080/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
