@@ -2,7 +2,7 @@
 
 <div style="display: flex; justify-content: center; gap: 10px; align-items: center; width: 100%;">
   <img src="./public/logo192.png" height="50" alt="logo" />
-  <img src="./public/PlanWith_Logo.png" height="50" alt="logo" />
+  <img src="./public/README/PlanWith_Logo.png" height="50" alt="logo" />
 </div>
 
 ## 배포 주소
