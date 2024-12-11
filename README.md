@@ -1,50 +1,45 @@
-# React + TypeScript + Vite
+# PlanWith
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div style="display: flex; justify-content: center; gap: 10px; align-items: center; width: 100%;">
+  <img src="./public/logo192.png" height="50" alt="logo" />
+  <img src="./public/PlanWith_Logo.png" height="50" alt="logo" />
+</div>
 
-Currently, two official plugins are available:
+## 배포 주소
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[web-1-1-all-i-fe.vercel.app](https://web-1-1-all-i-fe.vercel.app)
 
-## Expanding the ESLint configuration
+## 팀원 소개
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### [프론트엔드]
 
-- Configure the top-level `parserOptions` property like this:
+| 서진혁                                            | 이가영                             | 김우종                                  | 조준영                                      |
+| ------------------------------------------------- | ---------------------------------- | --------------------------------------- | ------------------------------------------- |
+| [jinhyukSeo777](https://github.com/jinhyukSeo777) | [Zero](https://github.com/Ga-Zero) | [wilderif](https://github.com/wilderif) | [JunYoung02](https://github.com/JunYoung02) |
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+| 이민정                                    | 박윤영                                | 정소은                                    |
+| ----------------------------------------- | ------------------------------------- | ----------------------------------------- |
+| [TrixieL20](https://github.com/TrixieL20) | [pyy2114](https://github.com/pyy2114) | [sunnism03](https://github.com/sunnism03) |
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 개발 기간
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- 기획 : 2024.11.15 ~ 2024.11.22
+- 개발 : 2024.11.25 ~ 2024.12.06
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 🔖 프로젝트 소개
+
+**PlaneWith : J로 만들어줄 AI 비서**
+
+나의 일정 및 할 일을 나 대신 관리해줄 AI 비서 서비스
+
+## 👀 주요기능
+
+## 📒 플로우차트
+
+## 📝 와이어프레임
+
+## ✅ 요구 명세서
+
+## 💼 ERD
+
+## 📌 API 명세서
