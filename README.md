@@ -35,11 +35,13 @@
 ## 👀 주요기능
 
 ## 📒 플로우차트
-
+![image](https://github.com/user-attachments/assets/9b06ea6b-4ae7-48b0-8503-664a847e9192)
 ## 📝 와이어프레임
-
+![image](https://github.com/user-attachments/assets/636197cc-1b4d-4822-b83a-c2ee4367266b)
+## ⚒️ 시스템아키텍처
+![image](https://github.com/user-attachments/assets/bc4719db-6bb8-45b6-b845-ab208b967816)
 ## ✅ 요구 명세서
 
 ## 💼 ERD
-
+![image](https://github.com/user-attachments/assets/9c6a9132-4789-4b17-9f9f-cdc45b6ed205)
 ## 📌 API 명세서
