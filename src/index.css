@@ -1,68 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+html {
+  font-size: 15px;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* font-size */
+  --font-size-max-extra-large: 1.667rem; /* 25px */
+  --font-size-extra-large: 1.333rem; /* 20px */
+  --font-size-large: 1.2rem; /* 18px */
+  --font-size-medium: 1rem; /* 15px */
+  --font-size-small: 0.8rem; /* 12px */
+  --font-size-micro: 0.667rem; /* 10px */
+  --font-size-micro-small: 0.533rem; /* 8px */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* font-weight */
+  --font-weight-extrabold: 800;
+  --font-weight-bold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-thin: 300;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* icon size */
+  --icon-size-group-1: 1.5rem; /* 24px */
+  --icon-size-group-2: 1.333rem; /* 20px */
+  --icon-size-group-3: 1rem; /* 15px */
+
+  /* checkbox size */
+  --size-checkbox: 1rem; /* 15px */
+
+  /* radius */
+  --border-radius-default: 5px;
+  --border-radius-large: 8px;
+  --border-radius-circle: 50%;
+
+  /* color */
+  --color-primary: #97cdbd;
+  --color-primary-hover: #5fb69c;
+  --color-red: #fc9898;
+
+  /* 무채색 계열 */
+  --color-white: #ffffff;
+  --color-gray-light: #b1b1b1;
+  --color-gray-medium: #9d9d9d;
+  --color-gray-dark: #3b3b3b;
+  --color-black: #333333;
+
+  /* 배경색, 텍스트 색상 */
+  --background-primary: var(--color-white);
+  --text-primary: var(--color-black);
+  --text-secondary: var(--color-gray-dark);
+
+  /* 카테고리 기본 색상 설정 */
+  --color-category1: #ffe1fd;
+  --color-category2: #ffe3e1;
+  --color-category3: #fff0e1;
+  --color-category4: #fbffe1;
+  --color-category5: #ebffe1;
+  --color-category6: #e1e1ff;
+  --color-category7: #e1edff;
+  --color-category8: #e1fbff;
+  --color-category9: #e8e8e8;
+
+  /* breakpoint */
+  --breakpoint-mobile: 430px;
+
+  /* padding */
+  --padding-side-default: 2rem;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* 다크모드 */
+[data-theme="dark"] {
+  --background-primary: var(--color-black);
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-gray-light);
 }
-a:hover {
-  color: #535bf2;
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+
+  max-width: var(--breakpoint-mobile);
   min-height: 100vh;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  background-color: #e5e5e5;
+  color: var(--text-primary);
+  margin: 0 auto;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* 9. Create a root stacking context */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* Added */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+a,
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  touch-action: manipulation;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  text-decoration: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
 }
