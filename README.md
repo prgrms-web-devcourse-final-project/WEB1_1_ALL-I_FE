@@ -67,18 +67,18 @@ AI 비서가 일정을 분배하고 캘린더에 자동으로 등록하는 데 �
 
 ### 회원가입
 - 이메일, 비밀번호, 닉네임을 작성해 회원가입을 진행할 수 있습니다.
-<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2F15e469f4-25c5-4921-83b7-f9d7ee841571%2F112.png/size/w=570?exp=1734963606&sig=LgYf3cvaKnT1-ZRmLlRVNIn7fCk5XvVlgRYOoGS4M80" alt="UI Screenshot" style="width: 300px; height: auto;">
+<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2F15e469f4-25c5-4921-83b7-f9d7ee841571%2F112.png/size/w=570?exp=1740956812&sig=r5OWQdRwhTWBrEO93lxDV0v61vCXQesZJSwV_78P1W8" alt="UI Screenshot" style="width: 300px; height: auto;">
 <br>
 
 ### 개인화면
 - 캘린더를 통해 일정이 있는 날들을 한눈에 확인할 수 있습니다.
 - 아래에서 세부 일정을 확인할 수 있습니다.
-<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fc5e2796d-0428-4d61-9f7e-e8339ea65005%2F11.png/size/w=570?exp=1734963639&sig=djf7IQB4IDxxz-FlnIrb1PuGML9iefTiH8XWliQC7X8" alt="UI Screenshot" style="width: 300px; height: auto;">
+<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fc5e2796d-0428-4d61-9f7e-e8339ea65005%2F11.png/size/w=570?exp=1740956858&sig=lNOVHrYzyjcH8igMIClR7q78Lql_Xf2BJWxzmGNYlhQ" style="width: 300px; height: auto;">
 <br>
 
 ### 그룹화면
 - 그룹의 일정 정보를 확인할 수 있습니다.
-<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2F3aeed594-76eb-4576-b63a-1c05f9560228%2F22.png/size/w=570?exp=1734963660&sig=L3FVX1NdtzaNaXcultNW-VCY_EPtgrWfqFtB-S6eLKk" alt="UI Screenshot" style="width: 300px; height: auto;">
+<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2F3aeed594-76eb-4576-b63a-1c05f9560228%2F22.png/size/w=570?exp=1740956878&sig=NGA0pIvQcuoLwfWUYHiZEfpyYtn9fZaOnslgggDl1Jw" alt="UI Screenshot" style="width: 300px; height: auto;">
 <br>
 
 ### 챗봇
@@ -90,24 +90,24 @@ AI 비서가 일정을 분배하고 캘린더에 자동으로 등록하는 데 �
 ### 카테고리 관리
 - 카테고리를 생성, 수정, 삭제할 수 있습니다.
 - 카테고리별 색상을 지정해 캘린더에서 한눈에 확인할 수 있습니다.
-<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fe423528e-ad02-462a-b664-f72ecc0e4ec0%2F11.png/size/w=570?exp=1734964123&sig=1PUGSgpc-PEGX9zFbIReiO67VGRz3xkr_umF9SWfrEs" alt="UI Screenshot" style="width: 300px; height: auto;">
+<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fe423528e-ad02-462a-b664-f72ecc0e4ec0%2F11.png/size/w=1130?exp=1740956900&sig=HeAptCLtas6xpV2oEas5BlF4Swf-DU2M-ARCWcqftQk" style="width: 300px; height: auto;">
 <br>
 
 ### 일정 생성
 - 제목, 날짜, 시간, 알림유무 등을 선택하여 작성할 수 있습니다.
 - 그룹 일정은 추가로 할당된 인원을 지정할 수 있습니다.
-<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2F2837a05d-1805-4fa0-8fb2-9370e72d274d%2F44.png/size/w=570?exp=1734963817&sig=Hsv-kch7pEG375RuSOt_y58sa-5RtqEo0ylaBQDwJDo" alt="UI Screenshot" style="width: 300px; height: auto;">
+<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2F2837a05d-1805-4fa0-8fb2-9370e72d274d%2F44.png/size/w=570?exp=1740956915&sig=KypNwaZ7KLS3Dk-6dDvGle0Dh8csTGXitUau-e3wrqE" style="width: 300px; height: auto;">
 <br>
 
 ### 실시간 알림
 - 예정된 일정 시간에 알림을 받을 수 있습니다.
 - 그룹 초대를 수락/거절 할 수 있습니다.
-<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fa7cab709-713b-40a0-8f13-7bb3ab90cbe9%2F66.png/size/w=570?exp=1734963892&sig=tm3UtNgzWI5Kd6mn9egBKVA-PoagDyw5XZpy-elGQyE" alt="UI Screenshot" style="width: 300px; height: auto;">
+<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fa7cab709-713b-40a0-8f13-7bb3ab90cbe9%2F66.png/size/w=570?exp=1740956927&sig=Sp51llA-JM8WI9xls9lOpOgF3FCKePdisT5Ewvp1qZU" alt="UI Screenshot" style="width: 300px; height: auto;">
 <br>
 
 ### 마이페이지
 - 내 정보를 조회하고 수정할 수 있습니다.
-<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fd16f860c-574a-468e-aadc-ba4d981e3701%2F77.png/size/w=570?exp=1734963911&sig=fMHcggcOjBjSE70CMbH0-9QKuRnKw5Y5WiJBPfUeJnc" alt="UI Screenshot" style="width: 300px; height: auto;">
+<img src="https://img.notionusercontent.com/s3/prod-files-secure%2Fed06401d-435c-4e3a-b065-eba8caaaa69a%2Fd16f860c-574a-468e-aadc-ba4d981e3701%2F77.png/size/w=570?exp=1740956941&sig=DxWyk12XVvsZq7p5TZktOjvDnsSh6HpTfYF1M7DueFs" alt="UI Screenshot" style="width: 300px; height: auto;">
 <br>
 <br>
 
